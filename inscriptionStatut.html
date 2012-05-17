@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Annuaire M2 DEFI - Inscription</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="defi.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Annuaire M2 DEFI</h1>
+		</div>
+		<div id="contenu">
+			<h2>Inscription au site</h2>
+			<p>* : champs obligatoires</p>
+			<form id="form1" action="inscription.php" method="post">
+				<fieldset>
+					<legend>Vous étes :</legend>
+					<p>
+					<label for="ancienEtudiantEmploi">Salarié * : </label>
+					<input type="radio" name="statutActuel" id="ancienEtudiantEmploi" value="3" />
+					</p>
+					<p>
+					<label for="ancienEtudiantFormation">En formation * : </label>
+					<input name="statutActuel" type="radio" id="ancienEtudiantFormation" value="1" />
+					</p>
+					<p>
+					<label for="ancienEtudiantSansEmploi">Sans emploi * : </label>
+					<input type="radio" name="statutActuel" id="ancienEtudiantSansEmploi" value="2" />
+					</p>
+
+				</fieldset>
+				<p class="submit">
+					<input type="submit" name="valider" value="Valider" />
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
+		
