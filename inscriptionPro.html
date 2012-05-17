@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Annuaire M2 DEFI - Inscription</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="defi.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Annuaire M2 DEFI</h1>
+		</div>
+		<div id="contenu">
+			<h2>Inscription au site</h2>
+			<p>* : champs obligatoires</p>
+			<form id="form1" action="inscription.php" method="post">
+				<fieldset>
+					<legend>Données professionnelles :</legend>
+					<p>
+						<label for="nom_ent">Nom de l'entreprise actuelle * : </label>
+						<input type="text" name="nom_ent" id="nom_ent" />
+					</p>
+					<p>
+						<label for="poste_ent">Votre poste dans l'entreprise * : </label>
+						<input type="text" id="poste_ent" name="poste_ent" />
+					</p>
+					<p>
+						<label for="email_ent">Adresse E-Mail professionnelle : </label>
+						<input type="text" id="email_ent" name="email_ent" />
+					</p>
+					<p>
+						<label for="secteur_ent">Secteur d'activité de l'entreprise : </label>
+						<input type="text" id="secteur_ent" name="secteur_ent" />
+					</p>					
+					<p>
+						<label for="code_postal_ent">Code Postal * : </label>
+						<input type="text" id="code_postal_ent" name="code_postal_ent" />
+					</p>					
+					<p>
+						<label for="pays_ent">Pays *: </label>
+						<input type="text" id="pays_ent" name="pays_ent" />
+					</p>
+
+				</fieldset>
+				<p class="submit">
+					<input type="submit" name="valider" value="Valider" />
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
+		
