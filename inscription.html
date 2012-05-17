@@ -12,7 +12,18 @@
 		<div id="contenu">
 			<h2>Inscription au site</h2>
 			<p>* : champs obligatoires</p>
-			<form id="form1" action="pageAccueil.php" method="post">
+			<form id="form1" action="inscription.php" method="post">
+				<fieldset>
+					<legend>Inscription en tant que :</legend>
+					<p>
+					<label for="ancienEtudiant">Ancien étudiant * : </label>
+					<input name="inscription" type="radio" id="ancienEtudiant" value="1" />
+					</p>
+					<p>
+					<label for="etudiantActuel">Étudiant actuel * : </label>
+					<input type="radio" name="inscription" id="etudiantActuel" value="2" />
+					</p>
+				</fieldset>
 				<fieldset>
 					<legend>Données personnelles :</legend>
 					<p>
@@ -28,7 +39,7 @@
 						<input type="text" id="naissance" name="naissance" />
 					</p>
 					<p>
-						<label for="anneeDiplome">Année d'obtention du M2 DEFI * : </label>
+						<label for="anneeDiplome">Année d'obtention du M2 DEFI (pour anciens étudiants) ou année d'inscription au M2 DEFI (pour étudiants actuels)* : </label>
 						<input type="text" name="anneeDiplome" id="anneeDiplome" />
 					</p>
 					<p>
@@ -40,49 +51,13 @@
 						<input type="password" name="mdp" id="mdp" />
 					</p>
 					<p>
-						<label for="mdp">Confirmer le mot de passe * : </label>
-						<input type="password" name="mdp" id="mdp" />
+						<label for="repeat_mdp">Confirmer le mot de passe * : </label>
+						<input type="password" name="mdp" id="repeat_mdp" />
 					</p>
-				</fieldset>
-				<fieldset>
-					<legend>Données professionnelles :</legend>
-					<p>
-					Si étudiant, cochez cette case * : <input name="etudiant[]" type="checkbox" class="checkbox" value="etudiant" />
-					</p>
-					<p>
-					Si sans emploi, cochez cette case * : <input name="sansEmploi[]" type="checkbox" class="checkbox" value="sansEmploi" />
-					</p>
-					<p>
-					Sinon, remplir les cases en dessous :
-					</p>
-					<p>
-						<label for="entreprise">Nom de l'entreprise actuelle * : </label>
-						<input type="text" name="anneeDiplome" id="anneeDiplome" />
-					</p>
-					<p>
-						<label for="poste">Votre poste dans l'entreprise * : </label>
-						<input type="text" id="poste" name="poste" />
-					</p>
-					<p>
-						<label for="email">Adresse E-Mail professionnelle : </label>
-						<input type="text" id="email" name="email" />
-					</p>
-					<p>
-						<label for="secteur">Secteur d'activité de l'entreprise : </label>
-						<input type="text" id="secteur" name="secteur" />
-					</p>					
-					<p>
-						<label for="code_postal">Code Postal * : </label>
-						<input type="text" id="code_postal" name="code_postal" />
-					</p>					
-					<p>
-						<label for="pays">Pays *: </label>
-						<input type="text" id="pays" name="pays" />
-					</p>
-					<p class="submit">
-						<input type="submit" name="valider" value="Valider" />
-					</p>
-				</fieldset>
+				</fieldset>					
+				<p class="submit">
+					<input type="submit" name="valider" value="Valider" />
+				</p>
 			</form>
 		</div>
 	</body>
