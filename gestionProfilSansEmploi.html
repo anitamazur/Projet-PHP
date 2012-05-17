@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Annuaire M2 DEFI - Inscription</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="defi.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Annuaire M2 DEFI</h1>
+		</div>
+		<div id="menu">
+			<h2 class="menu_title">Menu</h2>
+			<ul id="menu_liens">
+				<li><a href="accueil.html">Accueil</a></li>
+				<li><a href="deconnexion.html">Deconnexion</a></li>
+				<li><a href="connexion.html">Connexion</a></li>
+				<li><a href="profilEmploi.html">Mon profil</a></li>
+				<li><a href="modProfil.html">Gestion de mon profil</a></li>
+				<li><a href="maPromo.html">Ma promo</a></li>
+			</ul>
+		</div>
+		<div id="contenu">
+			<form id="form1" action="gestion.php" method="post">
+				<fieldset>
+					<legend>Données personnelles :</legend>
+					<p>
+						<label for="nom">Nom * : </label>
+						<input type="text" id="nom" name="nom" value="nom à modifier" />
+						<input name="autoriserNom[]" type="checkbox" id="publiquement" value="1" />
+						<label title="autoriser" for="publiquement">Affichage public</label>
+						<input name="autoriserNom[]" type="checkbox" id="autres anciens étudiants" value="2" />
+						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
+						<input name="autoriserNom[]" type="checkbox" id="etudiantsActuels" value="3" />
+						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
+						<input name="autoriserNom[]" type="checkbox" id="prive" value="4" />
+						<label title="autoriser" for="prive">Affichage privé</label>
+					</p>
+					<p>
+						<label for="nomPatro">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
+						<input type="text" id="nomPatro" name="nomPatro" value="nom à modifier" />
+						<input name="autoriserNomP[]" type="checkbox" id="publiquement" value="1" />
+						<label title="autoriser" for="publiquement">Affichage public</label>
+						<input name="autoriserNomP[]" type="checkbox" id="autres anciens étudiants" value="2" />
+						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
+						<input name="autoriserNomP[]" type="checkbox" id="etudiantsActuels" value="3" />
+						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
+						<input name="autoriserNomP[]" type="checkbox" id="prive" value="4" />
+						<label title="autoriser" for="prive">Affichage privé</label>
+					</p>
+					<p>
+						<label for="prenom">Prénom * : </label>
+						<input type="text" name="prenom" id="prenom" value="prénom à modifier" />
+						<input name="autoriserPrenom[]" type="checkbox" id="publiquement" value="1" />
+						<label title="autoriser" for="publiquement">Affichage public</label>
+						<input name="autoriserPrenom[]" type="checkbox" id="autres anciens étudiants" value="2" />
+						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
+						<input name="autoriserPrenom[]" type="checkbox" id="etudiantsActuels" value="3" />
+						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
+						<input name="autoriserPrenom[]" type="checkbox" id="prive" value="4" />
+						<label title="autoriser" for="prive">Affichage privé</label>
+					</p>
+					<p>
+						<label for="naissance">Date de naissance * : </label>
+						<input type="text" id="naissance" name="naissance" value="date à modifier" />
+						<input name="autorisernaissance[]" type="checkbox" id="publiquement" value="1" />
+						<label title="autoriser" for="publiquement">Affichage public</label>
+						<input name="autorisernaissance[]" type="checkbox" id="autres anciens étudiants" value="2" />
+						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
+						<input name="autorisernaissance[]" type="checkbox" id="etudiantsActuels" value="3" />
+						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
+						<input name="autorisernaissance[]" type="checkbox" id="prive" value="4" />
+						<label title="autoriser" for="prive">Affichage privé</label>
+					</p>
+					<p>
+						<label for="email">Adresse E-Mail * : </label>
+						<input type="text" id="email" name="email" value="e-mail à modifier" />
+						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
+						<label title="autoriser" for="publiquement">Affichage public</label>
+						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
+						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
+						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
+						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
+						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
+						<label title="autoriser" for="prive">Affichage privé</label>
+					</p>
+					<p>
+						<label for="mdp">Mot de passe * : </label>
+						<input type="password" name="mdp" id="mdp" value="mot de passe à modifier" />
+					</p>
+					<p>
+						<label for="repeat_mdp">Confirmer le mot de passe * : </label>
+						<input type="password" name="mdp" id="repeat_mdp" value="mot de passe à modifier" />
+					</p>
+				</fieldset>	
+				<p class="submit">
+					<input type="submit" name="valider" value="Valider" />
+				</p>
+			</form>
+			<form action="changementSituation.php" method="post">
+			<h2>Changement de ma situation</h2>
+			<fieldset>
+				<legend>Changer mon statut en : </legend>
+				<p>
+					<label for="ancienEtudiantEmploi">Salarié : </label>
+					<input type="radio" name="statutActuel" id="ancienEtudiantEmploi" value="3" />
+				</p>
+				<p>
+					<label for="ancienEtudiantFormation">En formation : </label>
+					<input name="statutActuel" type="radio" id="ancienEtudiantFormation" value="1" />
+				</p>
+			</fieldset>
+			<p class="submit">
+				<input type="submit" name="valider" value="Valider" />
+			</p>
+			</form>
+			<h2>Suppression de mon profil</h2>
+			<form action="gestionProfilSansEmploi.php" method="post">
+				<fieldset>
+					<legend>Les données seront perdues définitivement</legend>
+					<p>
+						<input type="submit" value="supprimer mon profil" />
+					</p>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>
+		
