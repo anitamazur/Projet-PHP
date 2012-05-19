@@ -21,6 +21,9 @@
 			</ul>
 		</div>	
 		<div id="contenu">
+			<h2>Gestion de mon profil</h2>
+			<h3>Profil Ancien étudiant en poste</h3>
+			<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>
 			<form id="form1" action="gestion.php" method="post">
 				<fieldset>
 					<legend>Données personnelles :</legend>
@@ -166,11 +169,15 @@
 			<fieldset>
 				<legend>Changer mon statut en : </legend>
 				<p>
+					<label for="statutActuel">En poste : </label>
+					<input name="statutActuel" type="radio" id="ancienEtudiantFormation" checked="checked" value="3" />
+				</p>
+				<p>
 					<label for="ancienEtudiantFormation">En formation : </label>
 					<input name="statutActuel" type="radio" id="ancienEtudiantFormation" value="1" />
 				</p>
 				<p>
-					<label for="ancienEtudiantSansEmploi">Sans emploi * : </label>
+					<label for="ancienEtudiantSansEmploi">Sans emploi : </label>
 					<input type="radio" name="statutActuel" id="ancienEtudiantSansEmploi" value="2" />
 				</p>
 			</fieldset>
