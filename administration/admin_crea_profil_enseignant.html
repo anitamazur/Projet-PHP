@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Annuaire M2 DEFI - Inscription</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="defi.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Annuaire M2 DEFI</h1>
+		</div>
+		<div id="contenu">
+			<h2>Création d'un profil enseignant ou d'administrateur</h2>
+			<p>* : champs obligatoires</p>
+			<form id="form1" action="crea_profil.php" method="post">
+				<fieldset>
+					<legend>Création de profil de :</legend>
+					<p>
+					<label for="admin">Administrateur * : </label>
+					<input name="crea_profil" type="radio" id="admin" value="4" />
+					</p>
+					<p>
+					<label for="enseignant">Enseignant * : </label>
+					<input type="radio" name="crea_profil" id="enseignant" value="3" />
+					</p>
+				</fieldset>
+				<fieldset>
+					<legend>Données personnelles :</legend>
+					<p>
+						<label for="nom">Nom * : </label>
+						<input type="text" id="nom" name="nom" />
+					</p>
+					<p>
+						<label for="prenom">Prénom * : </label>
+						<input type="text" name="prenom" id="prenom" />
+					</p>
+					<p>
+						<label for="naissance">Date de naissance * : </label>
+						<input type="text" id="naissance" name="naissance" />
+					</p>
+					<p>
+						<label for="email">Adresse E-Mail (restera confidentiel) * : </label>
+						<input type="text" id="email" name="email" />
+					</p>
+					<p>
+						<label for="mdp">Mot de passe * : </label>
+						<input type="password" name="mdp" id="mdp" />
+					</p>
+					<p>
+						<label for="repeat_mdp">Confirmer le mot de passe * : </label>
+						<input type="password" name="mdp" id="repeat_mdp" />
+					</p>
+				</fieldset>					
+				<p class="submit">
+					<input type="submit" name="valider" value="Valider" />
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
+		

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Annuaire M2 DEFI - Administration</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="defi.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Annuaire M2 DEFI</h1>
+		</div>
+		<div id="menu">
+			<h2 class="menu_title">Menu</h2>
+			<ul id="menu_liens">
+				<li><a href="accueil.html">Accueil</a></li>
+				<li><a href="deconnexion.html">Deconnexion</a></li>
+				<li><a href="connexion.html">Connexion</a></li>
+				<li><a href="profilEmploi.html">Mon profil</a></li>
+				<li><a href="modProfil.html">Gestion de mon profil</a></li>
+				<li><a href="administration.html">Administration</a></li>
+			</ul>
+		</div>
+		<div id="contenu">
+			<h2>Administration</h2>
+			<h3>Modifier les rôles des étudiants actuels</h3>
+			<form id="form_suppr" method="post" action="suppr_mod_anciens_etudiants.php">
+				<table>
+					<tr>
+						<th>Statut</th>
+						<th>Nom / Prénom</th>
+						<th>Étudiant Actuel</th>
+						<th>Ancien étudiant</th>
+					</tr>
+					<tr class="impair">
+						<td>Étudiant actuel</td>
+						<td>Étudiant 1</td>
+						<td>
+							<input name="etudiant1" type="radio" checked="checked" class="etudiant" value="1" />
+						</td>
+						<td>
+							<input name="etudiant1" type="radio" class="ancien_etudiant" value="1" />
+						</td>
+					</tr>
+					<tr class="pair">
+						<td>Étudiant actuel</td>
+						<td>Étudiant 2</td>
+						<td>
+							<input name="etudiant_2" type="radio" checked="checked" class="etudiant" value="2" />
+						</td>
+						<td>
+							<input name="etudiant_2" type="radio" class="ancien_etudiant" value="2" />
+						</td>
+					</tr>
+				</table> 
+				<p>
+					<input name="Valider" type="submit" id="valider" value="Valider" />
+				</p>
+			</form>
+		</div>
+	</body>
+</html>
+		
