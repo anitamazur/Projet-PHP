@@ -29,62 +29,57 @@
 					<p>
 						<label for="nom">Nom * : </label>
 						<input type="text" id="nom" name="nom" value="nom à modifier" />
-						<input name="autoriserNom[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserNom[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserNom[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserNom[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_nom">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="nomPatro">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
 						<input type="text" id="nomPatro" name="nomPatro" value="nom à modifier" />
-						<input name="autoriserNomP[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserNomP[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserNomP[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserNomP[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_nomPatro">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="prenom">Prénom * : </label>
 						<input type="text" name="prenom" id="prenom" value="prénom à modifier" />
-						<input name="autoriserPrenom[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserPrenom[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserPrenom[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserPrenom[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_prenom">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="naissance">Date de naissance * : </label>
 						<input type="text" id="naissance" name="naissance" value="date à modifier" />
-						<input name="autorisernaissance[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autorisernaissance[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autorisernaissance[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autorisernaissance[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_naissance">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="email">Adresse E-Mail * : </label>
 						<input type="text" id="email" name="email" value="e-mail à modifier" />
-						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_email">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="mdp">Mot de passe * : </label>
@@ -94,68 +89,63 @@
 						<label for="repeat_mdp">Confirmer le mot de passe * : </label>
 						<input type="password" name="mdp" id="repeat_mdp" value="mot de passe à modifier" />
 					</p>
-				</fieldset>	
+				</fieldset>
 				<fieldset>
 					<legend>Formation :</legend>
 					<p>
 						<label for="diplome">Diplôme préparé actuellement* : </label>
 						<input type="text" id="diplome" name="diplome" value="diplôme à modifier" />
-						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_diplome">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="etab">Établissement * : </label>
 						<input type="text" name="etab" id="etab" value="établissement à modifier" />
-						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_etab">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 					<p>
 						<label for="recherche">Thème de recherche : </label>
 						<input type="text" id="recherche" name="recherche" value="thème à modifier" />
-						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_recherche">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>				
 					<p>
 						<label for="code_postal_etab">Code Postal * : </label>
 						<input type="text" id="code_postal_etab" name="code_postal_etab" value="code postal à modifier" />
-						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_code_postal_etab">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>					
 					<p>
 						<label for="pays_etab">Pays *: </label>
 						<input type="text" id="pays_etab" name="pays_etab" value="pays à modifier" />
-						<input name="autoriserEmail[]" type="checkbox" id="publiquement" value="1" />
-						<label title="autoriser" for="publiquement">Affichage public</label>
-						<input name="autoriserEmail[]" type="checkbox" id="autres anciens étudiants" value="2" />
-						<label title="autoriser" for="autoriser">Affichage pour anciens étudiants</label>
-						<input name="autoriserEmail[]" type="checkbox" id="etudiantsActuels" value="3" />
-						<label title="autoriser" for="etudiantsActuels">Affichage pour étudiants actuels</label>
-						<input name="autoriserEmail[]" type="checkbox" id="prive" value="4" />
-						<label title="autoriser" for="prive">Affichage privé</label>
+						<select name="affichage_pays_etab">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage pour anciens étudiants uniquement</option>
+							<option value="3">Affichage pour étudiants actuels uniquement</option>
+							<option value="4">Affichage pour anciens étudiants et étudiants actuels</option>
+							<option value="5">Affichage public</option>
+						</select>
 					</p>
 				</fieldset>			
 				<p class="submit">
