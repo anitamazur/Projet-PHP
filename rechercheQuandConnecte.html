@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Annuaire M2 DEFI - Recherche</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="defi.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Annuaire M2 DEFI</h1>
+		</div>
+		<div id="contenu">
+			<h2>Recherche par nom et prénom dans l'annuaire</h2>
+			<form id="form1" action="pageAccueil.php" method="post">
+				<fieldset>
+					<legend>Entrez le nom, prénom de la personne recherchée :</legend>
+					<p>
+						<label for="nom">Nom : </label>
+						<input type="text" id="nom" name="nom" />
+					</p>
+					<p>
+						<label for="prenom">Prénom : </label>
+						<input type="text" name="prenom" id="prenom" />
+					</p>
+					<p class="submit">
+						<input type="submit" name="valider" value="Valider" />
+					</p>
+				</fieldset>
+			</form>
+			
+			<h2>Recherche par promotion dans l'annuaire</h2>
+			<form id="form1" action="pageAccueil.php" method="post">
+				<fieldset>
+					<legend>Entrez l'année de la promotion recherchée :</legend>
+					<p>
+						<label for="annee_promo">Année de la promotion: </label>
+						<input type="text" id="annee_promo" name="annee_promo" />
+					</p>
+					<p class="submit">
+						<input type="submit" name="valider" value="Valider" />
+					</p>
+				</fieldset>
+			</form>
+			<p><a href="accueil.html">Retour à la page d'accueil de l'annuaire</a></p>
+			<p>Si vous rencontrez des problèmes n'hésitez pas à <a href="mailto:admin@annuairedefi.u-paris10.fr">contacter l'administrateur</a></p>
+		</div>
+	</body>
+</html>
+		
