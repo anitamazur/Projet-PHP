@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `mail` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
   `cle_activation` varchar(8) NOT NULL,
-  `compte_active` enum('0','1') NOT NULL DEFAULT 0,
+  `compte_active` enum('0','1') NOT NULL DEFAULT 0, -- Ce nest pas mieux BOOLEAN ? --
   `nom` varchar(255) NOT NULL,
   `nom_patronymique` varchar(255) NULL,
   `prenom` varchar(255) NOT NULL,
