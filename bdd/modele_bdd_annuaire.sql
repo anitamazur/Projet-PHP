@@ -213,6 +213,7 @@ CREATE TABLE IF NOT EXISTS `poste_utilisateur` (
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(255) NOT NULL,
+  `mail_pro` varchar(255) NOT NULL, -- ajout de ce champ`
   `pass` varchar(255) NOT NULL,
   `cle_activation` varchar(8) NOT NULL,
   `compte_active` enum('0','1') NOT NULL DEFAULT 0, -- Ce nest pas mieux BOOLEAN ? --
