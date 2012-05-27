@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `etablissement` (
   `nom_etablissement` varchar(255) NOT NULL,
   `siteweb_etablissement` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `etablissement`
@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_pays` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `pays`
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_role` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `role`
@@ -296,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `statut` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_statut` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `statut`
@@ -341,10 +341,10 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `cle_activation` varchar(8) NOT NULL,
   `compte_active` tinyint(1) NOT NULL DEFAULT '0',
   `nom` varchar(255) NOT NULL,
-  `nom_patronymique` varchar(255) DEFAULT NULL,
+  `nom_patronymique` varchar(255) NULL,
   `prenom` varchar(255) NOT NULL,
   `naissance` date NOT NULL,
-  `annee_promo` year(4) NOT NULL,
+  `annee_promo` year(4) NULL,
   `date_inscription` int(10) NOT NULL DEFAULT '0',
   `date_maj_profil` int(10) NOT NULL,
   PRIMARY KEY (`id`)
@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `ville` (
   `nom` varchar(50) NOT NULL,
   `cp` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `ville`
