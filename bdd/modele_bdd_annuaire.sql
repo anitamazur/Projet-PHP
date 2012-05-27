@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_entreprise` varchar(255) NOT NULL,
   `siteweb_entreprise` varchar(255) DEFAULT NULL,
+  `secteur_activite` varchar( 255 ) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
