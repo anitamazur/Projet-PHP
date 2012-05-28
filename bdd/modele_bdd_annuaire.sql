@@ -267,7 +267,7 @@ INSERT INTO `role` (`id`, `nom_role`) VALUES
 (2, 'Étudiant actuel'),
 (3, 'Enseignant'),
 (4, 'Administrateur');
-
+(5, 'Public');
 -- --------------------------------------------------------
 
 --
