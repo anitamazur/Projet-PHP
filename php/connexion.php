@@ -1,12 +1,12 @@
 <?php
-require("listeFonctions.php") ;
+require("fonctions.php") ;
 $connexion = connexion() ;
 
-debuthtml (Annuaire M2 DEFI - Page de connexion , Annuaire M2 DEFI, Connexion au site)
+debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion au site") ;
 ?>
 			<form id="form1" action="pageAccueil.php" method="post">
 				<fieldset>
-					<legend>Si vous avez dÈj‡ un compte, veuillez introduire les informations suivantes :</legend>
+					<legend>Si vous avez d√©j√† un compte, veuillez introduire les informations suivantes :</legend>
 					<p>
 						<label for="email">Adresse E-Mail : </label>
 						<input type="text" id="email" name="email" />
@@ -21,10 +21,10 @@ debuthtml (Annuaire M2 DEFI - Page de connexion , Annuaire M2 DEFI, Connexion au
 				</fieldset>
 			</form>
 			<p>Si vous n'avez pas d'identifiants, veuillez vous inscrire en cliquant sur <a href="inscription.html">Inscription</a></p>
-			<p>Si vous rencontrez des problËmes n'hÈsitez pas ‡ <a href="mailto:admin@annuairedefi.u-paris10.fr">contacter l'administrateur</a></p>
+			<p>Si vous rencontrez des probl√®mes n'h√©sitez pas √† <a href="mailto:admin@annuairedefi.u-paris10.fr">contacter l'administrateur</a></p>
 
 <?php
 
-finhtml ()
+finhtml() ; 
 ?>
 		
