@@ -24,7 +24,6 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 			<p>Si vous rencontrez des problèmes n'hésitez pas à <a href="mailto:admin@annuairedefi.u-paris10.fr">contacter l'administrateur</a></p>
 
 <?php
-
 finhtml() ; 
 ?>
 		
