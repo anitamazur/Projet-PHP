@@ -32,7 +32,7 @@ if(mysql_num_rows($res) > 0)
 
 	debutpagehtml("Annuaire M2 DEFI - Accueil"," ") ;
 		
-		if ($role = 'Étudiant Actuel')
+		if ($role = 'ï¿½tudiant Actuel')
 		{ 
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
@@ -40,9 +40,9 @@ if(mysql_num_rows($res) > 0)
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
 			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
-			<p><a href=\"déconnexion\">Déconnexion</a></p>";
+			<p><a href=\"dï¿½connexion\">Dï¿½connexion</a></p>";
 			}
-		if ($role = 'Ancien étudiant')
+		if ($role = 'Ancien ï¿½tudiant')
 		{
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
@@ -50,7 +50,7 @@ if(mysql_num_rows($res) > 0)
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
 			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
-			<p><a href=\"déconnexion\">Déconnexion</a></p>";
+			<p><a href=\"dï¿½connexion\">Dï¿½connexion</a></p>";
 		}
 		if ($role = 'Enseignant')
 		{
@@ -61,7 +61,7 @@ if(mysql_num_rows($res) > 0)
 			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"administration.html\">Administration</a></p>
-			<p><a href=\"déconnexion\">Déconnexion</a></p>";
+			<p><a href=\"dï¿½connexion\">Dï¿½connexion</a></p>";
 		}
 		if ($role = 'Administrateur')
 		{ 
@@ -72,11 +72,11 @@ if(mysql_num_rows($res) > 0)
 			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"administration.html\">Administration</a></p>
-			<p><a href=\"déconnexion\">Déconnexion</a></p>";
+			<p><a href=\"dï¿½connexion\">Dï¿½connexion</a></p>";
 		}
 
 	endpagehtml() ;
-	echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	echo "<p>Si vous rencontrez des problï¿½mes n'hï¿½sitez pas ï¿½ <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	}
   
