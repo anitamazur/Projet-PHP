@@ -8,8 +8,16 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 				<fieldset>
 					<legend>Si vous avez déjà un compte, veuillez introduire les informations suivantes :</legend>
 					<p>
-						<label for="email">Adresse E-Mail : </label>
-						<input type="text" id="email" name="email" />
+						<label for="nom">Nom : </label>
+						<input type="text" id="nom" name="nom" />
+					</p>
+					<p>
+						<label for="prenom">Prénom : </label>
+						<input type="text" id="prenom" name="prenom" />
+					</p>
+					<p>
+						<label for="naissance">Date de naissance (format : dd-mm-yyyy) : </label>
+						<input type="text" id="naissance" name="naissance" />
 					</p>
 					<p>
 						<label for="mdp">Mot de passe : </label>
