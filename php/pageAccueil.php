@@ -115,7 +115,7 @@ if(mysql_num_rows($res) > 0)
 else
 	{
 	echo "<h2>Mauvaise identification</h2>
-	<h3 class=\"erreur\"><a href=\"connexion.html\">Redirection vers le formulaire de connexion</a></h3>\n" ; 
+	<h3 class=\"erreur\"><a href=\"connexion.php\">Redirection vers le formulaire de connexion</a></h3>\n" ; 
   }
     
 mysql_close() ;
