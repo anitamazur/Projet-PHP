@@ -43,6 +43,7 @@ if(mysql_num_rows($res) > 0)
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 			}
@@ -52,6 +53,7 @@ if(mysql_num_rows($res) > 0)
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
@@ -60,20 +62,20 @@ if(mysql_num_rows($res) > 0)
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
-			<p><a href=\"mapromo.html\">Ma promo</a></p>
-			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
-			<p><a href=\"administration.html\">Administration</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+		<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
+		<p><a href=\"administration.html\">Administration</a></p>
+		<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
 		if ($role = 'Administrateur')
 		{ 
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
-			<p><a href=\"mapromo.html\">Ma promo</a></p>
-			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
-			<p><a href=\"administration.html\">Administration</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+		<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
+		<p><a href=\"administration.html\">Administration</a></p>
+		<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
 
 	endpagehtml() ;
