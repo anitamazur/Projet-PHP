@@ -36,37 +36,6 @@ if(mysql_num_rows($res) > 0)
 
 	debutpagehtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
 	
-	echo "<h2>Recherche par nom et prénom dans l'annuaire</h2>
-			<form id=\"form1\" action=\"recherche.php\" method=\"post\">
-				<fieldset>
-					<legend>Entrez le nom, prénom de la personne recherchée :</legend>
-					<p>
-						<label for=\"nom\">Nom : </label>
-						<input type=\"text\" id=\"nom\" name=\"nom\" />
-					</p>
-					<p>
-						<label for=\"prenom\">Prénom : </label>
-						<input type=\"text\" name=\"prenom\" id=\"prenom\" />
-					</p>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-				</fieldset>
-			</form>
-			
-			<h2>Recherche par promotion dans l'annuaire</h2>
-			<form id=\"form1\" action=\"recherche.php\" method=\"post\">
-				<fieldset>
-					<legend>Entrez l'année de la promotion recherchée :</legend>
-					<p>
-						<label for=\"annee_promo\">Année de la promotion: </label>
-						<input type=\"text\" id=\"annee_promo\" name=\"annee_promo\" />
-					</p>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-				</fieldset>
-			</form>";
 			
 		if ($role = 'Etudiant Actuel')
 		{ 
