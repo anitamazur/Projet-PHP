@@ -74,9 +74,8 @@ if(mysql_num_rows($res) > 0)
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
-			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
-			<p><a href=\"déconnexion.php\">Déconnexion</a></p>";
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 			}
 		if ($role = 'Ancien étudiant')
 		{
@@ -84,9 +83,8 @@ if(mysql_num_rows($res) > 0)
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
-			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
-			<p><a href=\"déconnexion.php\">Déconnexion</a></p>";
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
 		if ($role = 'Enseignant')
 		{
@@ -94,10 +92,9 @@ if(mysql_num_rows($res) > 0)
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
-			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"administration.html\">Administration</a></p>
-			<p><a href=\"déconnexion.php\">Déconnexion</a></p>";
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
 		if ($role = 'Administrateur')
 		{ 
@@ -105,10 +102,9 @@ if(mysql_num_rows($res) > 0)
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
 			<p><a href=\"mapromo.html\">Ma promo</a></p>
-			<p><a href=\"recherche.html\">
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"administration.html\">Administration</a></p>
-			<p><a href=\"déconnexion.php\">Déconnexion</a></p>";
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
 
 	endpagehtml() ;
