@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 CREATE TABLE IF NOT EXISTS `ville` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
+  `nom_ville` varchar(50) NOT NULL,
   `cp` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -373,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `ville` (
 -- Contenu de la table `ville`
 --
 
-INSERT INTO `ville` (`id`, `nom`, `cp`) VALUES
+INSERT INTO `ville` (`id`, `nom_ville`, `cp`) VALUES
 (1, 'Nanterre', '92000'),
 (2, 'Nanterre', '92001');
 
