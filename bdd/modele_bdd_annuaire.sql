@@ -346,8 +346,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `prenom` varchar(255) NOT NULL,
   `naissance` date NOT NULL,
   `annee_promo` year(4) NULL,
-  `date_inscription` int(10) NOT NULL DEFAULT '0',
-  `date_maj_profil` int(10) NOT NULL,
+  `date_inscription` date NOT NULL,
+  `date_maj_profil` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
