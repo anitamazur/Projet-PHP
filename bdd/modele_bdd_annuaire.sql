@@ -304,10 +304,10 @@ CREATE TABLE IF NOT EXISTS `statut` (
 --
 
 INSERT INTO `statut` (`id`, `nom_statut`) VALUES
-(1, 'Profil à remplir'),
-(2, 'En poste'),
-(3, 'En formation'),
-(4, 'En recherche d''emploi');
+(1, 'En poste'),
+(2, 'En formation'),
+(3, 'En recherche d''emploi'),
+(4, 'Profil à remplir');
 
 -- --------------------------------------------------------
 
