@@ -27,18 +27,29 @@ if(mysql_num_rows($res)>0)
 	$_SESSION['prenom'] = $ligne->prenom ; 	
 	$id_role = $ligne->id_role ;
 	$role = $ligne->role ;
-	$id_statut = $ligne->id_statut;
-	$statut = $ligne->statut;
+	$id_statut = $ligne->id_statut ;
+	$statut = $ligne->statut ;
+	$annee_promo = $ligne->annee_promo ;
+	$mail = $ligne->mail ;
+	$pass = $ligne->pass ;
 
 	$prenom = ucfirst(strtolower($_SESSION['prenom']));
 	$nom = ucfirst(strtolower($_SESSION['nom']));
 	
 
 	debutpagehtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
+	 
 	
-			
 		if ($id_role = 1)
 		{ 
+			
+		affichetitre("2","Vos informations personnelles :")
+		echo "$nom $prenom <br/> 
+		$role : $statut <br/>
+		$annee_promo <br/>
+		Adresse mail : $mail <br/>
+		Mot de passe : $pass <br/>";	
+		
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
@@ -47,8 +58,18 @@ if(mysql_num_rows($res)>0)
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 			}
+			
+			
 		if ($id_role = 2)
 		{
+			
+		affichetitre("2","vos informations personnelles :")
+		echo "$nom $prenom <br/> 
+		$role : $statut <br/>
+		$annee_promo <br/>
+		Adresse mail : $mail <br/>
+		Mot de passe : $mdp <br/>";
+		
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
@@ -57,8 +78,16 @@ if(mysql_num_rows($res)>0)
 			<p><a href=\"Gestiondeprofil.html\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
+		
+		
 		if ($id_role = 3)
 		{
+		affichetitre("2","Vos informations personnelles :")
+		echo "$nom $prenom <br/> 
+		$role <br/>
+		Adresse mail : $mail <br/>
+		Mot de passe : $mdp <br/>";
+		
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
@@ -67,8 +96,16 @@ if(mysql_num_rows($res)>0)
 		<p><a href=\"administration.html\">Administration</a></p>
 		<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
+		
+		
 		if ($id_role = 4)
 		{ 
+		affichetitre("2","Vos informations personnelles :")
+		echo "$nom $prenom <br/> 
+		$role <br/>
+		Adresse mail : $mail <br/>
+		Mot de passe : $mdp <br/>";
+		
 		echo "
 		<p><a href=\"accueil.html\"Accueil</a></p>
 		<p><a href=\"monprofil.html\"Mon profil</a></p> 
