@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 session_start() ;
 $nom = $_SESSION['nom'] ;
@@ -29,46 +29,7 @@ $ligne=mysql_fetch_object($res) ;
 	$mail = $ligne->mail ;
 	$pass = $ligne->pass ;
 
-	if ($id_role = 1)
-		{ 
-		
-		affichetitre("Vos informations personnelles :","3") ;
-		echo "<p>$nom $prenom <br/> 
-		Année de la promotion : $annee_promo <br/>
-		Adresse mail : $mail <br/></p>";	
-		
-		$req_role1 = "SELECT * 
-					FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-					WHERE u.id = eu.id_utilisateur
-					AND u.id = etau.id_utilisateur
-					AND e.id = eu.id_etudes
-					AND eta.id = etau.id_etablissement
-					AND v.id = vp.id_ville
-					AND v.id = etav.id_ville
-					AND p.id = vp.id_pays
-					AND nom='$nom'" ;
-		$res_role1 = mysql_query($req_role1) ;
-		
-		if(mysql_num_rows($res_role1) > 0)
-	{
-
-		$ligne=mysql_fetch_object($res_role1) ; 	
-			$diplome = $ligne->diplome_etudes ;
-			$nom_etablissement = $ligne->nom_etablissement ;
-			$siteweb_etablissement = $ligne->siteweb_etablissement ;
-			$nom_ville = $ligne->nom_ville ; 
-			$cp = $ligne->cp ;
-			$pays = $ligne->nom_pays ;
-		
-		echo "Diplôme : $diplome <br/>
-			Etablissement : $nom_etablissement <br/>
-			Adresse web de l'établissement : $siteweb_etablissement <br/>
-			$nom_ville - $cp - $pays </p>";
-		
-			} }
-			
-			
-		elseif ($id_role = 2)
+	elseif ($id_role = 1)
 		{
 			
 		affichetitre("2","vos informations personnelles :") ;
@@ -84,6 +45,48 @@ $ligne=mysql_fetch_object($res) ;
 			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
+		
+	
+	
+	if ($id_role = 2)
+		{ 
+		
+		affichetitre("Vos informations personnelles :","3") ;
+		echo "<p>$nom $prenom <br/> 
+		Année de la promotion : $annee_promo <br/>
+		Adresse mail : $mail <br/></p>";	
+		
+		$req_role2 = "SELECT * 
+					FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+					WHERE u.id = eu.id_utilisateur
+					AND u.id = etau.id_utilisateur
+					AND e.id = eu.id_etudes
+					AND eta.id = etau.id_etablissement
+					AND v.id = vp.id_ville
+					AND v.id = etav.id_ville
+					AND p.id = vp.id_pays
+					AND nom='$nom'" ;
+		$res_role1 = mysql_query($req_role2) ;
+		
+		if(mysql_num_rows($res_role2) > 0)
+	{
+
+		$ligne=mysql_fetch_object($res_role2) ; 	
+			$diplome = $ligne->diplome_etudes ;
+			$nom_etablissement = $ligne->nom_etablissement ;
+			$siteweb_etablissement = $ligne->siteweb_etablissement ;
+			$nom_ville = $ligne->nom_ville ; 
+			$cp = $ligne->cp ;
+			$pays = $ligne->nom_pays ;
+		
+		echo "Diplôme : $diplome <br/>
+			Etablissement : $nom_etablissement <br/>
+			Adresse web de l'établissement : $siteweb_etablissement <br/>
+			$nom_ville - $cp - $pays </p>";
+		
+			} }
+			
+			
 		
 		
 		elseif ($id_role = 3)
