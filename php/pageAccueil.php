@@ -25,10 +25,10 @@ if(mysql_num_rows($res)>0)
 	$ligne=mysql_fetch_object($res) ;
 	$_SESSION['nom'] = $ligne->nom ;
 	$_SESSION['prenom'] = $ligne->prenom ; 	
-	$_SESSION['id_role'] = $ligne->id_role ;
-	$_SESSION['role'] = $ligne->role ;
-	$_SESSION['id_statut'] = $ligne->id_statut;
-	$_SESSION['statut'] = $ligne->statut;
+	$id_role = $ligne->id_role ;
+	$role = $ligne->role ;
+	$id_statut = $ligne->id_statut;
+	$statut = $ligne->statut;
 
 	$prenom = ucfirst(strtolower($_SESSION['prenom']));
 	$nom = ucfirst(strtolower($_SESSION['nom']));
