@@ -1,13 +1,13 @@
 <?php
     // Le fichier avec les fonctions est chargé
-    require_once("outils.php");
+    require_once("fonctions.php");
     $connexion = connexion();
     // On démarre la session
     session_start();
         
         debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire");
-            afficheMenu();
-        ?>
+
+ ?>
             <p>* : champs obligatoires</p>
             <form id="inscription" action="inscription.php" method="post">
                 <fieldset>
@@ -75,6 +75,7 @@
                     $message_ajout = "";
                     if ($_POST['pass'] != $_POST['pass_confirm']) { 
          $erreur = 'Les 2 mots de passe sont différents.';
+    				}
                     if($email == "") {
                         $message_ajout = "<p class=\"erreur\">Le champ 'E-Mail à ajouter' est vide.</p>";
                     } else {
@@ -96,8 +97,7 @@
                         }
                     }
             
-            }
+				}
     finhtml();
             mysql_close ();
-            ?>
-        
+?>
