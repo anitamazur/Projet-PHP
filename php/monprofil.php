@@ -67,8 +67,8 @@ $ligne=mysql_fetch_object($res) ;
 			$cp = $ligne->cp ;
 			$pays = $ligne->nom_pays ;
 		
-		echo "
-			<p>Poste : $nom_poste <br/>
+		echo "<p>$role : $statut <br/><br/>
+			Poste : $nom_poste <br/>
 			Entreprise : $nom_entreprise <br/>
 			Adresse web de l'entreprise : $siteweb_entreprise <br/>
 			Secteur de l'entreprise : $secteur_entreprise <br/>
@@ -108,7 +108,8 @@ $ligne=mysql_fetch_object($res) ;
 			$pays = $ligne->nom_pays ;
 		
 		
-		echo "Diplôme : $diplome <br/>
+		echo "<p>$role : $statut <br/><br/>
+			Diplôme : $diplome <br/>
 			Etablissement : $nom_etablissement <br/>
 			Adresse web de l'établissement : $siteweb_etablissement <br/>
 			$nom_ville - $cp - $pays </p>";
@@ -122,7 +123,7 @@ $ligne=mysql_fetch_object($res) ;
 		}
 		elseif ($id_role = 1 && $id_statut =3) {
 		
-		echo "en recherche";
+		echo "$role : $statut";
 		echo "
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
@@ -165,7 +166,8 @@ $ligne=mysql_fetch_object($res) ;
 			$pays = $ligne->nom_pays ;
 		
 		
-		echo "Diplôme : $diplome <br/>
+		echo "<p>$role <br/><br/>
+			Diplôme : $diplome <br/>
 			Etablissement : $nom_etablissement <br/>
 			Adresse web de l'établissement : $siteweb_etablissement <br/>
 			$nom_ville - $cp - $pays </p>";
@@ -185,7 +187,8 @@ $ligne=mysql_fetch_object($res) ;
 		
 		elseif ($id_role = 3)
 		{
-		echo "<p>$nom $prenom <br/> 
+		echo "<p>$role <br/><br/>
+		$nom $prenom <br/>
 		Adresse mail : $mail <br/></p>";
 		
 		echo "
@@ -200,7 +203,8 @@ $ligne=mysql_fetch_object($res) ;
 		
 		elseif ($id_role = 4)
 		{ 
-		echo "<p>$nom $prenom <br/> 
+		echo "<p>$role <br/><br/>
+		$nom $prenom <br/>
 		Adresse mail : $mail <br/></p>";
 		
 		echo "
