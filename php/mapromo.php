@@ -12,12 +12,12 @@ debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
 		echo"<table border=\"1px\">
 			<th>Promotion</th>
 			<tr>
-			<td>Nom Prénom</td>
+			<td>Nom PrÃ©nom</td>
 			<td>Contact</td>
 			<td>Statut</td>
 			<td>Situation actuelle</td>
 			<td>Date d'inscription</td>
-			<td>Date de mise à jour du profil</td>
+			<td>Date de mise Ã  jour du profil</td>
 			</tr>";
 
 $req_anneepromo = "SELECT * from utilisateurwhere nom='$nom' AND prenom='$prenom' " ;
@@ -61,26 +61,26 @@ while ($ligne = mysql_fetch_object($res_promo)) {
 						echo "<tr>"
 						echo "<td>".$ligne->nom."".$ligne->prenom."</td>";
 						echo "<td>".$ligne->mail."</td>";
-						echo "<td>".$ligne->role."</td>";
-						if ($role =1)
+						echo "<td>".$ligne->nom_role."</td>";
+						if ($id_role =1)
 							{
-							echo "<td>".$ligne->statut."</td>";
-							if ($statut=1)
+							echo "<td>".$ligne->nom_statut."</td>";
+							if ($id_statut=1)
 								{
 								echo "<td>".$ligne->diplome_etudes."</br>
 								".$ligne->nom_etablissement" ".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 								}
-							elseif ($statut=2)
+							elseif ($id_statut=2)
 								{
 								echo "<td>".$ligne->nom_poste."</br>
 								".$ligne->nom_entreprise" ".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 								}
-							elseif ($statut=3)
+							elseif ($id_statut=3)
 								{
-								echo "<td>".$ligne->statut."</td>";
+								echo "<td>-</td>";
 								}
 							}
-						if ($role = 2)
+						if ($id_role = 2)
 							{
 							echo "<td>".$ligne->diplome_etudes."</br>
 								".$ligne->nom_etablissement" ".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
@@ -93,7 +93,7 @@ while ($ligne = mysql_fetch_object($res_promo)) {
 
 	  echo "</table>";	
 
-	  echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	  echo "<p>Si vous rencontrez des problï¿½mes n'hï¿½sitez pas ï¿½ <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	  
 	  finhtml();
 	  
