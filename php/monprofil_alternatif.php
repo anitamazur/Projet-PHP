@@ -50,39 +50,39 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 						
 						echo "".$ligne->nom."".$ligne->prenom."";
 						echo "".$ligne->mail."";
-						echo "".$ligne->role."";
-						if ($role =1)
+						echo "".$ligne->nom_role."";
+						if ($id_role =1)
 							{
-							echo "".$ligne->statut."";
+							echo "".$ligne->nom_statut."";
 							
-							if ($statut=1)
+							if ($id_statut=1)
 								{
 								echo"".$ligne->annee_promo."";
 								echo "".$ligne->diplome_etudes."</br>
 								".$ligne->nom_etablissement" </br>".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
 								
 								}
-							elseif ($statut=2)
+							elseif ($id_statut=2)
 								{
 								echo"".$ligne->annee_promo."";
 								echo "".$ligne->nom_poste."</br>
 								".$ligne->nom_entreprise" </br>".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
 								
 								}
-							elseif ($statut=3)
+							elseif ($id_statut=3)
 								{
 								echo"".$ligne->annee_promo."";
-								echo "".$ligne->statut."";
+								echo "".$ligne->nom_statut."";
 								}
 							echo "
 								<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 								<p><a href=\"mapromo.php\">Ma promo</a></p>
 								<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 								<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-								<p><a href=\"deconnexion.php\">Déconnexion</a></p>";	
+								<p><a href=\"deconnexion.php\">Dï¿½connexion</a></p>";	
 								
 							}
-						if ($role = 2)
+						if ($id_role = 2)
 							{
 							echo"".$ligne->annee_promo."";
 							echo "".$ligne->diplome_etudes."</br>
@@ -93,7 +93,7 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 								<p><a href=\"mapromo.php\">Ma promo</a></p>
 								<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 								<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-								<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+								<p><a href=\"deconnexion.php\">Dï¿½connexion</a></p>";
 							
 							}
 							
@@ -103,7 +103,7 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 							<a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 							<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
 							<p><a href=\"Administration.php\">Administration</a></p>
-							<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+							<p><a href=\"deconnexion.php\">Dï¿½connexion</a></p>";
 						
 						}
 						
@@ -113,7 +113,7 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 					}
 
 
-	  echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	  echo "<p>Si vous rencontrez des problï¿½mes n'hï¿½sitez pas ï¿½ <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	  
 	  finhtml();
 	  
