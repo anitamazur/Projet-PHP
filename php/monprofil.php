@@ -51,7 +51,7 @@ $ligne=mysql_fetch_object($res) ;
 				AND vi.id = ev.id_entreprise
 				AND vi.id = vp.id_ville
 				AND pa.id = vp.id_pays
-				AND u.id = '$id'";
+				AND nom='$nom' AND prenom='$prenom'";
 		
 		$res_statut1 = mysql_query($req_statut1) ;
 		
@@ -92,7 +92,8 @@ $ligne=mysql_fetch_object($res) ;
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
-				AND u.id='$id'" ;
+				AND nom='$nom' AND prenom='$prenom'" ;
+				
 		$res_statut2 = mysql_query($req_statut2) ;
 		
 		if(mysql_num_rows($res_statut2) > 0)
@@ -149,7 +150,8 @@ $ligne=mysql_fetch_object($res) ;
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
-				AND u.id='$id'" ;
+				AND nom='$nom' AND prenom='$prenom'" ;
+				
 		$res_role2 = mysql_query($req_role2) ;
 		
 		if(mysql_num_rows($res_role2) > 0)
