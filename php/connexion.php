@@ -29,6 +29,11 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 					</p>
 				</fieldset>
 			</form>
+			
+			
+			<p>Cliquer <a href="recherche.php">ici</a> pour faire une recherche dans l'annuaire</p>
+		
+			
 			<p>Si vous n'avez pas d'identifiants, veuillez vous inscrire en cliquant sur <a href="inscription.php">Inscription</a></p>
 			<p>Si vous rencontrez des problèmes n'hésitez pas à <a href="mailto:admin@annuairedefi.u-paris10.fr">contacter l'administrateur</a></p>
 
