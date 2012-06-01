@@ -21,7 +21,7 @@ $_SESSION['nom'] = $ligne->nom ;
 $_SESSION['prenom'] = $ligne->prenom ;
 $id_utilisateur = $ligne->id ;
 
-$req_promo = "SELECT * 
+$req_profil = "SELECT * 
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp,etudes AS et, etudes_utilisateur AS etu, etablissement AS eta, etablissement_utilisateur AS etau
 	WHERE u.id = ru.id_utilisateur
 	AND u.id = sa.id_utilisateur
@@ -58,15 +58,17 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 							if ($id_statut=1)
 								{
 								echo"".$ligne->annee_promo."";
-								echo "".$ligne->diplome_etudes."</br>
-								".$ligne->nom_etablissement" </br>".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
+								echo"".$ligne->diplome_etudes."";
+								echo "".$ligne->nom_etablissement."";
+								echo "".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
 								
 								}
 							elseif ($id_statut=2)
 								{
 								echo"".$ligne->annee_promo."";
-								echo "".$ligne->nom_poste."</br>
-								".$ligne->nom_entreprise" </br>".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
+								echo "".$ligne->nom_poste."";
+								echo"".$ligne->nom_entreprise."";
+								echo "".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
 								
 								}
 							elseif ($id_statut=3)
@@ -84,8 +86,9 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 						if ($id_role = 2)
 							{
 							echo"".$ligne->annee_promo."";
-							echo "".$ligne->diplome_etudes."</br>
-								".$ligne->nom_etablissement" </br> ".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
+							echo"".$ligne->diplome_etudes."";
+							echo "".$ligne->nom_etablissement."";
+							echo "".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
 							
 							echo "
 								<p><a href=\"pageAccueil.php\">Accueil</a></p>  
@@ -106,10 +109,10 @@ while ($ligne = mysql_fetch_object($res_profil)) {
 						
 						}
 						
-						echo "".$ligne->date_inscription.""
-						echo "".$ligne->date_maj_profil.""
+						echo "".$ligne->date_inscription."";
+						echo "".$ligne->date_maj_profil."";
 					
-					}
+					} }
 
 
 	  echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
