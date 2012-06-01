@@ -40,18 +40,18 @@ $ligne=mysql_fetch_object($res) ;
 		Adresse mail : $mail <br/></p>";
 		
 		$req_statut1="SELECT *
-						FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
-						WHERE u.id = pu.id_utilisateur
-						AND u.id = eu.id_utilisateur
-						AND p.id = pu.id_poste
-						AND p.id = pde.id_poste
-						AND e.id = eu.id_entreprise
-						AND e.id = pde.id_entreprise
-						AND e.id = ev.id_entreprise
-						AND vi.id = ev.id_entreprise
-						AND vi.id = vp.id_ville
-						AND pa.id = vp.id_pays
-						AND u.id = '$id'";
+				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
+				WHERE u.id = pu.id_utilisateur
+				AND u.id = eu.id_utilisateur
+				AND p.id = pu.id_poste
+				AND p.id = pde.id_poste
+				AND e.id = eu.id_entreprise
+				AND e.id = pde.id_entreprise
+				AND e.id = ev.id_entreprise
+				AND vi.id = ev.id_entreprise
+				AND vi.id = vp.id_ville
+				AND pa.id = vp.id_pays
+				AND u.id = '$id'";
 		
 		$res_statut1 = mysql_query($req_statut1) ;
 		
@@ -84,15 +84,15 @@ $ligne=mysql_fetch_object($res) ;
 		
 		elseif ($id_role = 1 && $id_statut = 2) {
 		$req_statut2 = "SELECT * 
-					FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-					WHERE u.id = eu.id_utilisateur
-					AND u.id = etau.id_utilisateur
-					AND e.id = eu.id_etudes
-					AND eta.id = etau.id_etablissement
-					AND v.id = vp.id_ville
-					AND v.id = etav.id_ville
-					AND p.id = vp.id_pays
-					AND u.id='$id'" ;
+				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+				WHERE u.id = eu.id_utilisateur
+				AND u.id = etau.id_utilisateur
+				AND e.id = eu.id_etudes
+				AND eta.id = etau.id_etablissement
+				AND v.id = vp.id_ville
+				AND v.id = etav.id_ville
+				AND p.id = vp.id_pays
+				AND u.id='$id'" ;
 		$res_statut2 = mysql_query($req_statut2) ;
 		
 		if(mysql_num_rows($res_statut2) > 0)
@@ -141,15 +141,15 @@ $ligne=mysql_fetch_object($res) ;
 		Adresse mail : $mail <br/></p>";	
 		
 		$req_role2 = "SELECT * 
-					FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-					WHERE u.id = eu.id_utilisateur
-					AND u.id = etau.id_utilisateur
-					AND e.id = eu.id_etudes
-					AND eta.id = etau.id_etablissement
-					AND v.id = vp.id_ville
-					AND v.id = etav.id_ville
-					AND p.id = vp.id_pays
-					AND u.id='$id'" ;
+				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+				WHERE u.id = eu.id_utilisateur
+				AND u.id = etau.id_utilisateur
+				AND e.id = eu.id_etudes
+				AND eta.id = etau.id_etablissement
+				AND v.id = vp.id_ville
+				AND v.id = etav.id_ville
+				AND p.id = vp.id_pays
+				AND u.id='$id'" ;
 		$res_role2 = mysql_query($req_role2) ;
 		
 		if(mysql_num_rows($res_role2) > 0)
