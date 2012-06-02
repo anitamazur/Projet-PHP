@@ -3,6 +3,7 @@
 session_start() ;
 $nom = $_SESSION['nom'] ;
 $prenom = $_SESSION['prenom'] ;
+$naissance = $_SESSION['naissance'] ;
 
 require("fonctions.php") ;
 $connexion = connexion() ;
@@ -10,7 +11,7 @@ $connexion = connexion() ;
 debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil") ;
 
 
-$req = "SELECT * from utilisateur where nom='$nom' AND prenom='$prenom' " ;
+$req = "SELECT * from utilisateur where nom='$nom' AND prenom='$prenom' mail='$mail' " ;
 
 $res = mysql_query($req) ;
 

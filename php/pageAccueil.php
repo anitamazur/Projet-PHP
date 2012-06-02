@@ -4,6 +4,7 @@ require_once("fonctions.php") ;
 $nom = $_POST['nom'] ;
 $prenom = $_POST['prenom'] ;
 $naissance = $_POST['naissance'] ;
+$mail = $_POST['mail'] ;
 $salt = "ashrihgbjnbfj";
 $pass = crypt($_POST['mdp'], $salt);
 
@@ -17,22 +18,19 @@ $connexion = connexion() ;
 
 
 
-if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])&& isset($_SESSION['naissance'])&& isset($_SESSION['pass']))
+if(connexionUtilisateurReussie())
 
 {
+	
 
-$req = "SELECT * 
-	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
-	WHERE u.id = ru.id_utilisateur
-	AND u.id = sa.id_utilisateur
-	AND r.id = ru.id_role
-	AND s.id = sa.id_statut
-	AND nom='$nom' AND prenom='$prenom' AND naissance='$naissance' AND pass='$pass'" ;
-$res = mysql_query($req) ;
-
-
-if(mysql_num_rows($res)>0)
-	{
+	$req = "SELECT * 
+		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+		WHERE u.id = ru.id_utilisateur
+		AND u.id = sa.id_utilisateur
+		AND r.id = ru.id_role
+		AND s.id = sa.id_statut
+		AND nom='$nom' AND prenom='$prenom' AND naissance='$naissance' AND pass='$pass'" ;
+	$res = mysql_query($req) ;
 	$ligne=mysql_fetch_object($res) ;
 	$nom = $ligne->nom ;
 	$prenom = $ligne->prenom ; 	
@@ -45,83 +43,58 @@ if(mysql_num_rows($res)>0)
 	$pass = $ligne->pass ;
 	$prenom = ucfirst(strtolower($prenom));
 	$nom = ucfirst(strtolower($nom));
-	
+	$date_inscription = date($ligne->date_inscription) ;
+	$date_inscription_plus_un_an = strtotime(date("Y-m-d", strtotime($date_inscription)) . " +12 month");
+	$date_inscription_plus_un_an = date("Y-m-d",$date_inscription_plus_un_an);
+	$date_maj_profil = date($ligne->date_maj_profil) ;
 
 	debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
 	 
 	
-		if ($id_role = 1)
-		{ 
+		if ($id_role == 1)
+		{ 			
+			affichetitre("Vos informations personnelles :","3") ;
+			echo "<p>$nom $prenom</p>
+			<p><strong>$role</strong> : $statut</p>
+			<p><strong>Année de la promotion</strong> : $annee_promo</p>
+			<p><strong>Adresse mail</strong> : $mail </p><br/>";	
 			
-		affichetitre("Vos informations personnelles :","3") ;
-		echo "$nom $prenom <br/> 
-		$role : $statut <br/>
-		Année de la promotion : $annee_promo <br/>
-		Adresse mail : $mail <br/>";	
-		
-		echo "
-		<p><a href=\"monprofil.php\">Mon profil</a></p> 
-			<p><a href=\"mapromo.php\">Ma promo</a></p>
-			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			if ($id_statut == 1) {
+				echo "<p>Veuillez remplir votre profil en cliquant sur l'onglet <a href=\"Gestiondeprofil.php\">Gestion de mon profil</a>.</p>";
 			}
 			
+			elseif (($id_statut != 1) && ($date_maj_profil > $date_inscription_plus_un_an)) {
+				echo "<p>Veuillez mettre à jour votre profil en cliquant sur l'onglet <a href=\"Gestiondeprofil.php\">Gestion de mon profil</a>.</p>";
+			} 
 			
-		elseif ($id_role = 2)
+			
+
+			
+			
+		elseif ($id_role == 2)
 		{
-			
-		affichetitre("2","vos informations personnelles :") ;
-		echo "$nom $prenom <br/> 
-		$id_role : $id_statut <br/>
-		$annee_promo <br/>
-		Adresse mail : $mail <br/>";
-		
-		echo "
-			<p><a href=\"monprofil.php\">Mon profil</a></p> 
-			<p><a href=\"mapromo.php\">Ma promo</a></p>
-			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			affichetitre("2","vos informations personnelles :") ;
+			echo "<p>$nom $prenom</p>
+			<p><strong>$role</strong> : $statut</p>
+			<p><strong>Année de la promotion</strong> : $annee_promo</p>
+			<p><strong>Adresse mail</strong> : $mail </p><br/>";
 		}
 		
 		
-		elseif ($id_role = 3)
+		elseif ($id_role == 3 or $id_role == 4)
 		{
-		affichetitre("2","Vos informations personnelles :") ;
-		echo "$nom $prenom <br/> 
-		$role <br/>
-		Adresse mail : $mail <br/>";
-		
-		echo "
-		<p><a href=\"monprofil.php\">Mon profil</a></p> 
-		<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-		<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-		<p><a href=\"administration.php\">Administration</a></p>
-		<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
-		}
-		
-		
-		elseif ($id_role = 4)
-		{ 
-		affichetitre("2","Vos informations personnelles :") ;
-		echo "$nom $prenom <br/> 
-		$role <br/>
-		Adresse mail : $mail <br/>";
-		
-		echo "
-		<p><a href=\"monprofil.php\">Mon profil</a></p> 
-		<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-		<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-		<p><a href=\"administration.php\">Administration</a></p>
-		<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			affichetitre("2","Vos informations personnelles :") ;
+			echo "<p>$nom $prenom</p>
+			<p><strong>$role</strong> : $statut</p>
+			<p><strong>Adresse mail</strong> : $mail </p><br/>";
 		}
 
 	
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	afficheMenu($id_role);
 	finhtml() ;
-	} }
+	}
+}
   
 else {
 	echo "<p class=\"erreur\">Erreur à l'identification</p>" ;

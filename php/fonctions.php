@@ -51,8 +51,8 @@ function affichetitre($titre, $n)
 	
 //fonction permettant de vérifier si l'utilisateur est bien connecté. Si la requête SQL avec le nom, prenom et mot de passe retourne quelque chose, alors l'utlisateur a donnée les bons identifiants.
 function connexionUtilisateurReussie() {
-	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass'])) {
-		$req = "SELECT id FROM utilisateur WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."'" ;
+	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass']) && isset($_SESSION['mail'])) {
+		$req = "SELECT id FROM utilisateur WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."' AND email='".$_SESSION['mail']."'" ;
 		$res = mysql_query($req) ; 
 		if(mysql_num_rows($res) > 0) {
 			return True;
@@ -128,8 +128,8 @@ function VerifierAdresseMail($adresse) {
 }
 
 //fonction qui permet de vérifier la syntaxe d'une adresse E-Mail
-function getID($nom, $prenom, $email) { 
-	$req = "SELECT id from utilisateur where nom='$nom' AND prenom='$prenom' email='$email' " ;
+function getID($nom, $prenom, $mail) { 
+	$req = "SELECT id from utilisateur where nom='$nom' AND prenom='$prenom' mail='$mail' " ;
 	$id_utilisateur = mysql_query($req) ;
 	return $id_utilisateur ;
 }

@@ -7,7 +7,7 @@
     $message_ajout = "";
 	//On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
 	if(isset($_POST['valider'])) {
-		$email = stripslashes($_POST['email']);
+		$email = stripslashes($_POST['mail']);
 		$nom = stripslashes($_POST['nom']);
 		$nomPatro = stripslashes($_POST['nomPatro']);
 		$prenom = stripslashes($_POST['prenom']);
@@ -25,7 +25,7 @@
 			// On vérifie si l'adresse E-mail rentrée par l'utilisateur est au bon format
 			$email_ok = VerifierAdresseMail($email);
 			if($email_ok == true) {
-				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$email','', ENCRYPT('$mdp', 'ashrihgbjnbfj'), '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
+				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$mail','', ENCRYPT('$mdp', 'ashrihgbjnbfj'), '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
 				$resAjout = mysql_query($reqInscription) ;
 				if($resAjout <> FALSE) {
 					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p> <p>Vous pouvez vous connecter désormais en cliquant sur le point de menu <a href=\"connexion.php\">Connexion</a></p>" ;
@@ -87,8 +87,8 @@
                         <input type="text" name="anneePromo" id="anneePromo" />
                     </p>
                     <p>
-                        <label for="email">Adresse E-Mail (restera confidentiel) * : </label>
-                        <input type="text" id="email" name="email" />
+                        <label for="mail">Adresse E-Mail (restera confidentiel) * : </label>
+                        <input type="text" id="mail" name="mail" />
                     </p>
                     <p>
                         <label for="mdp">Mot de passe * : </label>
