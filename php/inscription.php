@@ -4,9 +4,46 @@
     $connexion = connexion();
     // On démarre la session
     session_start();
-        
-        debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire");
+    $message_ajout = "";
+	//On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
+	if(isset($_POST['valider'])) {
+		$email = stripslashes($_POST['email']);
+		$nom = stripslashes($_POST['nom']);
+		$nomPatro = stripslashes($_POST['nomPatro']);
+		$prenom = stripslashes($_POST['prenom']);
+		$naissance = stripslashes($_POST['naissance']);
+		$anneePromo = stripslashes($_POST['anneePromo']);
+		$mdp = stripslashes($_POST['mdp']);
+		$mdpRepete = stripslashes($_POST['repeat_mdp']);
+		$role = stripslashes($_POST['role']);
+		if ($mdp != $mdpRepete) { 
+			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
+		}
+		if($email == "") {
+			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail à ajouter' est vide.</p>";
+		} else {
+			// On vérifie si l'adresse E-mail rentrée par l'utilisateur est au bon format
+			$email_ok = VerifierAdresseMail($email);
+			if($email_ok == true) {
+				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$email','', '$mdp', '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
+				$resAjout = mysql_query($reqInscription) ;
+				if($resAjout <> FALSE) {
+					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p>" ;
+					$id = mysql_insert_id();
+					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
+					$relAjout = mysql_query($relInscription) ;
+				} else {
+					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
+				}
+			} elseif ($email_ok == false) {
+				$message_ajout = "<p class=\"erreur\">L'adresse E-Mail à ajouter n'a pas le bon format.</p>";
+			}
+		}
 
+	}
+    
+    debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire");
+    echo $message_ajout ;
  ?>
             <p>* : champs obligatoires</p>
             <form id="inscription" action="inscription.php" method="post">
@@ -18,7 +55,7 @@
                     </p>
                     <p>
                     <label for="etudiantActuel">Étudiant actuel * : </label>
-                    <input type="radio" name="role" id="etudiantActuel" value="2" />
+                    <input name="role" type="radio" id="etudiantActuel" value="2" />
                     </p>
                 </fieldset>
                 <fieldset>
@@ -53,7 +90,7 @@
                     </p>
                     <p>
                         <label for="repeat_mdp">Confirmer le mot de passe * : </label>
-                        <input type="password" name="repeat_md" id="repeat_mdp" />
+                        <input type="password" name="repeat_mdp" id="repeat_mdp" />
                     </p>
                 </fieldset>                 
                 <p class="submit">
@@ -61,43 +98,8 @@
                 </p>
             </form>
             <?php
-            //On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
-                if(isset($_POST['valider'])) {
-                    $email = stripslashes($_POST['email']);
-                    $nom = stripslashes($_POST['nom']);
-                    $nomPatro = stripslashes($_POST['nomPatro']);
-                    $prenom = stripslashes($_POST['prenom']);
-                    $naissance = stripslashes($_POST['naissance']);
-                    $anneePromo = stripslashes($_POST['anneeDiplome']);
-                    $mdp = stripslashes($_POST['mdp']);
-                    $mdpRepete = stripslashes($_POST['repeat_md']);
-                    $role = stripslashes($_POST['role']);
-                    $message_ajout = "";
-                    if ($_POST['pass'] != $_POST['pass_confirm']) { 
-         $erreur = 'Les 2 mots de passe sont différents.';
-    				}
-                    if($email == "") {
-                        $message_ajout = "<p class=\"erreur\">Le champ 'E-Mail à ajouter' est vide.</p>";
-                    } else {
-                        // On vérifie si l'adresse E-mail rentrée par l'utilisateur est au bon format
-                        $email_ok = VerifierAdresseMail($email);
-                        if($nouvelle_email_ok == true) {
-                            $reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$email','', '$mdp', '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), '')" ;
-                            $resAjout = mysql_query(reqInscription) ;
-                            if($resAjout <> FALSE) {
-                                $message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p>" ;
-                                $id = mysql_insert_id();
-                                $relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
-                                $relAjout = mysql_query(relInscription) ;
-                            } else {
-                                $message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
-                            }
-                        } elseif ($nouvelle_email_ok == false) {
-                            $message_ajout = "<p class=\"erreur\">L'adresse E-Mail à ajouter n'a pas le bon format.</p>";
-                        }
-                    }
-            
-				}
+	$id_utilisateur = "";
+	afficheMenu($id_utilisateur);
     finhtml();
             mysql_close ();
 ?>
