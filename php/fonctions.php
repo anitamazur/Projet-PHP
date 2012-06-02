@@ -3,8 +3,8 @@ function connexion()
 	{
     $serveurBD = "localhost"; # mdifier pour le serveur de la fac
     $nomUtilisateur = "root"; # modifier pour le serveur de la fac
-    $motDePasse = ""; # modifier pour le serveur de la fac
-    $baseDeDonnees = "essai_annuaire"; # BDD de test / Si BDD ok : changer par "annuaire_defi"
+    $motDePasse = "123456"; # modifier pour le serveur de la fac
+    $baseDeDonnees = "annuaire_defi"; # BDD de test / Si BDD ok : changer par "annuaire_defi"
    
     $idConnexion = mysql_connect($serveurBD,
                                  $nomUtilisateur,
@@ -115,5 +115,15 @@ function afficheMenu($id_utilisateur) {
 		}
 	echo "</ul>";
 	echo "</div>";
+}
+
+//fonction qui permet de vérifier la syntaxe d'une adresse E-Mail
+function VerifierAdresseMail($adresse) { 
+	$Syntaxe='#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#'; 
+	if(preg_match($Syntaxe,$adresse)) {
+		return true; 
+	} else {
+		return false;
+	}
 }
 ?>
