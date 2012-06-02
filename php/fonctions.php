@@ -81,12 +81,12 @@ function statut($id_utilisateur) {
 }
 
 //fonction qui affiche plusieurs types de menus selon son rôle
-function afficheMenu($id_utilisateur) {
+function afficheMenu($id_role) {
 	echo "<div id=\"menu\">";
 	echo "<h2 class=\"menu_title\">Menu</h2>";
 	echo "<ul id=\"menu_liens\">";
 	if(connexionUtilisateurReussie()) {
-		if(role($id_utilisateur) == 1) {
+		if(role($id_role) == 1) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"profil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestion_profil.php\">Gestion de mon profil</a></li>";
@@ -94,14 +94,14 @@ function afficheMenu($id_utilisateur) {
 			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
 			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		}
-		elseif(role($id_utilisateur) == 2) {
+		elseif(role($id_role) == 2) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"profil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestion_profil.php\">Gestion de mon profil</a></li>";
 			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
 			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		}
-		elseif(role($id_utilisateur) >= 3) {
+		elseif(role($id_role) >= 3) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"profil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestion_profil.php\">Gestion de mon profil</a></li>";
