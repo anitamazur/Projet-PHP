@@ -35,7 +35,7 @@
 					if ($role == 1) {
 						$statut = 1;
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
-						$statutAjout = mysql_query($relstatutInscription) ;
+						$statutAjout = mysql_query($statutInscription) ;
 					}
 
 				} else {

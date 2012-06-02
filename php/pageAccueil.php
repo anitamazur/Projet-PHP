@@ -1,10 +1,11 @@
 <?php
-require("fonctions.php") ;
+require_once("fonctions.php") ;
 
 $nom = $_POST['nom'] ;
 $prenom = $_POST['prenom'] ;
 $naissance = $_POST['naissance'] ;
-$pass = $_POST['mdp'] ;
+$salt = "ashrihgbjnbfj";
+$pass = crypt($_POST['mdp'], $salt);
 
 session_start() ;
 $_SESSION['nom'] = $nom;
@@ -13,6 +14,8 @@ $_SESSION['naissance'] = $naissance;
 $_SESSION['pass'] = $pass;
 
 $connexion = connexion() ; 
+
+
 
 if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])&& isset($_SESSION['naissance'])&& isset($_SESSION['pass']))
 
@@ -40,8 +43,6 @@ if(mysql_num_rows($res)>0)
 	$annee_promo = $ligne->annee_promo ;
 	$mail = $ligne->mail ;
 	$pass = $ligne->pass ;
-	
-
 	$prenom = ucfirst(strtolower($prenom));
 	$nom = ucfirst(strtolower($nom));
 	
@@ -118,7 +119,7 @@ if(mysql_num_rows($res)>0)
 
 	
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
-	
+	afficheMenu($id_role);
 	finhtml() ;
 	} }
   
