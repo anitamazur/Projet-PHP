@@ -6,8 +6,17 @@ $prenom = $_POST['prenom'] ;
 $naissance = $_POST['naissance'] ;
 $pass = $_POST['mdp'] ;
 
-$connexion = connexion() ;
+session_start() ;
+$_SESSION['nom'] = $nom;
+$_SESSION['prenom'] = $prenom;
+$_SESSION['naissance'] = $naissance;
+$_SESSION['pass'] = $pass;
 
+$connexion = connexion() ; 
+
+if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])&& isset($_SESSION['naissance'])&& isset($_SESSION['pass']))
+
+{
 
 $req = "SELECT * 
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -21,10 +30,9 @@ $res = mysql_query($req) ;
 
 if(mysql_num_rows($res)>0)
 	{
-	session_start() ;
 	$ligne=mysql_fetch_object($res) ;
-	$_SESSION['nom'] = $ligne->nom ;
-	$_SESSION['prenom'] = $ligne->prenom ; 	
+	$nom = $ligne->nom ;
+	$prenom = $ligne->prenom ; 	
 	$id_role = $ligne->id_role ;
 	$id_statut = $ligne->id_statut ;
 	$role = $ligne->nom_role ;
@@ -34,8 +42,8 @@ if(mysql_num_rows($res)>0)
 	$pass = $ligne->pass ;
 	
 
-	$prenom = ucfirst(strtolower($_SESSION['prenom']));
-	$nom = ucfirst(strtolower($_SESSION['nom']));
+	$prenom = ucfirst(strtolower($prenom));
+	$nom = ucfirst(strtolower($nom));
 	
 
 	debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
@@ -112,7 +120,7 @@ if(mysql_num_rows($res)>0)
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	finhtml() ;
-	}
+	} }
   
 else {
 	echo "<p class=\"erreur\">Erreur à l'identification</p>" ;

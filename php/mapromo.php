@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 session_start() ;
 $nom = $_SESSION['nom'] ;
@@ -58,9 +58,8 @@ $res_promo = mysql_query($req_promo) ;
 
 while ($ligne = mysql_fetch_object($res_promo)) {
 						echo"<th>".$ligne->annee_promo."</th>";
-						echo "<tr>";
-						echo "<td>".$ligne->nom."</td>";
-						echo "<td>".$ligne->prenom."</td>";
+						echo "<tr>"
+						echo "<td>".$ligne->nom."".$ligne->prenom."</td>";
 						echo "<td>".$ligne->mail."</td>";
 						echo "<td>".$ligne->nom_role."</td>";
 						if ($id_role =1)
@@ -68,18 +67,13 @@ while ($ligne = mysql_fetch_object($res_promo)) {
 							echo "<td>".$ligne->nom_statut."</td>";
 							if ($id_statut=1)
 								{
-								echo "<td>".$ligne->diplome_etudes."";
-								echo "".$ligne->nom_etablissement."";
-								echo "".$ligne->siteweb_etabllissement."";
-								echo"".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
+								echo "<td>".$ligne->diplome_etudes."</br>
+								".$ligne->nom_etablissement" ".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 								}
 							elseif ($id_statut=2)
 								{
-								echo "<td>".$ligne->nom_poste."";
-								echo"".$ligne->nom_entreprise."";
-								echo"".$ligne->siteweb_entreprise."";
-								echo"".$ligne->secteur_entreprise."";
-								echo"".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
+								echo "<td>".$ligne->nom_poste."</br>
+								".$ligne->nom_entreprise" ".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 								}
 							elseif ($id_statut=3)
 								{
@@ -88,20 +82,18 @@ while ($ligne = mysql_fetch_object($res_promo)) {
 							}
 						if ($id_role = 2)
 							{
-								echo "<td>".$ligne->diplome_etudes."";
-								echo "".$ligne->nom_etablissement."";
-								echo "".$ligne->siteweb_etabllissement."";
-								echo"".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
+							echo "<td>".$ligne->diplome_etudes."</br>
+								".$ligne->nom_etablissement" ".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 							}
 						
-						echo "<td>".$ligne->date_inscription."<td>";
-						echo "<td>".$ligne->date_maj_profil."<td>";
+						echo "<td>".$ligne->date_inscription."<td>"
+						echo "<td>".$ligne->date_maj_profil."<td>"
 						echo "</tr>";
-					} }
+					}
 
 	  echo "</table>";	
 
-	  echo "<p>Si vous rencontrez des probl�mes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	  echo "<p>Si vous rencontrez des probl�mes n'h�sitez pas � <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	  
 	  finhtml();
 	  

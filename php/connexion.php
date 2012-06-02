@@ -16,8 +16,9 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 						<input type="text" id="prenom" name="prenom" />
 					</p>
 					<p>
-						<label for="naissance">Date de naissance (format : dd-mm-yyyy) : </label>
+						<label for="naissance">Date de naissance : </label>
 						<input type="text" id="naissance" name="naissance" />
+						 (format : yyyy-mm-dd)
 					</p>
 					<p>
 						<label for="mdp">Mot de passe : </label>
@@ -28,7 +29,12 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 					</p>
 				</fieldset>
 			</form>
-			<p>Si vous n'avez pas d'identifiants, veuillez vous inscrire en cliquant sur <a href="inscription.html">Inscription</a></p>
+			
+			
+			<p>Cliquer <a href="recherche.php">ici</a> pour faire une recherche dans l'annuaire</p>
+		
+			
+			<p>Si vous n'avez pas d'identifiants, veuillez vous inscrire en cliquant sur <a href="inscription.php">Inscription</a></p>
 			<p>Si vous rencontrez des problèmes n'hésitez pas à <a href="mailto:admin@annuairedefi.u-paris10.fr">contacter l'administrateur</a></p>
 
 <?php

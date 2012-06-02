@@ -1,8 +1,8 @@
 <?php 
 function connexion()
 	{
-    $serveurBD = "localhost"; m# ࡭odifier pour le serveur de la fac
-    $nomUtilisateur = "root"; m# ࡭odifier pour le serveur de la fac
+    $serveurBD = "localhost"; # mdifier pour le serveur de la fac
+    $nomUtilisateur = "root"; # modifier pour le serveur de la fac
     $motDePasse = ""; # modifier pour le serveur de la fac
     $baseDeDonnees = "essai_annuaire"; # BDD de test / Si BDD ok : changer par "annuaire_defi"
    
@@ -68,7 +68,7 @@ function connexionUtilisateurReussie() {
 function role($id_utilisateur) {
 	$requete = "SELECT id_role FROM roles_utilisateur WHERE id_utilisateur = ".$id_utilisateur ;
 	$role = mysql_query($requete) ;
-	return $role
+	return $role ;
 }
 
 // fonction permettant de connaître le statut d'un ancien étudiant connecté
@@ -76,7 +76,7 @@ function statut($id_utilisateur) {
 	if(role($id_utilisateur) == 1) {
 		$requete = "SELECT id_statut FROM statut_ancien_etudiant WHERE id_utilisateur = ".$id_utilisateur ;
 		$role = mysql_query($requete) ;
-		return $statut
+		return $statut ;
 	}
 }
 
