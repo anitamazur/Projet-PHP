@@ -51,8 +51,8 @@ function affichetitre($titre, $n)
 	
 //fonction permettant de vérifier si l'utilisateur est bien connecté. Si la requête SQL avec le nom, prenom et mot de passe retourne quelque chose, alors l'utlisateur a donnée les bons identifiants.
 function connexionUtilisateurReussie() {
-	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['mdp'])) {
-		$req = "SELECT id FROM identification WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['mdp']."'" ;
+	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass'])) {
+		$req = "SELECT id FROM utilisateur WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."'" ;
 		$res = mysql_query($req) ; 
 		if(mysql_num_rows($res) > 0) {
 			return True;
@@ -86,7 +86,7 @@ function afficheMenu($id_role) {
 	echo "<h2 class=\"menu_title\">Menu</h2>";
 	echo "<ul id=\"menu_liens\">";
 	if(connexionUtilisateurReussie()) {
-		if(role($id_role) == 1) {
+		if($id_role == 1) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"profil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestion_profil.php\">Gestion de mon profil</a></li>";
@@ -94,14 +94,14 @@ function afficheMenu($id_role) {
 			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
 			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		}
-		elseif(role($id_role) == 2) {
+		elseif($id_role == 2) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"profil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestion_profil.php\">Gestion de mon profil</a></li>";
 			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
 			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		}
-		elseif(role($id_role) >= 3) {
+		elseif($id_role >= 3) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"profil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestion_profil.php\">Gestion de mon profil</a></li>";
