@@ -21,6 +21,10 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 						 (format : yyyy-mm-dd)
 					</p>
 					<p>
+						<label for="email">Email : </label>
+						<input type="text" id="email" name="email" />
+					</p>
+					<p>
 						<label for="mdp">Mot de passe : </label>
 						<input type="password" name="mdp" id="mdp" />
 					</p>
