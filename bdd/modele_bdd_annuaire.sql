@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `statut_ancien_etudiant` (
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mail` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL UNIQUE,
   `mail_pro` varchar(255) NULL,
   `pass` varchar(255) NOT NULL,
   `cle_activation` varchar(8) NOT NULL,
@@ -349,6 +349,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `date_inscription` date NOT NULL,
   `date_maj_profil` date NOT NULL,
   PRIMARY KEY (`id`)
+  CONSTRAINT unique_mail UNIQUE (mail)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
