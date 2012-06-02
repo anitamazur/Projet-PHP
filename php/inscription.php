@@ -13,8 +13,8 @@
 		$prenom = stripslashes($_POST['prenom']);
 		$naissance = stripslashes($_POST['naissance']);
 		$anneePromo = stripslashes($_POST['anneePromo']);
-		$mdp = stripslashes($_POST['mdp']);
-		$mdpRepete = stripslashes($_POST['repeat_mdp']);
+		$mdp = md5(stripslashes($_POST['mdp']));
+		$mdpRepete = md5(stripslashes($_POST['repeat_mdp']));
 		$role = stripslashes($_POST['role']);
 		if ($mdp != $mdpRepete) { 
 			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
@@ -28,7 +28,7 @@
 				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$email','', '$mdp', '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
 				$resAjout = mysql_query($reqInscription) ;
 				if($resAjout <> FALSE) {
-					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p>" ;
+					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p> <p>Vous pouvez vous connecter désormais en cliquant sur le point de menu <a href=\"connexion.php\">Connexion</a></p>" ;
 					$id = mysql_insert_id();
 					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
 					$relAjout = mysql_query($relInscription) ;
