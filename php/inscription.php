@@ -1,9 +1,9 @@
 <?php
     // Le fichier avec les fonctions est chargé
-    require_once("fonctions.php");
-    $connexion = connexion();
     // On démarre la session
     session_start();
+    require_once("fonctions.php");
+    $connexion = connexion();
     $message_ajout = "";
 	//On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
 	if(isset($_POST['valider'])) {
@@ -13,8 +13,8 @@
 		$prenom = stripslashes($_POST['prenom']);
 		$naissance = stripslashes($_POST['naissance']);
 		$anneePromo = stripslashes($_POST['anneePromo']);
-		$mdp = md5(stripslashes($_POST['mdp']));
-		$mdpRepete = md5(stripslashes($_POST['repeat_mdp']));
+		$mdp = stripslashes($_POST['mdp']);
+		$mdpRepete = stripslashes($_POST['repeat_mdp']);
 		$role = stripslashes($_POST['role']);
 		if ($mdp != $mdpRepete) { 
 			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
@@ -25,13 +25,19 @@
 			// On vérifie si l'adresse E-mail rentrée par l'utilisateur est au bon format
 			$email_ok = VerifierAdresseMail($email);
 			if($email_ok == true) {
-				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$email','', '$mdp', '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
+				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$email','', ENCRYPT('$mdp', 'ashrihgbjnbfj'), '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
 				$resAjout = mysql_query($reqInscription) ;
 				if($resAjout <> FALSE) {
 					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p> <p>Vous pouvez vous connecter désormais en cliquant sur le point de menu <a href=\"connexion.php\">Connexion</a></p>" ;
 					$id = mysql_insert_id();
 					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
 					$relAjout = mysql_query($relInscription) ;
+					if ($role == 1) {
+						$statut = 1;
+						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
+						$statutAjout = mysql_query($relstatutInscription) ;
+					}
+
 				} else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 				}
@@ -98,8 +104,8 @@
                 </p>
             </form>
             <?php
-	$id_utilisateur = "";
-	afficheMenu($id_utilisateur);
+	$id_role = "";
+	afficheMenu($id_role);
     finhtml();
             mysql_close ();
 ?>
