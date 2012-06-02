@@ -73,9 +73,9 @@ function role($id_utilisateur) {
 
 // fonction permettant de connaître le statut d'un ancien étudiant connecté
 function statut($id_utilisateur) {
-	if(role($id_utilisateur) == 1) {
+	if($id_utilisateur == 1) {
 		$requete = "SELECT id_statut FROM statut_ancien_etudiant WHERE id_utilisateur = ".$id_utilisateur ;
-		$role = mysql_query($requete) ;
+		$statut = mysql_query($requete) ;
 		return $statut ;
 	}
 }
@@ -125,5 +125,12 @@ function VerifierAdresseMail($adresse) {
 	} else {
 		return false;
 	}
+}
+
+//fonction qui permet de vérifier la syntaxe d'une adresse E-Mail
+function getID($nom, $prenom, $email) { 
+	$req = "SELECT id from utilisateur where nom='$nom' AND prenom='$prenom' email='$email' " ;
+	$id_utilisateur = mysql_query($req) ;
+	return $id_utilisateur ;
 }
 ?>
