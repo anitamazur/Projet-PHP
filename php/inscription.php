@@ -81,6 +81,7 @@
                     <p>
                         <label for="naissance">Date de naissance * : </label>
                         <input type="text" id="naissance" name="naissance" />
+                        (format : yyyy-mm-dd)
                     </p>
                     <p>
                         <label for="anneePromo">Année d'obtention du M2 DEFI (pour anciens étudiants) ou année d'inscription au M2 DEFI (pour étudiants actuels)* : </label>
