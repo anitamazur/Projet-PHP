@@ -238,6 +238,8 @@
 					
 
 while ($ligne = mysql_fetch_object($res_p)) {
+						$id_role=$ligne->id_role;
+						$id_statut=$ligne->id_statut;
 						
 						echo"<th colspan=5>$ligne->annee_promo</th>";
 						echo "<tr>";
@@ -247,7 +249,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 						echo "<td>$ligne->nom_role</td>";
 							
 						
-						if ($ligne->id_role ==1 && $ligne->id_statut==1)
+						if ($id_role ==1 && $id_statut==2)
 								{
 								echo "<td>$ligne->nom_statut</td>";
 								
@@ -278,7 +280,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								} }
 								
 								
-							elseif ($ligne->id_role == 1 && $ligne->id_statut==2)
+							elseif ($id_role == 1 && $id_statut==3)
 								{
 								echo "<td>$ligne->nom_statut</td>";
 								
@@ -305,15 +307,16 @@ while ($ligne = mysql_fetch_object($res_p)) {
 							
 							
 							
-							elseif ($ligne->id_role== 1 && $ligne->id_statut==3)
+							elseif ($id_role== 1 && ($id_statut==1 or $id_statut ==4))
 								{
 								echo "<td>$ligne->nom_statut</td>";
 								}
 							
-						if ($ligne->id_role == 2)
-							{
-							
-							$req_statut2 = "SELECT * 
+						elseif ($id_role == 2)
+								{
+								echo "<td>$ligne->nom_statut</td>";
+								
+								$req_statut2 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
 								WHERE u.id = eu.id_utilisateur
 								AND u.id = etau.id_utilisateur
@@ -332,7 +335,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								echo "$ligne->nom_etablissement<br/>";
 								echo "$ligne->siteweb_etablissement<br/>";
 								echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
-							} }
+								} }
 
 
 
