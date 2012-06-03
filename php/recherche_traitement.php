@@ -17,7 +17,7 @@
 			AND u.id = sa.id_utilisateur
 			AND r.id = ru.id_role
 			AND s.id = sa.id_statut
-			AND nom='$nom' AND prenom='$prenom' " ;
+			AND u.nom='$nom' AND u.prenom='$prenom' " ;
 
 			$res = mysql_query($req) ;
 
@@ -58,7 +58,7 @@
 				AND vi.id = ev.id_entreprise
 				AND vi.id = vp.id_ville
 				AND pa.id = vp.id_pays
-				AND nom='$nom' AND prenom='$prenom'";
+				AND u.nom='$nom' AND u.prenom='$prenom'";
 		
 		$res_statut1 = mysql_query($req_statut1) ;
 		
@@ -92,7 +92,7 @@
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
-				AND nom='$nom' AND prenom='$prenom'" ;
+				AND u.nom='$nom' AND u.prenom='$prenom'" ;
 				
 		$res_statut2 = mysql_query($req_statut2) ;
 		
@@ -139,7 +139,7 @@
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
-				AND nom='$nom' AND prenom='$prenom'" ;
+				AND u.nom='$nom' AND u.prenom='$prenom'" ;
 		
 		$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -213,7 +213,7 @@
 					AND u.id = sa.id_utilisateur
 					AND r.id = ru.id_role
 					AND s.id = sa.id_statut
-					AND annee_promo = '$annee_promo'");
+					AND u.annee_promo = '$annee_promo'");
 					
 
 while ($ligne = mysql_fetch_object($res_p)) {
@@ -244,7 +244,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								AND vi.id = ev.id_entreprise
 								AND vi.id = vp.id_ville
 								AND pa.id = vp.id_pays
-								AND annee_promo='$annee_promo'";
+								AND u.annee_promo='$annee_promo'";
 		
 								$res_statut1 = mysql_query($req_statut1) ;
 								
@@ -273,7 +273,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND annee_promo='$annee_promo'" ;
+								AND u.annee_promo='$annee_promo'" ;
 								
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -305,7 +305,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND annee_promo='$annee_promo'" ;
+								AND u.annee_promo='$annee_promo'" ;
 								
 								$res_statut2 = mysql_query($req_statut2) ;
 								
