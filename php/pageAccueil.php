@@ -57,11 +57,11 @@ if(connexionUtilisateurReussie()) {
 		<br/>";	
 		//Si l'utilisateur a le statut "profil à remplir" (id1) on affiche un message qu'il doit remplir son profil.
 		if ($id_statut == 1) {
-			echo "<p>Veuillez remplir votre profil en cliquant sur l'onglet <a href=\"Gestiondeprofil.php\">Gestion de mon profil</a>.</p>";
+			echo "<p>Veuillez remplir votre profil en cliquant sur l'onglet <a href=\"gestionProfil.php\">Gestion de mon profil</a>.</p>";
 		}
 		//Calcul our savoir si les informations sont obsolètes ou non
 		elseif (($id_statut != 1) && ($date_maj_profil > $date_inscription_plus_un_an)) {
-			echo "<p>Veuillez mettre à jour votre profil en cliquant sur l'onglet <a href=\"Gestiondeprofil.php\">Gestion de mon profil</a>.</p>";
+			echo "<p>Veuillez mettre à jour votre profil en cliquant sur l'onglet <a href=\"gestionProfil.php\">Gestion de mon profil</a>.</p>";
 		} 
 	}
 	elseif ($id_role == 2)
