@@ -7,7 +7,7 @@
     $message_ajout = "";
 	//On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
 	if(isset($_POST['valider'])) {
-		$email = stripslashes($_POST['mail']);
+		$mail = stripslashes($_POST['mail']);
 		$nom = stripslashes($_POST['nom']);
 		$nomPatro = stripslashes($_POST['nomPatro']);
 		$prenom = stripslashes($_POST['prenom']);
@@ -19,12 +19,12 @@
 		if ($mdp != $mdpRepete) { 
 			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
 		}
-		if($email == "") {
+		if($mail == "") {
 			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail à ajouter' est vide.</p>";
 		} else {
 			// On vérifie si l'adresse E-mail rentrée par l'utilisateur est au bon format
-			$email_ok = VerifierAdresseMail($email);
-			if($email_ok == true) {
+			$mail_ok = VerifierAdresseMail($mail);
+			if($mail_ok == true) {
 				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$mail','', ENCRYPT('$mdp', 'ashrihgbjnbfj'), '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
 				$resAjout = mysql_query($reqInscription) ;
 				if($resAjout <> FALSE) {
@@ -41,7 +41,7 @@
 				} else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 				}
-			} elseif ($email_ok == false) {
+			} elseif ($mail_ok == false) {
 				$message_ajout = "<p class=\"erreur\">L'adresse E-Mail à ajouter n'a pas le bon format.</p>";
 			}
 		}
