@@ -62,23 +62,13 @@
 		
 		$res_statut1 = mysql_query($req_statut1) ;
 		
-		if (mysql_num_rows($res_statut1) > 0) {
-				
-		$ligne=mysql_fetch_object($res_statut1) ; 	
-			$poste = $ligne->nom_poste ;
-			$nom_entreprise = $ligne->nom_entreprise ;
-			$siteweb_entreprise = $ligne->siteweb_entreprise ;
-			$secteur_entreprise = $ligne->secteur_entreprise ;
-			$nom_ville = $ligne->nom_ville ; 
-			$cp = $ligne->cp ;
-			$pays = $ligne->nom_pays ;
-		
-		echo "<p>$role : $statut <br/><br/>
-			Poste : $nom_poste <br/>
-			Entreprise : $nom_entreprise <br/>
-			Adresse web de l'entreprise : $siteweb_entreprise <br/>
-			Secteur de l'entreprise : $secteur_entreprise <br/>
-			$nom_ville - $cp - $pays </p>";
+		while ($ligne = mysql_fetch_object($res_statut1)){
+								
+				echo "<td>$ligne->nom_poste<br/>";
+				echo"$ligne->nom_entreprise<br/>";
+				echo"$ligne->siteweb_entreprise<br/>";
+				echo"$ligne->secteur_entreprise<br/>";
+				echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
 			
 			}
 			
@@ -98,6 +88,7 @@
 				AND u.id = etau.id_utilisateur
 				AND e.id = eu.id_etudes
 				AND eta.id = etau.id_etablissement
+				AND eta.id = etav.id_etablissement
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
@@ -105,22 +96,12 @@
 				
 		$res_statut2 = mysql_query($req_statut2) ;
 		
-		if (mysql_num_rows($res_statut2) > 0) {
-
-		$ligne=mysql_fetch_object($res_statut2) ; 	
-			$diplome = $ligne->diplome_etudes ;
-			$nom_etablissement = $ligne->nom_etablissement ;
-			$siteweb_etablissement = $ligne->siteweb_etablissement ;
-			$nom_ville = $ligne->nom_ville ; 
-			$cp = $ligne->cp ;
-			$pays = $ligne->nom_pays ;
-		
-		
-		echo "<p>$role : $statut <br/><br/>
-			Diplôme : $diplome <br/>
-			Etablissement : $nom_etablissement <br/>
-			Adresse web de l'établissement : $siteweb_etablissement <br/>
-			$nom_ville - $cp - $pays </p>";
+		while ($ligne = mysql_fetch_object($res_statut2)) {
+								
+				echo "<td>$ligne->diplome_etudes<br/>";
+				echo "$ligne->nom_etablissement<br/>";
+				echo "$ligne->siteweb_etablissement<br/>";
+				echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
 			
 			}
 			
@@ -154,22 +135,20 @@
 				AND u.id = etau.id_utilisateur
 				AND e.id = eu.id_etudes
 				AND eta.id = etau.id_etablissement
+				AND eta.id = etav.id_etablissement
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
 				AND nom='$nom' AND prenom='$prenom'" ;
-				
-		$res_statut2 = mysql_query($req_statut2) ;
 		
-		if (mysql_num_rows($res_statut2) > 0) {
-
-		$ligne=mysql_fetch_object($res_statut2) ; 	
-			$diplome = $ligne->diplome_etudes ;
-			$nom_etablissement = $ligne->nom_etablissement ;
-			$siteweb_etablissement = $ligne->siteweb_etablissement ;
-			$nom_ville = $ligne->nom_ville ; 
-			$cp = $ligne->cp ;
-			$pays = $ligne->nom_pays ;
+		$res_statut2 = mysql_query($req_statut2) ;
+								
+			while ($ligne = mysql_fetch_object($res_statut2)) {
+								
+				echo "<td>$ligne->diplome_etudes<br/>";
+				echo "$ligne->nom_etablissement<br/>";
+				echo "$ligne->siteweb_etablissement<br/>";
+				echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
 		
 		
 		echo "<p>$role<br/><br/>
@@ -290,6 +269,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								AND u.id = etau.id_utilisateur
 								AND e.id = eu.id_etudes
 								AND eta.id = etau.id_etablissement
+								AND eta.id = etav.id_etablissement
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
