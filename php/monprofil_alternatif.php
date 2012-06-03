@@ -37,13 +37,13 @@ $ligne=mysql_fetch_object($res) ;
 	$date_maj_profil=$ligne->date_maj_profil;
 
 	
-	if ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 1)
+	if ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 2)
 		{
 		echo "<p>$nom $prenom <br/> 
 		Année de la promotion : $annee_promo <br/>
 		Adresse mail : $mail <br/></p>";
 		
-		$req_statut1="SELECT *
+		$req_statut2="SELECT *
 				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
 				WHERE u.id = pu.id_utilisateur
 				AND u.id = eu.id_utilisateur
@@ -57,12 +57,12 @@ $ligne=mysql_fetch_object($res) ;
 				AND pa.id = vp.id_pays
 				AND u.nom='$nom' AND u.prenom='$prenom'";
 		
-		$res_statut1 = mysql_query($req_statut1) ;
+		$res_statut2 = mysql_query($req_statut2) ;
 		
 		
-		if (mysql_num_rows($res_statut1) > 0) {
+		if (mysql_num_rows($res_statut2) > 0) {
 				
-		$ligne=mysql_fetch_object($res_statut1) ; 	
+		$ligne=mysql_fetch_object($res_statut2) ; 	
 			$poste = $ligne->nom_poste ;
 			$nom_entreprise = $ligne->nom_entreprise ;
 			$siteweb_entreprise = $ligne->siteweb_entreprise ;
@@ -92,13 +92,13 @@ $ligne=mysql_fetch_object($res) ;
 		
 		} 
 		
-		elseif ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 2) {
+		elseif ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 3) {
 		
 		echo "<p>$nom $prenom <br/> 
 		Année de la promotion : $annee_promo <br/>
 		Adresse mail : $mail <br/></p>";
 		
-		$req_statut2 = "SELECT * 
+		$req_statut3 = "SELECT * 
 				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
 				WHERE u.id = eu.id_utilisateur
 				AND u.id = etau.id_utilisateur
@@ -110,11 +110,11 @@ $ligne=mysql_fetch_object($res) ;
 				AND p.id = vp.id_pays
 				AND u.nom='$nom' AND u.prenom='$prenom'" ;
 				
-		$res_statut2 = mysql_query($req_statut2) ;
+		$res_statut3 = mysql_query($req_statut3) ;
 		
-		if (mysql_num_rows($res_statut2) > 0) {
+		if (mysql_num_rows($res_statut3) > 0) {
 
-		$ligne=mysql_fetch_object($res_statut2) ; 	
+		$ligne=mysql_fetch_object($res_statut3) ; 	
 			$diplome = $ligne->diplome_etudes ;
 			$nom_etablissement = $ligne->nom_etablissement ;
 			$siteweb_etablissement = $ligne->siteweb_etablissement ;
@@ -142,7 +142,7 @@ $ligne=mysql_fetch_object($res) ;
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";	
 		}
 		
-		elseif ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 3) {
+		elseif ($_SESSION['id_role'] == 1 &&  ( $_SESSION['id_statut'] == 1 or $_SESSION['id_statut'] == 4) {
 		
 		echo "<p>$nom $prenom <br/> 
 		Année de la promotion : $annee_promo <br/>
