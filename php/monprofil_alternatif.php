@@ -5,7 +5,7 @@ $nom = $_SESSION['nom'] ;
 $prenom = $_SESSION['prenom'] ;
 $naissance = $_SESSION['naissance'] ;
 
-require("fonctions.php") ;
+require_once("fonctions.php") ;
 $connexion = connexion() ;
 
 debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil") ; 
@@ -16,7 +16,7 @@ $req = "SELECT *
 	AND u.id = sa.id_utilisateur
 	AND r.id = ru.id_role
 	AND s.id = sa.id_statut
-	AND nom='$nom' AND prenom='$prenom' " ;
+	AND u.nom='$nom' AND u.prenom='$prenom' " ;
 
 $res = mysql_query($req) ;
 
@@ -55,9 +55,10 @@ $ligne=mysql_fetch_object($res) ;
 				AND vi.id = ev.id_entreprise
 				AND vi.id = vp.id_ville
 				AND pa.id = vp.id_pays
-				AND nom='$nom' AND prenom='$prenom'";
+				AND u.nom='$nom' AND u.prenom='$prenom'";
 		
 		$res_statut1 = mysql_query($req_statut1) ;
+		
 		
 		if (mysql_num_rows($res_statut1) > 0) {
 				
@@ -106,7 +107,7 @@ $ligne=mysql_fetch_object($res) ;
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
-				AND nom='$nom' AND prenom='$prenom'" ;
+				AND u.nom='$nom' AND u.prenom='$prenom'" ;
 				
 		$res_statut2 = mysql_query($req_statut2) ;
 		
@@ -164,9 +165,9 @@ $ligne=mysql_fetch_object($res) ;
 	elseif ($_SESSION['id_role'] == 2)
 			{ 
 		
-		echo "<p>$nom $prenom <br/> 
-		Année de la promotion : $annee_promo <br/>
-		Adresse mail : $mail <br/></p>";	
+		echo "<p>$nom $prenom </p> 
+		<p><strong>Année de la promotion</strong> : $annee_promo </p>
+		<p><strong>Adresse mail</strong> : $mail </p>";	
 		
 		$req_statut2 = "SELECT * 
 				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
@@ -177,7 +178,7 @@ $ligne=mysql_fetch_object($res) ;
 				AND v.id = vp.id_ville
 				AND v.id = etav.id_ville
 				AND p.id = vp.id_pays
-				AND nom='$nom' AND prenom='$prenom'" ;
+				AND u.nom='$nom' AND u.prenom='$prenom'" ;
 				
 		$res_statut2 = mysql_query($req_statut2) ;
 		
