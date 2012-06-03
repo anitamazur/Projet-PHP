@@ -87,7 +87,7 @@ $ligne=mysql_fetch_object($res) ;
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		
 		} 
@@ -137,7 +137,7 @@ $ligne=mysql_fetch_object($res) ;
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";	
 		}
 		
@@ -156,7 +156,7 @@ $ligne=mysql_fetch_object($res) ;
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		
 		} 
@@ -207,7 +207,7 @@ $ligne=mysql_fetch_object($res) ;
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 			}
 			
@@ -226,7 +226,7 @@ $ligne=mysql_fetch_object($res) ;
 		echo "
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"Administration.php\">Administration</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		}
@@ -244,7 +244,7 @@ $ligne=mysql_fetch_object($res) ;
 		echo "
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"Administration.php\">Administration</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
 		} 
