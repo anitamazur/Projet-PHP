@@ -158,7 +158,9 @@ while ($ligne = mysql_fetch_object($res_p)) {
 
 	  echo "</table>";	
 
-	  echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	  echo "
+	  <p><p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>
+	  <p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	  
 	  finhtml();
 	  
