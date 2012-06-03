@@ -32,7 +32,7 @@ if(connexionUtilisateurReussie()) {
 			AND u.id = sa.id_utilisateur
 			AND r.id = ru.id_role
 			AND s.id = sa.id_statut
-			AND nom='$nom' AND prenom='$prenom' AND naissance='$naissance' AND pass='$pass'" ;
+			AND u.nom='$nom' AND u.prenom='$prenom' AND u.naissance='$naissance' AND u.pass='$pass'" ;
 		$res = mysql_query($req) ;
 		$ligne=mysql_fetch_object($res) ;
 		$nom = ucfirst(strtolower($ligne->nom)) ;
@@ -70,7 +70,7 @@ if(connexionUtilisateurReussie()) {
 			FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 			WHERE u.id = ru.id_utilisateur
 			AND r.id = ru.id_role
-			AND nom='$nom' AND prenom='$prenom' AND naissance='$naissance' AND pass='$pass'" ;
+			AND u.nom='$nom' AND u.prenom='$prenom' AND u.naissance='$naissance' AND u.pass='$pass'" ;
 		$res = mysql_query($req) ;
 		$ligne=mysql_fetch_object($res) ;
 		$nom = ucfirst(strtolower($ligne->nom)) ;
@@ -96,7 +96,7 @@ if(connexionUtilisateurReussie()) {
 			FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 			WHERE u.id = ru.id_utilisateur
 			AND r.id = ru.id_role
-			AND nom='$nom' AND prenom='$prenom' AND naissance='$naissance' AND pass='$pass'" ;
+			AND u.nom='$nom' AND u.prenom='$prenom' AND u.naissance='$naissance' AND u.pass='$pass'" ;
 		$res = mysql_query($req) ;
 		$ligne=mysql_fetch_object($res) ;
 		$nom = ucfirst(strtolower($ligne->nom)) ;
