@@ -64,7 +64,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 						
 						if ($id_role ==1 && $id_statut==1)
 								{
-								echo "<td>$nom_statut</td>";
+								echo "<td>$ligne->nom_statut</td>";
 								
 								$req_statut1="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
@@ -95,7 +95,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								
 							elseif ($id_role == 1 && $id_statut==2)
 								{
-								echo "<td>$nom_statut</td>";
+								echo "<td>$ligne->nom_statut</td>";
 								
 								$req_statut2 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
@@ -106,7 +106,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND nom='$nom' AND prenom='$prenom'" ;
+								AND annee_promo='$annee_promo'" ;
 								
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -122,7 +122,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 							
 							elseif ($id_role== 1 && $id_statut==3)
 								{
-								echo "<td>$nom_statut</td>";
+								echo "<td>$ligne->nom_statut</td>";
 								}
 							
 						if ($id_role == 2)
@@ -137,7 +137,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND nom='$nom' AND prenom='$prenom'" ;
+								AND annee_promo='$annee_promo'" ;
 								
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -158,9 +158,8 @@ while ($ligne = mysql_fetch_object($res_p)) {
 
 	  echo "</table>";	
 
-	  echo "
-	  <p><p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>
-	  <p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	  echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";
+	  echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	  
 	  finhtml();
 	  
