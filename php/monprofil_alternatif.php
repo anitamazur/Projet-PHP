@@ -8,117 +8,258 @@ $naissance = $_SESSION['naissance'] ;
 require("fonctions.php") ;
 $connexion = connexion() ;
 
-debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil") ;
+debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil") ; 
 
-
-$req = "SELECT * from utilisateur where nom='$nom' AND prenom='$prenom' mail='$mail' " ;
-
-$res = mysql_query($req) ;
-
-if(mysql_num_rows($res) > 0)
-{
-$ligne=mysql_fetch_object($res) ;
-$_SESSION['nom'] = $ligne->nom ;
-$_SESSION['prenom'] = $ligne->prenom ;
-$id_utilisateur = $ligne->id ;
-
-$req_profil = "SELECT * 
-	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp,etudes AS et, etudes_utilisateur AS etu, etablissement AS eta, etablissement_utilisateur AS etau
+$req = "SELECT * 
+	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
 	WHERE u.id = ru.id_utilisateur
 	AND u.id = sa.id_utilisateur
 	AND r.id = ru.id_role
 	AND s.id = sa.id_statut
-	AND u.id = pu.id_utilisateur
-	AND u.id = eu.id_utilisateur
-	AND u.id = etu.id_utilisateur
-	AND u.id = etau.id_utilisateur
-	AND vi.id = vp.id_ville
-	AND pa.id = vp.id_pays
-	AND e.id = eu.id_entreprise
-	AND e.id = pde.id_entreprise
-	AND e.id = ev.id_entreprise
-	AND vi.id = ev.id_entreprise
-	AND et.id = etu.id_etudes
-	AND eta.id = etau.id_etablissement
-	AND v.id = etav.id_ville
-	AND vi.id = vp.id_ville
-	AND pa.id = vp.id_pays
-	AND u.id='$id_utilisateur'";
+	AND nom='$nom' AND prenom='$prenom' " ;
 
-$res_profil = mysql_query($req_profil) ;
+$res = mysql_query($req) ;
 
-while ($ligne = mysql_fetch_object($res_profil)) {
-						
-						echo "".$ligne->nom."".$ligne->prenom."";
-						echo "".$ligne->mail."";
-						echo "".$ligne->nom_role."";
-						if ($id_role =1)
-							{
-							echo "".$ligne->nom_statut."";
-							
-							if ($id_statut=1)
-								{
-								echo"".$ligne->annee_promo."";
-								echo"".$ligne->diplome_etudes."";
-								echo "".$ligne->nom_etablissement."";
-								echo "".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
-								
-								}
-							elseif ($id_statut=2)
-								{
-								echo"".$ligne->annee_promo."";
-								echo "".$ligne->nom_poste."";
-								echo"".$ligne->nom_entreprise."";
-								echo "".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
-								
-								}
-							elseif ($id_statut=3)
-								{
-								echo"".$ligne->annee_promo."";
-								}
-							echo "
-								<p><a href=\"pageAccueil.php\">Accueil</a></p>  
-								<p><a href=\"mapromo.php\">Ma promo</a></p>
-								<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-								<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-								<p><a href=\"deconnexion.php\">Déconnexion</a></p>";	
-								
-							}
-						if ($id_role = 2)
-							{
-							echo"".$ligne->annee_promo."";
-							echo"".$ligne->diplome_etudes."";
-							echo "".$ligne->nom_etablissement."";
-							echo "".$ligne->siteweb_etabllissement." ".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays."";
-							
-							echo "
-								<p><a href=\"pageAccueil.php\">Accueil</a></p>  
-								<p><a href=\"mapromo.php\">Ma promo</a></p>
-								<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-								<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-								<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
-							
-							}
-							
-						else {
-							echo "
-							<p><a href=\"pageAccueil.php\">Accueil</a></p>  
-							<a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-							<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
-							<p><a href=\"Administration.php\">Administration</a></p>
-							<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
-						
-						}
-						
-						echo "".$ligne->date_inscription."";
-						echo "".$ligne->date_maj_profil."";
-					
-					} }
+if(mysql_num_rows($res) > 0)
+		{
+$ligne=mysql_fetch_object($res) ;
+	$_SESSION['nom'] = $ligne->nom ;
+	$_SESSION['prenom'] = $ligne->prenom ; 	
+	$_SESSION['id_role'] = $ligne->id_role ;
+	$_SESSION['id_statut'] = $ligne->id_statut ;
+	$role = $ligne->nom_role ;
+	$statut = $ligne->nom_statut ; 
+	$annee_promo = $ligne->annee_promo ;
+	$mail = $ligne->mail ;
+	$pass = $ligne->pass ;
+	$id = $ligne->id ;
+	$date_inscription=$ligne->date_inscription;
+	$date_maj_profil=$ligne->date_maj_profil;
+
+	
+	if ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 1)
+		{
+		echo "<p>$nom $prenom <br/> 
+		Année de la promotion : $annee_promo <br/>
+		Adresse mail : $mail <br/></p>";
+		
+		$req_statut1="SELECT *
+				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
+				WHERE u.id = pu.id_utilisateur
+				AND u.id = eu.id_utilisateur
+				AND p.id = pu.id_poste
+				AND p.id = pde.id_poste
+				AND e.id = eu.id_entreprise
+				AND e.id = pde.id_entreprise
+				AND e.id = ev.id_entreprise
+				AND vi.id = ev.id_entreprise
+				AND vi.id = vp.id_ville
+				AND pa.id = vp.id_pays
+				AND nom='$nom' AND prenom='$prenom'";
+		
+		$res_statut1 = mysql_query($req_statut1) ;
+		
+		if (mysql_num_rows($res_statut1) > 0) {
+				
+		$ligne=mysql_fetch_object($res_statut1) ; 	
+			$poste = $ligne->nom_poste ;
+			$nom_entreprise = $ligne->nom_entreprise ;
+			$siteweb_entreprise = $ligne->siteweb_entreprise ;
+			$secteur_entreprise = $ligne->secteur_entreprise ;
+			$nom_ville = $ligne->nom_ville ; 
+			$cp = $ligne->cp ;
+			$pays = $ligne->nom_pays ;
+		
+		echo "<p>$role : $statut <br/><br/>
+			Poste : $nom_poste <br/>
+			Entreprise : $nom_entreprise <br/>
+			Adresse web de l'entreprise : $siteweb_entreprise <br/>
+			Secteur de l'entreprise : $secteur_entreprise <br/>
+			$nom_ville - $cp - $pays </p>";
+			
+			}
+			
+			echo "<p>Date d'inscription : $date_inscription <br/>
+		Date de mise à jour du profil : $date_maj_profil</p>";
+			
+		echo "
+			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
+			<p><a href=\"mapromo.php\">Ma promo</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		
+		} 
+		
+		elseif ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 2) {
+		
+		echo "<p>$nom $prenom <br/> 
+		Année de la promotion : $annee_promo <br/>
+		Adresse mail : $mail <br/></p>";
+		
+		$req_statut2 = "SELECT * 
+				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+				WHERE u.id = eu.id_utilisateur
+				AND u.id = etau.id_utilisateur
+				AND e.id = eu.id_etudes
+				AND eta.id = etau.id_etablissement
+				AND v.id = vp.id_ville
+				AND v.id = etav.id_ville
+				AND p.id = vp.id_pays
+				AND nom='$nom' AND prenom='$prenom'" ;
+				
+		$res_statut2 = mysql_query($req_statut2) ;
+		
+		if (mysql_num_rows($res_statut2) > 0) {
+
+		$ligne=mysql_fetch_object($res_statut2) ; 	
+			$diplome = $ligne->diplome_etudes ;
+			$nom_etablissement = $ligne->nom_etablissement ;
+			$siteweb_etablissement = $ligne->siteweb_etablissement ;
+			$nom_ville = $ligne->nom_ville ; 
+			$cp = $ligne->cp ;
+			$pays = $ligne->nom_pays ;
+		
+		
+		echo "<p>$role : $statut <br/><br/>
+			Diplôme : $diplome <br/>
+			Etablissement : $nom_etablissement <br/>
+			Adresse web de l'établissement : $siteweb_etablissement <br/>
+			$nom_ville - $cp - $pays </p>";
+			
+			}
+			
+		echo "<p>Date d'inscription : $date_inscription <br/>
+		Date de mise à jour du profil : $date_maj_profil</p>";	
+			
+		echo "
+			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
+			<p><a href=\"mapromo.php\">Ma promo</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";	
+		}
+		
+		elseif ($_SESSION['id_role'] == 1 && $_SESSION['id_statut'] == 3) {
+		
+		echo "<p>$nom $prenom <br/> 
+		Année de la promotion : $annee_promo <br/>
+		Adresse mail : $mail <br/></p>";
+		
+		echo "<p>$statut</p>";
+		
+		echo "<p>Date d'inscription : $date_inscription <br/>
+		Date de mise à jour du profil : $date_maj_profil</p>";
+		
+		echo "
+			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
+			<p><a href=\"mapromo.php\">Ma promo</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		
+		} 
+		
+
+	elseif ($_SESSION['id_role'] == 2)
+			{ 
+		
+		echo "<p>$nom $prenom <br/> 
+		Année de la promotion : $annee_promo <br/>
+		Adresse mail : $mail <br/></p>";	
+		
+		$req_statut2 = "SELECT * 
+				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+				WHERE u.id = eu.id_utilisateur
+				AND u.id = etau.id_utilisateur
+				AND e.id = eu.id_etudes
+				AND eta.id = etau.id_etablissement
+				AND v.id = vp.id_ville
+				AND v.id = etav.id_ville
+				AND p.id = vp.id_pays
+				AND nom='$nom' AND prenom='$prenom'" ;
+				
+		$res_statut2 = mysql_query($req_statut2) ;
+		
+		if (mysql_num_rows($res_statut2) > 0) {
+
+		$ligne=mysql_fetch_object($res_statut2) ; 	
+			$diplome = $ligne->diplome_etudes ;
+			$nom_etablissement = $ligne->nom_etablissement ;
+			$siteweb_etablissement = $ligne->siteweb_etablissement ;
+			$nom_ville = $ligne->nom_ville ; 
+			$cp = $ligne->cp ;
+			$pays = $ligne->nom_pays ;
+		
+		
+		echo "<p>$role<br/><br/>
+			Diplôme : $diplome <br/>
+			Etablissement : $nom_etablissement <br/>
+			Adresse web de l'établissement : $siteweb_etablissement <br/>
+			$nom_ville - $cp - $pays </p>";
+			
+			}
+		echo "<p>Date d'inscription : $date_inscription <br/>
+		Date de mise à jour du profil : $date_maj_profil</p>";
+		
+		echo "
+			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
+			<p><a href=\"mapromo.php\">Ma promo</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			}
+			
+			
+		
+		
+		elseif ($_SESSION['id_role'] == 3)
+		{
+		echo "<p>$role <br/><br/>
+		$nom $prenom <br/>
+		Adresse mail : $mail <br/></p>";
+		
+		echo "<p>Date d'inscription : $date_inscription <br/>
+		Date de mise à jour du profil : $date_maj_profil</p>";
+		
+		echo "
+			<p><a href=\"pageAccueil.php\">Accueil</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"Administration.php\">Administration</a></p>
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		}
+		
+		
+		elseif ($_SESSION['id_role'] == 4)
+		{ 
+		echo "<p>$role <br/><br/>
+		$nom $prenom <br/>
+		Adresse mail : $mail <br/></p>";
+		
+		echo "<p>Date d'inscription : $date_inscription <br/>
+		Date de mise à jour du profil : $date_maj_profil</p>";
+		
+		echo "
+			<p><a href=\"pageAccueil.php\">Accueil</a></p>
+			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
+			<p><a href=\"Gestiondeprofil.php\">Gestion de mon profil</a></p>
+			<p><a href=\"Administration.php\">Administration</a></p>
+			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		} 
+		
+		
+		
+		}
+	
+	
+	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 
 
-	  echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
-	  
-	  finhtml();
-	  
-	  mysql_close();
+
+
+finhtml() ;
+
+mysql_close() ;
+
 ?>
