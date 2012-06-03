@@ -11,16 +11,16 @@ debuthtml("Annuaire M2 DEFI - Recherche","Annuaire M2 DEFI", "Recherche dans l'a
 
 if (isset($nom) && isset($prenom))
 		{
-		affichetitre("Recherche par nom et prénom dans l'annuaire","3");
+		affichetitre("Recherche par nom et prÃ©nom dans l'annuaire","3");
 		echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
 				<fieldset>
-					<legend>Entrez le nom, prénom de la personne recherchée :</legend>
+					<legend>Entrez le nom, prÃ©nom de la personne recherchÃ©e :</legend>
 					<p>
 						<label for=\"nom\">Nom : </label>
 						<input type=\"text\" id=\"nom\" name=\"nom\" />
 					</p>
 					<p>
-						<label for=\"prenom\">Prénom : </label>
+						<label for=\"prenom\">PrÃ©nom : </label>
 						<input type=\"text\" name=\"prenom\" id=\"prenom\" />
 					</p>
 					<p class=\"submit\">
@@ -32,39 +32,39 @@ if (isset($nom) && isset($prenom))
 			affichetitre("Recherche par promotion dans l'annuaire","3");
 			echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
 				<fieldset>
-					<legend>Entrez l'année de la promotion recherchée :</legend>
+					<legend>Entrez l'annÃ©e de la promotion recherchÃ©e :</legend>
 					<p>
-						<label for=\"annee_promo\">Année de la promotion: </label>
+						<label for=\"annee_promo\">AnnÃ©e de la promotion: </label>
 						<input type=\"text\" id=\"annee_promo\" name=\"annee_promo\" />
 					</p>
 					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
+						<input type=\"submit\" name=\"envoyer\" value=\"Valider\" />
 					</p>
 				</fieldset>
 			</form>
-			<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
+			<p><a href=\"pageAccueil.php\">Retour Ã  la page d'accueil de l'annuaire</a></p>";	
 		}
 
 else {
 		affichetitre("Recherche par promotion dans l'annuaire","3");
 			echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
 				<fieldset>
-					<legend>Entrez l'année de la promotion recherchée :</legend>
+					<legend>Entrez l'annÃ©e de la promotion recherchÃ©e :</legend>
 					<p>
-						<label for=\"annee_promo\">Année de la promotion: </label>
+						<label for=\"annee_promo\">AnnÃ©e de la promotion: </label>
 						<input type=\"text\" id=\"annee_promo\" name=\"annee_promo\" />
 					</p>
 					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
+						<input type=\"submit\" name=\"envoyer\" value=\"Valider\" />
 					</p>
 				</fieldset>
 			</form>
-			<p><a href=\"connexion.php\">Retour à la page de connexion de l'annuaire</a></p>
-			<p><a href=\"inscription.php\">Retour à la page d'inscription de l'annuaire</a></p>";	
+			<p><a href=\"connexion.php\">Retour Ã  la page de connexion de l'annuaire</a></p>
+			<p><a href=\"inscription.php\">Retour Ã  la page d'inscription de l'annuaire</a></p>";	
 		}
 
 		
-		echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+		echo "<p>Si vous rencontrez des problÃ¨mes n'hÃ©sitez pas Ã  <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 
 		finhtml();
 
