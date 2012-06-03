@@ -10,7 +10,7 @@ $connexion = connexion() ;
 debuthtml("Annuaire M2 DEFI - Recherche","Annuaire M2 DEFI", "Recherche dans l'annuaire") ;
 
 
-if ($_SESSION['nom'] == 1 && $_SESSION['prenom'] == 1)
+if ($_SESSION['nom'] == true && $_SESSION['prenom'] == true)
 		{
 		affichetitre("Recherche par nom et prénom dans l'annuaire","3");
 		echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
@@ -46,7 +46,7 @@ if ($_SESSION['nom'] == 1 && $_SESSION['prenom'] == 1)
 			<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
 		}
 
-elseif ($_SESSION['nom'] == 0 && $_SESSION['prenom'] == 0)
+elseif ($_SESSION['nom'] == false && $_SESSION['prenom'] == false)
 {
 		affichetitre("Recherche par promotion dans l'annuaire","3");
 			echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
