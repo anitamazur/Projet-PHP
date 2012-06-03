@@ -34,18 +34,31 @@ if(isset($_POST['Supprimer'])) {
 		$resultat = mysql_query($del_utilisateur);
 	}
 	
-	
-	
-			// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
-			if($resultat <> False) {
-					$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
-				} else {
-					$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
-				}
+	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
+	if($resultat <> False) {
+			$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
+		} else {
+			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
+		}
 }
 
+if(isset($_POST['valider'])) {
+	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
+	if($resultat <> False) {
+			$message .= "<p class=\"succes\">Profil modifié dans la base de données.</p>";
+		} else {
+			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
+		}
+}
 
-
+if(isset($_POST['changeStatut'])) {
+	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
+	if($resultat <> False) {
+			$message .= "<p class=\"succes\">Statut modifié dans la base de données. Veuillez vous reconnecter pour voir la modification de votre profil.</p>";
+		} else {
+			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
+		}
+}
 
 //affichage d'une page d'accueil personnalisée selon le rôle
 if(connexionUtilisateurReussie()) {
@@ -205,7 +218,7 @@ if(connexionUtilisateurReussie()) {
 						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
 					</p>
 				</form>
-				<form action=\"changementSituation.php\" method=\"post\">
+				<form action=\"gestionProfil.php\" method=\"post\">
 					<h2>Changement de ma situation</h2>
 					<fieldset>
 						<legend>Changer mon statut en : </legend>
@@ -223,7 +236,7 @@ if(connexionUtilisateurReussie()) {
 						</p>
 					</fieldset>
 					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
+						<input type=\"submit\" name=\"changeStatut\" value=\"Valider\" />
 					</p>
 					</form>
 				";
