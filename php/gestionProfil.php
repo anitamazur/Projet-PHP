@@ -52,11 +52,14 @@ if(isset($_POST['valider'])) {
 }
 
 if(isset($_POST['changeStatut'])) {
-	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
+	$radio_statut = $_POST['statutActuel'];
+	$requete = "UPDATE statut_ancien_etudiant SET id_statut = $radio_statut WHERE statut_ancien_etudiant.id_utilisateur = $id_utilisateur";
+	$resultat = mysql_query($requete);
+	// Suivant si le changement de statut a été un succès ou pas, on affiche un autre message.	
 	if($resultat <> False) {
-			$message .= "<p class=\"succes\">Statut modifié dans la base de données. Veuillez vous reconnecter pour voir la modification de votre profil.</p>";
+			$message .= "<p class=\"succes\">Statut modifié dans la base de données. Veuillez recharger la page pour voir la modification de votre profil.</p>";
 		} else {
-			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
+			$message .= "<p class=\"erreur\">Erreur lors de la modification du statut.</p>" ;
 		}
 }
 
@@ -213,32 +216,7 @@ if(connexionUtilisateurReussie()) {
 								<option value=\"5\">Affichage public</option>
 							</select>
 						</p>
-					</fieldset>		
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-				</form>
-				<form action=\"gestionProfil.php\" method=\"post\">
-					<h2>Changement de ma situation</h2>
-					<fieldset>
-						<legend>Changer mon statut en : </legend>
-						<p>
-							<label for=\"statutActuel\">En poste : </label>
-							<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" checked=\"checked\" value=\"3\" />
-						</p>
-						<p>
-							<label for=\"ancienEtudiantFormation\">En formation : </label>
-							<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" value=\"1\" />
-						</p>
-						<p>
-							<label for=\"ancienEtudiantSansEmploi\">Sans emploi : </label>
-							<input type=\"radio\" name=\"statutActuel\" id=\"ancienEtudiantSansEmploi\" value=\"2\" />
-						</p>
 					</fieldset>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"changeStatut\" value=\"Valider\" />
-					</p>
-					</form>
 				";
 				}
 				else if ($id_statut == 3) {
@@ -300,32 +278,7 @@ if(connexionUtilisateurReussie()) {
 							<option value=\"5\">Affichage public</option>
 						</select>
 					</p>
-				</fieldset>		
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-				</form>
-				<form action=\"changementSituation.php\" method=\"post\">
-					<h2>Changement de ma situation</h2>
-					<fieldset>
-						<legend>Changer mon statut en : </legend>
-						<p>
-							<label for=\"statutActuel\">En poste : </label>
-							<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" checked=\"checked\" value=\"3\" />
-						</p>
-						<p>
-							<label for=\"ancienEtudiantFormation\">En formation : </label>
-							<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" value=\"1\" />
-						</p>
-						<p>
-							<label for=\"ancienEtudiantSansEmploi\">Sans emploi : </label>
-							<input type=\"radio\" name=\"statutActuel\" id=\"ancienEtudiantSansEmploi\" value=\"2\" />
-						</p>
-					</fieldset>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-					</form>
+				</fieldset>
 				";
 				}
 			}
@@ -360,10 +313,6 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"password\" name=\"mdp\" id=\"mdp\" value=\"\" />
 						</p>
 					</fieldset>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-					</form>
 				";
 				}
 				if ($id_role == 3) {
@@ -393,10 +342,6 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"password\" name=\"mdp\" id=\"mdp\" value=\"\" />
 						</p>
 					</fieldset>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-					</form>
 				";
 				}
 				if ($id_role == 4) {
@@ -426,24 +371,72 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"password\" name=\"mdp\" id=\"mdp\" value=\"\" />
 						</p>
 					</fieldset>
-					<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
-					</p>
-					</form>
 				";
 				}
-	echo "
-			<h2>Suppression de mon profil</h2>
-			<form action=\"gestionProfil.php\" method=\"post\">
-				<fieldset>
-					<legend>Les données seront perdues définitivement</legend>
-					<p>
-						<input type=\"submit\" name=\"Supprimer\" value=\"supprimer mon profil\" />
+			echo "<p class=\"submit\">
+						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
 					</p>
-				</fieldset>
-			</form>
-		</div>
-	</body>
+				</form>";
+			if ($id_role == 1) {
+				echo "<form action=\"gestionProfil.php\" method=\"post\">
+						<h2>Changement de ma situation</h2>
+						<fieldset>
+							<legend>Changer mon statut en : </legend>
+							<p>
+								<label for=\"statutActuel\">Profil à remplir : </label>";
+								if ($id_statut == 1) {
+									echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantARemplir\" checked=\"checked\" value=\"1\" />" ;
+								}
+								else {
+									echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantARemplir\" value=\"1\" />" ;
+								}
+							echo "</p>
+							<p>
+								<label for=\"statutActuel\">En poste : </label>";
+								if ($id_statut == 2) {
+									echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantEmploi\" checked=\"checked\" value=\"2\" />" ;
+								}
+								else {
+									echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantEmploi\" value=\"2\" />" ;
+								}
+							echo "</p>
+							<p>
+								<label for=\"ancienEtudiantFormation\">En formation : </label>";
+								if ($id_statut == 3) {
+									echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" checked=\"checked\" value=\"3\" />" ;
+								}
+								else {
+									echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" value=\"3\" />" ;
+								}
+							echo "</p>
+							<p>
+								<label for=\"ancienEtudiantSansEmploi\">Sans emploi : </label>";
+								if ($id_statut == 4) {
+									echo "<input name=\"statutActuel\" type=\"radio\"  id=\"ancienEtudiantSansEmploi\" checked=\"checked\" value=\"4\" />" ;
+								}
+								else {
+									echo "<input name=\"statutActuel\" type=\"radio\"  id=\"ancienEtudiantSansEmploi\" value=\"4\" />" ;
+								}
+							echo"
+							</p>
+						</fieldset>
+						<p class=\"submit\">
+							<input type=\"submit\" name=\"changeStatut\" value=\"Valider\" />
+						</p>
+						</form>";
+				}
+echo "	
+	<h2>Suppression de mon profil</h2>
+	<form action=\"gestionProfil.php\" method=\"post\">
+		<fieldset>
+			<legend>Les données seront perdues définitivement</legend>
+			<p>
+				<input type=\"submit\" name=\"Supprimer\" value=\"supprimer mon profil\" />
+			</p>
+		</fieldset>
+	</form>
+</div>
+</body>
 </html>";
 
 	afficheMenu($id_role);
