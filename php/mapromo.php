@@ -128,28 +128,30 @@ while ($ligne = mysql_fetch_object($res_p)) {
 							
 						if ($id_role == 2)
 							{
+							echo "<td>$ligne-> - </td>";
+						#	$req_statut2 = "SELECT * 
+						#		FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+						#		WHERE u.id = eu.id_utilisateur
+						#		AND u.id = etau.id_utilisateur
+						#		AND e.id = eu.id_etudes
+						#		AND eta.id = etau.id_etablissement
+						#		AND eta.id = etav.id_etablissement
+						#		AND v.id = vp.id_ville
+						#		AND v.id = etav.id_ville
+						#		AND p.id = vp.id_pays
+						#		AND u.annee_promo='$annee_promo'" ;
+								
+						#		$res_statut2 = mysql_query($req_statut2) ;
+								
+						#			while ($ligne = mysql_fetch_object($res_statut2)) {
+								
+						#		echo "<td>$ligne->diplome_etudes<br/>";
+						#		echo "$ligne->nom_etablissement<br/>";
+						#		echo "$ligne->siteweb_etablissement<br/>";
+						#		echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
+						#	} 
 							
-							$req_statut2 = "SELECT * 
-								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-								WHERE u.id = eu.id_utilisateur
-								AND u.id = etau.id_utilisateur
-								AND e.id = eu.id_etudes
-								AND eta.id = etau.id_etablissement
-								AND eta.id = etav.id_etablissement
-								AND v.id = vp.id_ville
-								AND v.id = etav.id_ville
-								AND p.id = vp.id_pays
-								AND u.annee_promo='$annee_promo'" ;
-								
-								$res_statut2 = mysql_query($req_statut2) ;
-								
-									while ($ligne = mysql_fetch_object($res_statut2)) {
-								
-								echo "<td>$ligne->diplome_etudes<br/>";
-								echo "$ligne->nom_etablissement<br/>";
-								echo "$ligne->siteweb_etablissement<br/>";
-								echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
-							} }
+							}
 
 
 
