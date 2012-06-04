@@ -98,36 +98,36 @@ $xml = '<?xml version="1.0" encoding="utf-8"?>'.'<profil>';
 		} 
 		
 
-	elseif ($row['id_role'] == 2)
-			{ 
+#	elseif ($row['id_role'] == 2)
+#			{ 
 		
-		$req_statut3 = "SELECT * 
-				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-				WHERE u.id = eu.id_utilisateur
-				AND u.id = etau.id_utilisateur
-				AND e.id = eu.id_etudes
-				AND eta.id = etau.id_etablissement
-				AND eta.id = etav.id_etablissement
-				AND v.id = vp.id_ville
-				AND v.id = etav.id_ville
-				AND p.id = vp.id_pays
-				AND u.nom='$nom' AND u.prenom='$prenom'" ;
-				
-		$res_statut3 = mysql_query($req_statut3) ;
+	#	$req_statut3 = "SELECT * 
+	#			FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+	#			WHERE u.id = eu.id_utilisateur
+	#			AND u.id = etau.id_utilisateur
+	#			AND e.id = eu.id_etudes
+	#			AND eta.id = etau.id_etablissement
+	#			AND eta.id = etav.id_etablissement
+	#			AND v.id = vp.id_ville
+	#			AND v.id = etav.id_ville
+	#			AND p.id = vp.id_pays
+	#			AND u.nom='$nom' AND u.prenom='$prenom'" ;
+	#			
+	#	$res_statut3 = mysql_query($req_statut3) ;
 		
-		while ($row = mysql_fetch_array($req_statut3)) {
-			$xml .= '<annee_promo>'.$row['u.annee_promo'].'</annee_promo>';
-			$xml .= '<en_formation>';
-			$xml .= '<diplome_etudes>'.$row['diplome_etudes'].'</diplome_etudes>';
-			$xml .= '<nom_etablissement>'.$row['nom_etablissement'].'</nom_etablissement>';
-			$xml .= '<siteweb_etablissement>'.$row['siteweb_etablissement'].'</siteweb_etablissement>';
-			$xml .= '<nom_ville>'.$row['nom_ville'].'</nom_ville>';
-			$xml .= '<cp>'.$row['cp'].'</cp>';
-			$xml .= '<nom_pays>'.$row['nom_pays'].'</nom_pays>';	
-			$xml .= '</en_formation>';
-			}
+	#	while ($row = mysql_fetch_array($req_statut3)) {
+	#		$xml .= '<annee_promo>'.$row['u.annee_promo'].'</annee_promo>';
+	#		$xml .= '<en_formation>';
+	#		$xml .= '<diplome_etudes>'.$row['diplome_etudes'].'</diplome_etudes>';
+	#		$xml .= '<nom_etablissement>'.$row['nom_etablissement'].'</nom_etablissement>';
+	#		$xml .= '<siteweb_etablissement>'.$row['siteweb_etablissement'].'</siteweb_etablissement>';
+	#		$xml .= '<nom_ville>'.$row['nom_ville'].'</nom_ville>';
+	#		$xml .= '<cp>'.$row['cp'].'</cp>';
+	#		$xml .= '<nom_pays>'.$row['nom_pays'].'</nom_pays>';	
+	#		$xml .= '</en_formation>';
+	#		}
 		
-			}
+	#		}
 	
 			$xml .= '</personne>';
 		}
