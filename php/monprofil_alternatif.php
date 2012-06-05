@@ -136,12 +136,15 @@ $ligne=mysql_fetch_object($res) ;
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
 		
+		debutmenu();
 		echo "
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		finmenu();
+		
 		} 
 
 ## si etudiant actuel ##		
@@ -188,12 +191,14 @@ $ligne=mysql_fetch_object($res) ;
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
 		
+		debutmenu();
 		echo "
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
 			<p><a href=\"mapromo.php\">Ma promo</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		finmenu();
 			}
 			
 			
@@ -208,12 +213,14 @@ $ligne=mysql_fetch_object($res) ;
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
 		
+		debutmenu();
 		echo "
 			<p><a href=\"pageAccueil.php\">Accueil</a></p>
 			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
 			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
 			<p><a href=\"Administration.php\">Administration</a></p>
 			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+		finmenu();
 		}
 		
 		
