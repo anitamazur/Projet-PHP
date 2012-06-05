@@ -204,14 +204,6 @@ if(connexionUtilisateurReussie()) {
 						</select>
 					</p>
 					<p>
-						<label for=\"recherche\">Thème de recherche : </label>
-						<input type=\"text\" id=\"recherche\" name=\"recherche\" value=\"thème à modifier\" />
-						<select name=\"affichage_recherche\">
-							<option value=\"1\">Affichage privé</option>
-							<option value=\"2\">Affichage public</option>
-						</select>
-					</p>				
-					<p>
 						<label for=\"code_postal_etab\">Code Postal * : </label>
 						<input type=\"text\" id=\"code_postal_etab\" name=\"code_postal_etab\" value=\"code postal à modifier\" />
 						<select name=\"affichage_code_postal_etab\">
