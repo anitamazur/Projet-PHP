@@ -13,7 +13,7 @@ debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
 			<th colspan=5 >Promotion</th>
 			<tr>
 			<td>Nom</td>
-			<td>Prénom</td>
+			<td>Prï¿½nom</td>
 			<td>Contact</td>
 			<td>Statut</td>
 			<td>Situation actuelle</td>
@@ -57,7 +57,7 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 						echo"<th colspan=5>$ligne->annee_promo</th>";
 						echo "<tr>";
 						
-						#condition sur le nom et prénom
+						#condition sur le nom et prï¿½nom
 						if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 						{
 						echo "<td>$ligne->nom</td>";
@@ -192,42 +192,42 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 											$cp_niveau=$ligne->cp_niveau;
 											$nomPays_niveau=$ligne->nomPays_niveau;
 											
-												## condition sur le diplôme
+												## condition sur le diplï¿½me
 											if ($diplomeEtudes_niveau == 'public')
 											{
 											echo "<td>$ligne->diplome_etudes<br/>";
 											}
 											else {echo " ";}
 											
-											## condition sur le nom de l'établissement
+											## condition sur le nom de l'ï¿½tablissement
 											if ($nomEtablissement_niveau == 'public')
 											{
 											echo "$ligne->nom_etablissement<br/>";
 											}
 											else {echo " ";}
 
-											## condition sur le siteweb de l'établissement
+											## condition sur le siteweb de l'ï¿½tablissement
 											if ($sitewebEtablissement_niveau == 'public')
 											{
 											echo "$ligne->siteweb_etablissement<br/>";
 											}
 											else {echo " ";}
 											
-											## condition sur le nom de la ville de l'établissement
+											## condition sur le nom de la ville de l'ï¿½tablissement
 											if ($nomVille_niveau == 'public')
 											{
 											echo "$ligne->nom_ville<br/>";
 											}
 											else {echo " ";}
 										
-											## condition sur le code postal de l'établissement
+											## condition sur le code postal de l'ï¿½tablissement
 											if ($cp_niveau == 'public')
 											{
 											echo "$ligne->cp<br/>";
 											}
 											else {echo " ";}
 										
-											## condition sur le pays de l'établissement
+											## condition sur le pays de l'ï¿½tablissement
 											if ($nomPays_niveau == 'public')
 											{
 											echo "$ligne->nom_pays</td>";
@@ -237,7 +237,7 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 								} }
 							
 							
-							##si profil à remplir ou en recherche d'emploi##
+							##si profil ï¿½ remplir ou en recherche d'emploi##
 							elseif ($id_statut==1 or $id_statut ==4)
 								{
 								echo "<td>$ligne->nom_statut</td>";
@@ -245,7 +245,7 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 								}
 							}
 							
-						## si étudiant actuel ##	
+						## si ï¿½tudiant actuel ##	
 						elseif ($id_role == 2)
 								{
 								echo "<td>$ligne->nom_statut</td>";
@@ -255,12 +255,12 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 						echo "</tr>";
 					 } 
 					 
-					 }
+					 } }
 
 	  echo "</table>";	
 
-	  echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";
-	  echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	  echo "<p><a href=\"pageAccueil.php\">Retour ï¿½ la page d'accueil de l'annuaire</a></p>";
+	  echo "<p>Si vous rencontrez des problï¿½mes n'hï¿½sitez pas ï¿½ <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	  
 	  finhtml();
 	  
