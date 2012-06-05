@@ -138,11 +138,11 @@ $ligne=mysql_fetch_object($res) ;
 		
 		debutmenu();
 		echo "
-			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
-			<p><a href=\"mapromo.php\">Ma promo</a></p>
-			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			<li><a href=\"pageAccueil.php\">Accueil</a></li>  
+			<li><a href=\"mapromo.php\">Ma promo</a></li>
+			<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
+			<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
+			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		finmenu();
 		
 		} 
@@ -193,11 +193,11 @@ $ligne=mysql_fetch_object($res) ;
 		
 		debutmenu();
 		echo "
-			<p><a href=\"pageAccueil.php\">Accueil</a></p>  
-			<p><a href=\"mapromo.php\">Ma promo</a></p>
-			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			<li><a href=\"pageAccueil.php\">Accueil</a></li>  
+			<li><a href=\"mapromo.php\">Ma promo</a></li>
+			<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
+			<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
+			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		finmenu();
 			}
 			
@@ -215,11 +215,11 @@ $ligne=mysql_fetch_object($res) ;
 		
 		debutmenu();
 		echo "
-			<p><a href=\"pageAccueil.php\">Accueil</a></p>
-			<p><a href=\"recherche.php\">Recherche dans l'annuaire</a></p>
-			<p><a href=\"gestionProfil.php\">Gestion de mon profil</a></p>
-			<p><a href=\"Administration.php\">Administration</a></p>
-			<p><a href=\"deconnexion.php\">Déconnexion</a></p>";
+			<li><a href=\"pageAccueil.php\">Accueil</a></li>
+			<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
+			<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
+			<li><a href=\"Administration.php\">Administration</a></li>
+			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		finmenu();
 		}
 		
