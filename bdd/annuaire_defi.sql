@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `nom_entreprise` varchar(255) NOT NULL,
   `siteweb_entreprise` varchar(255) DEFAULT NULL,
   `secteur_activite` varchar(255) DEFAULT NULL,
--- `nomEntreprise_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `sitewebEntreprise_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `secteurActivite_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+   `nomEntreprise_niveau` ENUM ('prive', 'public') NOT NULL DEFAULT 'prive',
+  `sitewebEntreprise_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `secteurActivite_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `etablissement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_etablissement` varchar(255) NOT NULL,
   `siteweb_etablissement` varchar(255) DEFAULT NULL,
--- `nomEtablissement_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `sitewebEtablissement_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `nomEtablissement_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `sitewebEtablissement_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -150,7 +150,7 @@ INSERT INTO `etablissement_ville` (`id_ville`, `id_etablissement`) VALUES
 CREATE TABLE IF NOT EXISTS `etudes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `diplome_etudes` varchar(255) NOT NULL,
--- `diplomeEtudes_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `diplomeEtudes_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `etudes_utilisateur` (
 CREATE TABLE IF NOT EXISTS `pays` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_pays` varchar(255) NOT NULL,
--- `nomPays_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `nomPays_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -208,7 +208,7 @@ INSERT INTO `pays` (`id`, `nom_pays`) VALUES
 CREATE TABLE IF NOT EXISTS `poste` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_poste` varchar(255) NOT NULL,
--- `nomPoste_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `nomPoste_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -360,10 +360,10 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `prenom` varchar(255) NOT NULL,
   `naissance` date NOT NULL,
   `annee_promo` year(4) DEFAULT NULL,
--- `nom_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `prenom_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `mail_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `mailPro_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `nom_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `prenom_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `mail_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `mailPro_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   `date_inscription` date DEFAULT NULL,
   `date_maj_profil` date DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -388,8 +388,8 @@ CREATE TABLE IF NOT EXISTS `ville` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_ville` varchar(50) NOT NULL,
   `cp` varchar(5) NOT NULL, -- peut être DEFAULT NULL --
--- `nomVille_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
--- `cp_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `nomVille_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+  `cp_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
