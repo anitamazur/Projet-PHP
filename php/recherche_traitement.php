@@ -52,8 +52,8 @@
 		Adresse mail professionnelle : $mail_pro</p>";
 		echo "<p>$statut</p>"
 	
-## en poste ##
-				if ($$id_statut == 2)
+				## en poste ##
+				if ($id_statut == 2)
 				{
 		
 					$req_statut2="SELECT *
@@ -83,10 +83,9 @@
 						}
 				} 
 	
-## en formation ##
-	
-		elseif ($id_statut == 3) 
-				{		
+				## en formation ##
+				elseif ($id_statut == 3) 
+					{		
 						$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
 								WHERE u.id = eu.id_utilisateur
@@ -111,11 +110,13 @@
 							}
 				}
 	
-## Profil à remplir ou recherche d'emploi ## --> rien à afficher
+				## Profil à remplir ou recherche d'emploi ## --> rien à afficher
 	
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";	
 }
+
+ ## si etudiant actuel ##
 	elseif ($id_role == 2)
 			{ 
 		
@@ -164,8 +165,7 @@
 		{
 		affichetitre ("$nom $prenom","3");
 		echo "<p>$role <br/>
-		Adresse mail personelle : $mail <br/>
-		Adresse mail professionnelle : $mail_pro</p>";
+		Adresse mail : $mail</p>";
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
