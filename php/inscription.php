@@ -8,10 +8,15 @@
 	//On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
 	if(isset($_POST['valider'])) {
 		$mail = stripslashes($_POST['mail']);
+		$affichage_mail = stripslashes($_POST['affichage_mail']);
 		$nom = stripslashes($_POST['nom']);
+		$affichage_nom = stripslashes($_POST['affichage_nom']);
 		$nomPatro = stripslashes($_POST['nomPatro']);
+		$affichage_nomPatro = stripslashes($_POST['affichage_nomPatro']);
 		$prenom = stripslashes($_POST['prenom']);
+		$affichage_prenom = stripslashes($_POST['affichage_prenom']);
 		$naissance = stripslashes($_POST['naissance']);
+		$affichage_naissance = stripslashes($_POST['affichage_naissance']);
 		$anneePromo = stripslashes($_POST['anneePromo']);
 		$mdp = stripslashes($_POST['mdp']);
 		$mdpRepete = stripslashes($_POST['repeat_mdp']);
@@ -37,7 +42,64 @@
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
 					}
-
+					
+					if ($affichage_nom == 1)
+					{
+					$res_an=mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('prive')");
+					}
+					else
+					{
+					$res_an=mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('public')");
+					}
+					
+					if ($affichage_nomPatro == 1)
+					{
+					$res_anp=mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('prive')");
+					}
+					else
+					{
+					$res_anp=mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('public')");
+					}
+					
+					if ($affichage_prenom == 1)
+					{
+					$res_p=mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('prive')");
+					}
+					else
+					{
+					$res_p=mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('public')");
+					}
+					
+					
+					if ($affichage_naissance == 1)
+					{
+					$res_na=mysql_query("INSERT INTO utilisateur (naissance_niveau) VALUES ('prive')");
+					}
+					else
+					{
+					$res_na=mysql_query("INSERT INTO utilisateur (naissance_niveau) VALUES ('public')");
+					}
+					
+					
+					if ($affichage_mail == 1)
+					{
+					$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('prive')");
+					}
+					else
+					{
+					$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('public')");
+					}
+					
+					if ($affichage_mailPro == 1)
+					{
+					$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('prive')");
+					}
+					else
+					{
+					$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('public')");
+					}
+					
+					
 				} else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 				}
