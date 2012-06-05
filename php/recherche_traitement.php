@@ -395,7 +395,7 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 		}	
 	
 		debutmenu();
-		echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
+		echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";	
 		finmenu();
 		} 
 }
@@ -737,7 +737,7 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 	  echo "</table>";
 	  
 	  debutmenu();
-	  echo "<p><a href=\"recherche.php\">Retour à la page de recherche de l'annuaire</a></p>";
+	  echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
 	  finmenu();
 	  
 		}
