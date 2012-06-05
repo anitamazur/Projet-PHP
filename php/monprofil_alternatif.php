@@ -5,6 +5,7 @@ $nom = $_SESSION['nom'] ;
 $prenom = $_SESSION['prenom'] ;
 $naissance = $_SESSION['naissance'] ;
 
+
 require_once("fonctions.php") ;
 $connexion = connexion() ;
 
