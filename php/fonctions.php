@@ -131,6 +131,22 @@ function afficheMenu($role) {
 	echo "</div>";
 }
 
+
+function debutmenu()
+{
+echo "<div id=\"menu\">";
+echo "<h2 class=\"menu_title\">Menu</h2>";
+echo "<ul id=\"menu_liens\">";
+}
+
+function finmenu()
+{
+echo "</ul>";
+echo "</div>";
+}
+
+
+
 //fonction qui permet de vérifier la syntaxe d'une adresse E-Mail
 function VerifierAdresseMail($adresse) { 
 	$Syntaxe='#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#'; 
