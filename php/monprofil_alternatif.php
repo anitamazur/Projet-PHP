@@ -203,8 +203,7 @@ $ligne=mysql_fetch_object($res) ;
 		{
 		echo "<p>$role <br/><br/>
 		$nom $prenom <br/>
-		Adresse mail : $mail <br/>
-		Adresse mail professionnelle : $mail_pro</p>";
+		Adresse mail : $mail <br/></p>";
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
