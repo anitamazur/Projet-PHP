@@ -4,7 +4,7 @@
  require("fonctions.php");
  $connexion = connexion();
  
-##################################### Traitement de recherche par nom et prénom #########################################
+##################################### Traitement de recherche par nom et prÃ©nom #########################################
 
  
 	if(isset($_POST['valider'])) {
@@ -12,7 +12,7 @@
 		$prenom = stripslashes($_POST['prenom']);
 	
 	debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
-	affichetitre ("Résultat de votre recherche","2") ;
+	affichetitre ("RÃ©sultat de votre recherche","2") ;
 	
 			$req = "SELECT * 
 			FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -46,22 +46,22 @@
 			$prenom = ucfirst(strtolower($prenom));
 			$nom = ucfirst(strtolower($nom));
 
-## si l'utilisateur connecté est : enseignant ou admin ##
+## si l'utilisateur connectÃ© est : enseignant ou admin ##
 if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
 {	
 			
-## si l'utilisateur est : ancien étudiant 
+## si l'utilisateur est : ancien Ã©tudiant 
 	if ($id_role == 1)
 	{		
 		affichetitre ("$nom $prenom","3");
-		echo "<p>Année de la promotion : $annee_promo <br/>
+		echo "<p>AnnÃ©e de la promotion : $annee_promo <br/>
 		Adresse mail personelle : $mail <br/>
 		Adresse mail professionnelle : $mail_pro</p>";
-		echo "<p>$statut</p>"
+		echo "<p>$statut</p>";
 	
 				## en poste ##
 				if ($id_statut == 2)
-				{
+					{
 		
 					$req_statut2="SELECT *
 							FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
@@ -117,10 +117,10 @@ if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
 							}
 				}
 	
-				## Profil à remplir ou recherche d'emploi ## --> rien à afficher
+				## Profil Ã  remplir ou recherche d'emploi ## --> rien Ã  afficher
 	
 		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";	
+		Date de mise Ã  jour du profil : $date_maj_profil</p>";	
 }
 
  ## si etudiant actuel ##
@@ -129,11 +129,11 @@ if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
 		
 		affichetitre ("$nom $prenom","3");
 		echo "<p>$role<br/>
-		Année de la promotion : $annee_promo <br/>
+		AnnÃ©e de la promotion : $annee_promo <br/>
 		Adresse mail : $mail <br/></p>";
 
 		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
+		Date de mise Ã  jour du profil : $date_maj_profil</p>";
 			}
 			
 			
@@ -146,27 +146,27 @@ if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
 		Adresse mail : $mail</p>";
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
+		Date de mise Ã  jour du profil : $date_maj_profil</p>";
 		}
 		
 		}
 	
 
-## si l'utilisateur connecté est : ancien étudiant ou étudiant actuel ##
+## si l'utilisateur connectÃ© est : ancien Ã©tudiant ou Ã©tudiant actuel ##
 elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 {	
 			
-## si l'utilisateur est : ancien étudiant 
+## si l'utilisateur est : ancien Ã©tudiant 
 	if ($id_role == 1)
 	{		
-		## condition sur le nom et le prénom ##
+		## condition sur le nom et le prÃ©nom ##
 		if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 		{
 		affichetitre ("$nom $prenom","3");
 		}
 		else { echo " ";}
 			
-		echo "Année de la promotion : $annee_promo";
+		echo "AnnÃ©e de la promotion : $annee_promo";
 		
 		## condition sur le mail perso
 		if ($mail_niveau == 'public')
@@ -183,7 +183,7 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 		}
 		else {echo " ";}
 		
-		echo "<p>$statut</p>"
+		echo "<p>$statut</p>";
 	
 				## en poste ##
 				if ($id_statut == 2)
@@ -291,42 +291,42 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 								$cp_niveau=$ligne->cp_niveau;
 								$nomPays_niveau=$ligne->nomPays_niveau;
 								
-								## condition sur le diplôme
+								## condition sur le diplÃ´me
 							if ($diplomeEtudes_niveau == 'public')
 							{
 							echo "$ligne->diplome_etudes";
 							}
 							else {echo " ";}
 							
-							## condition sur le nom de l'établissement
+							## condition sur le nom de l'Ã©tablissement
 							if ($nomEtablissement_niveau == 'public')
 							{
 							echo "$ligne->nom_etablissement";
 							}
 							else {echo " ";}
 
-							## condition sur le siteweb de l'établissement
+							## condition sur le siteweb de l'Ã©tablissement
 							if ($sitewebEtablissement_niveau == 'public')
 							{
 							echo "$ligne->siteweb_etablissement";
 							}
 							else {echo " ";}
 							
-							## condition sur le nom de la ville de l'établissement
+							## condition sur le nom de la ville de l'Ã©tablissement
 							if ($nomVille_niveau == 'public')
 							{
 							echo "$ligne->nom_ville";
 							}
 							else {echo " ";}
 						
-							## condition sur le code postal de l'établissement
+							## condition sur le code postal de l'Ã©tablissement
 							if ($cp_niveau == 'public')
 							{
 							echo "$ligne->cp";
 							}
 							else {echo " ";}
 						
-							## condition sur le pays de l'établissement
+							## condition sur le pays de l'Ã©tablissement
 							if ($nomPays_niveau == 'public')
 							{
 							echo "$ligne->nom_pays";
@@ -337,24 +337,24 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 							}
 				}
 	
-				## Profil à remplir ou recherche d'emploi ## --> rien à afficher
+				## Profil Ã  remplir ou recherche d'emploi ## --> rien Ã  afficher
 	
 		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";	
+		Date de mise Ã  jour du profil : $date_maj_profil</p>";	
 }
 
  ## si etudiant actuel ##
 	elseif ($id_role == 2)
 			{ 
-		## condition sur le nom et le prénom ##
+		## condition sur le nom et le prÃ©nom ##
 		if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 		{
 		affichetitre ("$nom $prenom","3");
 		}
 		else { echo " ";}
 		
-		echo "<p>$role"
-		echo "Année de la promotion : $annee_promo";
+		echo "<p>$role";
+		echo "AnnÃ©e de la promotion : $annee_promo";
 		
 		## condition sur le mail perso
 		if ($mail_niveau == 'public')
@@ -364,7 +364,7 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 		else {echo " ";}
 
 		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
+		Date de mise Ã  jour du profil : $date_maj_profil</p>";
 			}
 			
 			
@@ -372,14 +372,14 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 		elseif ($id_role == 3 or $id_role == 4)
 		{
 		
-		## condition sur le nom et le prénom ##
+		## condition sur le nom et le prÃ©nom ##
 		if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 		{
 		affichetitre ("$nom $prenom","3");
 		}
 		else { echo " ";}
 		
-		echo "<p>$role"
+		echo "<p>$role";
 	
 		## condition sur le mail perso
 		if ($mail_niveau == 'public')
@@ -389,31 +389,31 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 		else {echo " ";}
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
+		Date de mise Ã  jour du profil : $date_maj_profil</p>";
 		}
 		
 		}	
 	
 	
-		echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
+		echo "<p><a href=\"pageAccueil.php\">Retour Ã  la page d'accueil de l'annuaire</a></p>";	
 	
 		} 
 }
 
-################################## Traitement de recherche par année de promotion ########################################	
+################################## Traitement de recherche par annÃ©e de promotion ########################################	
 		
 		
 		elseif(isset($_POST['envoyer'])) {
 		$annee_promo = stripslashes($_POST['annee_promo']);
 		
 		debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
-		affichetitre ("Résultat de votre recherche","2") ;
+		affichetitre ("RÃ©sultat de votre recherche","2") ;
 	
 		echo"<table border=\"1px\">
 			<th colspan=5 >Promotion</th>
 			<tr>
 			<td>Nom</td>
-			<td>Prénom</td>
+			<td>PrÃ©nom</td>
 			<td>Contact</td>
 			<td>Statut</td>
 			<td>Situation actuelle</td>
@@ -436,7 +436,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 						$mail_niveau = $ligne->mail_niveau ;
 						$mailPro_niveau = $ligne->mailPro_niveau ;
 
-## si l'utilisateur connecté est : enseignant ou admin ##						
+## si l'utilisateur connectÃ© est : enseignant ou admin ##						
 if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 	{
 
@@ -510,7 +510,7 @@ if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 								} }
 							
 							
-							##si profil à remplir ou en recherche d'emploi##
+							##si profil Ã  remplir ou en recherche d'emploi##
 							elseif ($id_statut==1 or $id_statut ==4)
 								{
 								echo "<td>$ligne->nom_statut</td>";
@@ -518,7 +518,7 @@ if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 								}
 							}
 							
-						## si étudiant actuel ##	
+						## si Ã©tudiant actuel ##	
 						elseif ($id_role == 2)
 								{
 								echo "<td>$ligne->nom_statut</td>";
@@ -533,7 +533,7 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 						echo"<th colspan=5>$ligne->annee_promo</th>";
 						echo "<tr>";
 						
-						#condition sur le nom et prénom
+						#condition sur le nom et prÃ©nom
 						if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 						{
 						echo "<td>$ligne->nom</td>";
@@ -668,42 +668,42 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 											$cp_niveau=$ligne->cp_niveau;
 											$nomPays_niveau=$ligne->nomPays_niveau;
 											
-												## condition sur le diplôme
+												## condition sur le diplÃ´me
 											if ($diplomeEtudes_niveau == 'public')
 											{
 											echo "<td>$ligne->diplome_etudes<br/>";
 											}
 											else {echo " ";}
 											
-											## condition sur le nom de l'établissement
+											## condition sur le nom de l'Ã©tablissement
 											if ($nomEtablissement_niveau == 'public')
 											{
 											echo "$ligne->nom_etablissement<br/>";
 											}
 											else {echo " ";}
 
-											## condition sur le siteweb de l'établissement
+											## condition sur le siteweb de l'Ã©tablissement
 											if ($sitewebEtablissement_niveau == 'public')
 											{
 											echo "$ligne->siteweb_etablissement<br/>";
 											}
 											else {echo " ";}
 											
-											## condition sur le nom de la ville de l'établissement
+											## condition sur le nom de la ville de l'Ã©tablissement
 											if ($nomVille_niveau == 'public')
 											{
 											echo "$ligne->nom_ville<br/>";
 											}
 											else {echo " ";}
 										
-											## condition sur le code postal de l'établissement
+											## condition sur le code postal de l'Ã©tablissement
 											if ($cp_niveau == 'public')
 											{
 											echo "$ligne->cp<br/>";
 											}
 											else {echo " ";}
 										
-											## condition sur le pays de l'établissement
+											## condition sur le pays de l'Ã©tablissement
 											if ($nomPays_niveau == 'public')
 											{
 											echo "$ligne->nom_pays</td>";
@@ -713,7 +713,7 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 								} }
 							
 							
-							##si profil à remplir ou en recherche d'emploi##
+							##si profil Ã  remplir ou en recherche d'emploi##
 							elseif ($id_statut==1 or $id_statut ==4)
 								{
 								echo "<td>$ligne->nom_statut</td>";
@@ -721,7 +721,7 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 								}
 							}
 							
-						## si étudiant actuel ##	
+						## si Ã©tudiant actuel ##	
 						elseif ($id_role == 2)
 								{
 								echo "<td>$ligne->nom_statut</td>";
@@ -735,7 +735,7 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
  }
 
 	  echo "</table>";	
-	  echo "<p><a href=\"recherche.php\">Retour à la page de recherche de l'annuaire</a></p>";
+	  echo "<p><a href=\"recherche.php\">Retour Ã  la page de recherche de l'annuaire</a></p>";
 	
 	  
 		}
@@ -745,7 +745,7 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 		
 		
 		
-		echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+		echo "<p>Si vous rencontrez des problÃ¨mes n'hÃ©sitez pas Ã  <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 		finhtml();
 		
 		mysql_close();
