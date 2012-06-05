@@ -106,9 +106,9 @@ if(connexionUtilisateurReussie()) {
 							</select>
 						</p>
 						<p>
-							<label for=\"email\">Adresse E-Mail * : </label>
-							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
-							<select name=\"affichage_email\">
+							<label for=\"mail\">Adresse E-Mail * : </label>
+							<input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+							<select name=\"affichage_mail\">
 								<option value=\"1\">Affichage privé</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
@@ -149,9 +149,9 @@ if(connexionUtilisateurReussie()) {
 							</select>
 						</p>
 						<p>
-							<label for=\"email_ent\">Adresse E-Mail professionnelle : </label>
-							<input type=\"text\" id=\"email_ent\" name=\"email_ent\" value=\"donnée à modifier\" />
-							<select name=\"affichage_email_ent\">
+							<label for=\"mail_ent\">Adresse E-Mail professionnelle : </label>
+							<input type=\"text\" id=\"mail_ent\" name=\"mail_ent\" value=\"donnée à modifier\" />
+							<select name=\"affichage_mail_ent\">
 								<option value=\"1\">Affichage privé</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
@@ -270,9 +270,9 @@ if(connexionUtilisateurReussie()) {
 							</select>
 						</p>
 						<p>
-							<label for=\"email\">Adresse E-Mail * : </label>
-							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
-							<select name=\"affichage_email\">
+							<label for=\"mail\">Adresse E-Mail * : </label>
+							<input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+							<select name=\"affichage_mail\">
 								<option value=\"1\">Affichage privé</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
@@ -323,9 +323,9 @@ if(connexionUtilisateurReussie()) {
 							</select>
 						</p>
 						<p>
-							<label for=\"email\">Adresse E-Mail * : </label>
-							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
-							<select name=\"affichage_email\">
+							<label for=\"mail\">Adresse E-Mail * : </label>
+							<input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+							<select name=\"affichage_mail\">
 								<option value=\"1\">Affichage privé</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
@@ -376,9 +376,9 @@ if(connexionUtilisateurReussie()) {
 							</select>
 						</p>
 						<p>
-							<label for=\"email\">Adresse E-Mail * : </label>
-							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
-							<select name=\"affichage_email\">
+							<label for=\"mail\">Adresse E-Mail * : </label>
+							<input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+							<select name=\"affichage_mail\">
 								<option value=\"1\">Affichage privé</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
