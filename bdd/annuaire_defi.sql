@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `etablissement` (
 -- Contenu de la table `etablissement`
 --
 
-INSERT INTO `etablissement` (`id`, `nom_etablissement`, `siteweb_etablissement`) VALUES
-(1, 'Université Paris Ouest Nanterre La Défense', 'www.u-paris10.fr');
+INSERT INTO `etablissement` (`nom_etablissement`, `siteweb_etablissement`) VALUES
+('Université Paris Ouest Nanterre La Défense', 'www.u-paris10.fr');
 
 -- --------------------------------------------------------
 
@@ -196,8 +196,8 @@ CREATE TABLE IF NOT EXISTS `pays` (
 -- Contenu de la table `pays`
 --
 
-INSERT INTO `pays` (`id`, `nom_pays`) VALUES
-(1, 'France');
+INSERT INTO `pays` (`nom_pays`) VALUES
+('France');
 
 -- --------------------------------------------------------
 
@@ -271,11 +271,11 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Contenu de la table `role`
 --
 
-INSERT INTO `role` (`id`, `nom_role`) VALUES
-(1, 'Ancien étudiant'),
-(2, 'Étudiant actuel'),
-(3, 'Enseignant'),
-(4, 'Administrateur');
+INSERT INTO `role` (`nom_role`) VALUES
+('Ancien étudiant'),
+('Étudiant actuel'),
+('Enseignant'),
+('Administrateur');
 
 -- --------------------------------------------------------
 
@@ -316,10 +316,10 @@ CREATE TABLE IF NOT EXISTS `statut` (
 --
 
 INSERT INTO `statut` (`id`, `nom_statut`) VALUES
-(1, 'Profil à remplir'),
-(2, 'En poste'),
-(3, 'En formation'),
-(4, 'En recherche d''emploi');
+('Profil à remplir'),
+('En poste'),
+('En formation'),
+('En recherche d''emploi');
 
 -- --------------------------------------------------------
 
@@ -398,9 +398,9 @@ CREATE TABLE IF NOT EXISTS `ville` (
 -- Contenu de la table `ville`
 --
 
-INSERT INTO `ville` (`id`, `nom_ville`, `cp`) VALUES
-(1, 'Nanterre', '92000'),
-(2, 'Nanterre', '92001');
+INSERT INTO `ville` (`nom_ville`, `cp`) VALUES
+('Nanterre', '92000'),
+('Nanterre', '92001');
 
 -- --------------------------------------------------------
 
