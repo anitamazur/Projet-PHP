@@ -40,8 +40,11 @@ if (connexionUtilisateurReussie() == true)
 						<input type=\"submit\" name=\"envoyer\" value=\"Valider\" />
 					</p>
 				</fieldset>
-			</form>
-			<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
+			</form>";
+			
+			debutmenu();
+			echo"<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
+			finmenu();
 		}
 
 else
@@ -58,9 +61,11 @@ else
 						<input type=\"submit\" name=\"envoyer\" value=\"Valider\" />
 					</p>
 				</fieldset>
-			</form>
-			<p><a href=\"connexion.php\">Retour à la page de connexion de l'annuaire</a></p>
-			<p><a href=\"inscription.php\">Retour à la page d'inscription de l'annuaire</a></p>";	
+			</form>";
+			debutmenu();
+			echo"<p><a href=\"connexion.php\">Retour à la page de connexion de l'annuaire</a></p>
+			<p><a href=\"inscription.php\">Retour à la page d'inscription de l'annuaire</a></p>";
+			finmenu();
 		}
 
 		
