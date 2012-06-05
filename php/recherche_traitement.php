@@ -213,7 +213,8 @@ while ($ligne = mysql_fetch_object($res_p)) {
 						echo "<tr>";
 						echo "<td>$ligne->nom</td>";
 						echo "<td>$ligne->prenom</td>";
-						echo "<td>$ligne->mail </td>";
+						echo "<td>$ligne->mail<br/>";
+						echo "$ligne->mail_pro</td>";
 						echo "<td>$ligne->nom_role</td>";
 							
 						## si ancien etudiant ##
