@@ -8,15 +8,10 @@
 	//On vérifie si l'utilisateur a cliqué sur le bouton "Valider", si oui on crée une requete SQL permettant d'ajouter dans la base de données les données rentrées par l'utilisateur. Celle-ci ne sera executée seulement si les champs à remplir pour rentrer ne sont ni vides, ni au mauvais format. 
 	if(isset($_POST['valider'])) {
 		$mail = stripslashes($_POST['mail']);
-		$affichage_mail = stripslashes($_POST['affichage_mail']);
 		$nom = stripslashes($_POST['nom']);
-		$affichage_nom = stripslashes($_POST['affichage_nom']);
 		$nomPatro = stripslashes($_POST['nomPatro']);
-		$affichage_nomPatro = stripslashes($_POST['affichage_nomPatro']);
 		$prenom = stripslashes($_POST['prenom']);
-		$affichage_prenom = stripslashes($_POST['affichage_prenom']);
 		$naissance = stripslashes($_POST['naissance']);
-		$affichage_naissance = stripslashes($_POST['affichage_naissance']);
 		$anneePromo = stripslashes($_POST['anneePromo']);
 		$mdp = stripslashes($_POST['mdp']);
 		$mdpRepete = stripslashes($_POST['repeat_mdp']);
