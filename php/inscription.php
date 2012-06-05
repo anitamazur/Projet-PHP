@@ -43,6 +43,8 @@
 						$statutAjout = mysql_query($statutInscription) ;
 					}
 					
+					if($nom != "")
+					{
 					if ($affichage_nom == 1)
 					{
 					$res_an=mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('prive')");
@@ -50,8 +52,10 @@
 					else
 					{
 					$res_an=mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('public')");
-					}
+					} }
 					
+					if($nomPatro != "")
+					{
 					if ($affichage_nomPatro == 1)
 					{
 					$res_anp=mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('prive')");
@@ -59,8 +63,10 @@
 					else
 					{
 					$res_anp=mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('public')");
-					}
+					}}
 					
+					if($prenom != "")
+					{
 					if ($affichage_prenom == 1)
 					{
 					$res_p=mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('prive')");
@@ -68,9 +74,10 @@
 					else
 					{
 					$res_p=mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('public')");
-					}
+					}}
 					
-					
+					if($naissance != "")
+					{
 					if ($affichage_naissance == 1)
 					{
 					$res_na=mysql_query("INSERT INTO utilisateur (naissance_niveau) VALUES ('prive')");
@@ -78,9 +85,10 @@
 					else
 					{
 					$res_na=mysql_query("INSERT INTO utilisateur (naissance_niveau) VALUES ('public')");
-					}
+					}}
 					
-					
+					if($mail != "")
+					{
 					if ($affichage_mail == 1)
 					{
 					$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('prive')");
@@ -88,8 +96,10 @@
 					else
 					{
 					$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('public')");
-					}
+					}}
 					
+					if($mailPro != "")
+					{
 					if ($affichage_mailPro == 1)
 					{
 					$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('prive')");
@@ -97,7 +107,7 @@
 					else
 					{
 					$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('public')");
-					}
+					}}
 					
 					
 				} else {
