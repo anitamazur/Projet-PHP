@@ -78,10 +78,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
 							<select name=\"affichage_nom\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -89,10 +86,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"nom à modifier\" />
 							<select name=\"affichage_nomPatro\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -100,10 +94,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
 							<select name=\"affichage_prenom\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -111,10 +102,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
 							<select name=\"affichage_naissance\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -122,10 +110,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
 							<select name=\"affichage_email\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -144,10 +129,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" name=\"nom_ent\" id=\"nom_ent\" value=\"donnée à modifier\"/>
 							<select name=\"affichage_nom_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 							<p>
@@ -155,10 +137,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" name=\"web_ent\" id=\"web_ent\" value=\"donnée à modifier\"/>
 							<select name=\"affichage_web_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -166,10 +145,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"poste_ent\" name=\"poste_ent\" value=\"donnée à modifier\" />
 							<select name=\"affichage_poste_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -177,10 +153,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"email_ent\" name=\"email_ent\" value=\"donnée à modifier\" />
 							<select name=\"affichage_email_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
@@ -188,10 +161,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"secteur_ent\" name=\"secteur_ent\" value=\"donnée à modifier\" />
 							<select name=\"affichage_secteur_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>					
 						<p>
@@ -199,10 +169,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"code_postal_ent\" name=\"code_postal_ent\" value=\"donnée à modifier\" />
 							<select name=\"affichage_code_postal_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>					
 						<p>
@@ -210,10 +177,7 @@ if(connexionUtilisateurReussie()) {
 							<input type=\"text\" id=\"pays_ent\" name=\"pays_ent\" value=\"donnée à modifier\" />
 							<select name=\"affichage_pays_ent\">
 								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-								<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-								<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-								<option value=\"5\">Affichage public</option>
+								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 					</fieldset>
@@ -228,10 +192,7 @@ if(connexionUtilisateurReussie()) {
 						<input type=\"text\" id=\"diplome\" name=\"diplome\" value=\"diplôme à modifier\" />
 						<select name=\"affichage_diplome\">
 							<option value=\"1\">Affichage privé</option>
-							<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-							<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-							<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-							<option value=\"5\">Affichage public</option>
+							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
@@ -239,10 +200,7 @@ if(connexionUtilisateurReussie()) {
 						<input type=\"text\" name=\"etab\" id=\"etab\" value=\"établissement à modifier\" />
 						<select name=\"affichage_etab\">
 							<option value=\"1\">Affichage privé</option>
-							<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-							<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-							<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-							<option value=\"5\">Affichage public</option>
+							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
@@ -250,10 +208,7 @@ if(connexionUtilisateurReussie()) {
 						<input type=\"text\" id=\"recherche\" name=\"recherche\" value=\"thème à modifier\" />
 						<select name=\"affichage_recherche\">
 							<option value=\"1\">Affichage privé</option>
-							<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-							<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-							<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-							<option value=\"5\">Affichage public</option>
+							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>				
 					<p>
@@ -261,10 +216,7 @@ if(connexionUtilisateurReussie()) {
 						<input type=\"text\" id=\"code_postal_etab\" name=\"code_postal_etab\" value=\"code postal à modifier\" />
 						<select name=\"affichage_code_postal_etab\">
 							<option value=\"1\">Affichage privé</option>
-							<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-							<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-							<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-							<option value=\"5\">Affichage public</option>
+							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>					
 					<p>
@@ -272,10 +224,7 @@ if(connexionUtilisateurReussie()) {
 						<input type=\"text\" id=\"pays_etab\" name=\"pays_etab\" value=\"pays à modifier\" />
 						<select name=\"affichage_pays_etab\">
 							<option value=\"1\">Affichage privé</option>
-							<option value=\"2\">Affichage pour anciens étudiants uniquement</option>
-							<option value=\"3\">Affichage pour étudiants actuels uniquement</option>
-							<option value=\"4\">Affichage pour anciens étudiants et étudiants actuels</option>
-							<option value=\"5\">Affichage public</option>
+							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 				</fieldset>
@@ -286,27 +235,47 @@ if(connexionUtilisateurReussie()) {
 		affichetitre("Étudiant actuel :","3") ;
 		echo "<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>" ;
 		echo "<form id=\"form1\" action=\"gestionProfil.php\" method=\"post\">
-				<fieldset>
+							<fieldset>
 					<legend>Données personnelles :</legend>
 						<p>
 							<label for=\"nom\">Nom * : </label>
 							<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+							<select name=\"affichage_nom\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"nomPatro\">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
 							<input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"nom à modifier\" />
+							<select name=\"affichage_nomPatro\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"prenom\">Prénom * : </label>
 							<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+							<select name=\"affichage_prenom\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"naissance\">Date de naissance * : </label>
 							<input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+							<select name=\"affichage_naissance\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"email\">Adresse E-Mail * : </label>
 							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
+							<select name=\"affichage_email\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"mdp\">Nouveau mot de passe * : </label>
@@ -319,23 +288,47 @@ if(connexionUtilisateurReussie()) {
 		affichetitre("Enseignant :","3") ;
 		echo "<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>" ;
 		echo "<form id=\"form1\" action=\"gestionProfil.php\" method=\"post\">
-				<fieldset>
+								<fieldset>
 					<legend>Données personnelles :</legend>
 						<p>
 							<label for=\"nom\">Nom * : </label>
 							<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+							<select name=\"affichage_nom\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
+						</p>
+						<p>
+							<label for=\"nomPatro\">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
+							<input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"nom à modifier\" />
+							<select name=\"affichage_nomPatro\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"prenom\">Prénom * : </label>
 							<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+							<select name=\"affichage_prenom\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"naissance\">Date de naissance * : </label>
 							<input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+							<select name=\"affichage_naissance\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"email\">Adresse E-Mail * : </label>
 							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
+							<select name=\"affichage_email\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"mdp\">Nouveau mot de passe * : </label>
@@ -353,18 +346,42 @@ if(connexionUtilisateurReussie()) {
 						<p>
 							<label for=\"nom\">Nom * : </label>
 							<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+							<select name=\"affichage_nom\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
+						</p>
+						<p>
+							<label for=\"nomPatro\">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
+							<input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"nom à modifier\" />
+							<select name=\"affichage_nomPatro\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"prenom\">Prénom * : </label>
 							<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+							<select name=\"affichage_prenom\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"naissance\">Date de naissance * : </label>
 							<input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+							<select name=\"affichage_naissance\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"email\">Adresse E-Mail * : </label>
 							<input type=\"text\" id=\"email\" name=\"email\" value=\"$mail\" />
+							<select name=\"affichage_email\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
 						</p>
 						<p>
 							<label for=\"mdp\">Nouveau mot de passe * : </label>
