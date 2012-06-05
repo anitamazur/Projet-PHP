@@ -35,6 +35,7 @@
 				$statut = $ligne->nom_statut ; 
 				$annee_promo = $ligne->annee_promo ;
 				$mail = $ligne->mail ;
+				$mail_pro = $ligne->mail_pro ;
 				$date_inscription=$ligne->date_inscription;
 				$date_maj_profil=$ligne->date_maj_profil;
 			
@@ -47,7 +48,8 @@
 	{
 		affichetitre ("$nom $prenom","3");
 		echo "<p>Année de la promotion : $annee_promo <br/>
-		Adresse mail : $mail <br/></p>";
+		Adresse mail personelle : $mail <br/>
+		Adresse mail professionnelle : $mail_pro</p>";
 		echo "<p>$statut</p>"
 	
 ## en poste ##
@@ -158,27 +160,17 @@
 			
 		
 		
-		elseif ($id_role == 3)
+		elseif ($id_role == 3 or $id_role == 4)
 		{
 		affichetitre ("$nom $prenom","3");
 		echo "<p>$role <br/>
-		Adresse mail : $mail <br/></p>";
+		Adresse mail personelle : $mail <br/>
+		Adresse mail professionnelle : $mail_pro</p>";
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
 		}
 		
-		
-		elseif ($id_role == 4)
-		{ 
-		affichetitre ("$nom $prenom","3");
-		echo "<p>$role <br/>
-		Adresse mail : $mail <br/></p>";
-		
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-		
-		} 
 		}
 		echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
 	
