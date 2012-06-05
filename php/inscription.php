@@ -102,11 +102,7 @@
                     <p>
                         <label for="anneePromo">Année d'obtention du M2 DEFI (pour anciens étudiants) ou année d'inscription au M2 DEFI (pour étudiants actuels)* : </label>
                         <input type="text" name="anneePromo" id="anneePromo" />
-                        <select name=\"affichage_anneePromo\">
-			<option value=\"1\">Affichage privé</option>
-			<option value=\"2\">Affichage public</option>
-			</select>                        
-                    </p>
+                        </p>
                     <p>
                         <label for="mail">Adresse E-Mail (restera confidentiel) * : </label>
                         <input type="text" id="mail" name="mail" />
