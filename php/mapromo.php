@@ -260,7 +260,7 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 	  echo "</table>";	
 
 	debutmenu();
-	echo "<li><a href=\"pageAccueil.php\">Page d'accueil</a></li>";
+	echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
 	finmenu();
 	
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
