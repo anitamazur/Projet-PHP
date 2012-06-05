@@ -261,8 +261,10 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 
 	debutmenu();
 	echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";
-	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	finmenu();
+	
+	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	
 	  
 	  
 	  finhtml();
