@@ -43,7 +43,7 @@ if (connexionUtilisateurReussie() == true)
 			</form>";
 			
 			debutmenu();
-			echo"<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";	
+			echo"<li><a href=\"pageAccueil.php\">Accueil</a></li>";	
 			finmenu();
 		}
 
@@ -63,8 +63,8 @@ else
 				</fieldset>
 			</form>";
 			debutmenu();
-			echo"<p><a href=\"connexion.php\">Retour à la page de connexion de l'annuaire</a></p>
-			<p><a href=\"inscription.php\">Retour à la page d'inscription de l'annuaire</a></p>";
+			echo"<li><a href=\"connexion.php\">Connexion</a></li>
+			<li><a href=\"inscription.php\">Inscription</a></li>";
 			finmenu();
 		}
 
