@@ -13,7 +13,7 @@ debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
 			<th colspan=5 >Promotion</th>
 			<tr>
 			<td>Nom</td>
-			<td>Pr�nom</td>
+			<td>Prénom</td>
 			<td>Contact</td>
 			<td>Statut</td>
 			<td>Situation actuelle</td>
@@ -259,8 +259,11 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 
 	  echo "</table>";	
 
-	  echo "<p><a href=\"pageAccueil.php\">Retour � la page d'accueil de l'annuaire</a></p>";
-	  echo "<p>Si vous rencontrez des probl�mes n'h�sitez pas � <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	debutmenu();
+	echo "<p><a href=\"pageAccueil.php\">Retour à la page d'accueil de l'annuaire</a></p>";
+	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	finmenu();
+	  
 	  
 	  finhtml();
 	  
