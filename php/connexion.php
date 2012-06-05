@@ -36,7 +36,7 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 			
 			<?php
 			debutmenu();
-			echo "<li>Cliquer <a href=\"recherche.php\">ici</a>Recherche</li>";
+			echo "<li>Cliquer <a href=\"recherche.php\">Recherche</a></li>";
 			finmenu();
 			?>
 			
