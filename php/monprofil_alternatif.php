@@ -32,6 +32,7 @@ $ligne=mysql_fetch_object($res) ;
 	$statut = $ligne->nom_statut ; 
 	$annee_promo = $ligne->annee_promo ;
 	$mail = $ligne->mail ;
+	$mai_pro = $ligne->mail_pro ;
 	$pass = $ligne->pass ;
 	$id = $ligne->id ;
 	$date_inscription=$ligne->date_inscription;
@@ -43,7 +44,8 @@ $ligne=mysql_fetch_object($res) ;
 		{
 		echo "<p>$nom $prenom <br/> 
 		Année de la promotion : $annee_promo <br/>
-		Adresse mail : $mail <br/></p>";
+		Adresse mail personelle: $mail <br/>
+		Adresse mail professionnelle : $mail_pro</p>";
 		
 		## en poste ##
 		
@@ -201,7 +203,8 @@ $ligne=mysql_fetch_object($res) ;
 		{
 		echo "<p>$role <br/><br/>
 		$nom $prenom <br/>
-		Adresse mail : $mail <br/></p>";
+		Adresse mail : $mail <br/>
+		Adresse mail professionnelle : $mail_pro</p>";
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
