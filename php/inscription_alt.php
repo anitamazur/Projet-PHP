@@ -77,8 +77,12 @@
 								{
 								$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('public')");
 								}
-			
-						}			
+								
+						}
+						if ($role == 2) {
+						$confidentialite_req = "UPDATE utilisateur SET nom_niveau = '', prenom_niveau = '', mail_niveau = '', mailPro_niveau = '' WHERE utilisateur.id = $id;" ;
+						$confidentialite_Ajout = mysql_query($confidentialite_req) ;
+					}			
 					
 				} else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
