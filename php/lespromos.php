@@ -48,7 +48,7 @@ $res_promo = mysql_query($req_promo) ;
 
 while ($ligne = mysql_fetch_object($res_promo)) {
 						echo"<th>".$ligne->annee_promo."</th>";
-						echo "<tr>"
+						echo "<tr>";
 						echo "<td>".$ligne->nom."".$ligne->prenom."</td>";
 						echo "<td>".$ligne->mail."</td>";
 						echo "<td>".$ligne->role."</td>";
@@ -58,13 +58,13 @@ while ($ligne = mysql_fetch_object($res_promo)) {
 							if ($statut=1)
 								{
 								echo "<td>".$ligne->diplome_etudes."</br>
-								".$ligne->nom_etablissement" ".$ligne->siteweb_etabllissement."<br/>
+								".$ligne->nom_etablissement." ".$ligne->siteweb_etabllissement."<br/>
 								".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 								}
 							elseif ($statut=2)
 								{
 								echo "<td>".$ligne->nom_poste."</br>
-								".$ligne->nom_entreprise" ".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." <br/>
+								".$ligne->nom_entreprise." ".$ligne->siteweb_entreprise." ".$ligne->secteur_entreprise." <br/>
 								".$ligne->nom_ville." ".$ligne->cp." ".$ligne->nom_pays." </td>";
 								}
 							elseif ($statut=3)
@@ -73,8 +73,8 @@ while ($ligne = mysql_fetch_object($res_promo)) {
 								}
 							}
 						
-						echo "<td>".$ligne->date_inscription."<td>"
-						echo "<td>".$ligne->date_maj_profil."<td>"
+						echo "<td>".$ligne->date_inscription."<td>";
+						echo "<td>".$ligne->date_maj_profil."<td>";
 						echo "</tr>";
 					}
 
