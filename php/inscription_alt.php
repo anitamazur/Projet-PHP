@@ -42,15 +42,7 @@
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
 			
-			## je ne comprend pas les requêtes suivantes puisque par défaut le niveau est privé
-			## je pense que les étudiants actuels devraient aussi définir leurs options d'affichage
-						$res_an = mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('prive')");
-						$res_anp = mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('prive')");
-						$res_p = mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('prive')");
-						$res_na = mysql_query("INSERT INTO utilisateur (naissance_niveau) VALUES ('prive')");
-						$res_m = mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('prive')");
-						$res_mp = mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('prive')");
-					}			
+						}			
 					
 				} else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
