@@ -52,12 +52,12 @@ while ($ligne = mysql_fetch_object($res_p)) {
 						$mailPro_niveau = $ligne->mailPro_niveau ;
 
 						
-if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 ) 
+if ($_SESSION['id_role'] == 1) 
 	{
 						echo"<th colspan=5>$ligne->annee_promo</th>";
 						echo "<tr>";
 						
-						#condition sur le nom et pr�nom
+						#condition sur le nom et pr?nom
 						if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 						{
 						echo "<td>$ligne->nom</td>";
@@ -192,42 +192,42 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 											$cp_niveau=$ligne->cp_niveau;
 											$nomPays_niveau=$ligne->nomPays_niveau;
 											
-												## condition sur le dipl�me
+												## condition sur le dipl?me
 											if ($diplomeEtudes_niveau == 'public')
 											{
 											echo "<td>$ligne->diplome_etudes<br/>";
 											}
 											else {echo " ";}
 											
-											## condition sur le nom de l'�tablissement
+											## condition sur le nom de l'?tablissement
 											if ($nomEtablissement_niveau == 'public')
 											{
 											echo "$ligne->nom_etablissement<br/>";
 											}
 											else {echo " ";}
 
-											## condition sur le siteweb de l'�tablissement
+											## condition sur le siteweb de l'?tablissement
 											if ($sitewebEtablissement_niveau == 'public')
 											{
 											echo "$ligne->siteweb_etablissement<br/>";
 											}
 											else {echo " ";}
 											
-											## condition sur le nom de la ville de l'�tablissement
+											## condition sur le nom de la ville de l'?tablissement
 											if ($nomVille_niveau == 'public')
 											{
 											echo "$ligne->nom_ville<br/>";
 											}
 											else {echo " ";}
 										
-											## condition sur le code postal de l'�tablissement
+											## condition sur le code postal de l'?tablissement
 											if ($cp_niveau == 'public')
 											{
 											echo "$ligne->cp<br/>";
 											}
 											else {echo " ";}
 										
-											## condition sur le pays de l'�tablissement
+											## condition sur le pays de l'?tablissement
 											if ($nomPays_niveau == 'public')
 											{
 											echo "$ligne->nom_pays</td>";
@@ -237,24 +237,16 @@ if ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 )
 								} }
 							
 							
-							##si profil � remplir ou en recherche d'emploi##
+							##si profil ? remplir ou en recherche d'emploi##
 							elseif ($id_statut==1 or $id_statut ==4)
 								{
 								echo "<td>$ligne->nom_statut</td>";
 								echo "<td> - </td>";
 								}
 							}
-							
-						## si �tudiant actuel ##	
-						elseif ($id_role == 2)
-								{
-								echo "<td>$ligne->nom_statut</td>";
-								echo "<td> - </td>";
-								}
-
+						
 						echo "</tr>";
 					 } 
-					 
 					 } }
 
 	  echo "</table>";	
