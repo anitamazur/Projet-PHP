@@ -31,28 +31,27 @@ $res = mysql_query($req) ;
 
 while ($ligne = mysql_fetch_object($res)) 
 		{
-$ligne=mysql_fetch_object($res) ;
 	$annee_promo = $ligne->annee_promo ;
 
-$res_p = mysql_query("SELECT *			
-					FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
-					WHERE u.id = ru.id_utilisateur
-					AND u.id = sa.id_utilisateur
-					AND r.id = ru.id_role
-					AND s.id = sa.id_statut
-					AND u.annee_promo = '$annee_promo'");
+	$res_p = mysql_query("SELECT *			
+		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+		WHERE u.id = ru.id_utilisateur
+		AND u.id = sa.id_utilisateur
+		AND r.id = ru.id_role
+		AND s.id = sa.id_statut
+		AND u.annee_promo = '$annee_promo'");
 					
 
-while ($ligne = mysql_fetch_object($res_p)) {
-						$id_role=$ligne->id_role;
-						$id_statut=$ligne->id_statut;
-						$nom_niveau = $ligne->nom_niveau ;
-						$prenom_niveau = $ligne->prenom_niveau ;
-						$mail_niveau = $ligne->mail_niveau ;
-						$mailPro_niveau = $ligne->mailPro_niveau ;
+	while ($ligne = mysql_fetch_object($res_p)) {
+				$id_role=$ligne->id_role;
+				$id_statut=$ligne->id_statut;
+				$nom_niveau = $ligne->nom_niveau ;
+				$prenom_niveau = $ligne->prenom_niveau ;
+				$mail_niveau = $ligne->mail_niveau ;
+				$mailPro_niveau = $ligne->mailPro_niveau ;
 
 						
-if ($_SESSION['id_role'] == 1) 
+			if ($_SESSION['id_role'] == 1) 
 	{
 						echo"<th colspan=5>$ligne->annee_promo</th>";
 						echo "<tr>";
