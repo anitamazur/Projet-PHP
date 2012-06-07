@@ -36,6 +36,47 @@
 						$statut = 1;
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
+						
+						$affichage_mail = stripslashes($_POST['affichage_mail']);
+						$affichage_nom = stripslashes($_POST['affichage_nom']);
+						$affichage_nomPatro = stripslashes($_POST['affichage_nomPatro']);
+						$affichage_prenom = stripslashes($_POST['affichage_prenom']);
+			
+								if ($affichage_nom == 1)
+								{
+								$res_an=mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('prive')");
+								}
+								else
+								{
+								$res_an=mysql_query("INSERT INTO utilisateur (nom_niveau) VALUES ('public')");
+								} 
+								
+								if ($affichage_nomPatro == 1)
+								{
+								$res_anp=mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('prive')");
+								}
+								else
+								{
+								$res_anp=mysql_query("INSERT INTO utilisateur (nomPatro_niveau) VALUES ('public')");
+								}
+								
+								if ($affichage_prenom == 1)
+								{
+								$res_p=mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('prive')");
+								}
+								else
+								{
+								$res_p=mysql_query("INSERT INTO utilisateur (prenom_niveau) VALUES ('public')");
+								}
+								
+								if ($affichage_mail == 1)
+								{
+								$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('prive')");
+								}
+								else
+								{
+								$res_m=mysql_query("INSERT INTO utilisateur (mail_niveau) VALUES ('public')");
+								}
 			
 						}			
 					
@@ -53,6 +94,8 @@
     echo $message_ajout ;
  ?>
             <p>* : champs obligatoires</p>
+            <p> Les options d''affichage ne concernent que les anciens étudiants <br/>
+            Les données des étudiants actuels resteront privées</p>
             <form id="inscription" action="inscription.php" method="post">
                 <fieldset>
                     <legend>Inscription en tant que :</legend>
@@ -70,14 +113,26 @@
                     <p>
                         <label for="nom">Nom * : </label>
                         <input type="text" id="nom" name="nom" />
+                         <select name=\"affichage_nom\">
+			<option value=\"1\">Affichage privé</option>
+			<option value=\"2\">Affichage public</option>
+			</select>
                     </p>
                     <p>
                         <label for="nomPatro">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
                         <input type="text" id="nomPatro" name="nomPatro" />
+                         <select name=\"affichage_nomPatro\">
+			<option value=\"1\">Affichage privé</option>
+			<option value=\"2\">Affichage public</option>
+			</select>
                     </p>
                     <p>
                         <label for="prenom">Prénom * : </label>
                         <input type="text" name="prenom" id="prenom" />
+                        <select name=\"affichage_prenom\">
+			<option value=\"1\">Affichage privé</option>
+			<option value=\"2\">Affichage public</option>
+			</select>
                     </p>
                     <p>
                         <label for="naissance">Date de naissance * : </label>
@@ -89,8 +144,12 @@
                         <input type="text" name="anneePromo" id="anneePromo" />
                         </p>
                     <p>
-                        <label for="mail">Adresse E-Mail (restera confidentiel) * : </label>
-                        <input type="text" id="mail" name="mail" />               
+                        <label for="mail">Adresse E-Mail * : </label>
+                        <input type="text" id="mail" name="mail" />
+                         <select name=\"affichage_mail\">
+			<option value=\"1\">Affichage privé</option>
+			<option value=\"2\">Affichage public</option>
+			</select>
                     </p>
                     <p>
                         <label for="mdp">Mot de passe * : </label>
