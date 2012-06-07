@@ -23,9 +23,9 @@ $res = mysql_query($req) ;
 $xml = '<?xml version="1.0" encoding="utf-8"?>'.'<profil>';
 		while ($row = mysql_fetch_array($res)) {
 			$xml .= '<personne>';
-			$xml .= '<nom>'.$row['u.nom'].'</nom>';
-			$xml .= '<prenom>'.$row['u.prenom'].'</prenom>';
-			$xml .= '<role>'.$row['u.role'].'</role>';
+			$xml .= '<nom>'.$row['nom'].'</nom>';
+			$xml .= '<prenom>'.$row['prenom'].'</prenom>';
+			$xml .= '<role>'.$row['nom_role'].'</role>';
 			
 			
 			if ($row['id_role'] == 1 && $row['id_statut'] == 2)
@@ -47,7 +47,7 @@ $xml = '<?xml version="1.0" encoding="utf-8"?>'.'<profil>';
 		
 		
 		while ($row = mysql_fetch_array($req_statut2)) {
-			$xml .= '<annee_promo>'.$row['u.annee_promo'].'</annee_promo>';
+			$xml .= '<annee_promo>'.$row['annee_promo'].'</annee_promo>';
 			$xml .= '<en_poste>';
 			$xml .= '<nom_poste>'.$row['nom_poste'].'</nom_poste>';
 			$xml .= '<nom_entreprise>'.$row['nom_entreprise'].'</nom_entreprise>';
@@ -77,7 +77,7 @@ $xml = '<?xml version="1.0" encoding="utf-8"?>'.'<profil>';
 		$res_statut3 = mysql_query($req_statut3) ;
 		
 		while ($row = mysql_fetch_array($req_statut3)) {
-			$xml .= '<annee_promo>'.$row['u.annee_promo'].'</annee_promo>';
+			$xml .= '<annee_promo>'.$row['annee_promo'].'</annee_promo>';
 			$xml .= '<en_formation>';
 			$xml .= '<diplome_etudes>'.$row['diplome_etudes'].'</diplome_etudes>';
 			$xml .= '<nom_etablissement>'.$row['nom_etablissement'].'</nom_etablissement>';
