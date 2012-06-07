@@ -6,7 +6,7 @@ require("fonctions.php") ;
 $connexion = connexion() ;
 
 debuthtml("Annuaire M2 DEFI - Recherche","Annuaire M2 DEFI", "Recherche dans l'annuaire") ;
-affichetitre("Recherche sur anciens étudiants UNIQUEMENT", "3")
+affichetitre("Recherche sur anciens étudiants UNIQUEMENT", "3");
 
 if (connexionUtilisateurReussie() == true)
 		{
