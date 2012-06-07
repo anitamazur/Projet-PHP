@@ -11,7 +11,7 @@ require ('fonctions.php');
 $pdf=new FPDF('P','cm','A4');
     
 //Titres des colonnes
-$header=array('Nom','Prenom','Année_Promo','Role');
+$header=array('Nom','Prenom','Annï¿½e_Promo','Role');
 $pdf->SetFont('Arial','B',12);
 $pdf->AddPage();
 $pdf->SetFillColor(96,96,96);
@@ -38,10 +38,10 @@ $pdf->SetXY(4,$pdf->GetY()+1);
 $fond=0;
 
 while($row=mysql_fetch_array($resultat))
-{$pdf->cell(5,0.7,$row['u.nom'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['u.prenom'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['u.annee_promo'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['u.role'],1,0,'C',$fond);
+{$pdf->cell(5,0.7,$row['nom'],1,0,'C',$fond);
+$pdf->cell(5,0.7,$row['prenom'],1,0,'C',$fond);
+$pdf->cell(5,0.7,$row['annee_promo'],1,0,'C',$fond);
+$pdf->cell(5,0.7,$row['role'],1,0,'C',$fond);
 $pdf->SetXY(4,$pdf->GetY()+0.7);
 $fond=!$fond;
  }
