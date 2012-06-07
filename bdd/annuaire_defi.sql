@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `etablissement` (
   `nomEtablissement_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   `sitewebEtablissement_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `etablissement`
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
   `nomPays_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
 
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `pays`
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_role` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `role`
@@ -309,17 +309,17 @@ CREATE TABLE IF NOT EXISTS `statut` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom_statut` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `statut`
 --
 
 INSERT INTO `statut` (`id`, `nom_statut`) VALUES
-('Profil à remplir'),
-('En poste'),
-('En formation'),
-('En recherche d''emploi');
+(1, 'Profil à remplir'),
+(2, 'En poste'),
+(3, 'En formation'),
+(4, 'En recherche d''emploi');
 
 -- --------------------------------------------------------
 
@@ -368,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `date_maj_profil` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `utilisateur`
@@ -392,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `ville` (
   `cp_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
 
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `ville`
