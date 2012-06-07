@@ -123,32 +123,7 @@ if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
 		Date de mise à jour du profil : $date_maj_profil</p>";	
 }
 
- ## si etudiant actuel ##
-	elseif ($id_role == 2)
-			{ 
-		
-		affichetitre ("$nom $prenom","3");
-		echo "<p>$role<br/>
-		Année de la promotion : $annee_promo <br/>
-		Adresse mail : $mail <br/></p>";
-
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-			}
-			
-			
-		
-		
-		elseif ($id_role == 3 or $id_role == 4)
-		{
-		affichetitre ("$nom $prenom","3");
-		echo "<p>$role <br/>
-		Adresse mail : $mail</p>";
-		
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-		}
-		
+ 
 		}
 	
 
@@ -343,54 +318,7 @@ elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
 		Date de mise à jour du profil : $date_maj_profil</p>";	
 }
 
- ## si etudiant actuel ##
-	elseif ($id_role == 2)
-			{ 
-		## condition sur le nom et le prénom ##
-		if ($nom_niveau == 'public' && $prenom_niveau == 'public')
-		{
-		affichetitre ("$nom $prenom","3");
-		}
-		else { echo " ";}
-		
-		echo "<p>$role";
-		echo "Année de la promotion : $annee_promo";
-		
-		## condition sur le mail perso
-		if ($mail_niveau == 'public')
-		{
-		echo "Adresse mail personelle : $mail ";	
-		}
-		else {echo " ";}
-
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-			}
-			
-			
-		
-		elseif ($id_role == 3 or $id_role == 4)
-		{
-		
-		## condition sur le nom et le prénom ##
-		if ($nom_niveau == 'public' && $prenom_niveau == 'public')
-		{
-		affichetitre ("$nom $prenom","3");
-		}
-		else { echo " ";}
-		
-		echo "<p>$role";
-	
-		## condition sur le mail perso
-		if ($mail_niveau == 'public')
-		{
-		echo "Adresse mail  : $mail ";	
-		}
-		else {echo " ";}
-		
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-		}
+ 
 		
 		}	
 	
@@ -518,13 +446,6 @@ if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 								}
 							}
 							
-						## si étudiant actuel ##	
-						elseif ($id_role == 2)
-								{
-								echo "<td>$ligne->nom_statut</td>";
-								echo "<td> - </td>";
-								}
-
 						echo "</tr>";
 					 }
 
@@ -721,17 +642,8 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 								}
 							}
 							
-						## si étudiant actuel ##	
-						elseif ($id_role == 2)
-								{
-								echo "<td>$ligne->nom_statut</td>";
-								echo "<td> - </td>";
-								}
-
 						echo "</tr>";
 					 }
-
-
  }
 
 	  echo "</table>";
@@ -743,7 +655,6 @@ elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtili
 		}
 		
 
-		
 		echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 		finhtml();
 		
