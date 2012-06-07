@@ -155,39 +155,7 @@ $ligne=mysql_fetch_object($res) ;
 		echo "<p>$nom $prenom </p> 
 		<p><strong>Année de la promotion</strong> : $annee_promo </p>
 		<p><strong>Adresse mail</strong> : $mail </p>";	
-		
-	#	$req_statut2 = "SELECT * 
-	#			FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-	#			WHERE u.id = eu.id_utilisateur
-	#			AND u.id = etau.id_utilisateur
-	#			AND e.id = eu.id_etudes
-	#			AND eta.id = etau.id_etablissement
-	#			AND eta.id = etav.id_etablissement
-	#			AND v.id = vp.id_ville
-	#			AND v.id = etav.id_ville
-	#			AND p.id = vp.id_pays
-	#			AND u.nom='$nom' AND u.prenom='$prenom'" ;
-				
-	#	$res_statut2 = mysql_query($req_statut2) ;
-		
-	#	if (mysql_num_rows($res_statut2) > 0) {
-
-	#	$ligne=mysql_fetch_object($res_statut2) ; 	
-	#		$diplome = $ligne->diplome_etudes ;
-	#		$nom_etablissement = $ligne->nom_etablissement ;
-	#		$siteweb_etablissement = $ligne->siteweb_etablissement ;
-	#		$nom_ville = $ligne->nom_ville ; 
-	#		$cp = $ligne->cp ;
-	#		$pays = $ligne->nom_pays ;
-		
-		
-	#	echo "<p>$role<br/><br/>
-	#		Diplôme : $diplome <br/>
-	#		Etablissement : $nom_etablissement <br/>
-	#		Adresse web de l'établissement : $siteweb_etablissement <br/>
-	#		$nom_ville - $cp - $pays </p>";
-			
-	#		}
+	
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
 		
@@ -222,8 +190,7 @@ $ligne=mysql_fetch_object($res) ;
 			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		finmenu();
 		}
-		
-		
+			
 		}
 	
 	
