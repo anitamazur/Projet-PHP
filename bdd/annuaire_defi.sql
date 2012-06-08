@@ -361,6 +361,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `naissance` date NOT NULL,
   `annee_promo` year(4) DEFAULT NULL,
   `nom_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
+` nomPatro_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   `prenom_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   `mail_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
   `mailPro_niveau` ENUM( 'prive', 'public' ) NOT NULL DEFAULT 'prive',
