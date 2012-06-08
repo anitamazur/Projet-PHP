@@ -35,7 +35,7 @@ if(isset($_POST['Supprimer'])) {
 	}
 	
 	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
-	if($resultat <> False) {
+	if($resultat != False) {
 			$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
 		} else {
 			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
@@ -277,7 +277,7 @@ if(isset($_POST['changeStatut'])) {
 	$requete = "UPDATE statut_ancien_etudiant SET id_statut = $radio_statut WHERE statut_ancien_etudiant.id_utilisateur = $id_utilisateur";
 	$resultat = mysql_query($requete);
 	// Suivant si le changement de statut a été un succès ou pas, on affiche un autre message.	
-	if($resultat <> False) {
+	if($resultat != False) {
 			$message .= "<p class=\"succes\">Statut modifié dans la base de données. Veuillez recharger la page pour voir la modification de votre profil.</p>";
 		} else {
 			$message .= "<p class=\"erreur\">Erreur lors de la modification du statut.</p>" ;
