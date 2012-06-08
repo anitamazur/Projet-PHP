@@ -629,12 +629,16 @@ echo "
 </body>
 </html>";
 
+
+if (id_role ==1)
+{
 echo "
 
 	<h2>Export de mon profil aux formats xml ou pdf</h2>
 	<p>Export au format <a href=\"export_xml.php\">xml</a>.<br/>
-	Export au format <a href=\"export_pdf.php\">pdf</a>.</p>
-	"
+	Export au format <a href=\"export_pdf.php\">pdf</a>.</p>";
+
+}
 
 	afficheMenu($id_role);
 	finhtml() ;
