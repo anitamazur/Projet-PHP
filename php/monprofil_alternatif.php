@@ -147,50 +147,7 @@ $ligne=mysql_fetch_object($res) ;
 		
 		} 
 
-## si etudiant actuel ##		
 
-	elseif ($_SESSION['id_role'] == 2)
-			{ 
-		
-		echo "<p>$nom $prenom </p> 
-		<p><strong>Année de la promotion</strong> : $annee_promo </p>
-		<p><strong>Adresse mail</strong> : $mail </p>";	
-	
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-		
-		debutmenu();
-		echo "
-			<li><a href=\"pageAccueil.php\">Accueil</a></li>  
-			<li><a href=\"mapromo.php\">Ma promo</a></li>
-			<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
-			<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
-			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-		finmenu();
-			}
-			
-			
-## si enseignant ou admin ##		
-		
-		elseif ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
-		{
-		echo "<p>$role <br/><br/>
-		$nom $prenom <br/>
-		Adresse mail : $mail <br/></p>";
-		
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";
-		
-		debutmenu();
-		echo "
-			<li><a href=\"pageAccueil.php\">Accueil</a></li>
-			<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
-			<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
-			<li><a href=\"Administration.php\">Administration</a></li>
-			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-		finmenu();
-		}
-			
 		}
 	
 	
