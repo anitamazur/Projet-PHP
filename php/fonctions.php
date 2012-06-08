@@ -144,6 +144,17 @@ echo "</div>";
 }
 
 
+function menuderoulant($nom, $tab)
+	{
+	echo "<SELECT name=\"$nom\">\n" ;
+	echo "<OPTION value=\"$indice\" selected>nom_prénom</OPTION>";
+		foreach($tab as $cle=>$val)
+		{ 
+		echo "<OPTION value=\"$cle\">$val </OPTION>\n" ; 
+		}
+	echo "</SELECT>\n" ;
+	}
+
 
 //fonction qui permet de vérifier la syntaxe d'une adresse E-Mail
 function VerifierAdresseMail($adresse) { 
