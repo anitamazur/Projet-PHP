@@ -2,8 +2,18 @@
 
 session_start() ;
 
+$nom = $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];
+$naissance = $_SESSION['naissance'];
+$salt = "ashrihgbjnbfj";
+$pass = crypt($_SESSION['pass'], $salt);
+$mail = $_SESSION['mail'] ;
+
 require("fonctions.php") ;
 $connexion = connexion() ;
+
+
+
 
 debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") ;
 
