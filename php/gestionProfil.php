@@ -141,12 +141,32 @@ if(isset($_POST['modifier'])) {
 					
 					
 					if ($mailEnt_modif!=""){
-							$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_pro='$mailEnt_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+							$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS, statut_ancien_etudiant AS sa ru SET mail_pro='$mailEnt_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
 						
 					if ($affichage_mailEnt_modif == 1){
-							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mailPro_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
-					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mailPro_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur, statut_ancien_etudiant AS sa AS ru SET mailPro_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur, statut_ancien_etudiant AS sa AS ru SET mailPro_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
 					
+					if ($codePostalEnt_modif!=""){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp ='$codePostalEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+					if ($affichage_codePostalEnt_modif == 1){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}	
+					else {$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					if ($villeEnt_modif!=""){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nom_ville ='$villeEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+					if ($affichage_villeEnt_modif == 1){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomVille_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}	
+					else {$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomVille_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					if ($paysEnt_modif!=""){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nom_pays ='$paysEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+					if ($affichage_paysEnt_modif == 1){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomPays_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}	
+					else {$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomPays_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
 					
 					}
 					
@@ -186,10 +206,30 @@ if(isset($_POST['modifier'])) {
 					if ($affichage_webEtab_modif == 1){
 							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET sitewebEtablissement_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
 					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET sitewebEtablissement_niveau='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
-						
+					
+					if ($codePostalEtab_modif!=""){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp ='$codePostalEtab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+					if ($affichage_codePostalEtab_modif == 1){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}	
+					else {$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					if ($villeEtab_modif!=""){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nom_ville ='$villeEtab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+					if ($affichage_villeEtab_modif == 1){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomVille_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}	
+					else {$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomVille_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					if ($paysEtab_modif!=""){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nom_pays ='$paysEtab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+					if ($affichage_paysEtab_modif == 1){
+						$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomPays_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}	
+					else {$res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomPays_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
 						
 					
-					
+					}
 	
 	if ($id_role >= 2){
 			$mail_modif = stripslashes($_POST['mail']);
