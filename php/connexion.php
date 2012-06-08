@@ -18,7 +18,7 @@ debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion 
 					<p>
 						<label for="naissance">Date de naissance : </label>
 						<input type="text" id="naissance" name="naissance" />
-						 (format : yyyy-mm-dd)
+						<label for="format_naissance">(format : yyyy-mm-dd)</label>
 					</p>
 					<p>
 						<label for="mail">Email : </label>
