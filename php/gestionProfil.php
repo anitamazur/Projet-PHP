@@ -59,40 +59,137 @@ if(isset($_POST['modifier'])) {
 			$affichage_mdp_modif = stripslashes($_POST['affichage_mdp']);
 
 			if ($mail_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			## l'option d'affichage est indépendante.
 			if ($affichage_mail_modif == 1){
-					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
-			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($nom_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 	
 			if ($affichage_nom_modif == 1){
-					$res_affich_modif = mysql_query ("UPDATE utilisateur  AS u, roles_utilisateur AS ru SET nom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
-			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+					$res_affich_modif = mysql_query ("UPDATE utilisateur  AS u, roles_utilisateur AS ru SET nom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($nomPatro_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 	
 			if ($affichage_nomPatro_modif == 1){
-					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nomPatro_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
-			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nomPatro_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nomPatro_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nomPatro_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($prenom_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 				
 			if ($affichage_prenom_modif == 1){
-					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
-			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($naissance_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($mdp_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass='$mdp_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass='$mdp_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 	
-				if ($id_statut == 2){ }
+				if ($id_statut == 2){ 
+					$nomEnt_modif = stripslashes($_POST['nom_ent']);
+					$webEnt_modif = stripslashes($_POST['web_ent']);
+					$posteEnt_modif = stripslashes($_POST['poste_ent']);
+					$mailEnt_modif = stripslashes($_POST['mail_ent']);
+					$secteurEnt_modif = stripslashes($_POST['secteur_ent']);
+					$codePostalEnt_modif = stripslashes($_POST['code_postal_ent']);
+					$villeEnt_modif = stripslashes($_POST['ville_ent']);
+					$paysEnt_modif = stripslashes($_POST['pays_ent']);
+					$affichage_nomEnt_modif = stripslashes($_POST['affichage_nom_ent']);
+					$affichage_webEnt_modif = stripslashes($_POST['affichage_web_ent']);
+					$affichage_posteEnt_modif = stripslashes($_POST['affichage_poste_ent']);
+					$affichage_mailEnt_modif = stripslashes($_POST['affichage_mail_ent']);
+					$affichage_secteurEnt_modif = stripslashes($_POST['affichage_secteur_ent']);
+					$affichage_codePostalEnt_modif = stripslashes($_POST['affichage_code_postal_ent']);
+					$affichage_villeEnt_modif = stripslashes($_POST['affichage_ville_ent']);
+					$affichage_paysEnt_modif = stripslashes($_POST['affichage_pays_ent']);
+					
+					
+					if ($nomEnt_modif!=""){
+						$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET nom_entreprise='$nomEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+			
+					if ($affichage_nomEnt_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET nomEntreprise_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET nomEntreprise_niveau='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+							
+					if ($webEnt_modif!=""){
+						$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET siteweb_entreprise='$webEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+			
+					if ($affichage_webEnt_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET sitewebEntreprise_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET sitewebEntreprise_niveau='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					if ($secteurEnt_modif!=""){
+						$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET secteur_entreprise='$secteurEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+			
+					if ($affichage_secteurEnt_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET secteurEntreprise_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET secteurEntreprise_niveau='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					if ($posteEnt_modif!=""){
+						$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, poste AS p, poste_utilisateur AS pu SET nom_poste='$posteEnt_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = pu.id_utilisateur AND p.id = pu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+			
+					if ($affichage_posteEnt_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, poste AS p, poste_utilisateur AS pu SET nomPoste_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = pu.id_utilisateur AND p.id = pu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, poste AS p, poste_utilisateur AS pu SET nomPoste_niveau='prublic' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = pu.id_utilisateur AND p.id = pu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					
+					
+					if ($mailEnt_modif!=""){
+							$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_pro='$mailEnt_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+						
+					if ($affichage_mailEnt_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mailPro_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mailPro_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
+					
+					
+					}
+					
+					if ($id_statut == 3){
+						$diplome_modif = stripslashes($_POST['diplome']);
+						$etab_modif = stripslashes($_POST['etab']);
+						$webEtab_modif = stripslashes($_POST['web_etab']);
+						$codePostalEtab_modif = stripslashes($_POST['code_postal_etab']);
+						$villeEtab_modif = stripslashes($_POST['ville_etab']);
+						$paysEtab_modif = stripslashes($_POST['pays_etab']);
+						$affichage_diplome_modif = stripslashes($_POST['affichage_diplome']);
+						$affichage_etab_modif = stripslashes($_POST['affichage_etab']);
+						$affichage_webEtab_modif = stripslashes($_POST['affichage_web_etab']);
+						$affichage_codePostalEtab_modif = stripslashes($_POST['affichage_code_postal_etab']);
+						$affichage_villeEtab_modif = stripslashes($_POST['affichage_ville_etab']);
+						$affichage_paysEtab_modif = stripslashes($_POST['affichage_pays_etab']);
+					
+					
+					
+						if ($diplome_modif!=""){
+							$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etudes AS e, etudes_utilisateur AS eu SET diplome_etudes='$diplome_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+				
+						if ($affichage_diplome_modif == 1){
+								$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etudes AS e, etudes_utilisateur AS eu SET diplomeEtudes_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+						else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etudes AS e, etudes_utilisateur AS eu SET diplomeEtudes_niveau='prublic' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+						
+						if ($etab_modif!=""){
+						$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET nom_etablissement='$etab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+			
+					if ($affichage_etab_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET nomEtablissement_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu SET nomEtablissement_niveau='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+							
+					if ($webEtab_modif!=""){
+						$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET siteweb_etablissement='$webEtab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+			
+					if ($affichage_webEtab_modif == 1){
+							$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET sitewebEtablissement_niveau='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+					else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu SET sitewebEtablissement_niveau='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");}
+						
+						
+					
+					
 	
 	if ($id_role >= 2){
 			$mail_modif = stripslashes($_POST['mail']);
@@ -103,22 +200,22 @@ if(isset($_POST['modifier'])) {
 			$mdp_modif = stripslashes($_POST['mdp']);
 	
 			if ($mail_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($nom_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 	
 			if ($nomPatro_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 	
 			if ($prenom_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($naissance_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			
 			if ($mdp_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass='$mdp_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass='$mdp_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 			}
 			
 			
@@ -245,7 +342,7 @@ if(connexionUtilisateurReussie()) {
 							</select>
 						</p>
 						<p>
-							<label for=\"code_postal_ent\">Ville * : </label>
+							<label for=\"ville_ent\">Ville * : </label>
 							<input type=\"text\" id=\"ville_ent\" name=\"ville_ent\" value=\"donnée à modifier\" />
 							<select name=\"affichage_ville_ent\">
 								<option value=\"1\">Affichage privé</option>
@@ -291,6 +388,22 @@ if(connexionUtilisateurReussie()) {
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
+					<p>
+						<label for=\"web_etab\">Adresse web de l'établissement actuel : </label>
+							<input type=\"text\" name=\"web_etab\" id=\"web_etab\" value=\"donnée à modifier\"/>
+							<select name=\"affichage_web_etab\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
+						</p>
+						<p>
+							<label for=\"ville_etab\">Ville * : </label>
+							<input type=\"text\" id=\"ville_etab\" name=\"ville_etab\" value=\"donnée à modifier\" />
+							<select name=\"affichage_ville_etab\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
+						</p>
 					<p>
 						<label for=\"code_postal_etab\">Code Postal * : </label>
 						<input type=\"text\" id=\"code_postal_etab\" name=\"code_postal_etab\" value=\"code postal à modifier\" />
