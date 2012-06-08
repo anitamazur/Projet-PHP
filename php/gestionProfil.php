@@ -41,15 +41,99 @@ if(isset($_POST['Supprimer'])) {
 			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
 		}
 }
+ 
+ 
+ ######################## traitement pour modification ##################################
+if(isset($_POST['modifier'])) {
+	if ($id_role == 1) {
+			$mail_modif = stripslashes($_POST['mail']);
+			$nom_modif = stripslashes($_POST['nom']);
+			$nomPatro_modif = stripslashes($_POST['nomPatro']);
+			$prenom_modif = stripslashes($_POST['prenom']);
+			$naissance_modif = stripslashes($_POST['naissance']);
+			$mdp_modif = stripslashes($_POST['mdp']);
+			$affichage_mail_modif = stripslashes($_POST['affichage_mail']);
+			$affichage_nom_modif = stripslashes($_POST['affichage_nom']);
+			$affichage_nomPatro_modif = stripslashes($_POST['affichage_nomPatro']);
+			$affichage_prenom_modif = stripslashes($_POST['affichage_prenom']);
+			$affichage_mdp_modif = stripslashes($_POST['affichage_mdp']);
 
-if(isset($_POST['valider'])) {
-	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
+			if ($mail_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			## l'option d'affichage est indépendante.
+			if ($affichage_mail_modif == 1){
+					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($nom_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+	
+			if ($affichage_nom_modif == 1){
+					$res_affich_modif = mysql_query ("UPDATE utilisateur  AS u, roles_utilisateur AS ru SET nom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($nomPatro_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+	
+			if ($affichage_nomPatro_modif == 1){
+					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nomPatro_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nomPatro_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($prenom_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+				
+			if ($affichage_prenom_modif == 1){
+					$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			else { $res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($naissance_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($mdp_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass='$mdp_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+	
+				if ($id_statut == 2){ }
+	
+	if ($id_role >= 2){
+			$mail_modif = stripslashes($_POST['mail']);
+			$nom_modif = stripslashes($_POST['nom']);
+			$nomPatro_modif = stripslashes($_POST['nomPatro']);
+			$prenom_modif = stripslashes($_POST['prenom']);
+			$naissance_modif = stripslashes($_POST['naissance']);
+			$mdp_modif = stripslashes($_POST['mdp']);
+	
+			if ($mail_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($nom_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+	
+			if ($nomPatro_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+	
+			if ($prenom_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($naissance_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			
+			if ($mdp_modif!=""){
+				$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass='$mdp_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role'");}
+			}
+			
+			
+
+	}
+	// Suivant si la modification a été un succès ou pas, on affiche un autre message.						
 	if($resultat <> False) {
 			$message .= "<p class=\"succes\">Profil modifié dans la base de données.</p>";
 		} else {
 			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
 		}
 }
+
+################################################################################################
+
 
 if(isset($_POST['changeStatut'])) {
 	$radio_statut = $_POST['statutActuel'];
@@ -100,11 +184,7 @@ if(connexionUtilisateurReussie()) {
 						<p>
 							<label for=\"naissance\">Date de naissance * : </label>
 							<input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
-							<select name=\"affichage_naissance\">
-								<option value=\"1\">Affichage privé</option>
-								<option value=\"2\">Affichage public</option>
-							</select>
-						</p>
+							</p>
 						<p>
 							<label for=\"mail\">Adresse E-Mail * : </label>
 							<input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
@@ -163,7 +243,15 @@ if(connexionUtilisateurReussie()) {
 								<option value=\"1\">Affichage privé</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
-						</p>					
+						</p>
+						<p>
+							<label for=\"code_postal_ent\">Ville * : </label>
+							<input type=\"text\" id=\"ville_ent\" name=\"ville_ent\" value=\"donnée à modifier\" />
+							<select name=\"affichage_ville_ent\">
+								<option value=\"1\">Affichage privé</option>
+								<option value=\"2\">Affichage public</option>
+							</select>
+						</p>											
 						<p>
 							<label for=\"code_postal_ent\">Code Postal * : </label>
 							<input type=\"text\" id=\"code_postal_ent\" name=\"code_postal_ent\" value=\"donnée à modifier\" />
@@ -323,7 +411,7 @@ if(connexionUtilisateurReussie()) {
 				";
 				}
 			echo "<p class=\"submit\">
-						<input type=\"submit\" name=\"valider\" value=\"Valider\" />
+						<input type=\"submit\" name=\"modifier\" value=\"Valider\" />
 					</p>
 				</form>";
 			if ($id_role == 1) {
