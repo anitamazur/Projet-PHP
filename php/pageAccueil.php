@@ -106,7 +106,7 @@ if(connexionUtilisateurReussie()) {
 		$date_inscription = date($ligne->date_inscription) ;
 		$date_maj_profil = date($ligne->date_maj_profil) ;
 		echo "<p>$nom $prenom</p>
-		<p><strong>$role</strong> : $statut</p>
+		<p><strong>$role</strong></p>
 		<p><strong>Adresse mail</strong> : $mail </p>
 		<p><strong>Date d'inscription</strong> : $date_inscription </p>
 		<p><strong>Date de mise à jour du profil</strong> : $date_maj_profil </p>
