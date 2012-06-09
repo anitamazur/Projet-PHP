@@ -36,7 +36,11 @@
 						$statut = 1;
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
-					}
+						$affichage_mail = stripslashes($_POST['affichage_mail']);
+						$affichage_nom = stripslashes($_POST['affichage_nom']);
+						$affichage_nomPatro = stripslashes($_POST['affichage_nomPatro']);
+						$affichage_prenom = stripslashes($_POST['affichage_prenom']);
+					
 					
 					if($nom != "") {
 						if ($affichage_nom == 1) {
@@ -85,7 +89,7 @@
 							$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('public')");
 						}
 					}
-					
+				}
 					
 				} else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
