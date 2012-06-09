@@ -290,18 +290,38 @@ if(isset($_POST['modifier'])) {
 	
 		if ($mail_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
+			if($res_modif <> False) {
+					$message .= "<p class=\"succes\">Adresse Email modifié dans la base de données.</p>";
+			} else {
+					$message .= "<p class=\"erreur\">Erreur lors de la modification de l'adresse Email.</p>" ;
+			}
 		}
 		
 		if ($nom_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
+			if($res_modif <> False) {
+					$message .= "<p class=\"succes\">Nom modifié dans la base de données.</p>";
+			} else {
+					$message .= "<p class=\"erreur\">Erreur lors de la modification du nom.</p>" ;
+			}
 		}
 
 		if ($prenom_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
+			if($res_modif <> False) {
+					$message .= "<p class=\"succes\">Prénom modifié dans la base de données.</p>";
+			} else {
+					$message .= "<p class=\"erreur\">Erreur lors de la modification du prénom.</p>" ;
+			}
 		}
 		
 		if ($naissance_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
+			if($res_modif <> False) {
+					$message .= "<p class=\"succes\">Date de naissance modifié dans la base de données.</p>";
+			} else {
+					$message .= "<p class=\"erreur\">Erreur lors de la modification de la date de naissance.</p>" ;
+			}
 		}
 		
 		if ($mdp_modif!=""){
