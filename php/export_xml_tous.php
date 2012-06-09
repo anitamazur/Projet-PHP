@@ -64,7 +64,7 @@ $xml = '<?xml version="1.0" encoding="utf-8"?>'.'<profil>';
 			}
 		} 
 		
-		elseif ($_row['id_role'] == 1 && $_row['id_statut'] == 3) {
+		elseif ($row['id_role'] == 1 && $row['id_statut'] == 3) {
 		
 		$req_statut3 = "SELECT * 
 				FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
