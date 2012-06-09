@@ -126,7 +126,8 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 								echo "<td> - </td>";
 								}
 							}
-						
+						echo "<td>$ligne->date_inscription</td>";
+						echo "<td>$ligne->date_maj_profil</td>";
 						echo "</tr>";
 					 }
 
