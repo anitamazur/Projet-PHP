@@ -55,7 +55,7 @@ $mail = $_SESSION['mail'] ;
 			$nom = ucfirst(strtolower($nom));
 
 ## si l'utilisateur connecté est : enseignant ou admin ##
-if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
+if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 {	
 			
 ## si l'utilisateur est : ancien étudiant 
@@ -136,7 +136,7 @@ if ($_SESSSION['id_role'] == 3 or $_SESSSION['id_role'] == 4)
 	
 
 ## si l'utilisateur connecté est : ancien étudiant ou étudiant actuel ##
-elseif ($_SESSSION['id_role'] == 1 or $_SESSSION['id_role'] == 2)
+elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2)
 {	
 			
 ## si l'utilisateur est : ancien étudiant 
