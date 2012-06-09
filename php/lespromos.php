@@ -34,7 +34,8 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 		WHERE u.id = ru.id_utilisateur
 		AND u.id = sa.id_utilisateur
 		AND r.id = ru.id_role
-		AND s.id = sa.id_statut");
+		AND s.id = sa.id_statut
+		AND ru.id_role = 1 or ru.id_role = 2");
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
