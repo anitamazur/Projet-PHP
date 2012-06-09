@@ -177,8 +177,16 @@ echo " <h2>Création d'un profil</h2>
                     <label for=\"etudiantActuel\">Étudiant actuel  : </label>
                     <input name=\"role\" type=\"radio\" id=\"etudiantActuel\" value=\"2\" />
                     </p>
+					<p>
+                    <label for=\"enseignant\">Enseignant  : </label>
+                    <input name=\"role\" type=\"radio\" id=\"enseignant\" value=\"3\" />
+                    </p>
+                    <p>
+                    <label for=\"administrateur\">Administrateur  : </label>
+                    <input name=\"role\" type=\"radio\" id=\"administrateur\" value=\"4\" />
+                    </p>
                
-                    <label for=\"donneesPerso\">Données personnelles </label>
+                    <label for=\"donneesPerso\"><strong>Données personnelles</strong></label>
                     <p>
                         <label for=\"nom\">Nom : </label>
                         <input type=\"text\" id=\"nom\" name=\"nom\" />
@@ -196,9 +204,11 @@ echo " <h2>Création d'un profil</h2>
                         <input type=\"text\" id=\"naissance\" name=\"naissance\" />
                         <label for=\"format_naissance\">(format : yyyy-mm-dd)</label>
                     </p>
+					
                     <p>
                         <label for=\"anneePromo\">Année d'obtention du M2 DEFI (pour anciens étudiants) ou année d'inscription au M2 DEFI (pour étudiants actuels): </label>
                         <input type=\"text\" name=\"anneePromo\" id=\"anneePromo\" />
+						<label for=\"info\">uniquement pour étudiant actuel ou ancien étudiant </label>
                         </p>
                     <p>
                         <label for=\"mail\">Adresse E-Mail : </label>
