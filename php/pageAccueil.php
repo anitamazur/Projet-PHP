@@ -36,6 +36,7 @@ if(connexionUtilisateurReussie()) {
 		$res = mysql_query($req) ;
 		$ligne=mysql_fetch_object($res) ;
 		$nom = ucfirst(strtolower($ligne->nom)) ;
+		$nomPatro = $_SESSION['nomPatro'] = $ligne->nom_patronymique ;
 		$prenom = ucfirst(strtolower($ligne->prenom)) ;
 		$id_role = $ligne->id_role ;
 		$id_statut = $ligne->id_statut ;
