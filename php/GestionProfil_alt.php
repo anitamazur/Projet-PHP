@@ -1,7 +1,7 @@
 <?php
 require_once("fonctions.php") ;
 
-//code pour decrypter le mot de passe qui a été crypté à l'inscription.
+//code pour decrypter le mot de passe qui a ?t? crypt? ? l'inscription.
 
 
 session_start() ;
@@ -15,12 +15,14 @@ $id_role = $_SESSION['id_role'] = role($id_utilisateur);
 $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
 $message = "";
 
-$res_pass = mysql_query ("select pass from utilisateur where id = '$id_utilisateur'")
+$res_pass = mysql_query ("select pass from utilisateur where id = '$id_utilisateur'");
 while ($ligne = mysql_fetch_object($res_pass)) { 
-$id_pass = $ligne->pass;}
-
-salt = "ashrihgbjnbfj";
+$id_pass = $ligne->pass;
+$salt = "ashrihgbjnbfj";
 $pass = crypt($id_pass, $salt);
+}
+
+
 
 
 if(isset($_POST['Supprimer'])) {
@@ -38,9 +40,9 @@ if(isset($_POST['Supprimer'])) {
 		$resultat = mysql_query($del_utilisateur);
 	}
 	
-	// Suivant si la suppression a été un succès ou pas, on affiche un autre message.						
+	// Suivant si la suppression a ?t? un succ?s ou pas, on affiche un autre message.						
 	if($resultat <> False) {
-			$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
+			$message .= "<p class=\"succes\">Profil supprim? de la base de donn?es.</p>";
 	} else {
 			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
 	}
@@ -65,12 +67,11 @@ if(isset($_POST['modifier'])) {
 		if ($mail_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 		}
-		## l'option d'affichage est indépendante.
+		## l'option d'affichage est ind?pendante.
 		if ($affichage_mail_modif == 1){
 				$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 		} else {
-			$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
-		}
+			$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail_niveau ='public'WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 		
 		if ($nom_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
@@ -79,8 +80,7 @@ if(isset($_POST['modifier'])) {
 		if ($affichage_nom_modif == 1){
 				$res_affich_modif = mysql_query ("UPDATE utilisateur  AS u, roles_utilisateur AS ru SET nom_niveau ='prive' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 		} else {
-			$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
-		}
+			$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");}
 		
 		if ($nomPatro_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom_patronymique='$nomPatro_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
@@ -105,9 +105,9 @@ if(isset($_POST['modifier'])) {
 			if ($avt_mdp_modif == $pass){
 				if ($mdp_modif == $confirm_mdp_modif) {
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru UNSET pass=ENCRYPT($mdp_modif, 'ashrihgbjnbfj') WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
-			// Suivant si la modification a été un succès ou pas, on affiche un autre message.						
+			// Suivant si la modification a ?t? un succ?s ou pas, on affiche un autre message.						
 			if($res_modif <> False) {
-					$message .= "<p class=\"succes\">Mot de passe modifié dans la base de données.</p>";
+					$message .= "<p class=\"succes\">Mot de passe modifi? dans la base de donn?es.</p>";
 			} else {
 					$message .= "<p class=\"erreur\">Erreur lors de la modification du mot de passe.</p>" ;
 			}
@@ -308,7 +308,7 @@ if(isset($_POST['modifier'])) {
 		if ($mail_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 			if($res_modif <> False) {
-					$message .= "<p class=\"succes\">Adresse Email modifié dans la base de données.</p>";
+					$message .= "<p class=\"succes\">Adresse Email modifi? dans la base de donn?es.</p>";
 			} else {
 					$message .= "<p class=\"erreur\">Erreur lors de la modification de l'adresse Email.</p>" ;
 			}
@@ -317,7 +317,7 @@ if(isset($_POST['modifier'])) {
 		if ($nom_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET nom='$nom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 			if($res_modif <> False) {
-					$message .= "<p class=\"succes\">Nom modifié dans la base de données.</p>";
+					$message .= "<p class=\"succes\">Nom modifi? dans la base de donn?es.</p>";
 			} else {
 					$message .= "<p class=\"erreur\">Erreur lors de la modification du nom.</p>" ;
 			}
@@ -326,16 +326,16 @@ if(isset($_POST['modifier'])) {
 		if ($prenom_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom='$prenom_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 			if($res_modif <> False) {
-					$message .= "<p class=\"succes\">Prénom modifié dans la base de données.</p>";
+					$message .= "<p class=\"succes\">Pr?nom modifi? dans la base de donn?es.</p>";
 			} else {
-					$message .= "<p class=\"erreur\">Erreur lors de la modification du prénom.</p>" ;
+					$message .= "<p class=\"erreur\">Erreur lors de la modification du pr?nom.</p>" ;
 			}
 		}
 		
 		if ($naissance_modif!=""){
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 			if($res_modif <> False) {
-					$message .= "<p class=\"succes\">Date de naissance modifié dans la base de données.</p>";
+					$message .= "<p class=\"succes\">Date de naissance modifi? dans la base de donn?es.</p>";
 			} else {
 					$message .= "<p class=\"erreur\">Erreur lors de la modification de la date de naissance.</p>" ;
 			}
@@ -345,9 +345,9 @@ if(isset($_POST['modifier'])) {
 			if ($avt_mdp_modif == $pass){
 				if ($mdp_modif == $confirm_mdp_modif) {
 			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru UNSET pass=ENCRYPT($mdp_modif, 'ashrihgbjnbfj') WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
-			// Suivant si la modification a été un succès ou pas, on affiche un autre message.						
+			// Suivant si la modification a ?t? un succ?s ou pas, on affiche un autre message.						
 			if($res_modif <> False) {
-					$message .= "<p class=\"succes\">Mot de passe modifié dans la base de données.</p>";
+					$message .= "<p class=\"succes\">Mot de passe modifi? dans la base de donn?es.</p>";
 			} else {
 					$message .= "<p class=\"erreur\">Erreur lors de la modification du mot de passe.</p>" ;
 			}
@@ -370,9 +370,9 @@ if(isset($_POST['changeStatut'])) {
 	$radio_statut = $_POST['statutActuel'];
 	$requete = "UPDATE statut_ancien_etudiant SET id_statut = $radio_statut WHERE statut_ancien_etudiant.id_utilisateur = $id_utilisateur";
 	$resultat = mysql_query($requete);
-	// Suivant si le changement de statut a été un succès ou pas, on affiche un autre message.	
+	// Suivant si le changement de statut a ?t? un succ?s ou pas, on affiche un autre message.	
 	if($resultat <> False) {
-			$message .= "<p class=\"succes\">Statut modifié dans la base de données. Veuillez recharger la page pour voir la modification de votre profil.</p>";
+			$message .= "<p class=\"succes\">Statut modifi? dans la base de donn?es. Veuillez recharger la page pour voir la modification de votre profil.</p>";
 	} else {
 			$message .= "<p class=\"erreur\">Erreur lors de la modification du statut.</p>" ;
 	}
@@ -382,32 +382,32 @@ if(isset($_POST['changeStatut'])) {
 	debuthtml("Annuaire M2 DEFI - Gestion de profil","Annuaire M2 DEFI", "Gestion du profil") ;
 	echo $message ;
 	if ($id_role == 1) {
-		affichetitre("Profil Ancien étudiant :","3") ;
-		echo "<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>" ;
+		affichetitre("Profil Ancien ?tudiant :","3") ;
+		echo "<p>Modifiez vos donn?es en les rempla?ant dans les champs appropri?s.</p>" ;
 		echo "<form id=\"form1\" action=\"gestionProfil.php\" method=\"post\">
 				<fieldset>
-					<legend>Données personnelles :</legend>
+					<legend>Donn?es personnelles :</legend>
 					<p>
 						<label for=\"nom\">Nom * : </label>
 						<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
 						<select name=\"affichage_nom\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
-						<label for=\"nomPatro\">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
-						<input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"à modifier\" />
+						<label for=\"nomPatro\">Nom patronymique (nom au moment de votre obtention de dipl?me M2 DEFI) : </label>
+						<input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"? modifier\" />
 						<select name=\"affichage_nomPatro\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
-						<label for=\"prenom\">Prénom * : </label>
+						<label for=\"prenom\">Pr?nom * : </label>
 						<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
 						<select name=\"affichage_prenom\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
@@ -419,7 +419,7 @@ if(isset($_POST['changeStatut'])) {
 						<label for=\"mail\">Adresse E-Mail * : </label>
 						<input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
 						<select name=\"affichage_mail\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
@@ -437,68 +437,68 @@ if(isset($_POST['changeStatut'])) {
 		if ($id_statut == 2) {
 			echo"
 				<fieldset>
-					<legend>Données professionnelles :</legend>
+					<legend>Donn?es professionnelles :</legend>
 					<p>
 						<label for=\"nom_ent\">Nom de l'entreprise actuelle * : </label>
-						<input type=\"text\" name=\"nom_ent\" id=\"nom_ent\" value=\"donnée à modifier\"/>
+						<input type=\"text\" name=\"nom_ent\" id=\"nom_ent\" value=\"donn?e ? modifier\"/>
 						<select name=\"affichage_nom_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
 						<label for=\"web_ent\">Adresse web de l'entreprise actuelle : </label>
-						<input type=\"text\" name=\"web_ent\" id=\"web_ent\" value=\"donnée à modifier\"/>
+						<input type=\"text\" name=\"web_ent\" id=\"web_ent\" value=\"donn?e ? modifier\"/>
 						<select name=\"affichage_web_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
 						<label for=\"poste_ent\">Votre poste dans l'entreprise * : </label>
-						<input type=\"text\" id=\"poste_ent\" name=\"poste_ent\" value=\"donnée à modifier\" />
+						<input type=\"text\" id=\"poste_ent\" name=\"poste_ent\" value=\"donn?e ? modifier\" />
 						<select name=\"affichage_poste_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
 						<label for=\"mail_ent\">Adresse E-Mail professionnelle : </label>
-						<input type=\"text\" id=\"mail_ent\" name=\"mail_ent\" value=\"donnée à modifier\" />
+						<input type=\"text\" id=\"mail_ent\" name=\"mail_ent\" value=\"donn?e ? modifier\" />
 						<select name=\"affichage_mail_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
-						<label for=\"secteur_ent\">Secteur d'activité de l'entreprise : </label>
-						<input type=\"text\" id=\"secteur_ent\" name=\"secteur_ent\" value=\"donnée à modifier\" />
+						<label for=\"secteur_ent\">Secteur d'activit? de l'entreprise : </label>
+						<input type=\"text\" id=\"secteur_ent\" name=\"secteur_ent\" value=\"donn?e ? modifier\" />
 						<select name=\"affichage_secteur_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
 						<label for=\"ville_ent\">Ville * : </label>
-						<input type=\"text\" id=\"ville_ent\" name=\"ville_ent\" value=\"donnée à modifier\" />
+						<input type=\"text\" id=\"ville_ent\" name=\"ville_ent\" value=\"donn?e ? modifier\" />
 						<select name=\"affichage_ville_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>											
 					<p>
 						<label for=\"code_postal_ent\">Code Postal * : </label>
-						<input type=\"text\" id=\"code_postal_ent\" name=\"code_postal_ent\" value=\"donnée à modifier\" />
+						<input type=\"text\" id=\"code_postal_ent\" name=\"code_postal_ent\" value=\"donn?e ? modifier\" />
 						<select name=\"affichage_code_postal_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>					
 					<p>
 						<label for=\"pays_ent\">Pays *: </label>
-						<input type=\"text\" id=\"pays_ent\" name=\"pays_ent\" value=\"donnée à modifier\" />
+						<input type=\"text\" id=\"pays_ent\" name=\"pays_ent\" value=\"donn?e ? modifier\" />
 						<select name=\"affichage_pays_ent\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
@@ -509,50 +509,50 @@ if(isset($_POST['changeStatut'])) {
 				<fieldset>
 					<legend>Formation :</legend>
 					<p>
-						<label for=\"diplome\">Diplôme préparé actuellement* : </label>
-						<input type=\"text\" id=\"diplome\" name=\"diplome\" value=\"diplôme à modifier\" />
+						<label for=\"diplome\">Dipl?me pr?par? actuellement* : </label>
+						<input type=\"text\" id=\"diplome\" name=\"diplome\" value=\"dipl?me ? modifier\" />
 						<select name=\"affichage_diplome\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
-						<label for=\"etab\">Établissement * : </label>
-						<input type=\"text\" name=\"etab\" id=\"etab\" value=\"établissement à modifier\" />
+						<label for=\"etab\">?tablissement * : </label>
+						<input type=\"text\" name=\"etab\" id=\"etab\" value=\"?tablissement ? modifier\" />
 						<select name=\"affichage_etab\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
 					<p>
-						<label for=\"web_etab\">Adresse web de l'établissement actuel : </label>
-							<input type=\"text\" name=\"web_etab\" id=\"web_etab\" value=\"donnée à modifier\"/>
+						<label for=\"web_etab\">Adresse web de l'?tablissement actuel : </label>
+							<input type=\"text\" name=\"web_etab\" id=\"web_etab\" value=\"donn?e ? modifier\"/>
 							<select name=\"affichage_web_etab\">
-								<option value=\"1\">Affichage privé</option>
+								<option value=\"1\">Affichage priv?</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 						<p>
 							<label for=\"ville_etab\">Ville * : </label>
-							<input type=\"text\" id=\"ville_etab\" name=\"ville_etab\" value=\"donnée à modifier\" />
+							<input type=\"text\" id=\"ville_etab\" name=\"ville_etab\" value=\"donn?e ? modifier\" />
 							<select name=\"affichage_ville_etab\">
-								<option value=\"1\">Affichage privé</option>
+								<option value=\"1\">Affichage priv?</option>
 								<option value=\"2\">Affichage public</option>
 							</select>
 						</p>
 					<p>
 						<label for=\"code_postal_etab\">Code Postal * : </label>
-						<input type=\"text\" id=\"code_postal_etab\" name=\"code_postal_etab\" value=\"code postal à modifier\" />
+						<input type=\"text\" id=\"code_postal_etab\" name=\"code_postal_etab\" value=\"code postal ? modifier\" />
 						<select name=\"affichage_code_postal_etab\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>					
 					<p>
 						<label for=\"pays_etab\">Pays *: </label>
-						<input type=\"text\" id=\"pays_etab\" name=\"pays_etab\" value=\"pays à modifier\" />
+						<input type=\"text\" id=\"pays_etab\" name=\"pays_etab\" value=\"pays ? modifier\" />
 						<select name=\"affichage_pays_etab\">
-							<option value=\"1\">Affichage privé</option>
+							<option value=\"1\">Affichage priv?</option>
 							<option value=\"2\">Affichage public</option>
 						</select>
 					</p>
@@ -560,17 +560,17 @@ if(isset($_POST['changeStatut'])) {
 			";
 		}
 	} else if ($id_role == 2) {
-		affichetitre("Étudiant actuel :","3") ;
-		echo "<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>" ;
+		affichetitre("?tudiant actuel :","3") ;
+		echo "<p>Modifiez vos donn?es en les rempla?ant dans les champs appropri?s.</p>" ;
 		echo "<form id=\"form1\" action=\"gestionProfil.php\" method=\"post\">
 				<fieldset>
-					<legend>Données personnelles :</legend>
+					<legend>Donn?es personnelles :</legend>
 					<p>
 						<label for=\"nom\">Nom * : </label>
 						<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
 					</p>
 					<p>
-						<label for=\"prenom\">Prénom * : </label>
+						<label for=\"prenom\">Pr?nom * : </label>
 						<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
 					</p>
 					<p>
@@ -593,16 +593,16 @@ if(isset($_POST['changeStatut'])) {
 		";
 	} else if ($id_role == 3) {
 		affichetitre("Enseignant :","3") ;
-		echo "<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>" ;
+		echo "<p>Modifiez vos donn?es en les rempla?ant dans les champs appropri?s.</p>" ;
 		echo "<form id=\"form1\" action=\"gestionProfil.php\" method=\"post\">
 				<fieldset>
-					<legend>Données personnelles :</legend>
+					<legend>Donn?es personnelles :</legend>
 					<p>
 						<label for=\"nom\">Nom * : </label>
 						<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
 					</p>
 					<p>
-						<label for=\"prenom\">Prénom * : </label>
+						<label for=\"prenom\">Pr?nom * : </label>
 						<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
 					</p>
 					<p>
@@ -625,16 +625,16 @@ if(isset($_POST['changeStatut'])) {
 				";
 	} else if ($id_role == 4) {
 		affichetitre("Administrateur :","3") ;
-		echo "<p>Modifiez vos données en les remplaçant dans les champs appropriés.</p>" ;
+		echo "<p>Modifiez vos donn?es en les rempla?ant dans les champs appropri?s.</p>" ;
 		echo "<form id=\"form1\" action=\"gestionProfil.php\" method=\"post\">
 				<fieldset>
-					<legend>Données personnelles :</legend>
+					<legend>Donn?es personnelles :</legend>
 					<p>
 						<label for=\"nom\">Nom * : </label>
 						<input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
 					</p>
 					<p>
-						<label for=\"prenom\">Prénom * : </label>
+						<label for=\"prenom\">Pr?nom * : </label>
 						<input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
 					</p>
 					<p>
@@ -666,7 +666,7 @@ if(isset($_POST['changeStatut'])) {
 				<fieldset>
 					<legend>Changer mon statut en : </legend>
 					<p>
-						<label for=\"statutActuel\">Profil à remplir : </label>";
+						<label for=\"statutActuel\">Profil ? remplir : </label>";
 		if ($id_statut == 1) {
 			echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantARemplir\" checked=\"checked\" value=\"1\" />" ;
 		}
@@ -709,7 +709,7 @@ if(isset($_POST['changeStatut'])) {
 		<h2>Suppression de mon profil</h2>
 		<form action=\"gestionProfil.php\" method=\"post\">
 			<fieldset>
-				<legend>Les données seront perdues définitivement</legend>
+				<legend>Les donn?es seront perdues d?finitivement</legend>
 				<p>
 					<input type=\"submit\" name=\"Supprimer\" value=\"supprimer mon profil\" />
 				</p>
@@ -731,9 +731,5 @@ if(isset($_POST['changeStatut'])) {
 	afficheMenu($id_role);
 	finhtml() ;
 
-else {
-	echo "<p class=\"erreur\">Erreur à l'identification</p>" ;
-	echo "<p>Retournez à la <a href=\"connexion.php\">page de connexion</a>.</p>";
-	}
     
 mysql_close() ;
