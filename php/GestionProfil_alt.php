@@ -10,6 +10,8 @@ $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
 $mail = $_SESSION['mail'] ;
+$salt = "ashrihgbjnbfj";
+$pass = crypt($_SESSION['pass'], $salt);
 $id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
 $id_role = $_SESSION['id_role'] = role($id_utilisateur);
 $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
@@ -384,7 +386,7 @@ if(isset($_POST['changeStatut'])) {
 	}
 }
 
-
+if(connexionUtilisateurReussie()) {
 	debuthtml("Annuaire M2 DEFI - Gestion de profil","Annuaire M2 DEFI", "Gestion du profil") ;
 	echo $message ;
 	if ($id_role == 1) {
@@ -666,6 +668,9 @@ if(isset($_POST['changeStatut'])) {
 				<input type=\"submit\" name=\"modifier\" value=\"Valider\" />
 			</p>
 		</form>";
+		
+
+	
 	if ($id_role == 1) {
 		echo "<form action=\"gestionProfil.php\" method=\"post\">
 				<h2>Changement de ma situation</h2>
@@ -734,6 +739,8 @@ if(isset($_POST['changeStatut'])) {
 
 	}
 
+	
+}
 	afficheMenu($id_role);
 	finhtml() ;
 
