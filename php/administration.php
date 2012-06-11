@@ -1,4 +1,4 @@
-?<?php
+<?php
 
 require("fonctions.php") ;
 $connexion = connexion() ;
@@ -11,6 +11,7 @@ $naissance = $_SESSION['naissance'];
 #$salt = "ashrihgbjnbfj";
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
+$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
 $id_role = $_SESSION['id_role'] = role($id_utilisateur);
 $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
 
@@ -19,10 +20,9 @@ debuthtml("Annuaire M2 DEFI - Administration","Annuaire M2 DEFI", "Administratio
 
 $message = "";
 
-$res_pers = mysql_query ("SELECT id, nom, prenom FROM utilisateur ORDER BY nom");
+$res_pers = mysql_query ("SELECT id, nom, prenom, id_role FROM utilisateur, roles_utilisateur WHERE utilisateur.id = roles_utilisateur.id_utilisateur ORDER BY nom");
 while($ligne = mysql_fetch_object($res_pers))
-    { $tab_pers[$ligne->id] = "$ligne->nom $ligne->prenom" ;
-	$id = $ligne-> id;
+    { $tab_pers[$ligne->id] = "$ligne->nom $ligne->prenom $ligne->id_role" ;
 	}
 
 
@@ -43,13 +43,13 @@ if(isset($_POST['Inserer'])) {
 		$mdpRepete = stripslashes($_POST['repeat_mdp']);
 		$role = stripslashes($_POST['role']);
 		if ($mdp != $mdpRepete) { 
-			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
+			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont diff곥nts.</p>";
 		}
 		if($mail == "") {
-			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail à ajouter' est vide.</p>";
+			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail ࡡjouter' est vide.</p>";
 		} 
 		else {
-			// On vérifie si l'adresse E-mail rentrée par l'utilisateur est au bon format
+			// On v곩fie si l'adresse E-mail rentrꥠpar l'utilisateur est au bon format
 			$mail_ok = VerifierAdresseMail($mail);
 			if($mail_ok == true) {
 				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$mail','', ENCRYPT('$mdp', 'ashrihgbjnbfj'), '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
@@ -69,7 +69,7 @@ if(isset($_POST['Inserer'])) {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 					}
 				} 
-				elseif ($mail_ok == false) {
+				else{
 				$message_ajout = "<p class=\"erreur\">L'adresse E-Mail à ajouter n'a pas le bon format.</p>";
 				}
 		}
@@ -77,14 +77,14 @@ if(isset($_POST['Inserer'])) {
 	}
 
 
-if(isset($_POST['Supprimer'])) {
-	$del_id = $id;
+elseif(isset($_POST['Supprimer'])) {
+	$del_id = $id_utilisateur;
 	$del_role = "DELETE FROM roles_utilisateur WHERE roles_utilisateur.id_utilisateur = '$del_id'";
 	$del_statut = "DELETE FROM statut_ancien_etudiant WHERE statut_ancien_etudiant.id_utilisateur = '$del_id'";
 	$del_utilisateur = "DELETE FROM utilisateur WHERE utilisateur.id = '$del_id'";
 	
 	$res_r = mysql_query ("SELECT id_role FROM utilisateur AS u, roles_utilisateurs AS ru WHERE u.id=ru.id_utilisateur AND u.id ='$del_id'");
-	while($ligne = mysql_fetch_object($rs))
+	while($ligne = mysql_fetch_object($res_r))
     { $id_role = $ligne->id_role ;
 	}
 
@@ -134,7 +134,7 @@ if(isset($_POST['changer'])) {
 	
 		}
 		else {
-			$message .= "<p class=\"erreur\">Erreur lors de la modification du rôle ou du statut.</p>" ;
+			$message .= "<p class=\"erreur\">Erreur lors de la modification du rôle.</p>" ;
 		}
 } }
 
@@ -158,7 +158,7 @@ echo " <h2>Création d'un profil</h2>
                     <input name=\"role\" type=\"radio\" id=\"ancienEtudiant\" value=\"1\" />
                     </p>
                     <p>
-                    <label for=\"etudiantActuel\">Étudiant actuel  : </label>
+                    <label for=\"etudiantActuel\">étudiant actuel  : </label>
                     <input name=\"role\" type=\"radio\" id=\"etudiantActuel\" value=\"2\" />
                     </p>
 					<p>
@@ -219,6 +219,7 @@ echo "<h2>Suppression de profil</h2>
 	<form action=\"administration.php\" method=\"post\">
 		<fieldset>
 			<legend>Les données seront perdues définitivement</legend>
+			<label for=\"explication\"> 1 : ancien étudiant _ 2 : étudiant actuel _ 3 : enseignant _ 4 : administrateur </label>
 			<p>"; menuderoulant("personne", $tab_pers); echo"</p>
 			<p>
 				<input type=\"submit\" name=\"Supprimer\" value=\"supprimer le profil\" />
@@ -232,7 +233,7 @@ if ($id_role == 4){
 echo "<form action=\"administration.php\" method=\"post\">
 						<h2>Changement de la situation</h2>
 						<fieldset>
-							<legend>Changer le rôle ou le statut de : </legend>
+							<legend>Changer le rôle de : </legend>
 							<p>"; menuderoulant("personne", $tab_pers); echo"</p>
 
 					
