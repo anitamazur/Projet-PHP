@@ -73,11 +73,8 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 						}
 				else { echo "_</td>";}
 				
-				if ($role !=""){
-						echo "<td>$role</td>";
-				}
-				else { echo "<td> - </td>"; }
-				
+				echo "<td>$role</td>";
+
 							
 						## si ancien etudiant ##
 						if ($id_role ==1 )
@@ -85,10 +82,9 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 						 # si en poste ##
 							if ($id_statut==2)
 								{
-								if ($statut!=""){
+							
 								echo "<td>$statut</td>";
-								}
-								else { echo "<td>-</td>";}
+							
 								
 								
 								$req_statut2="SELECT *
