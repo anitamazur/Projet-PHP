@@ -11,7 +11,6 @@ $naissance = $_SESSION['naissance'];
 #$salt = "ashrihgbjnbfj";
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
-$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
 $id_role = $_SESSION['id_role'] = role($id_utilisateur);
 $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
 
@@ -23,6 +22,8 @@ $message = "";
 $res_pers = mysql_query ("SELECT id, nom, prenom, id_role FROM utilisateur, roles_utilisateur WHERE utilisateur.id = roles_utilisateur.id_utilisateur ORDER BY nom");
 while($ligne = mysql_fetch_object($res_pers))
     { $tab_pers[$ligne->id] = "$ligne->nom $ligne->prenom $ligne->id_role" ;
+	$id_utilisateur = $ligne->id;
+#	echo "$id_utilisateur";
 	}
 
 
@@ -43,13 +44,13 @@ if(isset($_POST['Inserer'])) {
 		$mdpRepete = stripslashes($_POST['repeat_mdp']);
 		$role = stripslashes($_POST['role']);
 		if ($mdp != $mdpRepete) { 
-			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont diff곥nts.</p>";
+			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont diff?nts.</p>";
 		}
 		if($mail == "") {
-			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail ࡡjouter' est vide.</p>";
+			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail ?jouter' est vide.</p>";
 		} 
 		else {
-			// On v곩fie si l'adresse E-mail rentrꥠpar l'utilisateur est au bon format
+			// On v?fie si l'adresse E-mail rentr?par l'utilisateur est au bon format
 			$mail_ok = VerifierAdresseMail($mail);
 			if($mail_ok == true) {
 				$reqInscription = "INSERT INTO utilisateur (mail, mail_pro, pass, cle_activation, compte_active, nom, nom_patronymique, prenom, naissance, annee_promo, date_inscription, date_maj_profil) VALUES ('$mail','', ENCRYPT('$mdp', 'ashrihgbjnbfj'), '', '', '$nom', '$nomPatro', '$prenom', '$naissance', '$anneePromo', now(), now())" ;
