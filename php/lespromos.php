@@ -41,19 +41,43 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 	while ($ligne = mysql_fetch_object($res_p)) {
 				$id_role=$ligne->id_role;
 				$id_statut=$ligne->id_statut;
+				$mail=$ligne->mai;
 				$mail_pro=$ligne->mail_pro;
+				$annee_promo = $ligne->annee_promo;
+				$nom = $ligne->nom;
+				$prenom = $ligne->prenom;
+				$role = $ligne->nom_role;
+				$statut = $ligne->nom_statut;
 
-					echo"<th colspan=5>$ligne->annee_promo</th>";
+				
+				if ($annee_promo !=""){
+					echo"<th colspan=5>$annee_promo</th>";
+					}
+					else { echo "<th  colspan=5> - </th>"; }
 						echo "<tr>";
-						echo "<td>$ligne->nom</td>";
-						echo "<td>$ligne->prenom</td>";
-						echo "<td>$ligne->mail<br/>";
-						if ($mail_pro !="")
+				if ($nom !=""){
+						echo "<td>$nom</td>";
+				}
+				else { echo "<td> - </td>"; }
+				if ($prenom !=""){
+						echo "<td>$prenom</td>";
+				}
+				else { echo "<td> - </td>"; }
+				if ($mail !="")
 						{
-						echo "$mail_pro</td>";
+						echo "<td>$mail<br/>";
 						}
-						else { echo "_";}
-						echo "<td>$ligne->nom_role</td>";
+				if ($mail_pro !="")
+						{
+				echo "$mail_pro</td>";
+						}
+				else { echo "_</td>";}
+				
+				if ($role !=""){
+						echo "<td>$role</td>";
+				}
+				else { echo "<td> - </td>"; }
+				
 							
 						## si ancien etudiant ##
 						if ($id_role ==1 )
@@ -61,7 +85,11 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 						 # si en poste ##
 							if ($id_statut==2)
 								{
-								echo "<td>$ligne->nom_statut</td>";
+								if ($statut!=""){
+								echo "<td>$statut</td>";
+								}
+								else { echo "<td>-</td>";}
+								
 								
 								$req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
@@ -79,21 +107,53 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 								$res_statut2 = mysql_query($req_statut2) ;
 								
 									while ($ligne = mysql_fetch_object($res_statut2)){
+											$poste = $ligne->nom_poste;
+											$nom_ent = $ligne->nom_entreprise;
+											$web_ent = $ligne->siteweb_entreprise;
+											$secteur_ent = $ligne->secteur_entreprise;
+											$ville = $ligne->nom_ville;
+											$cp = $ligne->cp;
+											$pays = $ligne->nom_pays;
 									
-											echo "<td>$ligne->nom_poste<br/>";
-											echo"$ligne->nom_entreprise<br/>";
-											echo"$ligne->siteweb_entreprise<br/>";
-											echo"$ligne->secteur_entreprise<br/>";
-											echo "$ligne->nom_ville<br/>";
-											echo "$ligne->cp<br/>";
-											echo "$ligne->nom_pays</td>";
-											
+							if ($poste!=""){
+								echo "<td>$poste<br/>";
+								}
+								else { echo "<td>-<br/>";}
+							if ($nom_ent!=""){
+								echo "$nom_ent<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($web_ent!=""){
+								echo "$web_ent<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($secteur_ent!=""){
+								echo "$secteur_ent<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($ville!=""){
+								echo "$ville<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($cp!=""){
+								echo "$cp<br/>";
+								}
+								else { echo "- <br/>";}
+								
+							if ($pays!=""){
+								echo "$pays</td>";
+								}
+								else { echo "-</td>";}			
+									
+									
+									
+										
 										} }
 								
 							## si en formation ##	
 							elseif ($id_statut==3)
 								{
-								echo "<td>$ligne->nom_statut</td>";
+								echo "<td>$statut</td>";
 								
 								$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
@@ -109,20 +169,45 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 								$res_statut3 = mysql_query($req_statut3) ;
 								
 									while ($ligne = mysql_fetch_object($res_statut3)) {
-											
-											echo "<td>$ligne->diplome_etudes<br/>";
-											echo "$ligne->nom_etablissement<br/>";
-											echo "$ligne->siteweb_etablissement<br/>";
-											echo "$ligne->nom_ville<br/>";
-											echo "$ligne->cp<br/>";
-											echo "$ligne->nom_pays</td>";
+										$diplome = $ligne->diplome;
+											$nom_etab = $ligne->nom_etablissement;
+											$web_etab = $ligne->siteweb_etablissement;
+											$ville = $ligne->nom_ville;
+											$cp = $ligne->cp;
+											$pays = $ligne->nom_pays;
+									
+							if ($poste!=""){
+								echo "<td>$diplome<br/>";
+								}
+								else { echo "<td>-<br/>";}
+							if ($nom_etab!=""){
+								echo "$nom_etab<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($web_etab!=""){
+								echo "$web_etab<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($ville!=""){
+								echo "$ville<br/>";
+								}
+								else { echo "-<br/>";}
+							if ($cp!=""){
+								echo "$cp<br/>";
+								}
+								else { echo "- <br/>";}
+								
+							if ($pays!=""){
+								echo "$pays</td>";
+								}
+								else { echo "-</td>";}	
 									} }
 							
 							
 							##si profil ? remplir ou en recherche d'emploi##
 							elseif ($id_statut==1 or $id_statut ==4)
 								{
-								echo "<td>$ligne->nom_statut</td>";
+								echo "<td>$statut</td>";
 								echo "<td> - </td>";
 								}
 							}
