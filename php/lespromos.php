@@ -29,13 +29,23 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 			<td>Date de mise à jour du profil</td>
 			</tr>";
 
+$res_annee = mysql_query ("select annee_promo from utilisateur")
+while ($ligne = mysql_fetch_object($res_annee)) {			
+	$annee_promo = $ligne->annee_promo;
+
+	if ($annee_promo !=""){
+		echo"<th colspan=5>$annee_promo</th>";
+		}
+		else { echo "<th  colspan=5> - </th>"; }
+	
+	
 	$res_p = mysql_query("SELECT *			
 		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
 		WHERE u.id = ru.id_utilisateur
 		AND u.id = sa.id_utilisateur
 		AND r.id = ru.id_role
 		AND s.id = sa.id_statut
-		AND ru.id_role = 1 or ru.id_role = 2");
+		AND ru.id_role = 1 or ru.id_role = 2 AND annee_promo = '$annee_promo'");
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
@@ -43,17 +53,12 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 				$id_statut=$ligne->id_statut;
 				$mail=$ligne->mai;
 				$mail_pro=$ligne->mail_pro;
-				$annee_promo = $ligne->annee_promo;
 				$nom = $ligne->nom;
 				$prenom = $ligne->prenom;
 				$role = $ligne->nom_role;
 				$statut = $ligne->nom_statut;
 
 				
-				if ($annee_promo !=""){
-					echo"<th colspan=5>$annee_promo</th>";
-					}
-					else { echo "<th  colspan=5> - </th>"; }
 						echo "<tr>";
 				if ($nom !=""){
 						echo "<td>$nom</td>";
