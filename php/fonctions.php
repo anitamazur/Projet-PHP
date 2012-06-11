@@ -10,8 +10,11 @@ function connexion()
                                  $nomUtilisateur,
                                  $motDePasse);
                                  
-    #if ($idConnexion !== FALSE) echo "Connexion au serveur reussie<br/>";
-    #else echo "Echec de connexion au serveur<br/>";
+    #if ($idConnexion !== FALSE) {
+	#	echo "Connexion au serveur reussie<br/>";
+	#} else {
+	#	echo "Echec de connexion au serveur<br/>";
+	#}
 
     $connexionBase = mysql_select_db($baseDeDonnees);
     #if ($connexionBase) echo "Connexion a la base reussie";
@@ -51,14 +54,8 @@ function affichetitre($titre, $n)
 	
 //fonction permettant de vérifier si l'utilisateur est bien connecté. Si la requête SQL avec le nom, prenom et mot de passe retourne quelque chose, alors l'utlisateur a donnée les bons identifiants.
 function connexionUtilisateurReussie() {
-	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass']) && isset($_SESSION['mail'])) {
-		$req = "SELECT id FROM utilisateur WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."' AND mail='".$_SESSION['mail']."'" ;
-		$res = mysql_query($req) ; 
-		if(mysql_num_rows($res) > 0) {
-			return True;
-		} else {
-			return False;
-		}
+	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['mail'])) {
+		return True;
 	} else {
 		return False;
 	}
