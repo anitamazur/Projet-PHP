@@ -234,6 +234,7 @@ echo "<form action=\"administration.php\" method=\"post\">
 						<h2>Changement de la situation</h2>
 						<fieldset>
 							<legend>Changer le rôle de : </legend>
+								<label for=\"explication\"> 1 : ancien étudiant _ 2 : étudiant actuel _ 3 : enseignant _ 4 : administrateur </label>
 							<p>"; menuderoulant("personne", $tab_pers); echo"</p>
 
 					
