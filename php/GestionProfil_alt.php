@@ -100,7 +100,16 @@ if(isset($_POST['modifier'])) {
 		} else {
 			$res_affich_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET prenom_niveau ='public' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
 		}
-			
+		
+		if ($naissance_modif!=""){
+			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET naissance='$naissance_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
+			if($res_modif <> False) {
+					$message .= "<p class=\"succes\">Date de naissance modifi? dans la base de donn?es.</p>";
+			} else {
+					$message .= "<p class=\"erreur\">Erreur lors de la modification de la date de naissance.</p>" ;
+			}
+		}
+		
 		if ($mdp_modif!="" && $avt_mdp_modif!="" && $confirm_mdp_modif!=""){
 			if ($avt_mdp_modif == $pass){
 				if ($mdp_modif == $confirm_mdp_modif) {
@@ -114,9 +123,6 @@ if(isset($_POST['modifier'])) {
 		}
 		} }
 		
-		if ($mdp_modif!=""){
-			$res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET pass=ENCRYPT($mdp_modif, 'ashrihgbjnbfj') WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
-		}
 	
 		if ($id_statut == 2){ 
 			$nomEnt_modif = stripslashes($_POST['nom_ent']);
