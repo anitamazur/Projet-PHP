@@ -13,7 +13,7 @@ session_start() ;
 $_SESSION['nom'] = $nom;
 $_SESSION['prenom'] = $prenom;
 $_SESSION['naissance'] = $naissance;
-$_SESSION['pass'] = $pass;
+#$_SESSION['pass'] = $pass;
 $_SESSION['mail'] = $mail;
 
 $connexion = connexion() ; 
