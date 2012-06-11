@@ -67,21 +67,21 @@ while ($ligne = mysql_fetch_object($res))
 						echo "<td>$ligne->nom</td>";
 						echo "<td>$ligne->prenom</td>";
 						}
-						else { echo " ";}
+						else { echo "<td>-</td> <td>-</td> ";}
 					
 						#condition sur le mail perso
 						if ($mail_niveau == 'public')
 						{
 						echo "<td>$ligne->mail<br/>";
 						}
-						else { echo " ";}
+						else { echo "<td>-<br/> ";}
 						
 						#condition sur le mail pro
 						if ($mailPro_niveau == 'public')
 						{
-						echo "<td>$ligne->mail_pro<br/>";
+						echo "$ligne->mail_pro</td>";
 						}
-						else { echo " ";}
+						else { echo "-</td> ";}
 				
 						echo "<td>$ligne->nom_role</td>";
 							
@@ -123,49 +123,49 @@ while ($ligne = mysql_fetch_object($res))
 											{
 											echo "<td>$ligne->nom_poste<br/>";
 											}
-											else {echo " ";}
+											else {echo " <td> - <br/>";}
 											
 											## condition sur le nom de l'entreprise
 											if ($nomEntreprise_niveau == 'public')
 											{
 											echo"$ligne->nom_entreprise<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 
 											## condition sur le siteweb de l'entreprise
 											if ($sitewebEntreprise_niveau == 'public')
 											{
 											echo"$ligne->siteweb_entreprise<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 											
 											## condition sur le secteur de l'entreprise
 											if ($secteurEntreprise_niveau == 'public')
 											{
 											echo"$ligne->secteur_entreprise<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 											
 											## condition sur le nom de la ville de l'entreprise
 											if ($nomVille_niveau == 'public')
 											{
 											echo "$ligne->nom_ville<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 										
 											## condition sur le code postal de l'entreprise
 											if ($cp_niveau == 'public')
 											{
 											echo "$ligne->cp<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 										
 											## condition sur le pays de l'entreprise
 											if ($nomPays_niveau == 'public')
 											{
 											echo "$ligne->nom_pays</td>";
 											}
-											else {echo " ";}
+											else {echo " - </td> ";}
 							
 										} }
 								
@@ -201,42 +201,42 @@ while ($ligne = mysql_fetch_object($res))
 											{
 											echo "<td>$ligne->diplome_etudes<br/>";
 											}
-											else {echo " ";}
+											else {echo "<td> - <br/> ";}
 											
 											## condition sur le nom de l'?tablissement
 											if ($nomEtablissement_niveau == 'public')
 											{
 											echo "$ligne->nom_etablissement<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 
 											## condition sur le siteweb de l'?tablissement
 											if ($sitewebEtablissement_niveau == 'public')
 											{
 											echo "$ligne->siteweb_etablissement<br/>";
 											}
-											else {echo " ";}
+											else {echo " - <br/> ";}
 											
 											## condition sur le nom de la ville de l'?tablissement
 											if ($nomVille_niveau == 'public')
 											{
 											echo "$ligne->nom_ville<br/>";
 											}
-											else {echo " ";}
+											else {echo "  - <br/> ";}
 										
 											## condition sur le code postal de l'?tablissement
 											if ($cp_niveau == 'public')
 											{
 											echo "$ligne->cp<br/>";
 											}
-											else {echo " ";}
+											else {echo "  - <br/> ";}
 										
 											## condition sur le pays de l'?tablissement
 											if ($nomPays_niveau == 'public')
 											{
 											echo "$ligne->nom_pays</td>";
 											}
-											else {echo " ";}											
+											else {echo " - </td> ";}											
 							
 								} }
 							
