@@ -4,8 +4,8 @@
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
-$salt = "ashrihgbjnbfj";
-$pass = crypt($_SESSION['pass'], $salt);
+#$salt = "ashrihgbjnbfj";
+#$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
  
  require("fonctions.php");
