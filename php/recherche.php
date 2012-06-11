@@ -54,19 +54,19 @@ if (connexionUtilisateurReussie() == true)
 			</form>";
 			
 			debutmenu();
-		if($role == 1) {
+		if($id_role == 1) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
 			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
 			echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
 			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		}
-		elseif($role == 2) {
+		elseif($id_role == 2) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
 			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
 		}
-		elseif($role >= 3) {
+		elseif($id_role >= 3) {
 			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
 			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
 			echo "<li><a href=\"administration.php\">Administration</a></li>";
