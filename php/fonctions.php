@@ -144,7 +144,7 @@ echo "</div>";
 function menuderoulant($nom, $tab)
 	{
 	echo "<SELECT name=\"$nom\">\n" ;
-	echo "<OPTION value=\"$indice\" selected>nom_prénom</OPTION>";
+	echo "<OPTION value=\"$indice\" selected>nom_prénom_n° rôle</OPTION>";
 		foreach($tab as $cle=>$val)
 		{ 
 		echo "<OPTION value=\"$cle\">$val </OPTION>\n" ; 
