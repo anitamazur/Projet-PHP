@@ -9,6 +9,10 @@ $naissance = $_SESSION['naissance'];
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
 
+$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
+$id_role = $_SESSION['id_role'] = role($id_utilisateur);
+$id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
+
 require("fonctions.php") ;
 $connexion = connexion() ;
 
@@ -50,7 +54,25 @@ if (connexionUtilisateurReussie() == true)
 			</form>";
 			
 			debutmenu();
-			echo"<li><a href=\"pageAccueil.php\">Accueil</a></li>";	
+		if($role == 1) {
+			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+			echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
+			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+			echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
+			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+		}
+		elseif($role == 2) {
+			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+		}
+		elseif($role >= 3) {
+			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+			echo "<li><a href=\"administration.php\">Administration</a></li>";
+			echo "<li><a href=\"lespromos.php\">Les promos</a></li>";
+			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+			}
 			finmenu();
 		}
 
