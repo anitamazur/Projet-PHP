@@ -7,6 +7,10 @@ $naissance = $_SESSION['naissance'];
 #$salt = "ashrihgbjnbfj";
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
+
+
+$id_role_co = $_SESSION['id_role'] = role($id_utilisateur);
+$id_statut_co = $_SESSION['id_statut'] = statut($id_utilisateur);
  
  require("fonctions.php");
  $connexion = connexion();
@@ -55,7 +59,7 @@ $mail = $_SESSION['mail'] ;
 			$nom = ucfirst(strtolower($nom));
 
 ## si l'utilisateur connecté est : enseignant ou admin ##
-if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
+if ($id_role_co == 3 or $id_role_co == 4)
 {	
 			
 ## si l'utilisateur est : ancien étudiant 
@@ -136,7 +140,7 @@ if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 	
 
 ## si l'utilisateur connecté est : ancien étudiant ou étudiant actuel ##
-elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2)
+elseif ($id_role_co == 1 or $id_role_co == 2)
 {	
 			
 ## si l'utilisateur est : ancien étudiant 
@@ -373,7 +377,7 @@ while ($ligne = mysql_fetch_object($res_p)) {
 						$mailPro_niveau = $ligne->mailPro_niveau ;
 
 ## si l'utilisateur connecté est : enseignant ou admin ##						
-if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
+if ($id_role_co == 3 or $id_role_co == 4)
 	{
 
 						echo"<th colspan=5>$ligne->annee_promo</th>";
@@ -457,7 +461,7 @@ if ($_SESSION['id_role'] == 3 or $_SESSION['id_role'] == 4)
 						echo "</tr>";
 					 }
 
-elseif ($_SESSION['id_role'] == 1 or $_SESSION['id_role'] == 2 or connexionUtilisateurReussie() == false) 
+elseif ($id_role_co == 1 or $id_role_co == 2 or connexionUtilisateurReussie() == false) 
 	{
 						echo"<th colspan=5>$ligne->annee_promo</th>";
 						echo "<tr>";
