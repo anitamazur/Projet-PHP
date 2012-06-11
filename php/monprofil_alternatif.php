@@ -45,10 +45,10 @@ $ligne=mysql_fetch_object($res) ;
 	if ($_SESSION['id_role'] == 1)
 	
 		{
-		echo "<p> $nom $prenom <br/> 
-		Année de la promotion : $annee_promo <br/>
-		Adresse mail personelle: $mail <br/>
-		Adresse mail professionnelle : $mail_pro </p>";
+		echo "<p> $nom $prenom <br/>";
+		echo "	Année de la promotion : $annee_promo <br/>";
+		echo "	Adresse mail personelle: $mail <br/>";
+		echo "	Adresse mail professionnelle : $mail_pro </p>";
 		
 		## en poste ##
 		
