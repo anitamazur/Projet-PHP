@@ -114,35 +114,20 @@ if(isset($_POST['changer'])) {
 	$radio_actuel = $_POST['Actuel'];
 	
 	if(isset($radio_actuel)){
-		if($radio_actuel == 1){
-		$requete = "UPDATE statut_ancien_etudiant SET id_statut = 1 WHERE statut_ancien_etudiant.id_utilisateur = $id'";
-		$resultat = mysql_query($requete); } 
-		
-		if($radio_actuel == 2){
-		$requete = "UPDATE statut_ancien_etudiant SET id_statut = 2 WHERE statut_ancien_etudiant.id_utilisateur = '$id'";
-		$resultat = mysql_query($requete); } 
-		
-		if($radio_actuel == 3){
-		$requete = "UPDATE statut_ancien_etudiant SET id_statut = 3 WHERE statut_ancien_etudiant.id_utilisateur = '$id'";
-		$resultat = mysql_query($requete); } 
-		
-		if($radio_actuel == 4){
-		$requete = "UPDATE statut_ancien_etudiant SET id_statut = 4 WHERE statut_ancien_etudiant.id_utilisateur = '$id'";
-		$resultat = mysql_query($requete); }
 	
-		if($radio_actuel == 5)
+		if($radio_actuel == 1)
 			{
-			$requete = "UPDATE roles_utilisateur AS ru, statut_ancien_etudiant AS sa SET id_role = 1, id_statut = 1 WHERE ru.id_utilisateur = $id";
+			$requete = "UPDATE roles_utilisateur AS ru, statut_ancien_etudiant AS sa SET id_role = $radio_actuel , id_statut = 1 WHERE ru.id_utilisateur = $id";
 			$resultat = mysql_query($requete); }
 			
-		if($radio_actuel == 6)
+		if($radio_actuel == 3)
 		{
-			$requete = "UPDATE roles_utilisateur AS ru SET id_role = 3 WHERE ru.id_utilisateur = $id";
+			$requete = "UPDATE roles_utilisateur AS ru SET id_role = $radio_actuel WHERE ru.id_utilisateur = $id";
 			$resultat = mysql_query($requete); }
 		
-		if($radio_actuel == 7)
+		if($radio_actuel == 4)
 		{
-			$requete = "UPDATE roles_utilisateur AS ru SET id_role = 4 WHERE ru.id_utilisateur = $id";
+			$requete = "UPDATE roles_utilisateur AS ru SET id_role = $radio_actuel WHERE ru.id_utilisateur = $id";
 			$resultat = mysql_query($requete); }
 	
 		}
@@ -250,21 +235,7 @@ echo "<form action=\"administration.php\" method=\"post\">
 						<fieldset>
 							<legend>Changer le rôle ou le statut de : </legend>
 							<p>"; menuderoulant("personne", $tab_pers); echo"</p>
-						
-						<p><label for=\"titre\"><strong> Si ancien étudiant, changement de statut  : </strong></label>
-							
-								<label for=\"Actuel\">Profil à remplir </label>
-								<input name=\"Actuel\" type=\"radio\" id=\"ancienEtudiantARemplir\" value=\"1\" />
-						
-								<label for=\"Actuel\">En poste </label>
-								<input name=\"Actuel\" type=\"radio\" id=\"ancienEtudiantEmploi\" value=\"2\" />
-							
-								<label for=\"Actuel\">En formation </label>
-								<input name=\"Actuel\" type=\"radio\" id=\"ancienEtudiantFormation\" value=\"3\" />
-							
-								<label for=\"Actuel\">Sans emploi </label>
-								<input name=\"Actuel\" type=\"radio\"  id=\"ancienEtudiantSansEmploi\" value=\"4\" />
-							</p>
+
 					
 							<p> <label for=\"titre\"><strong>Changement de rôle : </strong></label>
 							
