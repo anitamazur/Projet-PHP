@@ -1,4 +1,4 @@
-﻿<?php
+?<?php
 
 require("fonctions.php") ;
 $connexion = connexion() ;
@@ -11,8 +11,8 @@ $naissance = $_SESSION['naissance'];
 #$salt = "ashrihgbjnbfj";
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
-$id_role = $_SESSION['id_role'];
-$id_statut = $_SESSION['id_statut'];
+$id_role = $_SESSION['id_role'] = role($id_utilisateur);
+$id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
 
 
 debuthtml("Annuaire M2 DEFI - Administration","Annuaire M2 DEFI", "Administration") ;
@@ -92,17 +92,16 @@ if(isset($_POST['Supprimer'])) {
 		$resultat = mysql_query($del_role);
 		$resultat = mysql_query($del_statut);
 		$resultat = mysql_query($del_utilisateur);
+		$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
 	}
 
-	else {
+	elseif ($id_role != 1){
 		$resultat = mysql_query($del_role);
 		$resultat = mysql_query($del_utilisateur);
+		$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
 	}
 
-							
-	if($resultat <> False) {
-			$message .= "<p class=\"succes\">Profil supprimé de la base de données.</p>";
-		} else {
+		else {
 			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
 		}
 }
@@ -118,23 +117,23 @@ if(isset($_POST['changer'])) {
 		if($radio_actuel == 1)
 			{
 			$requete = "UPDATE roles_utilisateur AS ru, statut_ancien_etudiant AS sa SET id_role = $radio_actuel , id_statut = 1 WHERE ru.id_utilisateur = $id";
-			$resultat = mysql_query($requete); }
+			$resultat = mysql_query($requete); 
+			$message .= "<p class=\"succes\">Rôle modifié dans la base de données.</p>";}
 			
-		if($radio_actuel == 3)
+		elseif($radio_actuel == 3)
 		{
 			$requete = "UPDATE roles_utilisateur AS ru SET id_role = $radio_actuel WHERE ru.id_utilisateur = $id";
-			$resultat = mysql_query($requete); }
+			$resultat = mysql_query($requete); 
+			$message .= "<p class=\"succes\">Rôle modifié dans la base de données.</p>";}
 		
-		if($radio_actuel == 4)
+		elseif($radio_actuel == 4)
 		{
 			$requete = "UPDATE roles_utilisateur AS ru SET id_role = $radio_actuel WHERE ru.id_utilisateur = $id";
-			$resultat = mysql_query($requete); }
+			$resultat = mysql_query($requete); 
+			$message .= "<p class=\"succes\">Rôle modifié dans la base de données.</p>";}
 	
 		}
-		
-	if($resultat <> False) {
-			$message .= "<p class=\"succes\">Rôle ou Statut modifié dans la base de données.</p>";
-		} else {
+		else {
 			$message .= "<p class=\"erreur\">Erreur lors de la modification du rôle ou du statut.</p>" ;
 		}
 } }
