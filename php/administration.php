@@ -22,9 +22,8 @@ $message = "";
 
 $res_pers = mysql_query ("SELECT id, nom, prenom, id_role FROM utilisateur, roles_utilisateur WHERE utilisateur.id = roles_utilisateur.id_utilisateur ORDER BY nom");
 while($ligne = mysql_fetch_object($res_pers))
-    { $tab_pers[$ligne->id] = "$ligne->nom $ligne->prenom $ligne->id_role" ;
-	$id = $ligne->id;
-#	echo "$id_utilisateur";
+    { 	$id = $ligne->id;
+    	$tab_pers[$ligne->id] = "$ligne->nom $ligne->prenom $ligne->id_role" ;
 	}
 
 
@@ -58,6 +57,7 @@ if(isset($_POST['Inserer'])) {
 				$resAjout = mysql_query($reqInscription) ;
 				$id = mysql_insert_id();
 				if($resAjout <> FALSE) {
+					$res_idrole = mysql_query ("select id_role from role as r, roles_utilisateur as ru")
 					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p> <p>Vous pouvez vous connecter désormais en cliquant sur le point de menu <a href=\"connexion.php\">Connexion</a></p>" ;
 					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
 					$relAjout = mysql_query($relInscription) ;
