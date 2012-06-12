@@ -76,7 +76,7 @@ if(isset($_POST['Inserer'])) {
 				}
 		}
 
-	}
+
 
 
 if(isset($_POST['Supprimer'])) {
