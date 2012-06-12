@@ -78,7 +78,7 @@ if(isset($_POST['Inserer'])) {
 	}
 
 
-elseif(isset($_POST['Supprimer'])) {
+if(isset($_POST['Supprimer'])) {
 	$del_id = $id_utilisateur;
 	$del_role = "DELETE FROM roles_utilisateur WHERE roles_utilisateur.id_utilisateur = '$del_id'";
 	$del_statut = "DELETE FROM statut_ancien_etudiant WHERE statut_ancien_etudiant.id_utilisateur = '$del_id'";
