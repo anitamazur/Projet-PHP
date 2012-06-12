@@ -23,7 +23,7 @@ $message = "";
 $res_pers = mysql_query ("SELECT id, nom, prenom, id_role FROM utilisateur, roles_utilisateur WHERE utilisateur.id = roles_utilisateur.id_utilisateur ORDER BY nom");
 while($ligne = mysql_fetch_object($res_pers))
     { $tab_pers[$ligne->id] = "$ligne->nom $ligne->prenom $ligne->id_role" ;
-	$id_utilisateur = $ligne->id;
+	$id = $ligne->id;
 #	echo "$id_utilisateur";
 	}
 
@@ -80,7 +80,7 @@ if(isset($_POST['Inserer'])) {
 
 
 if(isset($_POST['Supprimer'])) {
-	$del_id = $id_utilisateur;
+	$del_id = $id;
 	$del_role = "DELETE FROM roles_utilisateur WHERE roles_utilisateur.id_utilisateur = '$del_id'";
 	$del_statut = "DELETE FROM statut_ancien_etudiant WHERE statut_ancien_etudiant.id_utilisateur = '$del_id'";
 	$del_utilisateur = "DELETE FROM utilisateur WHERE utilisateur.id = '$del_id'";
