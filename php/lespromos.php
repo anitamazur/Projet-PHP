@@ -29,14 +29,14 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 			<td>Date de mise à jour du profil</td>
 			</tr>";
 
-$res_annee = mysql_query ("select annee_promo from utilisateur")
+$res_annee = mysql_query ("select annee_promo from utilisateur");
 while ($ligne = mysql_fetch_object($res_annee)) {			
 	$annee_promo = $ligne->annee_promo;
 
 	if ($annee_promo !=""){
-		echo"<th colspan=5>$annee_promo</th>";
+		echo"<th colspan=7>$annee_promo</th>";
 		}
-		else { echo "<th  colspan=5> - </th>"; }
+		else { echo "<th  colspan=7> - </th>"; }
 	
 	
 	$res_p = mysql_query("SELECT *			
@@ -215,7 +215,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 						echo "<td>$ligne->date_inscription</td>";
 						echo "<td>$ligne->date_maj_profil</td>";
 						echo "</tr>";
-					 }
+					 }}
 
 	  echo "</table>";	
 
