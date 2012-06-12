@@ -44,7 +44,7 @@ while($row=mysql_fetch_array($resultat))
 {$pdf->cell(5,0.7,$row['nom'],1,0,'C',$fond);
 $pdf->cell(5,0.7,$row['prenom'],1,0,'C',$fond);
 $pdf->cell(5,0.7,$row['annee_promo'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['role'],1,0,'C',$fond);
+$pdf->cell(5,0.7,$row['nom_role'],1,0,'C',$fond);
 $pdf->SetXY(4,$pdf->GetY()+0.7);
 $fond=!$fond;
  }
