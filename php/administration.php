@@ -57,16 +57,18 @@ if(isset($_POST['Inserer'])) {
 				$resAjout = mysql_query($reqInscription) ;
 				$id = mysql_insert_id();
 				if($resAjout <> FALSE) {
-					$res_idrole = mysql_query ("select id_role from role as r, roles_utilisateur as ru")
 					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p> <p>Vous pouvez vous connecter désormais en cliquant sur le point de menu <a href=\"connexion.php\">Connexion</a></p>" ;
-					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
+					$res_idrole = mysql_query ("select id from role where nom_role = '$role'");
+					while($ligne = mysql_fetch_object($res_idrole))
+   					 { $idrole = $ligne->id ;
+					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$idrole')" ;
 					$relAjout = mysql_query($relInscription) ;
 					if ($role == 1) {
 						$statut = 1;
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
 					}
-				} 
+				} }
 				else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 					}
