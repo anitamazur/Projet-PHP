@@ -30,9 +30,12 @@
 				$id = mysql_insert_id();
 				if($resAjout == FALSE) {
 					$message_ajout = "<p class=\"succes\">Profil enregistré dans la base de données.</p> <p>Vous pouvez vous connecter désormais en cliquant sur le point de menu <a href=\"connexion.php\">Connexion</a></p>" ;
-					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$role')" ;
+						$res_idrole = mysql_query ("select id from role where nom_role = '$role'");
+					while($ligne = mysql_fetch_object($res_idrole))
+   					 { $idrole = $ligne->id ;
+					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$idrole')" ;
 					$relAjout = mysql_query($relInscription) ;
-					if ($role == 1) {
+					if ($idrole == 1) {
 						$statut = 1;
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
@@ -79,12 +82,12 @@
 								}
 								
 						}
-						if ($role == 2) {
+						if ($idrole == 2) {
 						$confidentialite_req = "UPDATE utilisateur SET nom_niveau = '', prenom_niveau = '', mail_niveau = '', mailPro_niveau = '' WHERE utilisateur.id = $id;" ;
 						$confidentialite_Ajout = mysql_query($confidentialite_req) ;
-					}			
+					} 			
 					
-				} else {
+				} } else {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 				}
 			} elseif ($mail_ok == false) {
