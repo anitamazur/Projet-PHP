@@ -63,7 +63,7 @@ if(isset($_POST['Inserer'])) {
    					 { $idrole = $ligne->id ;
 					$relInscription = "INSERT INTO roles_utilisateur (id_utilisateur, id_role) VALUES ('$id','$idrole')" ;
 					$relAjout = mysql_query($relInscription) ;
-					if ($role == 1) {
+					if ($idrole == 1) {
 						$statut = 1;
 						$statutInscription = "INSERT INTO statut_ancien_etudiant (id_utilisateur, id_statut) VALUES ('$id','$statut')" ;
 						$statutAjout = mysql_query($statutInscription) ;
