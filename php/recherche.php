@@ -5,21 +5,18 @@ session_start() ;
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
-#$salt = "ashrihgbjnbfj";
-#$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
+$annee_promo = $_SESSION['annee_promo'];
+$id_role = $_SESSION['id_role'];
+$id_statut = $_SESSION['id_statut'];
 
-$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
-$id_role = $_SESSION['id_role'] = role($id_utilisateur);
-$id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
-
-require("fonctions.php") ;
+require_once("fonctions.php") ;
 $connexion = connexion() ;
 
 debuthtml("Annuaire M2 DEFI - Recherche","Annuaire M2 DEFI", "Recherche dans l'annuaire") ;
 affichetitre("Recherche sur anciens étudiants UNIQUEMENT", "3");
 
-if (connexionUtilisateurReussie() == true)
+if (connexionUtilisateurReussie())
 		{
 		affichetitre("Recherche par nom et prénom dans l'annuaire","3");
 		echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
