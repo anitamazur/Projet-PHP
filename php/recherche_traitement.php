@@ -8,7 +8,7 @@ $naissance = $_SESSION['naissance'];
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
 
-
+$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
 $id_role_co = $_SESSION['id_role'] = role($id_utilisateur);
 $id_statut_co = $_SESSION['id_statut'] = statut($id_utilisateur);
  
