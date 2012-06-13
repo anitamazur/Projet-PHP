@@ -1,12 +1,15 @@
 <?php
-
 session_start() ;
-$nom = $_SESSION['nom'];
-$prenom = $_SESSION['prenom'];
-$naissance = $_SESSION['naissance'];
-#$salt = "ashrihgbjnbfj";
-#$pass = crypt($_SESSION['pass'], $salt);
+$nom = $_SESSION['nom'] ;
+$prenom = $_SESSION['prenom'] ;
+$naissance = $_SESSION['naissance'] ;
 $mail = $_SESSION['mail'] ;
+$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
+$id_role = $_SESSION['id_role'] = role($id_utilisateur);
+$id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
+$id_role = $_SESSION['id_role'] = role($id_utilisateur);
+$id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
+
 
 require_once("fonctions.php") ;
 $connexion = connexion() ;
@@ -92,7 +95,7 @@ $xml = '<?xml version="1.0" encoding="utf-8"?>'.'<profil>';
 			}
 		}
 		
-		elseif ($_SESSION['id_role'] == 1 &&  ( $_SESSION['id_statut'] == 1 or $_SESSION['id_statut'] == 4)) {
+		elseif ($id_role == 1 &&  ( $id_statut == 1 or $id_statut == 4)) {
 			$xml .= '<nom_statut>'.$row['nom_statut'].'</nom_statut>';
 		
 		} 
