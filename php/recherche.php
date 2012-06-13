@@ -88,10 +88,7 @@ else
 					</p>
 				</fieldset>
 			</form>";
-			debutmenu();
-			echo"<li><a href=\"connexion.php\">Connexion</a></li>
-			<li><a href=\"inscription.php\">Inscription</a></li>";
-			finmenu();
+afficheMenu($id_role);
 		}
 
 		

@@ -4,24 +4,21 @@
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
-#$salt = "ashrihgbjnbfj";
-#$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
-
-$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
-$id_role_co = $_SESSION['id_role'] = role($id_utilisateur);
-$id_statut_co = $_SESSION['id_statut'] = statut($id_utilisateur);
+$annee_promo = $_SESSION['annee_promo'];
+$id_role = $_SESSION['id_role'];
+$id_statut = $_SESSION['id_statut'];
  
- require("fonctions.php");
- $connexion = connexion();
+require_once("fonctions.php");
+$connexion = connexion();
  
  
 ##################################### Traitement de recherche par nom et prénom #########################################
 
  
 	if(isset($_POST['valider'])) {
-		$nom = stripslashes($_POST['nom']);
-		$prenom = stripslashes($_POST['prenom']);
+		$cherche_nom = stripslashes($_POST['nom']);
+		$cherche_prenom = stripslashes($_POST['prenom']);
 	
 	debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
 	affichetitre ("Résultat de votre recherche","2") ;
@@ -32,44 +29,41 @@ $id_statut_co = $_SESSION['id_statut'] = statut($id_utilisateur);
 			AND u.id = sa.id_utilisateur
 			AND r.id = ru.id_role
 			AND s.id = sa.id_statut
-			AND u.nom='$nom' AND u.prenom='$prenom' " ;
+			AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom' " ;
 
 			$res = mysql_query($req) ;
 
 			if(mysql_num_rows($res) > 0)
 				{
 			$ligne=mysql_fetch_object($res) ;
-				$nom = $ligne->nom ;
-				$prenom = $ligne->prenom ; 	
-				$id_role = $ligne->id_role ;
-				$id_statut = $ligne->id_statut ;
-				$role = $ligne->nom_role ;
-				$statut = $ligne->nom_statut ; 
-				$annee_promo = $ligne->annee_promo ;
-				$mail = $ligne->mail ;
-				$mail_pro = $ligne->mail_pro ;
-				$nom_niveau = $ligne->nom_niveau ;
-				$prenom_niveau = $ligne->prenom_niveau ;
-				$mail_niveau = $ligne->mail_niveau ;
-				$mailPro_niveau = $ligne->mailPro_niveau ;
-				$date_inscription=$ligne->date_inscription;
-				$date_maj_profil=$ligne->date_maj_profil;
-			
-			$prenom = ucfirst(strtolower($prenom));
-			$nom = ucfirst(strtolower($nom));
+				$cherche_nom = ucfirst(strtolower($ligne->nom)) ;
+				$cherche_prenom = ucfirst(strtolower($ligne->prenom)) ; 	
+				$cherche_id_role = $ligne->id_role ;
+				$cherche_id_statut = $ligne->id_statut ;
+				$cherche_role = $ligne->nom_role ;
+				$cherche_statut = $ligne->nom_statut ; 
+				$cherche_annee_promo = $ligne->annee_promo ;
+				$cherche_mail = $ligne->mail ;
+				$cherche_mail_pro = $ligne->mail_pro ;
+				$cherche_nom_niveau = $ligne->nom_niveau ;
+				$cherche_prenom_niveau = $ligne->prenom_niveau ;
+				$cherche_mail_niveau = $ligne->mail_niveau ;
+				$cherche_mailPro_niveau = $ligne->mailPro_niveau ;
+				$cherche_date_inscription=$ligne->date_inscription;
+				$cherche_date_maj_profil=$ligne->date_maj_profil;
 
 ## si l'utilisateur connecté est : enseignant ou admin ##
-if ($id_role_co == 3 or $id_role_co == 4)
+if ($id_role == 3 or $id_role == 4)
 {	
 			
 ## si l'utilisateur est : ancien étudiant 
 	if ($id_role == 1)
 	{		
-		affichetitre ("$nom $prenom","3");
-		echo "<p>Année de la promotion : $annee_promo <br/>
-		Adresse mail personelle : $mail <br/>
-		Adresse mail professionnelle : $mail_pro</p>";
-		echo "<p>$statut</p>";
+		affichetitre ("$cherche_nom $cherche_prenom","3");
+		echo "<p>Année de la promotion : $cherche_annee_promo <br/>
+		Adresse mail personelle : $cherche_mail <br/>
+		Adresse mail professionnelle : $cherche_mail_pro</p>";
+		echo "<p>$cherche_statut</p>";
 	
 				## en poste ##
 				if ($id_statut == 2)
@@ -87,7 +81,7 @@ if ($id_role_co == 3 or $id_role_co == 4)
 							AND vi.id = ev.id_entreprise
 							AND vi.id = vp.id_ville
 							AND pa.id = vp.id_pays
-							AND u.nom='$nom' AND u.prenom='$prenom'";
+							AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'";
 					
 					$res_statut2 = mysql_query($req_statut2) ;
 					
@@ -115,7 +109,7 @@ if ($id_role_co == 3 or $id_role_co == 4)
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND u.nom='$nom' AND u.prenom='$prenom'" ;
+								AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'" ;
 								
 						$res_statut3 = mysql_query($req_statut3) ;
 						
@@ -131,8 +125,8 @@ if ($id_role_co == 3 or $id_role_co == 4)
 	
 				## Profil à remplir ou recherche d'emploi ## --> rien à afficher
 	
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";	
+		echo "<p>Date d'inscription : $cherche_date_inscription <br/>
+		Date de mise à jour du profil : $cherche_date_maj_profil</p>";	
 }
 
  
@@ -140,7 +134,7 @@ if ($id_role_co == 3 or $id_role_co == 4)
 	
 
 ## si l'utilisateur connecté est : ancien étudiant ou étudiant actuel ##
-elseif ($id_role_co == 1 or $id_role_co == 2)
+elseif ($id_role == 1 or $id_role == 2)
 {	
 			
 ## si l'utilisateur est : ancien étudiant 
@@ -188,18 +182,18 @@ elseif ($id_role_co == 1 or $id_role_co == 2)
 							AND vi.id = ev.id_entreprise
 							AND vi.id = vp.id_ville
 							AND pa.id = vp.id_pays
-							AND u.nom='$nom' AND u.prenom='$prenom'";
+							AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'";
 					
 					$res_statut2 = mysql_query($req_statut2) ;
 					
 					while ($ligne = mysql_fetch_object($res_statut2)){
-							$nomPoste_niveau=$ligne->nomPoste_niveau;
-							$nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
-							$sitewebEntreprise_niveau=$ligne->sitewebEntreprise_niveau;
-							$secteurEntreprise_niveau=$ligne->secteurEntreprise_niveau;
-							$nomVille_niveau=$ligne->nomVille_niveau;
-							$cp_niveau=$ligne->cp_niveau;
-							$nomPays_niveau=$ligne->nomPays_niveau;
+							$cherche_nomPoste_niveau=$ligne->nomPoste_niveau;
+							$cherche_nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
+							$cherche_sitewebEntreprise_niveau=$ligne->sitewebEntreprise_niveau;
+							$cherche_secteurEntreprise_niveau=$ligne->secteurEntreprise_niveau;
+							$cherche_nomVille_niveau=$ligne->nomVille_niveau;
+							$cherche_cp_niveau=$ligne->cp_niveau;
+							$cherche_nomPays_niveau=$ligne->nomPays_niveau;
 					
 							## condition sur le poste
 							if ($nomPoste_niveau == 'public')
@@ -266,7 +260,7 @@ elseif ($id_role_co == 1 or $id_role_co == 2)
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND u.nom='$nom' AND u.prenom='$prenom'" ;
+								AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'" ;
 								
 						$res_statut3 = mysql_query($req_statut3) ;
 						
@@ -326,17 +320,15 @@ elseif ($id_role_co == 1 or $id_role_co == 2)
 	
 				## Profil à remplir ou recherche d'emploi ## --> rien à afficher
 	
-		echo "<p>Date d'inscription : $date_inscription <br/>
-		Date de mise à jour du profil : $date_maj_profil</p>";	
+		echo "<p>Date d'inscription : $cherche_date_inscription <br/>
+		Date de mise à jour du profil : $cherche_date_maj_profil</p>";	
 }
 
  
 		
 		}	
 	
-		debutmenu();
-		echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";	
-		finmenu();
+afficheMenu($id_role);
 		} 
 }
 
