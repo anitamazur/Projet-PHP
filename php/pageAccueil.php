@@ -13,7 +13,7 @@ session_start() ;
 $_SESSION['nom'] = $nom;
 $_SESSION['prenom'] = $prenom;
 $_SESSION['naissance'] = $naissance;
-#$_SESSION['pass'] = $pass;
+$_SESSION['pass'] = $pass;
 $_SESSION['mail'] = $mail;
 
 $connexion = connexion() ; 
@@ -36,13 +36,13 @@ if(connexionUtilisateurReussie()) {
 		$res = mysql_query($req) ;
 		$ligne=mysql_fetch_object($res) ;
 		$nom = ucfirst(strtolower($ligne->nom)) ;
-		$nomPatro = $_SESSION['nomPatro'] = $ligne->nom_patronymique ;
+		$nomPatro = $ligne->nom_patronymique ;
 		$prenom = ucfirst(strtolower($ligne->prenom)) ;
-		$id_role = $ligne->id_role ;
-		$id_statut = $ligne->id_statut ;
+		$id_role = $_SESSION['id_role'] = $ligne->id_role ;
+		$id_statut = $_SESSION['id_statut'] = $ligne->id_statut ;
 		$role = $ligne->nom_role ;
 		$statut = $ligne->nom_statut ; 
-		$annee_promo = $ligne->annee_promo ;
+		$annee_promo = $_SESSION['annee_promo'] = $ligne->annee_promo ;
 		$mail = $ligne->mail ;
 		$date_inscription = date($ligne->date_inscription) ;
 		$date_inscription_plus_un_an = strtotime(date("Y-m-d", strtotime(date($ligne->date_inscription))) . " +12 month");

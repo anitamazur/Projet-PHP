@@ -4,10 +4,10 @@ session_start() ;
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
-#$salt = "ashrihgbjnbfj";
-#$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
-
+$annee_promo = $_SESSION['annee_promo'];
+$id_role = $_SESSION['id_role'];
+$id_statut = $_SESSION['id_statut'];
 
 require("fonctions.php") ;
 $connexion = connexion() ;
@@ -15,14 +15,18 @@ $connexion = connexion() ;
 debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
 
 		echo"<table border=\"1px\">
-			<th colspan=5 >Promotion</th>
+			<th colspan=\"6\">Promotion</th>
 			<tr>
-			<td>Nom</td>
-			<td>Prénom</td>
-			<td>Contact</td>
-			<td>Statut</td>
-			<td>Situation actuelle</td>
-			</tr>";
+				<td>Nom</td>
+				<td>Prénom</td>
+				<td>Contact</td>
+				<td>Statut</td>
+				<td>Situation actuelle</td>
+				<td>Email Pro</td>
+			</tr>
+			<th colspan=\"6\">$annee_promo</th>
+			<tr>
+			";
 
 $req = "SELECT * 
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -48,8 +52,6 @@ while ($ligne = mysql_fetch_object($res))
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
-				$id_role=$ligne->id_role;
-				$id_statut=$ligne->id_statut;
 				$nom_niveau = $ligne->nom_niveau ;
 				$prenom_niveau = $ligne->prenom_niveau ;
 				$mail_niveau = $ligne->mail_niveau ;
@@ -58,10 +60,7 @@ while ($ligne = mysql_fetch_object($res))
 						
 			if ($_SESSION['id_role'] == 1) 
 	{
-						echo"<th colspan=5>$ligne->annee_promo</th>";
-						echo "<tr>";
-						
-						#condition sur le nom et pr?nom
+						#condition sur le nom et prénom
 						if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 						{
 						echo "<td>$ligne->nom</td>";
@@ -196,28 +195,28 @@ while ($ligne = mysql_fetch_object($res))
 											$cp_niveau=$ligne->cp_niveau;
 											$nomPays_niveau=$ligne->nomPays_niveau;
 											
-												## condition sur le dipl?me
+												## condition sur le diplome
 											if ($diplomeEtudes_niveau == 'public')
 											{
 											echo "<td>$ligne->diplome_etudes<br/>";
 											}
 											else {echo "<td> - <br/> ";}
 											
-											## condition sur le nom de l'?tablissement
+											## condition sur le nom de l'etablissement
 											if ($nomEtablissement_niveau == 'public')
 											{
 											echo "$ligne->nom_etablissement<br/>";
 											}
 											else {echo " - <br/> ";}
 
-											## condition sur le siteweb de l'?tablissement
+											## condition sur le siteweb de l'etablissement
 											if ($sitewebEtablissement_niveau == 'public')
 											{
 											echo "$ligne->siteweb_etablissement<br/>";
 											}
 											else {echo " - <br/> ";}
 											
-											## condition sur le nom de la ville de l'?tablissement
+											## condition sur le nom de la ville de l'etablissement
 											if ($nomVille_niveau == 'public')
 											{
 											echo "$ligne->nom_ville<br/>";
@@ -231,7 +230,7 @@ while ($ligne = mysql_fetch_object($res))
 											}
 											else {echo "  - <br/> ";}
 										
-											## condition sur le pays de l'?tablissement
+											## condition sur le pays de l'etablissement
 											if ($nomPays_niveau == 'public')
 											{
 											echo "$ligne->nom_pays</td>";
@@ -254,15 +253,11 @@ while ($ligne = mysql_fetch_object($res))
 					 } }
 
 	  echo "</table>";	
-
-	debutmenu();
-	echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
-	finmenu();
 	
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	  
-	  
+	  afficheMenu($id_role);
 	  finhtml();
 	  
 	  mysql_close();
