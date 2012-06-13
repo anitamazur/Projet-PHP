@@ -1,53 +1,80 @@
 <?php
-	
-session_start() ;
-$nom = $_SESSION['nom'];
-$prenom = $_SESSION['prenom'];
-$naissance = $_SESSION['naissance'];
-#$salt = "ashrihgbjnbfj";
-#$pass = crypt($_SESSION['pass'], $salt);
-$mail = $_SESSION['mail'] ;
-	
+ob_end_clean();
 require('fpdf.php');
-require ('fonctions.php');
-	
-$pdf=new FPDF('P','cm','A4');
-    
-//Titres des colonnes
-$header=array('Nom','Prenom','Ann�e_Promo','Role');
-$pdf->SetFont('Arial','B',12);
-$pdf->AddPage();
-$pdf->SetFillColor(96,96,96);
-$pdf->SetTextColor(255,255,255);
-
-$connexion=connexion();
-    
-$query="SELECT *
+session_start() ;
+ 
+#$nom = $_SESSION['nom'];
+#$prenom = $_SESSION['prenom'];
+ 
+ 
+class PDF extends FPDF
+{
+// En-tête
+function Header()
+{
+    // Logo
+    #$this->Image('logo.png',10,6,30);
+    // Police Arial gras 15
+    $this->SetFont('Arial','B',15);
+    // Décalage à droite
+    $this->Cell(80);
+    // Titre
+    $this->Cell(30,10,'Mon profil',1,0,'C');
+    // Saut de ligne
+    $this->Ln(20);
+}
+ 
+// Pied de page
+function Footer()
+{
+    // Positionnement à 1,5 cm du bas
+    $this->SetY(-15);
+    // Police Arial italique 8
+    $this->SetFont('Arial','I',8);
+ 
+}
+}
+ 
+$serveurBD = "localhost"; 
+    $nomUtilisateur = "root"; 
+    $motDePasse = "123456"; 
+    $baseDeDonnees = "annuaire_defi"; 
+ 
+    $idConnexion = mysql_connect($serveurBD,
+                                 $nomUtilisateur,
+                                 $motDePasse);
+ 
+    #if ($idConnexion !== FALSE) echo "Connexion au serveur reussie<br/>";
+    #else echo "Echec de connexion au serveur<br/>";
+ 
+    $connexionBase = mysql_select_db($baseDeDonnees);
+ 
+$resultat=mysql_query ("SELECT *
 FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa
 WHERE u.id = ru.id_utilisateur
 AND u.id = sa.id_utilisateur
 AND r.id = ru.id_role
 AND s.id = sa.id_statut
-AND u.nom='$nom' AND u.prenom='$prenom'";
-$resultat=mysql_query($query);
-
-$pdf->SetXY(4,4);
-for($i=0;$i<sizeof($header);$i++)
-$pdf->cell(5,1,$header[$i],1,0,'C',1);
-$pdf->SetFillColor(0xdd,0xdd,0xdd);
-$pdf->SetTextColor(0,0,0);
-$pdf->SetFont('Arial','',10);
-$pdf->SetXY(4,$pdf->GetY()+1);
-$fond=0;
-
-while($row=mysql_fetch_array($resultat))
-{$pdf->cell(5,0.7,$row['nom'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['prenom'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['annee_promo'],1,0,'C',$fond);
-$pdf->cell(5,0.7,$row['nom_role'],1,0,'C',$fond);
-$pdf->SetXY(4,$pdf->GetY()+0.7);
-$fond=!$fond;
- }
-$pdf->output();
-
-    ?>
+");
+ 
+ #AND u.nom='$nom' AND u.prenom='$prenom'
+ 
+ 
+// Instanciation de la classe dérivée
+ 
+$pdf = new PDF();
+$pdf->AddPage();
+$pdf->SetFont('Times','',12);
+ 
+while($row=mysql_fetch_assoc($resultat))
+{
+ 
+$pdf->cell(0,10,$row["nom"],0,1);
+$pdf->cell(0,10,$row["prenom"],0,1);
+$pdf->cell(0,10,$row["annee_promo"],0,1);
+$pdf->cell(0,10,$row["nom_role"],0,1);
+}
+ 
+ 
+$pdf->Output();
+?>
