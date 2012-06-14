@@ -73,13 +73,13 @@ if(connexionUtilisateurReussie()) {
             AND u.nom='$nom' AND u.prenom='$prenom' AND u.naissance='$naissance'" ;
         $res = mysql_query($req) ;
         $ligne=mysql_fetch_object($res) ;
-        $nom = ucfirst(strtolower($ligne->nom)) ;
-        $prenom = ucfirst(strtolower($ligne->prenom)) ;     
-        $role = $ligne->nom_role ;
+        $nom = $_SESSION['nom'] = ucfirst(strtolower($ligne->nom)) ;
+        $prenom = $_SESSION['prenom'] = ucfirst(strtolower($ligne->prenom)) ;     
+        $role = $_SESSION['nom_role'] = $ligne->nom_role ;
         $annee_promo = $ligne->annee_promo ;
-        $mail = $ligne->mail ;
-        $date_inscription = date($ligne->date_inscription) ;
-        $date_maj_profil = date($ligne->date_maj_profil) ;
+        $mail = $_SESSION['mail'] = $ligne->mail ;
+        $date_inscription = $_SESSION['date_inscription'] = date($ligne->date_inscription) ;
+        $date_maj_profil = $_SESSION['date_maj_profil'] = date($ligne->date_maj_profil) ;
         echo "<p>$nom $prenom</p>
         <p><strong>$role</strong></p>
         <p><strong>Année de la promotion</strong> : $annee_promo</p>
@@ -99,12 +99,12 @@ if(connexionUtilisateurReussie()) {
             AND u.nom='$nom' AND u.prenom='$prenom' AND u.naissance='$naissance'" ;
         $res = mysql_query($req) ;
         $ligne=mysql_fetch_object($res) ;
-        $nom = ucfirst(strtolower($ligne->nom)) ;
-        $prenom = ucfirst(strtolower($ligne->prenom)) ;
-        $role = $ligne->nom_role ;
-        $mail = $ligne->mail ;
-        $date_inscription = date($ligne->date_inscription) ;
-        $date_maj_profil = date($ligne->date_maj_profil) ;
+        $nom = $_SESSION['nom'] = ucfirst(strtolower($ligne->nom)) ;
+        $prenom = $_SESSION['prenom'] = ucfirst(strtolower($ligne->prenom)) ;
+        $role = $_SESSION['nom_role'] = $ligne->nom_role ;
+        $mail = $_SESSION['mail'] = $ligne->mail ;
+        $date_inscription = $_SESSION['date_inscription'] = date($ligne->date_inscription) ;
+        $date_maj_profil = $_SESSION['date_maj_profil'] = date($ligne->date_maj_profil) ;
         echo "<p>$nom $prenom</p>
         <p><strong>$role</strong></p>
         <p><strong>Adresse mail</strong> : $mail </p>
