@@ -34,6 +34,7 @@ if(connexionUtilisateurReussie()) {
         $nom = ucfirst(strtolower($ligne->nom)) ;
         $nomPatro = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique ;
         $prenom = ucfirst(strtolower($ligne->prenom)) ;
+        $mail_pro = $_SESSION['mail_pro'] = $ligne->mail_pro;
         $id_role = $_SESSION['id_role'] = $ligne->id_role ;
         $id_statut = $_SESSION['id_statut'] = $ligne->id_statut ;
         $role = $_SESSION['nom_role'] = $ligne->nom_role ;
