@@ -253,6 +253,7 @@ if(isset($_POST['modifier'])) {
             $req_statut3 = "SELECT * FROM utilisateur AS u, etudes AS 
             e, etudes_utilisateur AS eu WHERE u.id = eu.id_utilisateur 
             AND e.id = eu.id_etudes AND u.nom='$nom' AND u.prenom='$prenom'";
+
             
             #$req_statut3 = "SELECT * 
             #            FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
@@ -278,7 +279,7 @@ if(isset($_POST['modifier'])) {
             $code_postal_etab = $ligne->cp;
             $pays_etab = $ligne->nom_pays;
             
-            if ($diplome == "") {
+            if (mysql_num_rows($res_statut3) == 0) {
                 $res_modif = mysql_query ("INSERT INTO 
                 etudes (diplome_etudes, diplomeEtudes_niveau) VALUES 
                 ('$diplome_modif', $affichage_diplome_modif)");
@@ -287,9 +288,11 @@ if(isset($_POST['modifier'])) {
                 etudes_utilisateur (id_utilisateur, id_etudes) VALUES 
                 ($id_utilisateur, $id_etudes)");
                 
-            } elseif ($diplome != "" && $diplome_modif != $diplome) {
+            } elseif ($diplome_modif != $diplome) {
                 $res_modif = mysql_query ("UPDATE etudes, 
                 etudes_utilisateur SET diplome_etudes = '$diplome_modif' WHERE etudes_utilisateur.id_utilisateur  = $id_utilisateur AND etudes.id = etudes_utilisateur.id_etudes");
+                $diplome = $diplome_modif;
+                
             }
     
             if ($affichage_diplome_modif == 1){
