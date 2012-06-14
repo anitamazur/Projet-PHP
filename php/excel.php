@@ -30,7 +30,7 @@ $excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t si
 while($row = mysql_fetch_array($result)) {
 		$id_role = $row['id_role'];
 	
-        $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[nom_role] \n";
+        $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[mail] \t $row[nom_role] \n";
 	
 	if ($id_role == 1)
 	{
