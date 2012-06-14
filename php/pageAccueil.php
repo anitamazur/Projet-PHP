@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once("fonctions.php") ;
 
 $nom = $_POST['nom'] ;
@@ -10,7 +10,11 @@ $salt = "ashrihgbjnbfj";
 $pass = crypt($_POST['mdp'], $salt);
 
 session_start() ;
-
+$_SESSION['nom'] = $nom;
+$_SESSION['prenom'] = $prenom;
+$_SESSION['naissance'] = $naissance;
+$_SESSION['pass'] = $pass;
+$_SESSION['mail'] = $mail;
 
 $connexion = connexion() ; 
 
@@ -31,13 +35,13 @@ if(connexionUtilisateurReussie()) {
             AND u.nom='$nom' AND u.prenom='$prenom' AND u.naissance='$naissance'" ;
         $res = mysql_query($req) ;
         $ligne=mysql_fetch_object($res) ;
-        $nom = ucfirst(strtolower($ligne->nom)) ;
+        $nom = $_SESSION['nom'] = ucfirst(strtolower($ligne->nom)) ;
         $nomPatro = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique ;
-        $prenom = ucfirst(strtolower($ligne->prenom)) ;
-        $mail_pro = $_SESSION['mail_pro'] = $ligne->mail_pro;
+        $prenom = $_SESSION['prenom'] = ucfirst(strtolower($ligne->prenom)) ;
         $id_role = $_SESSION['id_role'] = $ligne->id_role ;
         $id_statut = $_SESSION['id_statut'] = $ligne->id_statut ;
         $role = $_SESSION['nom_role'] = $ligne->nom_role ;
+        $mail_pro = $_SESSION['mail_pro'] = $ligne->mail_pro ;
         $statut = $_SESSION['nom_statut'] = $ligne->nom_statut ; 
         $annee_promo = $_SESSION['annee_promo'] = $ligne->annee_promo ;
         $mail = $_SESSION['mail'] = $ligne->mail ;
