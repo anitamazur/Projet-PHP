@@ -22,7 +22,7 @@ $connexion = connexion() ;
 if(connexionUtilisateurReussie()) {
     debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
     affichetitre("Vos informations personnelles :","3") ;
-    $id_utilisateur = getID($nom, $prenom, $mail);
+    $id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
     $id_role = role($id_utilisateur);
     $id_statut = statut($id_utilisateur);
     if ($id_role == 1) {
