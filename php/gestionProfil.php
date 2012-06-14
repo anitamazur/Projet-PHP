@@ -248,9 +248,48 @@ if(isset($_POST['modifier'])) {
             $affichage_codePostalEtab_modif = stripslashes($_POST['affichage_code_postal_etab']);
             $affichage_villeEtab_modif = stripslashes($_POST['affichage_ville_etab']);
             $affichage_paysEtab_modif = stripslashes($_POST['affichage_pays_etab']);
-        
-            if ($diplome_modif!=""){
-                $res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etudes AS e, etudes_utilisateur AS eu SET diplome_etudes='$diplome_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur u.id = eu.id_utilisateur AND e.id = eu.id_poste AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
+            
+            
+            $req_statut3 = "SELECT * FROM utilisateur AS u, etudes AS 
+            e, etudes_utilisateur AS eu WHERE u.id = eu.id_utilisateur 
+            AND e.id = eu.id_etudes AND u.nom='$nom' AND u.prenom='$prenom'";
+            
+            #$req_statut3 = "SELECT * 
+            #            FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
+            #            WHERE u.id = eu.id_utilisateur
+            #            AND u.id = etau.id_utilisateur
+            #            AND e.id = eu.id_etudes
+            #            AND eta.id = etau.id_etablissement
+            #            AND eta.id = etav.id_etablissement
+            #            AND v.id = vp.id_ville
+            #            AND v.id = etav.id_ville
+            #            AND p.id = vp.id_pays
+            #            AND u.nom='$nom' AND u.prenom='$prenom'" ;
+                        
+
+                           
+            $res_statut3 = mysql_query($req_statut3) ;
+            $ligne=mysql_fetch_object($res_statut3) ;
+            $diplome = $ligne->diplome_etudes;
+
+            $etab = $ligne->nom_etablissement;
+            $web_etab = $ligne->siteweb_etablissement;
+            $ville_etab = $ligne->nom_ville ;
+            $code_postal_etab = $ligne->cp;
+            $pays_etab = $ligne->nom_pays;
+            
+            if ($diplome == "") {
+                $res_modif = mysql_query ("INSERT INTO 
+                etudes (diplome_etudes, diplomeEtudes_niveau) VALUES 
+                ('$diplome_modif', $affichage_diplome_modif)");
+                $id_etudes = mysql_insert_id();
+                $rel_etudes = mysql_query ("INSERT INTO 
+                etudes_utilisateur (id_utilisateur, id_etudes) VALUES 
+                ($id_utilisateur, $id_etudes)");
+                
+            } elseif ($diplome != "" && $diplome_modif != $diplome) {
+                $res_modif = mysql_query ("UPDATE etudes, 
+                etudes_utilisateur SET diplome_etudes = '$diplome_modif' WHERE etudes_utilisateur.id_utilisateur  = $id_utilisateur AND etudes.id = etudes_utilisateur.id_etudes");
             }
     
             if ($affichage_diplome_modif == 1){
@@ -317,7 +356,8 @@ if(isset($_POST['modifier'])) {
         $prenom_modif = stripslashes($_POST['prenom']);
         $naissance_modif = stripslashes($_POST['naissance']);
         $mdp_modif = $_POST['mdp'];
-    
+        
+ 
         if ($mail_modif!=""){
             $res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS ru SET mail='$mail_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND u.id = '$id_utilisateur'");
             if($res_modif) {
@@ -509,27 +549,7 @@ if(connexionUtilisateurReussie()) {
                 </fieldset>
                 ";
         } else if ($id_statut == 3) {
-            $req_statut3 = "SELECT * 
-                            FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-                            WHERE u.id = eu.id_utilisateur
-                            AND u.id = etau.id_utilisateur
-                            AND e.id = eu.id_etudes
-                            AND eta.id = etau.id_etablissement
-                            AND eta.id = etav.id_etablissement
-                            AND v.id = vp.id_ville
-                            AND v.id = etav.id_ville
-                            AND p.id = vp.id_pays
-                            AND u.nom='$nom' AND u.prenom='$prenom'" ;
-                                
-            $res_statut3 = mysql_query($req_statut3) ;
-                 
-            $diplome = $ligne->diplome_etudes;
-            $etab = $ligne->nom_etablissement;
-            $web_etab = $ligne->siteweb_etablissement;
-            $ville_etab = $ligne->nom_ville ;
-            $code_postal_etab = $ligne->cp;
-            $pays_etab = $ligne->nom_pays;
-            
+         
             echo"
                 <fieldset>
                     <legend>Formation :</legend>
