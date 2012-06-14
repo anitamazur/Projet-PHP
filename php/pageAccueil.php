@@ -23,8 +23,8 @@ if(connexionUtilisateurReussie()) {
     debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
     affichetitre("Vos informations personnelles :","3") ;
     $id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
-    $id_role = role($id_utilisateur);
-    $id_statut = statut($id_utilisateur);
+    $id_role = $_SESSION['id_role'] = role($id_utilisateur);
+    $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
     if ($id_role == 1) {
         $req = "SELECT * 
             FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -38,8 +38,6 @@ if(connexionUtilisateurReussie()) {
         $nom = $_SESSION['nom'] = ucfirst(strtolower($ligne->nom)) ;
         $nomPatro = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique ;
         $prenom = $_SESSION['prenom'] = ucfirst(strtolower($ligne->prenom)) ;
-        $id_role = $_SESSION['id_role'] = $ligne->id_role ;
-        $id_statut = $_SESSION['id_statut'] = $ligne->id_statut ;
         $role = $_SESSION['nom_role'] = $ligne->nom_role ;
         $mail_pro = $_SESSION['mail_pro'] = $ligne->mail_pro ;
         $statut = $_SESSION['nom_statut'] = $ligne->nom_statut ; 
