@@ -34,7 +34,7 @@ $connexion = connexion();
             if(mysql_num_rows($res) > 0)
                 {
             $ligne=mysql_fetch_object($res) ;
- 			$cherche_id= $ligne->id ;
+				$cherche_id= $ligne->id ;
                 $cherche_id_role = $ligne->id_role ;
                 #$cherche_id_statut = $ligne->id_statut ;
                 $cherche_role = $ligne->nom_role ;
@@ -725,8 +725,9 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                                 }
                             } }
                             
-                        echo "</tr>";
-                     }
+                       
+                     } }
+					  echo "</tr>";
  }
 
       echo "</table>";
