@@ -18,7 +18,7 @@ debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
 			<th colspan=\"6\">Promotion</th>
 			<tr>
 				<td>Nom</td>
-				<td>Pr�nom</td>
+				<td>Pr?nom</td>
 				<td>Contact</td>
 				<td>Statut</td>
 				<td>Situation actuelle</td>
@@ -54,7 +54,7 @@ while ($ligne = mysql_fetch_object($res))
 						
 			if ($_SESSION['id_role'] == 1) 
 	{
-						#condition sur le nom et pr�nom
+						#condition sur le nom et pr?nom
 						if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 						{
 						echo "<td>$ligne->nom</td>";
@@ -109,6 +109,7 @@ while ($ligne = mysql_fetch_object($res))
 								AND e.id = ev.id_entreprise
 								AND vi.id = ev.id_entreprise
 								AND vi.id = vp.id_ville
+								AND ru.id_role = '$id_role'
 								AND pa.id = vp.id_pays AND sa.id_statut = '$id_statut' AND u.annee_promo = '$annee_promo'";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
@@ -188,6 +189,7 @@ while ($ligne = mysql_fetch_object($res))
 								AND eta.id = etav.id_etablissement
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
+								AND ru.id_role = '$id_role'
 								AND p.id = vp.id_pays AND sa.id_statut = '$id_statut' AND u.annee_promo = '$annee_promo'" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
@@ -259,7 +261,7 @@ while ($ligne = mysql_fetch_object($res))
 
 	  echo "</table>";	
 	
-	echo "<p>Si vous rencontrez des probl�mes n'h�sitez pas � <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	echo "<p>Si vous rencontrez des probl?mes n'h?sitez pas ? <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	  
 	  afficheMenu($id_role);
