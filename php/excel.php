@@ -64,7 +64,7 @@ $res = mysql_query("SELECT *
 							AND vi.id = vp.id_ville
 							AND pa.id = vp.id_pays
 							AND u.id = sa.id_utilisateur
-							AND sa.id_statut = '$id_statut'");
+							AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role'");
 					
 					
 					
@@ -90,7 +90,7 @@ $res = mysql_query("SELECT *
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
 								AND u.id = sa.id_utilisateur
-								AND sa.id_statut = '$id_statut'" );
+								AND sa.id_statut = '$id_statut'AND ru.id_role = '$id_role' " );
 						
 						while ($row = mysql_fetch_object($res_statut3)) {
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
@@ -101,9 +101,7 @@ $res = mysql_query("SELECT *
 			
 			
 			}
-		
-	
-	
+
 } }
  
 header("Content-type: application/vnd.ms-excel");
