@@ -1,4 +1,4 @@
-﻿<?php
+<?php
  session_start();
  
 $nom = $_SESSION['nom'];
@@ -26,9 +26,7 @@ $connexion = connexion();
             $req = "SELECT * 
             FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
             WHERE u.id = ru.id_utilisateur
-            AND u.id = sa.id_utilisateur
             AND r.id = ru.id_role
-            AND s.id = sa.id_statut
             AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom' " ;
 
             $res = mysql_query($req) ;
@@ -36,10 +34,11 @@ $connexion = connexion();
             if(mysql_num_rows($res) > 0)
                 {
             $ligne=mysql_fetch_object($res) ;
+ 			$cherche_id= $ligne->id ;
                 $cherche_id_role = $ligne->id_role ;
-                $cherche_id_statut = $ligne->id_statut ;
+                #$cherche_id_statut = $ligne->id_statut ;
                 $cherche_role = $ligne->nom_role ;
-                $cherche_statut = $ligne->nom_statut ; 
+                #$cherche_statut = $ligne->nom_statut ; 
                 $cherche_annee_promo = $ligne->annee_promo ;
                 $cherche_mail = $ligne->mail ;
                 $cherche_mail_pro = $ligne->mail_pro ;
@@ -57,6 +56,19 @@ if ($id_role == 3 or $id_role == 4)
 ## si l'utilisateur est : ancien étudiant 
     if ($cherche_id_role == 1)
     {       
+		$res_statut = mysql_query ("SELECT * 
+ 									FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+										WHERE u.id = ru.id_utilisateur
+										AND u.id = sa.id_utilisateur
+										AND r.id = ru.id_role
+										AND s.id = sa.id_statut
+										AND ru.id_role = '$cherche_id_role' AND u.id = '$cherche_id';");
+			
+			if(mysql_num_rows($res_statut) > 0)
+                {
+            $ligne=mysql_fetch_object($res) ;
+				$cherche_id_statut= $ligne->id_statut ;
+				$cherche_statut= $ligne->nom_statut ;	
         
         affichetitre ("$cherche_nom $cherche_prenom","3");
         echo "<p>Année de la promotion : $cherche_annee_promo <br/>
@@ -69,18 +81,19 @@ if ($id_role == 3 or $id_role == 4)
                     {
         
                     $req_statut2="SELECT *
-                            FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
-                            WHERE u.id = pu.id_utilisateur
-                            AND u.id = eu.id_utilisateur
-                            AND p.id = pu.id_poste
-                            AND p.id = pde.id_poste
-                            AND e.id = eu.id_entreprise
-                            AND e.id = pde.id_entreprise
-                            AND e.id = ev.id_entreprise
-                            AND vi.id = ev.id_entreprise
-                            AND vi.id = vp.id_ville
-                            AND pa.id = vp.id_pays
-                            AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'";
+								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
+								WHERE u.id = pu.id_utilisateur
+								AND u.id = eu.id_utilisateur
+								AND u.id = sa.id_utilisateur
+								AND p.id = pu.id_poste
+								AND p.id = pde.id_poste
+								AND e.id = eu.id_entreprise
+								AND e.id = pde.id_entreprise
+								AND e.id = ev.id_entreprise
+								AND vi.id = ev.id_entreprise
+								AND vi.id = vp.id_ville
+								AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
+								AND u.id = '$cherche_id'";
                     
                     $res_statut2 = mysql_query($req_statut2) ;
                     
@@ -99,16 +112,18 @@ if ($id_role == 3 or $id_role == 4)
                 elseif ($id_statut == 3) 
                     {       
                         $req_statut3 = "SELECT * 
-                                FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-                                WHERE u.id = eu.id_utilisateur
-                                AND u.id = etau.id_utilisateur
-                                AND e.id = eu.id_etudes
-                                AND eta.id = etau.id_etablissement
-                                AND eta.id = etav.id_etablissement
-                                AND v.id = vp.id_ville
-                                AND v.id = etav.id_ville
-                                AND p.id = vp.id_pays
-                                AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'" ;
+								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
+								WHERE u.id = eu.id_utilisateur
+								WHERE u.id = sa.id_utilisateur
+								AND u.id = etau.id_utilisateur
+								AND e.id = eu.id_etudes
+								AND eta.id = etau.id_etablissement
+								AND eta.id = etav.id_etablissement
+								AND v.id = vp.id_ville
+								AND v.id = etav.id_ville
+								AND p.id = vp.id_pays
+                                AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
+								AND u.id = '$cherche_id'" ;
                                 
                         $res_statut3 = mysql_query($req_statut3) ;
                         
@@ -120,14 +135,14 @@ if ($id_role == 3 or $id_role == 4)
                                 echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays";
                             
                             }
-                }
+                } 
     
                 ## Profil à remplir ou recherche d'emploi ## --> rien à afficher
     
         echo "<p>Date d'inscription : $cherche_date_inscription <br/>
         Date de mise à jour du profil : $cherche_date_maj_profil</p>";  
 }
-
+}
  
         }
     
@@ -138,7 +153,8 @@ elseif ($id_role == 1 or $id_role == 2)
             
 ## si l'utilisateur est : ancien étudiant 
     if ($cherche_id_role == 1)
-    {       
+    {     
+
         ## condition sur le nom et le prénom ##
         if ($nom_niveau == 'public' && $prenom_niveau == 'public') {
             affichetitre ("$cherche_nom $cherche_prenom","3");
@@ -162,6 +178,21 @@ elseif ($id_role == 1 or $id_role == 2)
         echo "Adresse mail professionnelle : $cherche_mail_pro ";
         }
         else {echo " ";}
+		
+		
+		$res_statut = mysql_query ("SELECT * 
+ 									FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+										WHERE u.id = ru.id_utilisateur
+										AND u.id = sa.id_utilisateur
+										AND r.id = ru.id_role
+										AND s.id = sa.id_statut
+										AND ru.id_role = '$cherche_id_role' AND u.id = '$cherche_id';");
+			
+			if(mysql_num_rows($res_statut) > 0)
+                {
+            $ligne=mysql_fetch_object($res) ;
+				$cherche_id_statut= $ligne->id_statut ;
+				$cherche_statut= $ligne->nom_statut ;
         
         echo "<p>$statut</p>";
     
@@ -170,18 +201,19 @@ elseif ($id_role == 1 or $id_role == 2)
                 {
         
                     $req_statut2="SELECT *
-                            FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
-                            WHERE u.id = pu.id_utilisateur
-                            AND u.id = eu.id_utilisateur
-                            AND p.id = pu.id_poste
-                            AND p.id = pde.id_poste
-                            AND e.id = eu.id_entreprise
-                            AND e.id = pde.id_entreprise
-                            AND e.id = ev.id_entreprise
-                            AND vi.id = ev.id_entreprise
-                            AND vi.id = vp.id_ville
-                            AND pa.id = vp.id_pays
-                            AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'";
+								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
+								WHERE u.id = pu.id_utilisateur
+								AND u.id = eu.id_utilisateur
+								AND u.id = sa.id_utilisateur
+								AND p.id = pu.id_poste
+								AND p.id = pde.id_poste
+								AND e.id = eu.id_entreprise
+								AND e.id = pde.id_entreprise
+								AND e.id = ev.id_entreprise
+								AND vi.id = ev.id_entreprise
+								AND vi.id = vp.id_ville
+								AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
+								AND u.id = '$cherche_id''";
                     
                     $res_statut2 = mysql_query($req_statut2) ;
                     
@@ -250,16 +282,18 @@ elseif ($id_role == 1 or $id_role == 2)
                 elseif ($cherche_id_statut == 3) 
                     {       
                         $req_statut3 = "SELECT * 
-                                FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-                                WHERE u.id = eu.id_utilisateur
-                                AND u.id = etau.id_utilisateur
-                                AND e.id = eu.id_etudes
-                                AND eta.id = etau.id_etablissement
-                                AND eta.id = etav.id_etablissement
-                                AND v.id = vp.id_ville
-                                AND v.id = etav.id_ville
-                                AND p.id = vp.id_pays
-                                AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'" ;
+								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
+								WHERE u.id = eu.id_utilisateur
+								WHERE u.id = sa.id_utilisateur
+								AND u.id = etau.id_utilisateur
+								AND e.id = eu.id_etudes
+								AND eta.id = etau.id_etablissement
+								AND eta.id = etav.id_etablissement
+								AND v.id = vp.id_ville
+								AND v.id = etav.id_ville
+								AND p.id = vp.id_pays
+                                AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
+								AND u.id = '$cherche_id'" ;
                                 
                         $res_statut3 = mysql_query($req_statut3) ;
                         
@@ -321,7 +355,7 @@ elseif ($id_role == 1 or $id_role == 2)
     
         echo "<p>Date d'inscription : $cherche_date_inscription <br/>
         Date de mise à jour du profil : $cherche_date_maj_profil</p>";  
-}
+} }
 
  
         
@@ -354,17 +388,15 @@ afficheMenu($id_role);
             <tr>";
             
     $res_p = mysql_query("SELECT *          
-                    FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+                    FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
                     WHERE u.id = ru.id_utilisateur
-                    AND u.id = sa.id_utilisateur
                     AND r.id = ru.id_role
-                    AND s.id = sa.id_statut
                     AND u.annee_promo = '$cherche_annee_promo'");
                     
 
 while ($ligne = mysql_fetch_object($res_p)) {
                         $cherche_id_role=$ligne->id_role;
-                        $cherche_id_statut=$ligne->id_statut;
+                        #$cherche_id_statut=$ligne->id_statut;
                         $nom_niveau = $ligne->nom_niveau ;
                         $prenom_niveau = $ligne->prenom_niveau ;
                         $mail_niveau = $ligne->mail_niveau ;
@@ -372,33 +404,52 @@ while ($ligne = mysql_fetch_object($res_p)) {
 
 ## si l'utilisateur connecté est : enseignant ou admin ##                       
 if ($id_role == 3 or $id_role == 4)
-    {
+    {	
+	
                         echo "<td>$ligne->nom</td>";
                         echo "<td>$ligne->prenom</td>";
                         echo "<td>$ligne->mail<br/>";
                         echo "$ligne->mail_pro</td>";
                         echo "<td>$ligne->nom_role</td>";
                             
+					
                         ## si ancien etudiant ##
                         if ($cherche_id_role ==1 )
                         {
+						$res_statut = mysql_query ("SELECT * 
+ 									FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+										WHERE u.id = ru.id_utilisateur
+										AND u.id = sa.id_utilisateur
+										AND r.id = ru.id_role
+										AND s.id = sa.id_statut
+										AND ru.id_role = '$cherche_id_role'
+										AND u.annee_promo='$cherche_annee_promo';");
+			
+				if(mysql_num_rows($res_statut) > 0)
+                {
+            $ligne=mysql_fetch_object($res) ;
+				$cherche_id_statut= $ligne->id_statut ;
+				$cherche_statut= $ligne->nom_statut ;
+						
+						
                          # si en poste ##
                             if ($cherche_id_statut==2)
                                 {
                                 echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut2="SELECT *
-                                FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
-                                WHERE u.id = pu.id_utilisateur
-                                AND u.id = eu.id_utilisateur
-                                AND p.id = pu.id_poste
-                                AND p.id = pde.id_poste
-                                AND e.id = eu.id_entreprise
-                                AND e.id = pde.id_entreprise
-                                AND e.id = ev.id_entreprise
-                                AND vi.id = ev.id_entreprise
-                                AND vi.id = vp.id_ville
-                                AND pa.id = vp.id_pays
+								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
+								WHERE u.id = pu.id_utilisateur
+								AND u.id = eu.id_utilisateur
+								AND u.id = sa.id_utilisateur
+								AND p.id = pu.id_poste
+								AND p.id = pde.id_poste
+								AND e.id = eu.id_entreprise
+								AND e.id = pde.id_entreprise
+								AND e.id = ev.id_entreprise
+								AND vi.id = ev.id_entreprise
+								AND vi.id = vp.id_ville
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
                                 AND u.annee_promo='$cherche_annee_promo'";
         
                                 $res_statut2 = mysql_query($req_statut2) ;
@@ -419,15 +470,17 @@ if ($id_role == 3 or $id_role == 4)
                                 echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut3 = "SELECT * 
-                                FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-                                WHERE u.id = eu.id_utilisateur
-                                AND u.id = etau.id_utilisateur
-                                AND e.id = eu.id_etudes
-                                AND eta.id = etau.id_etablissement
-                                AND eta.id = etav.id_etablissement
-                                AND v.id = vp.id_ville
-                                AND v.id = etav.id_ville
-                                AND p.id = vp.id_pays
+								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
+								WHERE u.id = eu.id_utilisateur
+								WHERE u.id = sa.id_utilisateur
+								AND u.id = etau.id_utilisateur
+								AND e.id = eu.id_etudes
+								AND eta.id = etau.id_etablissement
+								AND eta.id = etav.id_etablissement
+								AND v.id = vp.id_ville
+								AND v.id = etav.id_ville
+								AND p.id = vp.id_pays
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
                                 AND u.annee_promo='$cherche_annee_promo'" ;
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
@@ -447,7 +500,7 @@ if ($id_role == 3 or $id_role == 4)
                                 echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
                                 }
-                            }
+                            } }
                             
                         echo "</tr>";
                      }
@@ -482,23 +535,39 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                         ## si ancien etudiant ##
                         if ($cherche_id_role ==1 )
                         {
+						$res_statut = mysql_query ("SELECT * 
+ 									FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+										WHERE u.id = ru.id_utilisateur
+										AND u.id = sa.id_utilisateur
+										AND r.id = ru.id_role
+										AND s.id = sa.id_statut
+										AND ru.id_role = '$cherche_id_role'
+										AND u.annee_promo='$cherche_annee_promo';");
+			
+				if(mysql_num_rows($res_statut) > 0)
+                {
+            $ligne=mysql_fetch_object($res) ;
+				$cherche_id_statut= $ligne->id_statut ;
+				$cherche_statut= $ligne->nom_statut ;
+									
                          # si en poste ##
                             if ($cherche_id_statut==2)
                                 {
                                 echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut2="SELECT *
-                                FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
-                                WHERE u.id = pu.id_utilisateur
-                                AND u.id = eu.id_utilisateur
-                                AND p.id = pu.id_poste
-                                AND p.id = pde.id_poste
-                                AND e.id = eu.id_entreprise
-                                AND e.id = pde.id_entreprise
-                                AND e.id = ev.id_entreprise
-                                AND vi.id = ev.id_entreprise
-                                AND vi.id = vp.id_ville
-                                AND pa.id = vp.id_pays
+								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
+								WHERE u.id = pu.id_utilisateur
+								AND u.id = eu.id_utilisateur
+								AND u.id = sa.id_utilisateur
+								AND p.id = pu.id_poste
+								AND p.id = pde.id_poste
+								AND e.id = eu.id_entreprise
+								AND e.id = pde.id_entreprise
+								AND e.id = ev.id_entreprise
+								AND vi.id = ev.id_entreprise
+								AND vi.id = vp.id_ville
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
                                 AND u.annee_promo='$cherche_annee_promo'";
         
                                 $res_statut2 = mysql_query($req_statut2) ;
@@ -580,16 +649,17 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                                 {
                                 echo "<td>$ligne->nom_statut</td>";
                                 
-                                $req_statut3 = "SELECT * 
-                                FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-                                WHERE u.id = eu.id_utilisateur
-                                AND u.id = etau.id_utilisateur
-                                AND e.id = eu.id_etudes
-                                AND eta.id = etau.id_etablissement
-                                AND eta.id = etav.id_etablissement
-                                AND v.id = vp.id_ville
-                                AND v.id = etav.id_ville
-                                AND p.id = vp.id_pays
+                                $req_statut3 = "SSELECT * 
+								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
+								WHERE u.id = eu.id_utilisateur
+								WHERE u.id = sa.id_utilisateur
+								AND u.id = etau.id_utilisateur
+								AND e.id = eu.id_etudes
+								AND eta.id = etau.id_etablissement
+								AND eta.id = etav.id_etablissement
+								AND v.id = vp.id_ville
+								AND v.id = etav.id_ville
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
                                 AND u.annee_promo='$cherche_annee_promo'" ;
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
@@ -653,7 +723,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                                 echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
                                 }
-                            }
+                            } }
                             
                         echo "</tr>";
                      }
