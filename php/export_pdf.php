@@ -1,5 +1,5 @@
 <?php
-ob_end_clean();
+
 require('fpdf.php');
 session_start() ;
  
@@ -77,7 +77,7 @@ if ($row["id_role"]== 1)
 										AND u.id = sa.id_utilisateur
 										AND r.id = ru.id_role
 										AND s.id = sa.id_statut
-										AND ru.id_role = '$row[id_role]'");
+										AND ru.id_role = '$row[id_role]' AND u.id = '$row[id]'");
 						
 						while ($row = mysql_fetch_assoc($res)) 
 						{
@@ -99,7 +99,7 @@ if ($row["id_role"]== 1)
 								AND e.id = ev.id_entreprise
 								AND vi.id = ev.id_entreprise
 								AND vi.id = vp.id_ville
-							AND sa.statut = '$row[id_statut]'";
+							AND sa.statut = '$row[id_statut]' AND u.id = '$row[id]' ";
 					
 					$res_statut2 = mysql_query($req_statut2) ;
 					
@@ -137,7 +137,7 @@ if ($row["id_role"]== 1)
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-						AND sa.id_statut = '$row[id_statut]'" ;
+						AND sa.id_statut = '$row[id_statut]' AND u.id = '$row[id]'" ;
 						
 				$res_statut3 = mysql_query($req_statut3) ;
 			
