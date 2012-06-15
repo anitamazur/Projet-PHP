@@ -4,9 +4,10 @@ session_start() ;
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
-#$salt = "ashrihgbjnbfj";
-#$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
+$annee_promo = $_SESSION['annee_promo'];
+$id_role = $_SESSION['id_role'];
+$id_statut = $_SESSION['id_statut'];
 
 
 require_once("fonctions.php") ;
@@ -20,6 +21,7 @@ $req = "SELECT *
 	AND u.id = sa.id_utilisateur
 	AND r.id = ru.id_role
 	AND s.id = sa.id_statut
+	AND ru.id_role='$id_role' AND sa.id_statut='$id_statut'
 	AND u.nom='$nom' AND u.prenom='$prenom' " ;
 
 $res = mysql_query($req) ;
