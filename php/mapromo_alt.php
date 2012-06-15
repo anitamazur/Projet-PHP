@@ -18,7 +18,7 @@ debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
 			<th colspan=\"6\">Promotion</th>
 			<tr>
 				<td>Nom</td>
-				<td>Prénom</td>
+				<td>Prï¿½nom</td>
 				<td>Contact</td>
 				<td>Statut</td>
 				<td>Situation actuelle</td>
@@ -54,7 +54,7 @@ while ($ligne = mysql_fetch_object($res))
 						
 			if ($_SESSION['id_role'] == 1) 
 	{
-						#condition sur le nom et prénom
+						#condition sur le nom et prï¿½nom
 						if ($nom_niveau == 'public' && $prenom_niveau == 'public')
 						{
 						echo "<td>$ligne->nom</td>";
@@ -87,7 +87,7 @@ while ($ligne = mysql_fetch_object($res))
 										AND u.id = sa.id_utilisateur
 										AND r.id = ru.id_role
 										AND s.id = sa.id_statut
-										AND ru.id_role = '$id_role'");
+										AND ru.id_role = '$id_role'AND u.annee_promo = '$annee_promo'");
 						
 						while ($ligne = mysql_fetch_object($res)) 
 						{ $id_statut =$ligne->id_statut;
@@ -259,7 +259,7 @@ while ($ligne = mysql_fetch_object($res))
 
 	  echo "</table>";	
 	
-	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	echo "<p>Si vous rencontrez des problï¿½mes n'hï¿½sitez pas ï¿½ <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	  
 	  afficheMenu($id_role);
