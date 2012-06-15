@@ -21,12 +21,12 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 			<th colspan= 7 >Promotion</th>
 			<tr>
 			<td>Nom</td>
-			<td>Prénom</td>
+			<td>Prï¿½nom</td>
 			<td>Contact</td>
 			<td>Statut</td>
 			<td>Situation actuelle</td>
 			<td>Date d'inscription</td>
-			<td>Date de mise à jour du profil</td>
+			<td>Date de mise ï¿½ jour du profil</td>
 			</tr>";
 
 $res_annee = mysql_query ("select annee_promo from utilisateur");
@@ -47,6 +47,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
+				$id=$ligne->id;
 				$id_role=$ligne->id_role;
 				#$id_statut=$ligne->id_statut;
 				$mail=$ligne->mai;
@@ -88,7 +89,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 										AND u.id = sa.id_utilisateur
 										AND r.id = ru.id_role
 										AND s.id = sa.id_statut
-										AND ru.id_role = '$id_role'");
+										AND ru.id_role = '$id_role' AND u.id ='$id'");
 						
 						while ($ligne = mysql_fetch_object($res)) 
 						{ $id_statut =$ligne->id_statut;
@@ -112,7 +113,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 								AND e.id = ev.id_entreprise
 								AND vi.id = ev.id_entreprise
 								AND vi.id = vp.id_ville
-								AND pa.id = vp.id_pays AND sa.id_statut = '$id_statut'";
+								AND pa.id = vp.id_pays AND sa.id_statut = '$id_statut' AND u.id ='$id'";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -175,7 +176,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 								AND eta.id = etav.id_etablissement
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
-								AND p.id = vp.id_pays AND sa.id_statut = '$id_statut'" ;
+								AND p.id = vp.id_pays AND sa.id_statut = '$id_statut' AND u.id ='$id'" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
 								
@@ -233,7 +234,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 	echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
 	finmenu();
 	
-	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	echo "<p>Si vous rencontrez des problï¿½mes n'hï¿½sitez pas ï¿½ <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	  
 	  
