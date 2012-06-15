@@ -275,11 +275,7 @@ if(isset($_POST['modifier'])) {
             etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
             AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.nom='$nom' AND u.prenom='$prenom'";
             
-            $req_etablissement_pays = "SELECT cp FROM utilisateur AS u, etablissement AS 
-            etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
-            AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.nom='$nom' AND u.prenom='$prenom'";
-            
-            
+           
             
             $res_diplome = mysql_query($req_diplome) ;
             $ligne=mysql_fetch_object($res_diplome) ;
@@ -304,17 +300,18 @@ if(isset($_POST['modifier'])) {
             $ligne=mysql_fetch_object($res_etablissement_cp) ;
             $code_postal_etab = $ligne->cp;
             
-            $req_etablissement_pays = "SELECT nom_pays FROM ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND v.id = $id_ville";
+            $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND v.id = $id_ville";
             $res_etablissement_pays = mysql_query($req_etablissement_pays) ;
             $ligne=mysql_fetch_object($res_etablissement_pays) ;
             $pays_etab = $ligne->nom_pays;
-                          
+            $id_pays = $ligne->id;
+            
+                        
 
             
             if (mysql_num_rows($res_diplome) == 0) {
                 $res_modif = mysql_query ("INSERT INTO 
-                etudes (diplome_etudes, diplomeEtudes_niveau) VALUES 
-                ('$diplome_modif', $affichage_diplome_modif)");
+                etudes (diplome_etudes, diplomeEtudes_niveau) VALUES ('$diplome_modif', $affichage_diplome_modif)");
                 $id_etudes = mysql_insert_id();
                 $rel_etudes = mysql_query ("INSERT INTO 
                 etudes_utilisateur (id_utilisateur, id_etudes) VALUES 
@@ -381,7 +378,7 @@ if(isset($_POST['modifier'])) {
             
             
             if (mysql_num_rows($res_etablissement_cp) == 0) {
-                if (mysql_num_rows($req_etablissement_ville) == 0) {
+                if (mysql_num_rows($res_etablissement_ville) == 0) {
                     $res_modif = mysql_query ("INSERT INTO ville (nom_ville, cp, nomVille_niveau, cp_niveau) VALUES ('', $codePostalEtab_modif, 'prive', 'prive')");
                     $id_ville = mysql_insert_id();
                     if (mysql_num_rows($res_etablissement) != 0) { 
@@ -391,7 +388,7 @@ if(isset($_POST['modifier'])) {
                 
             } elseif ($codePostalEtab_modif != $code_postal_etab) {
                 $res_modif = mysql_query ("UPDATE ville SET cp = $codePostalEtab_modif WHERE ville.id = $id_ville");
-                if (mysql_num_rows($req_etablissement_ville) == 0) { 
+                if (mysql_num_rows($res_etablissement_ville) == 0) { 
                         $rel_ville = mysql_query ("INSERT INTO etablissement_ville (id_ville, id_etablissement) VALUES ($id_ville, $id_etab)");
                     }
             }
@@ -404,8 +401,20 @@ if(isset($_POST['modifier'])) {
                 $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET cp_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
             }
             
-            if ($villeEtab_modif!=""){
-                $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nom_ville ='$villeEtab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
+            
+            
+            
+            if (mysql_num_rows($res_etablissement_ville) == 0) {
+                if (mysql_num_rows($res_etablissement_ville) == 0) {
+                    $res_modif = mysql_query ("INSERT INTO ville (nom_ville, cp, nomVille_niveau, cp_niveau) VALUES ('$villeEtab_modif', 'prive', 'prive')");
+                    $id_ville = mysql_insert_id();
+                    if (mysql_num_rows($res_etablissement) != 0) { 
+                        $rel_ville = mysql_query ("INSERT INTO etablissement_ville (id_ville, id_etablissement) VALUES ($id_ville, $id_etab)");
+                    }
+                }
+                
+            } elseif ($villeEtab_modif != $ville_etab) {
+                $res_modif = mysql_query ("UPDATE ville SET nom_ville = '$villeEtab_modif' WHERE ville.id = $id_ville");
             }
         
             if ($affichage_villeEtab_modif == 1){
@@ -414,9 +423,22 @@ if(isset($_POST['modifier'])) {
                 $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomVille_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
             }
             
-            if ($paysEtab_modif!=""){
-                $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nom_pays ='$paysEtab_modif' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
+            
+            
+            
+            if (mysql_num_rows($res_etablissement_pays) == 0) {
+                $res_modif = mysql_query ("INSERT INTO pays(nom_pays, nomPays_niveau) VALUES ('$paysEtab_modif', 'prive')");
+                $id_pays = mysql_insert_id();
+                print mysql_num_rows($res_etablissement_ville);
+                if (mysql_num_rows($res_etablissement_ville) != 0) { 
+                    $rel_ville = mysql_query ("INSERT INTO ville_pays (id_ville, id_pays) VALUES ($id_ville, $id_pays)");
+                }
+                
+            } elseif ($paysEtab_modif != $pays_etab) {
+                $res_modif = mysql_query ("UPDATE pays SET nom_pays = '$paysEtab_modif' WHERE pays.id = $id_pays");
             }
+            
+
         
             if ($affichage_paysEtab_modif == 1){
                 $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, etablissement AS e, etablissement_utilisateur AS eu, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomPays_niveau ='prive' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_etablissement AND e.id = ev.id_etablissement AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
