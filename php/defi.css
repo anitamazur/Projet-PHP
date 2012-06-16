@@ -10,6 +10,15 @@ margin : 0 30px;
 font-size : 12px;
 }
 
+a:link, a:visited {
+color : #4682B4;
+}
+
+a:hover {
+color : #6a9be8;
+text-decoration : none;
+}
+
 label {
 display : block;
 }
@@ -42,9 +51,6 @@ table tr.ligne_pair {
 background : #e6e6e6;
 }
 
-form#form1, form#form2 {
-text-align : center;
-}
 
 h1 {
 color : #6a9be8;
@@ -68,6 +74,13 @@ background : white;
 
 input[type="submit"], input[type="button"] {
 background : #e8e8e8;
+border : solid #C3C3C3;
+border-width : 0px 1px 1px 1px;
+}
+
+p.submit {
+width : 70%;
+margin: auto;
 }
 
 input#delete {
