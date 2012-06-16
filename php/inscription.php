@@ -42,7 +42,7 @@
 						$affichage_nom = stripslashes($_POST['affichage_nom']);
 						$affichage_nomPatro = stripslashes($_POST['affichage_nomPatro']);
 						$affichage_prenom = stripslashes($_POST['affichage_prenom']);
-					
+						$affichage_naissance = stripslashes($_POST['affichage_naissance']);
 					
 					if($nom != "") {
 						if ($affichage_nom == 1) {
@@ -84,13 +84,6 @@
 						}
 					}
 					
-					if($mailPro != "") {
-						if ($affichage_mailPro == 1) {
-							$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('prive')");
-						} else {
-							$res_mp=mysql_query("INSERT INTO utilisateur (mailPro_niveau) VALUES ('public')");
-						}
-					}
 				}
 					
 				} else {
@@ -107,6 +100,8 @@
     echo $message_ajout ;
  ?>
             <p>* : champs obligatoires</p>
+            <p>Les options d'affichage ne concernent que les anciens étudiants.
+            Les données des étudiants actuels resteront privées</p>
             <form id="inscription" action="inscription.php" method="post">
                 <fieldset>
                     <legend>Inscription en tant que :</legend>
@@ -124,47 +119,47 @@
                     <p>
                         <label for="nom">Nom * : </label>
                         <input type="text" id="nom" name="nom" />
-                        <select name=\"affichage_nom\">
-			<option value=\"1\">Affichage privé</option>
-			<option value=\"2\">Affichage public</option>
-			</select>
+                        <select name="affichage_nom">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage public</option>
+					</select>
                     </p>
                     <p>
                         <label for="nomPatro">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
                         <input type="text" id="nomPatro" name="nomPatro" />
-                        <select name=\"affichage_nomPatro\">
-			<option value=\"1\">Affichage privé</option>
-			<option value=\"2\">Affichage public</option>
-			</select>
+                        <select name="affichage_nomPatro">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage public</option>
+						</select>
                     </p>
                     <p>
                         <label for="prenom">Prénom * : </label>
                         <input type="text" name="prenom" id="prenom" />
-                        <select name=\"affichage_prenom\">
-			<option value=\"1\">Affichage privé</option>
-			<option value=\"2\">Affichage public</option>
-			</select>
+                        <select name="affichage_prenom">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage public</option>
+						</select>
                     </p>
                     <p>
                         <label for="naissance">Date de naissance * : </label>
                         <input type="text" id="naissance" name="naissance" />
                         (format : yyyy-mm-dd)
-                        <select name=\"affichage_naissance\">
-			<option value=\"1\">Affichage privé</option>
-			<option value=\"2\">Affichage public</option>
-			</select>
+                        <select name="affichage_naissance">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage public</option>
+						</select>
                     </p>
                     <p>
                         <label for="anneePromo">Année d'obtention du M2 DEFI (pour anciens étudiants) ou année d'inscription au M2 DEFI (pour étudiants actuels)* : </label>
                         <input type="text" name="anneePromo" id="anneePromo" />
-                        </p>
+                    </p>
                     <p>
-                        <label for="mail">Adresse E-Mail (restera confidentiel) * : </label>
+                        <label for="mail">Adresse E-Mail * : </label>
                         <input type="text" id="mail" name="mail" />
-                        <select name=\"affichage_mail\">
-			<option value=\"1\">Affichage privé</option>
-			<option value=\"2\">Affichage public</option>
-			</select>                 
+                        <select name="affichage_mail">
+							<option value="1">Affichage privé</option>
+							<option value="2">Affichage public</option>
+						</select>                 
                     </p>
                     <p>
                         <label for="mdp">Mot de passe * : </label>
