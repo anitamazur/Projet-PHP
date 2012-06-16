@@ -54,11 +54,17 @@ echo "<h$n>$titre</h$n>\n" ;
 
 //fonction permettant de vérifier si l'utilisateur est bien connecté. Si la requête SQL avec le nom, prenom et mot de passe retourne quelque chose, alors l'utlisateur a donnée les bons identifiants.
 function connexionUtilisateurReussie() {
-if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['mail'])) {
-return True;
-} else {
-return False;
-}
+	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass'])) {
+		$req = "SELECT id FROM utilisateur WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."'" ;
+		$res = mysql_query($req) ; 
+		if(mysql_num_rows($res) > 0) {
+			return True;
+		} else {
+			return False;
+		}
+	} else {
+		return False;
+	}
 }
 
 //fonction qui permet de l'id d'un utilisateur connecté
