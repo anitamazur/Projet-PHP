@@ -15,7 +15,9 @@
 		$anneePromo = stripslashes($_POST['anneePromo']);
 		$mdp = stripslashes($_POST['mdp']);
 		$mdpRepete = stripslashes($_POST['repeat_mdp']);
-		$role = stripslashes($_POST['role']);
+		if(isset($_POST['role'])) {
+			$role = stripslashes($_POST['role']);
+		}
 		if ($mdp != $mdpRepete) { 
 			$message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
 		}
