@@ -12,14 +12,18 @@ $nomPatro = $_SESSION['nom_patronymique'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
 $mail = $_SESSION['mail'] ;
-$annee_promo = $_SESSION['annee_promo'];
+
 $id_role = $_SESSION['id_role'];
-$id_statut = $_SESSION['id_statut'];
+if ($id_role == 1) {
+	$id_statut = $_SESSION['id_statut'];
+	$statut = $_SESSION['nom_statut'] ; 
+	$mail_pro = $_SESSION['mail_pro'];
+	$annee_promo = $_SESSION['annee_promo'];
+}
 $role = $_SESSION['nom_role'] ;
-$statut = $_SESSION['nom_statut'] ; 
 $date_inscription = $_SESSION['date_inscription'] ;
 $date_maj_profil = $_SESSION['date_maj_profil'] ;
-$mail_pro = $_SESSION['mail_pro'];
+
 $message = "";
 
 if(isset($_POST['Supprimer'])) {
