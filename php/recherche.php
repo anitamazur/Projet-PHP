@@ -6,7 +6,7 @@ $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
 $mail = $_SESSION['mail'] ;
-$annee_promo = $_SESSION['annee_promo'];
+#$annee_promo = $_SESSION['annee_promo'];
 $id_role = $_SESSION['id_role'];
 $id_statut = $_SESSION['id_statut'];
 
