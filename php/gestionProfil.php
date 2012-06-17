@@ -579,7 +579,7 @@ if(isset($_POST['modifier'])) {
 if ($id_role == 1){
 	if ($id_statut == 3){
 
-		$req_diplome = "SELECT diplome_etudes FROM utilisateur AS u, etudes AS 
+		$req_diplome = "SELECT diplome_etudes, diplomeEtudes_niveau FROM utilisateur AS u, etudes AS 
 		e, etudes_utilisateur AS eu WHERE u.id = eu.id_utilisateur 
 		AND e.id = eu.id_etudes AND u.id = $id_utilisateur";
 
@@ -599,7 +599,7 @@ if ($id_role == 1){
 		etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
 		AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
 
-		$req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+		$req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
 		  
 		$req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
 		$res_mail_pro = mysql_query($req_mail_pro) ;
@@ -610,13 +610,34 @@ if ($id_role == 1){
 			$mail_pro = "" ;
 		}
 		
+		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+		$res_donnees_perso = mysql_query($req_donnees_perso) ;
+		if (mysql_num_rows($res_donnees_perso) == 1) {
+			$ligne=mysql_fetch_object($res_donnees_perso) ;
+			$mail_perso = $_SESSION['mail'] = $ligne->mail;
+			$nom_perso = $_SESSION['nom'] = $ligne->nom;
+			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+			$pass_perso = $_SESSION['pass'] = $ligne->pass;
+		} else {
+			$mail_perso = "" ;
+			$nom_perso = "" ;
+			$prenom_perso = "" ;
+			$naissance_perso = "" ;
+			$nomPatro_perso = "" ;
+		}
+		
 		$res_diplome = mysql_query($req_diplome) ;
 
 		if (mysql_num_rows($res_diplome) == 1) {
 			$ligne=mysql_fetch_object($res_diplome) ;
 			$diplome = $ligne->diplome_etudes;
+			$diplomeEtudes_niveau = $ligne->diplomeEtudes_niveau;
+			
 		} else {
 			$diplome = "" ;
+			$diplomeEtudes_niveau = $ligne->diplomeEtudes_niveau;
 		}
 
 		$res_etablissement = mysql_query($req_etablissement) ;
@@ -703,20 +724,74 @@ if ($id_role == 1){
 			$id_ville = "" ;
 		}
 		
-
-		if ($id_ville != "") {
-			$req_ent_pays = "SELECT pays.id, pays.nom_pays FROM ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND v.id = $id_ville";
-			$res_ent_pays = mysql_query($req_ent_pays) ;
-			if (mysql_num_rows($res_ent_pays) == 1) {
-				$ligne=mysql_fetch_object($res_ent_pays) ;
-				$pays_ent = $ligne->nom_pays;
-				$id_pays = $ligne->id;
-			}
+		$req_ent_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+		$res_ent_pays = mysql_query($req_ent_pays) ;
+		if (mysql_num_rows($res_ent_pays) == 1) {
+			$ligne=mysql_fetch_object($res_ent_pays) ;
+			$pays_ent = $ligne->nom_pays;
+			$id_pays = $ligne->id;
 		} else {
 			$paysEnt = "";
 			$id_pays = "";
 		}
+		
+		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+		$res_donnees_perso = mysql_query($req_donnees_perso) ;
+		if (mysql_num_rows($res_donnees_perso) == 1) {
+			$ligne=mysql_fetch_object($res_donnees_perso) ;
+			$mail_perso = $_SESSION['mail'] = $ligne->mail;
+			$nom_perso = $_SESSION['nom'] = $ligne->nom;
+			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+			$pass_perso = $_SESSION['pass'] = $ligne->pass;
+		} else {
+			$mail_perso = "" ;
+			$nom_perso = "" ;
+			$prenom_perso = "" ;
+			$naissance_perso = "" ;
+			$nomPatro_perso = "" ;
+		}
 	}
+	if ($id_statut == 3 or $id_statut == 1){
+
+		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+		$res_donnees_perso = mysql_query($req_donnees_perso) ;
+		if (mysql_num_rows($res_donnees_perso) == 1) {
+			$ligne=mysql_fetch_object($res_donnees_perso) ;
+			$mail_perso = $_SESSION['mail'] = $ligne->mail;
+			$nom_perso = $_SESSION['nom'] = $ligne->nom;
+			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+			$pass_perso = $_SESSION['pass'] = $ligne->pass;
+		} else {
+			$mail_perso = "" ;
+			$nom_perso = "" ;
+			$prenom_perso = "" ;
+			$naissance_perso = "" ;
+			$nomPatro_perso = "" ;
+		}
+	} 
+	
+} else {
+	$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+	$res_donnees_perso = mysql_query($req_donnees_perso) ;
+	if (mysql_num_rows($res_donnees_perso) == 1) {
+		$ligne=mysql_fetch_object($res_donnees_perso) ;
+		$mail_perso = $_SESSION['mail'] = $ligne->mail;
+		$nom_perso = $_SESSION['nom'] = $ligne->nom;
+		$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+		$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+		$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+		$pass_perso = $_SESSION['pass'] = $ligne->pass;
+	} else {
+		$mail_perso = "" ;
+		$nom_perso = "" ;
+		$prenom_perso = "" ;
+		$naissance_perso = "" ;
+		$nomPatro_perso = "" ;
+	}	
 }
 ################################################################################################
 
@@ -745,7 +820,7 @@ if(connexionUtilisateurReussie()) {
                     <legend>Données personnelles :</legend>
                     <p>
                         <label for=\"nom\">Nom * : </label>
-                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom_perso\" />
                         <select name=\"affichage_nom\">
                             <option value=\"1\">Affichage privé</option>
                             <option value=\"2\">Affichage public</option>
@@ -753,7 +828,7 @@ if(connexionUtilisateurReussie()) {
                     </p>
                     <p>
                         <label for=\"nomPatro\">Nom patronymique (nom au moment de votre obtention de diplôme M2 DEFI) : </label>
-                        <input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"$nomPatro\" />
+                        <input type=\"text\" id=\"nomPatro\" name=\"nomPatro\" value=\"$nomPatro_perso\" />
                         <select name=\"affichage_nomPatro\">
                             <option value=\"1\">Affichage privé</option>
                             <option value=\"2\">Affichage public</option>
@@ -761,7 +836,7 @@ if(connexionUtilisateurReussie()) {
                     </p>
                     <p>
                         <label for=\"prenom\">Prénom * : </label>
-                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom_perso\" />
                         <select name=\"affichage_prenom\">
                             <option value=\"1\">Affichage privé</option>
                             <option value=\"2\">Affichage public</option>
@@ -769,11 +844,11 @@ if(connexionUtilisateurReussie()) {
                     </p>
                     <p>
                         <label for=\"naissance\">Date de naissance * : </label>
-                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance_perso\" />
                         </p>
                     <p>
                         <label for=\"mail\">Adresse E-Mail * : </label>
-                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail_perso\" />
                         <select name=\"affichage_mail\">
                             <option value=\"1\">Affichage privé</option>
                             <option value=\"2\">Affichage public</option>
@@ -920,19 +995,19 @@ if(connexionUtilisateurReussie()) {
                     <legend>Données personnelles :</legend>
                     <p>
                         <label for=\"nom\">Nom * : </label>
-                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom_perso\" />
                     </p>
                     <p>
                         <label for=\"prenom\">Prénom * : </label>
-                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom_perso\" />
                     </p>
                     <p>
                         <label for=\"naissance\">Date de naissance * : </label>
-                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance_perso\" />
                     </p>
                     <p>
                         <label for=\"mail\">Adresse E-Mail * : </label>
-                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail_perso\" />
                     </p>
                     <p>
                         <label for=\"mdp\">Nouveau mot de passe * : </label>
@@ -948,19 +1023,19 @@ if(connexionUtilisateurReussie()) {
                     <legend>Données personnelles :</legend>
                     <p>
                         <label for=\"nom\">Nom * : </label>
-                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom_perso\" />
                     </p>
                     <p>
                         <label for=\"prenom\">Prénom * : </label>
-                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom_perso\" />
                     </p>
                     <p>
                         <label for=\"naissance\">Date de naissance * : </label>
-                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance_perso\" />
                     </p>
                     <p>
                         <label for=\"mail\">Adresse E-Mail * : </label>
-                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail_perso\" />
                     </p>
                     <p>
                         <label for=\"mdp\">Nouveau mot de passe * : </label>
@@ -976,19 +1051,19 @@ if(connexionUtilisateurReussie()) {
                     <legend>Données personnelles :</legend>
                     <p>
                         <label for=\"nom\">Nom * : </label>
-                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom\" />
+                        <input type=\"text\" id=\"nom\" name=\"nom\" value=\"$nom_perso\" />
                     </p>
                     <p>
                         <label for=\"prenom\">Prénom * : </label>
-                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom\" />
+                        <input type=\"text\" name=\"prenom\" id=\"prenom\" value=\"$prenom_perso\" />
                     </p>
                     <p>
                         <label for=\"naissance\">Date de naissance * : </label>
-                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance\" />
+                        <input type=\"text\" id=\"naissance\" name=\"naissance\" value=\"$naissance_perso\" />
                     </p>
                     <p>
                         <label for=\"mail\">Adresse E-Mail * : </label>
-                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail\" />
+                        <input type=\"text\" id=\"mail\" name=\"mail\" value=\"$mail_perso\" />
                     </p>
                     <p>
                         <label for=\"mdp\">Nouveau mot de passe * : </label>
