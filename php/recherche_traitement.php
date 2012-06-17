@@ -1,13 +1,17 @@
 <?php
  session_start();
  
-$nom = $_SESSION['nom'];
-$prenom = $_SESSION['prenom'];
-$naissance = $_SESSION['naissance'];
-$mail = $_SESSION['mail'] ;
-#$annee_promo = $_SESSION['annee_promo'];
-$id_role = $_SESSION['id_role'];
-$id_statut = $_SESSION['id_statut'];
+if (isset($_SESSION['nom'])) {
+	$nom = $_SESSION['nom'];
+	$prenom = $_SESSION['prenom'];
+	$naissance = $_SESSION['naissance'];
+	$mail = $_SESSION['mail'] ;
+	#$annee_promo = $_SESSION['annee_promo'];
+	$id_role = $_SESSION['id_role'];
+	$id_statut = $_SESSION['id_statut'];
+} else {
+	$id_role = "";
+}
  
 require_once("fonctions.php");
 $connexion = connexion();
