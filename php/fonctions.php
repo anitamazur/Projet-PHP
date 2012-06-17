@@ -54,8 +54,8 @@ echo "<h$n>$titre</h$n>\n" ;
 
 //fonction permettant de vérifier si l'utilisateur est bien connecté. Si la requête SQL avec le nom, prenom et mot de passe retourne quelque chose, alors l'utlisateur a donnée les bons identifiants.
 function connexionUtilisateurReussie() {
-	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass'])) {
-		$req = "SELECT id FROM utilisateur WHERE nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."'" ;
+	if(isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['pass']) && isset($_SESSION['mail'])) {
+		$req = "SELECT id FROM utilisateur WHERE mail='".$_SESSION['mail']."' AND nom='".$_SESSION['nom']."' AND prenom='".$_SESSION['prenom']."' AND pass='".$_SESSION['pass']."'" ;
 		$res = mysql_query($req) ; 
 		if(mysql_num_rows($res) > 0) {
 			return True;
@@ -69,67 +69,71 @@ function connexionUtilisateurReussie() {
 
 //fonction qui permet de l'id d'un utilisateur connecté
 function getID($nom, $prenom, $mail) {
-$mail = mysql_real_escape_string($mail);
-$req = "SELECT id from utilisateur where nom='$nom' AND prenom='$prenom' AND mail='$mail' " ;
-$res = mysql_query($req) ;
-$ligne = mysql_fetch_object($res) ;
-$id_utilisateur = $ligne->id;
-return $id_utilisateur ;
+	$mail = mysql_real_escape_string($mail);
+	$req = "SELECT id from utilisateur where nom='$nom' AND prenom='$prenom' AND mail='$mail' " ;
+	$res = mysql_query($req) ;
+	if(mysql_num_rows($res) > 0) {
+		$ligne = mysql_fetch_object($res) ;
+		$id_utilisateur = $ligne->id;
+		return $id_utilisateur ;
+	} else {
+		return False;
+	}
 }
 
 // fonction permettant de connaître l'id du rôle de l'utilisateur connecté
 function role($id_utilisateur) {
-$requete = "SELECT id_role FROM roles_utilisateur WHERE id_utilisateur = ".$id_utilisateur ;
-$res = mysql_query($requete) ;
-$ligne = mysql_fetch_object($res) ;
-$role = $ligne->id_role;
+	$requete = "SELECT id_role FROM roles_utilisateur WHERE id_utilisateur = ".$id_utilisateur ;
+	$res = mysql_query($requete) ;
+	$ligne = mysql_fetch_object($res) ;
+	$role = $ligne->id_role;
 return $role ;
 }
 
 // fonction permettant de connaître le statut d'un ancien étudiant connecté
 function statut($id_utilisateur) {
-if (role($id_utilisateur) == 1) {
-$requete = "SELECT id_statut FROM statut_ancien_etudiant WHERE id_utilisateur = ".$id_utilisateur ;
-$res = mysql_query($requete) ;
-$ligne = mysql_fetch_object($res) ;
-$statut = $ligne->id_statut;
-return $statut ;
+	if (role($id_utilisateur) == 1) {
+		$requete = "SELECT id_statut FROM statut_ancien_etudiant WHERE id_utilisateur = ".$id_utilisateur ;
+		$res = mysql_query($requete) ;
+		$ligne = mysql_fetch_object($res) ;
+		$statut = $ligne->id_statut;
+		return $statut ;
 }
 }
 
 //fonction qui affiche plusieurs types de menus selon son rôle
 function afficheMenu($role) {
-echo "<div id=\"menu\">";
-echo "<h2 class=\"menu_title\">Menu</h2>";
-echo "<ul id=\"menu_liens\">";
-if(connexionUtilisateurReussie()) {
-if($role == 1) {
-echo "<li><a href=\"accueil.php\">Accueil</a></li>";
-echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
-echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
-echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
-echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
-echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-}
-elseif($role == 2) {
-echo "<li><a href=\"accueil.php\">Accueil</a></li>";
-echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
-echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
-echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-}
-elseif($role >= 3) {
-echo "<li><a href=\"accueil.php\">Accueil</a></li>";
-echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
-echo "<li><a href=\"administration.php\">Administration</a></li>";
-echo "<li><a href=\"lespromos.php\">Les promos</a></li>";
-echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
-echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-}
-} else {
-echo "<li><a href=\"connexion.php\">Connexion</a></li>";
-}
-echo "</ul>";
-echo "</div>";
+	echo "<div id=\"menu\">";
+	echo "<h2 class=\"menu_title\">Menu</h2>";
+	echo "<ul id=\"menu_liens\">";
+	if(connexionUtilisateurReussie()) {
+		if($role == 1) {
+			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+			echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
+			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+			echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
+			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
+			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+		}
+		elseif($role == 2) {
+			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
+			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+		}
+		elseif($role >= 3) {
+			echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+			echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+			echo "<li><a href=\"administration.php\">Administration</a></li>";
+			echo "<li><a href=\"lespromos.php\">Les promos</a></li>";
+			echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
+			echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+		}
+	} else {
+		echo "<li><a href=\"connexion.php\">Connexion</a></li>";
+	}
+	echo "</ul>";
+	echo "</div>";
 }
 
 
