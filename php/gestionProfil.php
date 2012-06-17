@@ -109,6 +109,11 @@ if(isset($_POST['modifier'])) {
     
         if ($id_statut == 2){ 
             
+            $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+            $res_mail_pro = mysql_query($req_mail_pro) ;
+            $ligne=mysql_fetch_object($res_mail_pro) ;
+            $mail_pro = $ligne->mail_pro;
+            
             $req_posteEnt = "SELECT poste.id, poste.nom_poste FROM utilisateur AS u, poste, poste_utilisateur WHERE u.id = poste_utilisateur.id_utilisateur 
             AND poste.id = poste_utilisateur.id_poste AND u.id = $id_utilisateur";
             $res_posteEnt = mysql_query($req_posteEnt) ;
@@ -173,10 +178,10 @@ if(isset($_POST['modifier'])) {
             if (mysql_num_rows($res_nomEnt) == 0) {
                 $res_modif = mysql_query ("INSERT INTO entreprise (nom_entreprise, siteweb_entreprise, secteur_activite, nomEntreprise_niveau, sitewebEntreprise_niveau, secteurActivite_niveau) VALUES ('$nomEnt_modif', '', NULL, 'prive', 'prive', 'prive')");
                 $id_ent = mysql_insert_id();
-                $rel_ent = mysql_query ("INSERT INTO entreprise_utilisateur (id_utilisateur, id_entreprise) VALUES ($id_utilisateur, $id_etudes)");
+                $rel_ent = mysql_query ("INSERT INTO entreprise_utilisateur (id_utilisateur, id_entreprise) VALUES ($id_utilisateur, $id_ent)");
                 
             } elseif ($nomEnt_modif != $nomEnt) {
-                $res_modif = mysql_query ("UPDATE entreprise SET nom_entreprise = '$nomEnt_modif' WHERE entreprise.id =$id_entreprise");
+                $res_modif = mysql_query ("UPDATE entreprise SET nom_entreprise = '$nomEnt_modif' WHERE entreprise.id =$id_ent");
                 
             }
     
@@ -191,7 +196,7 @@ if(isset($_POST['modifier'])) {
                 $id_ent = mysql_insert_id();
                 $rel_ent = mysql_query ("INSERT INTO entreprise_utilisateur (id_utilisateur, id_entreprise) VALUES ($id_utilisateur, $id_etudes)");
             } elseif ($webEnt_modif != $webEnt) {
-                $res_modif = mysql_query ("UPDATE entreprise SET siteweb_entreprise = '$webEnt_modif' WHERE entreprise.id =$id_entreprise");
+                $res_modif = mysql_query ("UPDATE entreprise SET siteweb_entreprise = '$webEnt_modif' WHERE entreprise.id =$id_ent");
             }
     
             if ($affichage_webEnt_modif == 1){
@@ -205,7 +210,7 @@ if(isset($_POST['modifier'])) {
                 $id_ent = mysql_insert_id();
                 $rel_ent = mysql_query ("INSERT INTO entreprise_utilisateur (id_utilisateur, id_entreprise) VALUES ($id_utilisateur, $id_etudes)");
             } elseif ($secteurEnt_modif != $secteurEnt) {
-                $res_modif = mysql_query ("UPDATE entreprise SET secteur_activite = '$secteurEnt_modif' WHERE entreprise.id =$id_entreprise");
+                $res_modif = mysql_query ("UPDATE entreprise SET secteur_activite = '$secteurEnt_modif' WHERE entreprise.id =$id_ent");
             }
     
             if ($affichage_secteurEnt_modif == 1) {
@@ -229,8 +234,14 @@ if(isset($_POST['modifier'])) {
             }
             
             
+            if (mysql_num_rows($res_mail_pro) == 0) {
+                $res_modif = mysql_query ("UPDATE utilisateur AS u SET mail_pro='$mailEnt_modif' WHERE u.id = '$id_utilisateur'");
+            } elseif ($mailEnt_modif != $mail_pro) {
+                $res_modif = mysql_query ("UPDATE poste SET nom_poste = '$posteEnt_modif' WHERE poste.id =$id_poste");
+            }
+            
             if ($mailEnt_modif!=""){
-                    $res_modif = mysql_query ("UPDATE utilisateur AS u, roles_utilisateur AS, statut_ancien_etudiant AS sa ru SET mail_pro='$mailEnt_modif' WHERE u.id = ru.id_utilisateur AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
+				$res_modif = mysql_query ("UPDATE utilisateur AS u SET mail_pro='$mailEnt_modif' WHERE u.id = '$id_utilisateur'");
             }
                 
             if ($affichage_mailEnt_modif == 1){
@@ -590,8 +601,15 @@ if ($id_role == 1){
 
 		$req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
 		  
-
-
+		$req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+		$res_mail_pro = mysql_query($req_mail_pro) ;
+		if (mysql_num_rows($res_diplome) == 1) {
+			$ligne=mysql_fetch_object($res_mail_pro) ;
+			$mail_pro = $ligne->mail_pro;
+		} else {
+			$mail_pro = "" ;
+		}
+		
 		$res_diplome = mysql_query($req_diplome) ;
 
 		if (mysql_num_rows($res_diplome) == 1) {
