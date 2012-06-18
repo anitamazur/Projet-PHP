@@ -2,12 +2,24 @@
 
 session_start() ;
 
+
+if (isset($_SESSION['nom'])) {
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
 $naissance = $_SESSION['naissance'];
+$mail = $_SESSION['mail'] ;
+#$annee_promo = $_SESSION['annee_promo'];
+$id_role = $_SESSION['id_role'];
+$id_statut = $_SESSION['id_statut'];
+} else {
+$id_role = "";
+}
+#$nom = $_SESSION['nom'];
+#$prenom = $_SESSION['prenom'];
+#$naissance = $_SESSION['naissance'];
 #$salt = "ashrihgbjnbfj";
 #$pass = crypt($_SESSION['pass'], $salt);
-$mail = $_SESSION['mail'] ;
+#$mail = $_SESSION['mail'] ;
 
 require("fonctions.php") ;
 $connexion = connexion() ;
@@ -15,7 +27,7 @@ $connexion = connexion() ;
 
 
 
-debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") ;
+debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$id_role) ;
 
 		echo"<table border=\"1px\">
 			<th colspan= 7 >Promotion</th>
