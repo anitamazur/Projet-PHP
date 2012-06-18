@@ -169,17 +169,20 @@ echo " <h2>Création d'un profil</h2>
                     <p>
                     <label class=\"radio\" for=\"etudiantActuel\">Étudiant actuel : </label>
                     <input name=\"role\" type=\"radio\" id=\"etudiantActuel\" value=\"2\" />
-                    </p>
-                    <p>
+                    </p>";
+        
+        if ($id_role == 4){
+             echo   "    <p>
                     <label class=\"radio\" for=\"enseignant\">Enseignant : </label>
                     <input name=\"role\" type=\"radio\" id=\"enseignant\" value=\"3\" />
                     </p>
                     <p>
                     <label class=\"radio\" for=\"administrateur\">Administrateur : </label>
                     <input name=\"role\" type=\"radio\" id=\"administrateur\" value=\"4\" />
-                    </p>
+                    </p>";
                
-                    <label for=\"donneesPerso\"><strong>Données personnelles</strong></label>
+        }
+                 echo "   <label for=\"donneesPerso\"><strong>Données personnelles</strong></label>
                     <p>
                         <label for=\"nom\">Nom : </label>
                         <input type=\"text\" id=\"nom\" name=\"nom\" />
