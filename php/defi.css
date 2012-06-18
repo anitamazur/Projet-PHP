@@ -23,6 +23,10 @@ label {
 display : block;
 }
 
+label.radio {
+display : inline;
+}
+
 legend {
 font-weight : bold;
 font-style:italic;
