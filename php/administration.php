@@ -153,7 +153,7 @@ echo "
 	<h2>Export de l'annuaire complet</h2>
 	<fieldset>
 	<legend>Exporter au format</legend>
-	<p><a href=\"export_xml_tous.php\">XML</a></p>
+	<p><a href=\"excel.php\">EXCEL</a></p>
 	<p><a href=\"export_pdf_tous.php\">PDF</a></p>
 	</fieldset>";
 	
