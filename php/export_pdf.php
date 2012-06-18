@@ -38,7 +38,7 @@ function Footer()
 $serveurBD = "localhost"; 
     $nomUtilisateur = "root"; 
     $motDePasse = "123456"; 
-    $baseDeDonnees = "annuaire_defi"; 
+    $baseDeDonnees = "defi_annuaire"; 
  
     $idConnexion = mysql_connect($serveurBD,
                                  $nomUtilisateur,
