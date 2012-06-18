@@ -97,11 +97,11 @@
 
     }
     
-<<<<<<< HEAD
+
     debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire", $id_role);
-=======
-    debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire,""");
->>>>>>> cf20912eceb4246dc8256ec067b90f780fd200be
+
+   # debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire","");
+
     echo $message_ajout ;
  ?>
             <p>* : champs obligatoires</p>
