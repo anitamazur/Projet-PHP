@@ -1,6 +1,5 @@
 ﻿<?php
 require_once("fonctions.php") ;
-
 $nom = $_POST['nom'] ;
 $prenom = $_POST['prenom'] ;
 $naissance = $_POST['naissance'] ;
@@ -8,6 +7,7 @@ $mail = $_POST['mail'] ;
 //code pour decrypter le mot de passe qui a été crypté à l'inscription.
 $salt = "ashrihgbjnbfj";
 $pass = crypt($_POST['mdp'], $salt);
+$connexion = connexion() ;
 
 session_start() ;
 $_SESSION['nom'] = $nom;
@@ -20,12 +20,12 @@ $connexion = connexion() ;
 
 //affichage d'une page d'accueil personnalisée selon le rôle
 if(connexionUtilisateurReussie()) {
-   
     $id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
     $id_role = $_SESSION['id_role'] = role($id_utilisateur);
     $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
-    debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil",$id_role) ;
+    debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil", $id_role) ;
     affichetitre("Vos informations personnelles :","3") ;
+
     if ($id_role == 1) {
         $req = "SELECT * 
             FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -75,6 +75,7 @@ if(connexionUtilisateurReussie()) {
         $res = mysql_query($req) ;
         $ligne=mysql_fetch_object($res) ;
         $nom = $_SESSION['nom'] = ucfirst(strtolower($ligne->nom)) ;
+        $nomPatro = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique ;
         $prenom = $_SESSION['prenom'] = ucfirst(strtolower($ligne->prenom)) ;     
         $role = $_SESSION['nom_role'] = $ligne->nom_role ;
         $annee_promo = $ligne->annee_promo ;
@@ -101,6 +102,7 @@ if(connexionUtilisateurReussie()) {
         $res = mysql_query($req) ;
         $ligne=mysql_fetch_object($res) ;
         $nom = $_SESSION['nom'] = ucfirst(strtolower($ligne->nom)) ;
+        $nomPatro = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique ;
         $prenom = $_SESSION['prenom'] = ucfirst(strtolower($ligne->prenom)) ;
         $role = $_SESSION['nom_role'] = $ligne->nom_role ;
         $mail = $_SESSION['mail'] = $ligne->mail ;
@@ -116,7 +118,6 @@ if(connexionUtilisateurReussie()) {
 
     
     echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
-    afficheMenu($id_role);
     finhtml() ;
     }
   
