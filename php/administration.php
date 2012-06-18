@@ -49,7 +49,7 @@ if(isset($_POST['Inserer'])) {
 		if($mail == "") {
 			$message_ajout = "<p class=\"erreur\">Le champ 'E-Mail ?jouter' est vide.</p>";
 		} 
-		else {
+		elseif (!empty($mail)) {
 			// On v?fie si l'adresse E-mail rentr?par l'utilisateur est au bon format
 			$mail_ok = VerifierAdresseMail($mail);
 			if($mail_ok == true) {
@@ -67,7 +67,7 @@ if(isset($_POST['Inserer'])) {
 						$statutAjout = mysql_query($statutInscription) ;
 					}
 				} }
-				else {
+				elseif ($mail_ok ==false) {
 					$message_ajout = "<p class=\"erreur\">Erreur lors de l'enregistrement.</p>" ;
 					}
 				} 
