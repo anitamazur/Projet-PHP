@@ -12,7 +12,7 @@ $id_statut = $_SESSION['id_statut'];
 require("fonctions.php") ;
 $connexion = connexion() ;
 
-debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
+debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion",$id_role) ;
 
 		echo"<table border=\"1px\">
 			<th colspan=\"6\">Promotion</th>
@@ -257,7 +257,7 @@ while ($ligne = mysql_fetch_object($res))
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	  
-	  afficheMenu($id_role);
+#	  afficheMenu($id_role);
 	  finhtml();
 	  
 	  mysql_close();
