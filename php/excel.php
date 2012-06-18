@@ -42,7 +42,7 @@ $res = mysql_query("SELECT *
 			AND s.id = sa.id_statut
 			AND ru.id_role = '$id_role'");
 			
-			while($row = mysql_fetch_array($result)) {
+			while($row = mysql_fetch_array($res)) {
 				$id_statut = $row['id_statut'];
 			
 			$excel .= "$row[nom_statut] \t";
