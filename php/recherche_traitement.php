@@ -67,7 +67,7 @@ if(isset($_POST['valider'])) {
 											AND ru.id_role = '$cherche_id_role' AND u.id = '$cherche_id';");
 				
 				if(mysql_num_rows($res_statut) > 0) {
-					$ligne=mysql_fetch_object($res) ;
+					$ligne=mysql_fetch_object($res_statut) ;
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;	
 			
@@ -173,7 +173,7 @@ if(isset($_POST['valider'])) {
 											AND ru.id_role = '$cherche_id_role' AND u.id = '$cherche_id';");
 				
 				if(mysql_num_rows($res_statut) > 0) {
-					$ligne=mysql_fetch_object($res) ;
+					$ligne=mysql_fetch_object($res_statut) ;
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;
 			
