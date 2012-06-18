@@ -4,7 +4,7 @@ function connexion()
     $serveurBD = "localhost"; # mdifier pour le serveur de la fac
     $nomUtilisateur = "root"; # modifier pour le serveur de la fac
     $motDePasse = "123456"; # modifier pour le serveur de la fac
-    $baseDeDonnees = "annuaire_defi"; # BDD de test / Si BDD ok : changer par "annuaire_defi"
+    $baseDeDonnees = "defi_annuaire"; # BDD de test / Si BDD ok : changer par "annuaire_defi"
    
     $idConnexion = mysql_connect($serveurBD,
                                  $nomUtilisateur,
