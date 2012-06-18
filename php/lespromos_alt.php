@@ -45,7 +45,7 @@ $res_annee = mysql_query ("select annee_promo from utilisateur");
 while ($ligne = mysql_fetch_object($res_annee)) {			
 	$promo_annee_promo = $ligne->annee_promo;
 
-	if ($annee_promo !=""){
+	if ($promo_annee_promo !=""){
 		echo"<th colspan=7>$promo_annee_promo</th>";
 		}
 		else { echo "<th  colspan=7> - </th>"; }
