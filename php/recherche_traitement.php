@@ -369,7 +369,7 @@ if(isset($_POST['valider'])) {
                     FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
                     WHERE u.id = ru.id_utilisateur
                     AND r.id = ru.id_role
-                    AND u.annee_promo = '$cherche_annee_promo'");
+                    AND u.annee_promo = '$cherche_annee_promo' and ru.id_role = 1");
                     
 
 while ($ligne = mysql_fetch_object($res_p)) {
@@ -388,7 +388,7 @@ if ($id_role == 3 or $id_role == 4)
                         echo "<td>$ligne->prenom</td>";
                         echo "<td>$ligne->mail<br/>";
                         echo "$ligne->mail_pro</td>";
-                        echo "<td>$ligne->nom_role</td>";
+                       #echo "<td>$ligne->nom_role</td>";
                             
 					
                         ## si ancien etudiant ##
