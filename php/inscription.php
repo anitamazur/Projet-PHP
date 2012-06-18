@@ -96,7 +96,7 @@
 
 	}
     
-    debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire");
+    debuthtml ("Annuaire M2 DEFI - Inscription","Annuaire M2 DEFI","Inscription à l'annuaire,""");
     echo $message_ajout ;
  ?>
             <p>* : champs obligatoires</p>
