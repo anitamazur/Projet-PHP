@@ -20,11 +20,12 @@ $connexion = connexion() ;
 
 //affichage d'une page d'accueil personnalisée selon le rôle
 if(connexionUtilisateurReussie()) {
-    debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil") ;
-    affichetitre("Vos informations personnelles :","3") ;
+   
     $id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
     $id_role = $_SESSION['id_role'] = role($id_utilisateur);
     $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
+    debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil",$id_role) ;
+    affichetitre("Vos informations personnelles :","3") ;
     if ($id_role == 1) {
         $req = "SELECT * 
             FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
