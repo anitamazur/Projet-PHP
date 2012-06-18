@@ -405,7 +405,7 @@ if ($id_role == 3 or $id_role == 4)
 			
 				if(mysql_num_rows($res_statut) > 0)
                 {
-					$ligne=mysql_fetch_object($res) ;
+					$ligne=mysql_fetch_object($res_statut) ;
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;
 						
