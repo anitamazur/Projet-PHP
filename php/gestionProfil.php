@@ -814,7 +814,7 @@ if(isset($_POST['changeStatut'])) {
 
 //affichage d'une page d'accueil personnalisée selon le rôle
 if(connexionUtilisateurReussie()) {
-    debuthtml("Annuaire M2 DEFI - Gestion de profil","Annuaire M2 DEFI", "Gestion du profil") ;
+    debuthtml("Annuaire M2 DEFI - Gestion de profil","Annuaire M2 DEFI", "Gestion du profil", $id_role) ;
     echo $message ;
     if ($id_role == 1) {
         affichetitre("Profil Ancien étudiant :","3") ;

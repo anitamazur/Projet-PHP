@@ -16,7 +16,7 @@ $id_role = $_SESSION['id_role'] = role($id_utilisateur);
 $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
 
 
-debuthtml("Annuaire M2 DEFI - Administration","Annuaire M2 DEFI", "Administration") ;
+debuthtml("Annuaire M2 DEFI - Administration","Annuaire M2 DEFI", "Administration",$id_role) ;
 
 $message = "";
 

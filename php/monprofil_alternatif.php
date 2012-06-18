@@ -13,7 +13,7 @@ $id_statut = $_SESSION['id_statut'];
 require_once("fonctions.php") ;
 $connexion = connexion() ;
 
-debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil") ; 
+debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil",$id_role) ; 
 
 $req = "SELECT * 
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 

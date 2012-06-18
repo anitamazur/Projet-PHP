@@ -24,7 +24,7 @@ if(isset($_POST['valider'])) {
 	$cherche_nom = stripslashes($_POST['nom']);
 	$cherche_prenom = stripslashes($_POST['prenom']);
     
-    debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
+    debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche",$id_role);
     affichetitre ("Résultat de votre recherche","2") ;
     
 	$req = "SELECT * 
@@ -349,7 +349,7 @@ if(isset($_POST['valider'])) {
         elseif(isset($_POST['envoyer'])) {
             $cherche_annee_promo = stripslashes($_POST['annee_promo']);
         
-        debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
+        debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche",$id_role);
         affichetitre ("Résultat de votre recherche","2") ;
     
         echo"<table border=\"1px\">
@@ -369,7 +369,7 @@ if(isset($_POST['valider'])) {
                     FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
                     WHERE u.id = ru.id_utilisateur
                     AND r.id = ru.id_role
-                    AND u.annee_promo = '$cherche_annee_promo'");
+                    AND u.annee_promo = '$cherche_annee_promo' and ru.id_role = 1");
                     
 
 while ($ligne = mysql_fetch_object($res_p)) {
@@ -388,7 +388,7 @@ if ($id_role == 3 or $id_role == 4)
                         echo "<td>$ligne->prenom</td>";
                         echo "<td>$ligne->mail<br/>";
                         echo "$ligne->mail_pro</td>";
-                        echo "<td>$ligne->nom_role</td>";
+                       #echo "<td>$ligne->nom_role</td>";
                             
 					
                         ## si ancien etudiant ##
