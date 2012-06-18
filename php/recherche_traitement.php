@@ -24,7 +24,7 @@ if(isset($_POST['valider'])) {
 	$cherche_nom = stripslashes($_POST['nom']);
 	$cherche_prenom = stripslashes($_POST['prenom']);
     
-    debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
+    debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche",$id_role);
     affichetitre ("Résultat de votre recherche","2") ;
     
 	$req = "SELECT * 
@@ -349,7 +349,7 @@ if(isset($_POST['valider'])) {
         elseif(isset($_POST['envoyer'])) {
             $cherche_annee_promo = stripslashes($_POST['annee_promo']);
         
-        debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche");
+        debuthtml("Annuaire M2 DEFI - Recherche", "Annuaire M2 DEFI", "Recherche",$id_role);
         affichetitre ("Résultat de votre recherche","2") ;
     
         echo"<table border=\"1px\">
