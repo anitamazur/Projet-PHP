@@ -272,9 +272,9 @@ echo "<form action=\"administration.php\" method=\"post\">
                         
 
 
-debutmenu();
-    echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
-    finmenu();
+#debutmenu();
+ #   echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
+  #  finmenu();
     
     
 finhtml();
