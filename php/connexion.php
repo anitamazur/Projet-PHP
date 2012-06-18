@@ -2,7 +2,7 @@
 require("fonctions.php") ;
 $connexion = connexion() ;
 
-debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion au site") ;
+debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion au site","") ;
 ?>
 			<form id="form1" action="pageAccueil.php" method="post">
 				<fieldset>
