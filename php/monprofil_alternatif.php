@@ -141,14 +141,14 @@ $ligne=mysql_fetch_object($res) ;
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
 		
-		debutmenu();
-		echo "
-			<li><a href=\"pageAccueil.php\">Accueil</a></li>  
-			<li><a href=\"mapromo.php\">Ma promo</a></li>
-			<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
-			<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
-			<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-		finmenu();
+	#	debutmenu();
+	#	echo "
+	#		<li><a href=\"pageAccueil.php\">Accueil</a></li>  
+	#		<li><a href=\"mapromo.php\">Ma promo</a></li>
+	#		<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
+	#		<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
+	#		<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+	#	finmenu();
 		
 		} 
 
