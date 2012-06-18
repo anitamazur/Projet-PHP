@@ -163,19 +163,19 @@ echo " <h2>Création d'un profil</h2>
                 <fieldset>
                     <legend>Insérer les données suivantes :</legend>
                     <p>
-                    <label class=\"radio\" for=\"ancienEtudiant\">Ancien étudiant  : </label>
+                    <label class=\"radio\" for=\"ancienEtudiant\">Ancien étudiant : </label>
                     <input name=\"role\" type=\"radio\" id=\"ancienEtudiant\" value=\"1\" />
                     </p>
                     <p>
-                    <label class=\"radio\" for=\"etudiantActuel\">étudiant actuel  : </label>
+                    <label class=\"radio\" for=\"etudiantActuel\">Étudiant actuel : </label>
                     <input name=\"role\" type=\"radio\" id=\"etudiantActuel\" value=\"2\" />
                     </p>
                     <p>
-                    <label class=\"radio\" for=\"enseignant\">Enseignant  : </label>
+                    <label class=\"radio\" for=\"enseignant\">Enseignant : </label>
                     <input name=\"role\" type=\"radio\" id=\"enseignant\" value=\"3\" />
                     </p>
                     <p>
-                    <label class=\"radio\" for=\"administrateur\">Administrateur  : </label>
+                    <label class=\"radio\" for=\"administrateur\">Administrateur : </label>
                     <input name=\"role\" type=\"radio\" id=\"administrateur\" value=\"4\" />
                     </p>
                
