@@ -76,7 +76,7 @@ if(isset($_POST['Inserer'])) {
 				}
 		}
 
-
+echo $message;
 
 
 if(isset($_POST['Supprimer'])) {
@@ -105,8 +105,11 @@ if(isset($_POST['Supprimer'])) {
 
 		else {
 			$message .= "<p class=\"erreur\">Erreur lors de la suppression.</p>" ;
-		}
+	
+	}
+
 }
+echo $message;
 
 if ($id_role ==4)
 {
@@ -137,8 +140,12 @@ if(isset($_POST['changer'])) {
 		}
 		else {
 			$message .= "<p class=\"erreur\">Erreur lors de la modification du rôle.</p>" ;
-		}
-} }
+
+			}
+} 
+
+echo $message;
+}
 
 
 echo "
