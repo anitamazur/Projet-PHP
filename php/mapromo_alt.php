@@ -12,7 +12,7 @@ $id_statut = $_SESSION['id_statut'];
 require("fonctions.php") ;
 $connexion = connexion() ;
 
-debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion") ;
+debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion",$id_role) ;
 
 		echo"<table border=\"1px\">
 			<th colspan=\"6\">Promotion</th>
