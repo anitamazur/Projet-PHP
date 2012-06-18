@@ -21,7 +21,43 @@ function connexion()
     #else echo "Echec de connexion a la base";
 }
 
-function debuthtml($titre_head,$titre_header,$titre_contenu)
+//fonction qui affiche plusieurs types de menus selon son rôle
+function afficheMenu($role) {
+    echo "<div id=\"menu\">";
+    echo "<h2 class=\"menu_title\">Menu</h2>";
+    echo "<ul id=\"menu_liens\">";
+    if(connexionUtilisateurReussie()) {
+        if($role == 1) {
+            echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+            echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
+            echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+            echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
+            echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
+            echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+        }
+        elseif($role == 2) {
+            echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+            echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+            echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
+            echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+        }
+        elseif($role >= 3) {
+            echo "<li><a href=\"accueil.php\">Accueil</a></li>";
+            echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
+            echo "<li><a href=\"administration.php\">Administration</a></li>";
+            echo "<li><a href=\"lespromos.php\">Les promos</a></li>";
+            echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
+            echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
+        }
+    } else {
+        echo "<li><a href=\"connexion.php\">Connexion</a></li>";
+        echo "<li><a href=\"recherche.php\">Recherche</a></li>";
+    }
+    echo "</ul>";
+    echo "</div>";
+}
+
+function debuthtml($titre_head,$titre_header,$titre_contenu, $role)
 {
 echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">
@@ -33,15 +69,16 @@ echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3
 <body>
 <div id=\"header\">
 <h1>$titre_header</h1>
-</div>
-<div id=\"contenu\">
+</div>";
+afficheMenu($role);
+echo "<div id=\"contenu\">
 <h2>$titre_contenu</h2>";
 }   
 
 function finhtml()
 {
 echo "</div>
-<div>Projet de fin d'études des étudiants M2 DEFI</div>
+<div id=\"footer\">Projet de fin d'études des étudiants M2 DEFI</div>
 </body>
 </html>
 ";
@@ -105,65 +142,18 @@ function statut($id_utilisateur) {
 }
 }
 
-//fonction qui affiche plusieurs types de menus selon son rôle
-function afficheMenu($role) {
-    echo "<div id=\"menu\">";
-    echo "<h2 class=\"menu_title\">Menu</h2>";
-    echo "<ul id=\"menu_liens\">";
-    if(connexionUtilisateurReussie()) {
-        if($role == 1) {
-            echo "<li><a href=\"accueil.php\">Accueil</a></li>";
-            echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
-            echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
-            echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
-            echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
-            echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-        }
-        elseif($role == 2) {
-            echo "<li><a href=\"accueil.php\">Accueil</a></li>";
-            echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
-            echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
-            echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-        }
-        elseif($role >= 3) {
-            echo "<li><a href=\"accueil.php\">Accueil</a></li>";
-            echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
-            echo "<li><a href=\"administration.php\">Administration</a></li>";
-            echo "<li><a href=\"lespromos.php\">Les promos</a></li>";
-            echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
-            echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-        }
-    } else {
-        echo "<li><a href=\"connexion.php\">Connexion</a></li>";
-    }
-    echo "</ul>";
-    echo "</div>";
-}
 
-
-function debutmenu()
-{
-echo "<div id=\"menu\">";
-echo "<h2 class=\"menu_title\">Menu</h2>";
-echo "<ul id=\"menu_liens\">";
-}
-
-function finmenu()
-{
-echo "</ul>";
-echo "</div>";
-}
 
 
 function menuderoulant($nom, $tab)
 {
-echo "<SELECT name=\"$nom\">\n" ;
-echo "<OPTION value=\"$indice\" selected>nom_prénom_n° rôle</OPTION>";
+echo "<select name=\"$nom\">\n" ;
+echo "<option value=\"$indice\" selected>nom_prénom_n° rôle</option>";
 foreach($tab as $cle=>$val)
 {
-echo "<OPTION value=\"$cle\">$val </OPTION>\n" ;
+echo "<option value=\"$cle\">$val </option>\n" ;
 }
-echo "</SELECT>\n" ;
+echo "</select>\n" ;
 }
 
 
