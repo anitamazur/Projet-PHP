@@ -33,12 +33,12 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 			<th colspan= 7 >Promotion</th>
 			<tr>
 			<td>Nom</td>
-			<td>Pr�nom</td>
+			<td>Pr?nom</td>
 			<td>Contact</td>
 			<td>Statut</td>
 			<td>Situation actuelle</td>
 			<td>Date d'inscription</td>
-			<td>Date de mise � jour du profil</td>
+			<td>Date de mise ? jour du profil</td>
 			</tr>";
 
 $res_annee = mysql_query ("select annee_promo from utilisateur");
@@ -55,7 +55,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 		WHERE u.id = ru.id_utilisateur
 		AND r.id = ru.id_role
-		AND ru.id_role = 1 or ru.id_role = 2 AND annee_promo = '$annee_promo'");
+		AND ru.id_role = '1' or ru.id_role ='2' AND annee_promo = '$annee_promo'");
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
@@ -71,18 +71,10 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 
 				
 						echo "<tr>";
-				if ($nom !=""){
 						echo "<td>$nom</td>";
-				}
-				else { echo "<td> - </td>"; }
-				if ($prenom !=""){
 						echo "<td>$prenom</td>";
-				}
-				else { echo "<td> - </td>"; }
-				if ($mail !="")
-						{
 						echo "<td>$mail<br/>";
-						}
+				
 				if ($mail_pro !="")
 						{
 				echo "$mail_pro</td>";
@@ -105,6 +97,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 						
 						while ($ligne = mysql_fetch_object($res)) 
 						{ $id_statut =$ligne->id_statut;
+						$statut =$ligne->nom_statut;
 						 # si en poste ##
 							if ($id_statut==2)
 								{
@@ -246,7 +239,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 	echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
 	finmenu();
 	
-	echo "<p>Si vous rencontrez des probl�mes n'h�sitez pas � <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
+	echo "<p>Si vous rencontrez des probl?mes n'h?sitez pas ? <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
 	
 	  
 	  
