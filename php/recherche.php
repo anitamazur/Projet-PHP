@@ -22,7 +22,7 @@ $connexion = connexion() ;
 if (connexionUtilisateurReussie())
 		{
 		# insertion de debuthtml après vérification de la connexion
-		debuthtml("Annuaire M2 DEFI - Recherche","Annuaire M2 DEFI", "Recherche dans l'annuaire","") ;
+		debuthtml("Annuaire M2 DEFI - Recherche","Annuaire M2 DEFI", "Recherche dans l'annuaire",$id_role) ;
 		affichetitre("Recherche sur anciens étudiants UNIQUEMENT", "3");	
 		affichetitre("Recherche par nom et prénom dans l'annuaire","3");
 		echo"<form id=\"form1\" action=\"recherche_traitement.php\" method=\"post\">
