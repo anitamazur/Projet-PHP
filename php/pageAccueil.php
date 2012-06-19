@@ -92,8 +92,7 @@ if(connexionUtilisateurReussie()) {
     }
     
     
-    #elseif ($id_role == 3 or $id_role == 4)
-    else
+    elseif ($id_role == 3 or $id_role == 4)
     {
         $req = "SELECT * 
             FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
