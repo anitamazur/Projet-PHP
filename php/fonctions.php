@@ -28,7 +28,6 @@ function afficheMenu($role) {
     echo "<ul id=\"menu_liens\">";
     if(connexionUtilisateurReussie()) {
         if($role == 1) {
-            echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
             echo "<li><a href=\"monprofil.php\">Mon profil</a></li>";
             echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
             echo "<li><a href=\"mapromo.php\">Ma promo</a></li>";
@@ -36,13 +35,11 @@ function afficheMenu($role) {
             echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
         }
         elseif($role == 2) {
-            echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
             echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
             echo "<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>";
             echo "<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
         }
         elseif($role >= 3) {
-            echo "<li><a href=\"pageAccueil.php\">Accueil</a></li>";
             echo "<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>";
             echo "<li><a href=\"administration.php\">Administration</a></li>";
             echo "<li><a href=\"lespromos.php\">Les promos</a></li>";
