@@ -111,7 +111,7 @@ if(isset($_POST['Supprimer'])) {
 }
 echo $message;
 
-if ($id_role ==4)
+if ($_SESSION['id_role'] == 4)
 {
 
 if(isset($_POST['changer'])) {
@@ -171,7 +171,7 @@ echo " <h2>Création d'un profil</h2>
                     <input name=\"role\" type=\"radio\" id=\"etudiantActuel\" value=\"2\" />
                     </p>";
         
-        if ($id_role == 4){
+        if ($_SESSION['id_role'] == 4){
              echo   "    <p>
                     <label class=\"radio\" for=\"enseignant\">Enseignant : </label>
                     <input name=\"role\" type=\"radio\" id=\"enseignant\" value=\"3\" />
@@ -240,7 +240,7 @@ echo "<h2>Suppression de profil</h2>
     </form>";
     
 
-if ($id_role == 4){
+if ($_SESSION['id_role'] == 4){
 
 echo "<form action=\"administration.php\" method=\"post\">
                         <h2>Changement de la situation</h2>
