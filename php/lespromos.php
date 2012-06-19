@@ -28,10 +28,10 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") 
 
 $res_annee = mysql_query ("select annee_promo from utilisateur");
 while ($ligne = mysql_fetch_object($res_annee)) {			
-	$annee_promo = $ligne->annee_promo;
+	$promo_annee_promo = $ligne->annee_promo;
 
-	if ($annee_promo !=""){
-		echo"<th colspan=7>$annee_promo</th>";
+	if ($promo_annee_promo !=""){
+		echo"<th colspan=7>$promo_annee_promo</th>";
 		}
 		else { echo "<th  colspan=7> - </th>"; }
 	
@@ -42,50 +42,50 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 		AND u.id = sa.id_utilisateur
 		AND r.id = ru.id_role
 		AND s.id = sa.id_statut
-		AND ru.id_role = 1 or ru.id_role = 2 AND annee_promo = '$annee_promo'");
+		AND ru.id_role = 1 or ru.id_role = 2 AND annee_promo = '$promo_annee_promo'");
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
-				$id_role=$ligne->id_role;
-				$id_statut=$ligne->id_statut;
-				$mail=$ligne->mail;
-				$mail_pro=$ligne->mail_pro;
-				$nom = $ligne->nom;
-				$prenom = $ligne->prenom;
-				$role = $ligne->nom_role;
-				$statut = $ligne->nom_statut;
+				$promo_id_role=$ligne->id_role;
+				$promo_id_statut=$ligne->id_statut;
+				$promo_mail=$ligne->mail;
+				$promo_mail_pro=$ligne->mail_pro;
+				$promo_nom = $ligne->nom;
+				$promo_prenom = $ligne->prenom;
+				$promo_role = $ligne->nom_role;
+				$promo_statut = $ligne->nom_statut;
 
 				
 						echo "<tr>";
-				if ($nom !=""){
-						echo "<td>$nom</td>";
+				if ($promo_nom !=""){
+						echo "<td>$promo_nom</td>";
 				}
 				else { echo "<td> - </td>"; }
-				if ($prenom !=""){
-						echo "<td>$prenom</td>";
+				if ($promo_prenom !=""){
+						echo "<td>$promo_prenom</td>";
 				}
 				else { echo "<td> - </td>"; }
-				if ($mail !="")
+				if ($promo_mail !="")
 						{
-						echo "<td>$mail<br/>";
+						echo "<td>$promo_mail<br/>";
 						}
-				if ($mail_pro !="")
+				if ($promo_mail_pro !="")
 						{
-				echo "$mail_pro</td>";
+				echo "$promo_mail_pro</td>";
 						}
 				else { echo "_</td>";}
 				
-				echo "<td>$role</td>";
+				echo "<td>$promo_role</td>";
 
 							
 						## si ancien etudiant ##
-						if ($id_role ==1 )
+						if ($promo_id_role ==1 )
 						{
 						 # si en poste ##
-							if ($id_statut==2)
+							if ($promo_id_statut==2)
 								{
 							
-								echo "<td>$statut</td>";
+								echo "<td>$promo_statut</td>";
 							
 								
 								
@@ -105,41 +105,41 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 								$res_statut2 = mysql_query($req_statut2) ;
 								
 									while ($ligne = mysql_fetch_object($res_statut2)){
-											$poste = $ligne->nom_poste;
-											$nom_ent = $ligne->nom_entreprise;
-											$web_ent = $ligne->siteweb_entreprise;
-											$secteur_ent = $ligne->secteur_entreprise;
-											$ville = $ligne->nom_ville;
-											$cp = $ligne->cp;
-											$pays = $ligne->nom_pays;
+											$promo_poste = $ligne->nom_poste;
+											$promo_nom_ent = $ligne->nom_entreprise;
+											$promo_web_ent = $ligne->siteweb_entreprise;
+											$promo_secteur_ent = $ligne->secteur_entreprise;
+											$promo_ville = $ligne->nom_ville;
+											$promo_cp = $ligne->cp;
+											$promo_pays = $ligne->nom_pays;
 									
-							if ($poste!=""){
-								echo "<td>$poste<br/>";
+							if ($promo_poste!=""){
+								echo "<td>$promo_poste<br/>";
 								}
 								else { echo "<td>-<br/>";}
-							if ($nom_ent!=""){
-								echo "$nom_ent<br/>";
+							if ($promo_nom_ent!=""){
+								echo "$promo_nom_ent<br/>";
 								}
 								else { echo "-<br/>";}
-							if ($web_ent!=""){
-								echo "$web_ent<br/>";
+							if ($promo_web_ent!=""){
+								echo "$promo_web_ent<br/>";
 								}
 								else { echo "-<br/>";}
-							if ($secteur_ent!=""){
-								echo "$secteur_ent<br/>";
+							if ($promo_secteur_ent!=""){
+								echo "$promo_secteur_ent<br/>";
 								}
 								else { echo "-<br/>";}
-							if ($ville!=""){
-								echo "$ville<br/>";
+							if ($promo_ville!=""){
+								echo "$promo_ville<br/>";
 								}
 								else { echo "-<br/>";}
-							if ($cp!=""){
-								echo "$cp<br/>";
+							if ($promo_cp!=""){
+								echo "$promo_cp<br/>";
 								}
 								else { echo "- <br/>";}
 								
-							if ($pays!=""){
-								echo "$pays</td>";
+							if ($promo_pays!=""){
+								echo "$promo_pays</td>";
 								}
 								else { echo "-</td>";}			
 									
@@ -149,9 +149,9 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 										} }
 								
 							## si en formation ##	
-							elseif ($id_statut==3)
+							elseif ($promo_id_statut==3)
 								{
-								echo "<td>$statut</td>";
+								echo "<td>$promo_statut</td>";
 								
 								$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
