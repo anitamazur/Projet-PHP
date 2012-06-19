@@ -28,27 +28,13 @@ debuthtml("Annuaire M2 DEFI - Ma promo","Annuaire M2 DEFI", "Ma promotion",$id_r
 			<tr>
 			";
 
-$req = "SELECT * 
-	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
-	WHERE u.id = ru.id_utilisateur
-	AND u.id = sa.id_utilisateur
-	AND r.id = ru.id_role
-	AND s.id = sa.id_statut
-	AND u.nom='$nom' AND u.prenom='$prenom' " ;
-
-$res = mysql_query($req) ;
-
-while ($ligne = mysql_fetch_object($res)) 
-		{
-	$annee_promo = $ligne->annee_promo ;
-
 	$res_p = mysql_query("SELECT *			
 		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
 		WHERE u.id = ru.id_utilisateur
 		AND u.id = sa.id_utilisateur
 		AND r.id = ru.id_role
 		AND s.id = sa.id_statut
-		AND u.annee_promo = '$annee_promo'");
+		AND u.annee_promo = '$annee_promo' AND ru.id_role = '$id_role'");
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
@@ -71,18 +57,18 @@ while ($ligne = mysql_fetch_object($res))
 						#condition sur le mail perso
 						if ($mail_niveau == 'public')
 						{
-						echo "<td>$ligne->mail<br/>";
+						echo "<td>$ligne->mail</td>";
 						}
-						else { echo "<td>-<br/> ";}
+						else { echo "<td>-</td> ";}
 						
 						#condition sur le mail pro
-						if ($mailPro_niveau == 'public')
-						{
-						echo "$ligne->mail_pro</td>";
-						}
-						else { echo "-</td> ";}
+					#	if ($mailPro_niveau == 'public')
+					#	{
+					#	echo "$ligne->mail_pro</td>";
+					#	}
+					#	else { echo "-</td> ";}
 				
-						echo "<td>$ligne->nom_role</td>";
+					#	echo "<td>$ligne->nom_role</td>";
 							
 						## si ancien etudiant ##
 						if ($id_role ==1 )
@@ -248,9 +234,15 @@ while ($ligne = mysql_fetch_object($res))
 								}
 							}
 						
+						#condition sur le mail pro
+						if ($mailPro_niveau == 'public')
+						{
+						echo "<td>$ligne->mail_pro</td>";
+						}
+						else { echo "<td>-</td> ";}
 						echo "</tr>";
 					 } 
-					 } }
+					 } 
 
 	  echo "</table>";	
 	
