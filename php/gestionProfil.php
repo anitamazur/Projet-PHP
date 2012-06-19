@@ -15,10 +15,10 @@ $mail = $_SESSION['mail'] ;
 
 $id_role = $_SESSION['id_role'];
 if ($id_role == 1) {
-	$id_statut = $_SESSION['id_statut'];
-	$statut = $_SESSION['nom_statut'] ; 
-	$mail_pro = $_SESSION['mail_pro'];
-	$annee_promo = $_SESSION['annee_promo'];
+    $id_statut = $_SESSION['id_statut'];
+    $statut = $_SESSION['nom_statut'] ; 
+    $mail_pro = $_SESSION['mail_pro'];
+    $annee_promo = $_SESSION['annee_promo'];
 }
 $role = $_SESSION['nom_role'] ;
 $date_inscription = $_SESSION['date_inscription'] ;
@@ -137,27 +137,27 @@ if(isset($_POST['modifier'])) {
             $req_villeEnt = "SELECT v.id, nom_ville, cp FROM utilisateur AS u, entreprise, entreprise_utilisateur, ville AS v, entreprise_ville WHERE u.id = entreprise_utilisateur.id_utilisateur AND entreprise.id = entreprise_utilisateur.id_entreprise AND v.id = entreprise_ville.id_entreprise AND entreprise.id = entreprise_ville.id_entreprise AND u.id = $id_utilisateur";
             $res_villeEnt = mysql_query($req_villeEnt) ;
             if (mysql_num_rows($res_villeEnt) == 1) {
-				$ligne=mysql_fetch_object($res_villeEnt) ;
-				$villeEnt = $ligne->nom_ville;
-				$codePostalEnt = $ligne->cp ;
-				$id_ville = $ligne->id ;
-			} else {
-				$villeEnt = "";
-				$codePostalEnt = "" ;
-				$id_ville = "" ;
-			}
+                $ligne=mysql_fetch_object($res_villeEnt) ;
+                $villeEnt = $ligne->nom_ville;
+                $codePostalEnt = $ligne->cp ;
+                $id_ville = $ligne->id ;
+            } else {
+                $villeEnt = "";
+                $codePostalEnt = "" ;
+                $id_ville = "" ;
+            }
             
             
-			$req_ent_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur";
-			$res_ent_pays = mysql_query($req_ent_pays) ;
-			if (mysql_num_rows($res_ent_pays) == 1) {
-				$ligne=mysql_fetch_object($res_ent_pays) ;
-				$pays_ent = $ligne->nom_pays;
-				$id_pays = $ligne->id;
-			} else {
-				$pays_ent = "";
-				$id_pays = "";
-			}
+            $req_ent_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur";
+            $res_ent_pays = mysql_query($req_ent_pays) ;
+            if (mysql_num_rows($res_ent_pays) == 1) {
+                $ligne=mysql_fetch_object($res_ent_pays) ;
+                $pays_ent = $ligne->nom_pays;
+                $id_pays = $ligne->id;
+            } else {
+                $pays_ent = "";
+                $id_pays = "";
+            }
 
             
             $nomEnt_modif = stripslashes($_POST['nom_ent']);
@@ -245,7 +245,7 @@ if(isset($_POST['modifier'])) {
             }
             
             if ($mailEnt_modif!=""){
-				$res_modif = mysql_query ("UPDATE utilisateur AS u SET mail_pro='$mailEnt_modif' WHERE u.id = '$id_utilisateur'");
+                $res_modif = mysql_query ("UPDATE utilisateur AS u SET mail_pro='$mailEnt_modif' WHERE u.id = '$id_utilisateur'");
             }
                 
             if ($affichage_mailEnt_modif == 1){
@@ -255,11 +255,11 @@ if(isset($_POST['modifier'])) {
             }
             
             if (mysql_num_rows($res_villeEnt) == 0) {
-				$res_modif = mysql_query ("INSERT INTO ville (nom_ville, cp, nomVille_niveau, cp_niveau) VALUES ('', $codePostalEnt_modif, 'prive', 'prive')");
-				$id_ville = mysql_insert_id();
-				if (mysql_num_rows($res_nomEnt) != 0) { 
-					$rel_ville = mysql_query ("INSERT INTO etablissement_ville (id_ville, id_etablissement) VALUES ($id_ville, $id_ent)");
-				}
+                $res_modif = mysql_query ("INSERT INTO ville (nom_ville, cp, nomVille_niveau, cp_niveau) VALUES ('', $codePostalEnt_modif, 'prive', 'prive')");
+                $id_ville = mysql_insert_id();
+                if (mysql_num_rows($res_nomEnt) != 0) { 
+                    $rel_ville = mysql_query ("INSERT INTO etablissement_ville (id_ville, id_etablissement) VALUES ($id_ville, $id_ent)");
+                }
             } elseif ($codePostalEnt_modif != $codePostalEnt) {
                 $res_modif = mysql_query ("UPDATE ville SET cp = $codePostalEnt_modif WHERE ville.id = $id_ville");
                 if (mysql_num_rows($res_nomEnt) != 0) { 
@@ -274,11 +274,11 @@ if(isset($_POST['modifier'])) {
             }
             
             if (mysql_num_rows($res_villeEnt) == 0) {
-				$res_modif = mysql_query ("INSERT INTO ville (nom_ville, cp, nomVille_niveau, cp_niveau) VALUES ('$villeEnt_modif', '', 'prive', 'prive')");
-				$id_ville = mysql_insert_id();
-				if (mysql_num_rows($res_nomEnt) != 0) { 
-					$rel_ville = mysql_query ("INSERT INTO etablissement_ville (id_ville, id_etablissement) VALUES ($id_ville, $id_ent)");
-				}
+                $res_modif = mysql_query ("INSERT INTO ville (nom_ville, cp, nomVille_niveau, cp_niveau) VALUES ('$villeEnt_modif', '', 'prive', 'prive')");
+                $id_ville = mysql_insert_id();
+                if (mysql_num_rows($res_nomEnt) != 0) { 
+                    $rel_ville = mysql_query ("INSERT INTO etablissement_ville (id_ville, id_etablissement) VALUES ($id_ville, $id_ent)");
+                }
             } elseif ($villeEnt_modif != $villeEnt) {
                 $res_modif = mysql_query ("UPDATE ville SET cp = $villeEnt_modif WHERE ville.id = $id_ville");
                 if (mysql_num_rows($res_nomEnt) != 0) { 
@@ -292,12 +292,12 @@ if(isset($_POST['modifier'])) {
                 $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomVille_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
             }
             if (mysql_num_rows($res_ent_pays) == 0) {
-				$res_modif = mysql_query ("INSERT INTO pays(nom_pays, nomPays_niveau) VALUES ('$paysEnt_modif', 'prive')");
-				$id_pays = mysql_insert_id();
-				if (mysql_num_rows($res_villeEnt) != 0) { 
-					$rel_ville = mysql_query ("INSERT INTO ville_pays (id_ville, id_pays) VALUES ($id_ville, $id_pays)");
-				}
-			} elseif ($paysEnt_modif != $paysEnt) {
+                $res_modif = mysql_query ("INSERT INTO pays(nom_pays, nomPays_niveau) VALUES ('$paysEnt_modif', 'prive')");
+                $id_pays = mysql_insert_id();
+                if (mysql_num_rows($res_villeEnt) != 0) { 
+                    $rel_ville = mysql_query ("INSERT INTO ville_pays (id_ville, id_pays) VALUES ($id_ville, $id_pays)");
+                }
+            } elseif ($paysEnt_modif != $paysEnt) {
                 $res_modif = mysql_query ("UPDATE pays SET nom_pays = '$paysEtab_modif' WHERE pays.id = $id_pays");
             }
             
@@ -307,7 +307,7 @@ if(isset($_POST['modifier'])) {
             } else {
                 $res_modif = mysql_query("UPDATE utilisateur AS u, roles_utilisateur AS ru, statut_ancien_etudiant AS sa, entreprise AS e, entreprise_utilisateur AS eu, entreprise_ville AS ev, ville AS v, pays AS p, ville_pays AS vp SET nomPays_niveau ='public' WHERE u.id = ru.id_utilisateur AND u.id = sa.id_utilisateur AND u.id = eu.id_utilisateur AND e.id = eu.id_entreprise AND e.id = ev.id_entreprise AND v.id = vp.id_ville AND p.id = vp.id_pays AND v.id = ev.id_ville AND id_role = '$id_role' AND id_statut ='$id_statut' AND u.id = '$id_utilisateur'");
             }
-            			
+                        
         }
             
         if ($id_statut == 3){
@@ -581,221 +581,221 @@ if(isset($_POST['modifier'])) {
 
 #affichage des données des profils selon le statut
 if ($id_role == 1){
-	if ($id_statut == 3){
+    if ($id_statut == 3){
 
-		$req_diplome = "SELECT diplome_etudes, diplomeEtudes_niveau FROM utilisateur AS u, etudes AS 
-		e, etudes_utilisateur AS eu WHERE u.id = eu.id_utilisateur 
-		AND e.id = eu.id_etudes AND u.id = $id_utilisateur";
+        $req_diplome = "SELECT diplome_etudes, diplomeEtudes_niveau FROM utilisateur AS u, etudes AS 
+        e, etudes_utilisateur AS eu WHERE u.id = eu.id_utilisateur 
+        AND e.id = eu.id_etudes AND u.id = $id_utilisateur";
 
-		$req_etablissement = "SELECT etab.id, nom_etablissement FROM utilisateur AS u, etablissement AS 
-		etab, etablissement_utilisateur AS etabu WHERE u.id = etabu.id_utilisateur 
-		AND etab.id = etabu.id_etablissement AND u.id = $id_utilisateur";
+        $req_etablissement = "SELECT etab.id, nom_etablissement FROM utilisateur AS u, etablissement AS 
+        etab, etablissement_utilisateur AS etabu WHERE u.id = etabu.id_utilisateur 
+        AND etab.id = etabu.id_etablissement AND u.id = $id_utilisateur";
 
-		$req_web_etablissement = "SELECT siteweb_etablissement FROM utilisateur AS u, etablissement AS 
-		etab, etablissement_utilisateur AS etabu WHERE u.id = etabu.id_utilisateur 
-		AND etab.id = etabu.id_etablissement AND u.id = $id_utilisateur";
+        $req_web_etablissement = "SELECT siteweb_etablissement FROM utilisateur AS u, etablissement AS 
+        etab, etablissement_utilisateur AS etabu WHERE u.id = etabu.id_utilisateur 
+        AND etab.id = etabu.id_etablissement AND u.id = $id_utilisateur";
 
-		$req_etablissement_ville = "SELECT v.id, v.nom_ville FROM utilisateur AS u, etablissement AS 
-		etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
-		AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
+        $req_etablissement_ville = "SELECT v.id, v.nom_ville FROM utilisateur AS u, etablissement AS 
+        etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
+        AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
 
-		$req_etablissement_cp = "SELECT cp FROM utilisateur AS u, etablissement AS 
-		etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
-		AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
+        $req_etablissement_cp = "SELECT cp FROM utilisateur AS u, etablissement AS 
+        etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
+        AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
 
-		$req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
-		  
-		$req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
-		$res_mail_pro = mysql_query($req_mail_pro) ;
-		if (mysql_num_rows($res_diplome) == 1) {
-			$ligne=mysql_fetch_object($res_mail_pro) ;
-			$mail_pro = $ligne->mail_pro;
-		} else {
-			$mail_pro = "" ;
-		}
-		
-		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
-		$res_donnees_perso = mysql_query($req_donnees_perso) ;
-		if (mysql_num_rows($res_donnees_perso) == 1) {
-			$ligne=mysql_fetch_object($res_donnees_perso) ;
-			$mail_perso = $_SESSION['mail'] = $ligne->mail;
-			$nom_perso = $_SESSION['nom'] = $ligne->nom;
-			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
-			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
-			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
-			$pass_perso = $_SESSION['pass'] = $ligne->pass;
-		} else {
-			$mail_perso = "" ;
-			$nom_perso = "" ;
-			$prenom_perso = "" ;
-			$naissance_perso = "" ;
-			$nomPatro_perso = "" ;
-		}
-		
-		$res_diplome = mysql_query($req_diplome) ;
+        $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+          
+        $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+        $res_mail_pro = mysql_query($req_mail_pro) ;
+        if (mysql_num_rows($res_diplome) == 1) {
+            $ligne=mysql_fetch_object($res_mail_pro) ;
+            $mail_pro = $ligne->mail_pro;
+        } else {
+            $mail_pro = "" ;
+        }
+        
+        $req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+        $res_donnees_perso = mysql_query($req_donnees_perso) ;
+        if (mysql_num_rows($res_donnees_perso) == 1) {
+            $ligne=mysql_fetch_object($res_donnees_perso) ;
+            $mail_perso = $_SESSION['mail'] = $ligne->mail;
+            $nom_perso = $_SESSION['nom'] = $ligne->nom;
+            $prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+            $naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+            $nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+            $pass_perso = $_SESSION['pass'] = $ligne->pass;
+        } else {
+            $mail_perso = "" ;
+            $nom_perso = "" ;
+            $prenom_perso = "" ;
+            $naissance_perso = "" ;
+            $nomPatro_perso = "" ;
+        }
+        
+        $res_diplome = mysql_query($req_diplome) ;
 
-		if (mysql_num_rows($res_diplome) == 1) {
-			$ligne=mysql_fetch_object($res_diplome) ;
-			$diplome = $ligne->diplome_etudes;
-			$diplomeEtudes_niveau = $ligne->diplomeEtudes_niveau;
-			
-		} else {
-			$diplome = "" ;
-			$diplomeEtudes_niveau = $ligne->diplomeEtudes_niveau;
-		}
+        if (mysql_num_rows($res_diplome) == 1) {
+            $ligne=mysql_fetch_object($res_diplome) ;
+            $diplome = $ligne->diplome_etudes;
+            $diplomeEtudes_niveau = $ligne->diplomeEtudes_niveau;
+            
+        } else {
+            $diplome = "" ;
+            $diplomeEtudes_niveau = $ligne->diplomeEtudes_niveau;
+        }
 
-		$res_etablissement = mysql_query($req_etablissement) ;
-		if (mysql_num_rows($res_etablissement) == 1) {
-			$ligne=mysql_fetch_object($res_etablissement) ;
-			$etab = $ligne->nom_etablissement ;
-		} else {
-			$etab = "" ;
-		}
+        $res_etablissement = mysql_query($req_etablissement) ;
+        if (mysql_num_rows($res_etablissement) == 1) {
+            $ligne=mysql_fetch_object($res_etablissement) ;
+            $etab = $ligne->nom_etablissement ;
+        } else {
+            $etab = "" ;
+        }
 
-		$res_web_etablissement = mysql_query($req_web_etablissement) ;
-		if (mysql_num_rows($res_web_etablissement) == 1) {
-			$ligne=mysql_fetch_object($res_web_etablissement) ;
-			$web_etab = $ligne->siteweb_etablissement ;
-		} else {
-			$web_etab = "" ;
-		}
+        $res_web_etablissement = mysql_query($req_web_etablissement) ;
+        if (mysql_num_rows($res_web_etablissement) == 1) {
+            $ligne=mysql_fetch_object($res_web_etablissement) ;
+            $web_etab = $ligne->siteweb_etablissement ;
+        } else {
+            $web_etab = "" ;
+        }
 
-		$res_etablissement_ville = mysql_query($req_etablissement_ville) ;
-		if (mysql_num_rows($res_etablissement_ville) == 1) {
-			$ligne=mysql_fetch_object($res_etablissement_ville) ;
-			$ville_etab = $ligne->nom_ville ;
-			$id_ville = $ligne->id ;
-		} else {
-			$ville_etab = "" ;
-		}
+        $res_etablissement_ville = mysql_query($req_etablissement_ville) ;
+        if (mysql_num_rows($res_etablissement_ville) == 1) {
+            $ligne=mysql_fetch_object($res_etablissement_ville) ;
+            $ville_etab = $ligne->nom_ville ;
+            $id_ville = $ligne->id ;
+        } else {
+            $ville_etab = "" ;
+        }
 
-		$res_etablissement_cp = mysql_query($req_etablissement_cp) ;
-		if (mysql_num_rows($res_etablissement_cp) == 1) {
-			$ligne=mysql_fetch_object($res_etablissement_cp) ;
-			$code_postal_etab = $ligne->cp;
-		} else {
-			$code_postal_etab = "" ;
-		}
+        $res_etablissement_cp = mysql_query($req_etablissement_cp) ;
+        if (mysql_num_rows($res_etablissement_cp) == 1) {
+            $ligne=mysql_fetch_object($res_etablissement_cp) ;
+            $code_postal_etab = $ligne->cp;
+        } else {
+            $code_postal_etab = "" ;
+        }
 
-		$res_etablissement_pays = mysql_query($req_etablissement_pays) ;
-		if (mysql_num_rows($res_etablissement_pays) == 1) {
-			$ligne=mysql_fetch_object($res_etablissement_pays) ;
-			$pays_etab = $ligne->nom_pays;
-		} else {
-			$pays_etab = "" ;
-		}
-	}
-	if ($id_statut == 2){
+        $res_etablissement_pays = mysql_query($req_etablissement_pays) ;
+        if (mysql_num_rows($res_etablissement_pays) == 1) {
+            $ligne=mysql_fetch_object($res_etablissement_pays) ;
+            $pays_etab = $ligne->nom_pays;
+        } else {
+            $pays_etab = "" ;
+        }
+    }
+    if ($id_statut == 2){
 
-		#profil ancien étudiant statut en poste
-		$req_posteEnt = "SELECT poste.nom_poste FROM utilisateur AS u, poste, poste_utilisateur WHERE u.id = poste_utilisateur.id_utilisateur 
-		AND poste.id = poste_utilisateur.id_poste AND u.id = $id_utilisateur";
-		$res_posteEnt = mysql_query($req_posteEnt) ;
-		if (mysql_num_rows($res_posteEnt) == 1) {
-			$ligne=mysql_fetch_object($res_posteEnt) ;
-			$posteEnt = $ligne->nom_poste;
-		} else {
-			$posteEnt = "" ;
-		}
+        #profil ancien étudiant statut en poste
+        $req_posteEnt = "SELECT poste.nom_poste FROM utilisateur AS u, poste, poste_utilisateur WHERE u.id = poste_utilisateur.id_utilisateur 
+        AND poste.id = poste_utilisateur.id_poste AND u.id = $id_utilisateur";
+        $res_posteEnt = mysql_query($req_posteEnt) ;
+        if (mysql_num_rows($res_posteEnt) == 1) {
+            $ligne=mysql_fetch_object($res_posteEnt) ;
+            $posteEnt = $ligne->nom_poste;
+        } else {
+            $posteEnt = "" ;
+        }
 
 
-		$req_nomEnt = "SELECT entreprise.nom_entreprise, siteweb_entreprise, secteur_activite FROM utilisateur AS u, entreprise, entreprise_utilisateur WHERE u.id = entreprise_utilisateur.id_utilisateur 
-		AND entreprise.id = entreprise_utilisateur.id_entreprise AND u.id = $id_utilisateur";
-		$res_nomEnt = mysql_query($req_nomEnt) ;
-		if (mysql_num_rows($res_nomEnt) == 1) {
-			$ligne=mysql_fetch_object($res_nomEnt) ;
-			$nomEnt = $ligne->nom_entreprise;
-			$webEnt = $ligne->siteweb_entreprise;
-			$secteurEnt = $ligne->secteur_activite;
-		} else {
-			$nomEnt = "";
-			$webEnt = "";
-			$secteurEnt = "";
-		}
+        $req_nomEnt = "SELECT entreprise.nom_entreprise, siteweb_entreprise, secteur_activite FROM utilisateur AS u, entreprise, entreprise_utilisateur WHERE u.id = entreprise_utilisateur.id_utilisateur 
+        AND entreprise.id = entreprise_utilisateur.id_entreprise AND u.id = $id_utilisateur";
+        $res_nomEnt = mysql_query($req_nomEnt) ;
+        if (mysql_num_rows($res_nomEnt) == 1) {
+            $ligne=mysql_fetch_object($res_nomEnt) ;
+            $nomEnt = $ligne->nom_entreprise;
+            $webEnt = $ligne->siteweb_entreprise;
+            $secteurEnt = $ligne->secteur_activite;
+        } else {
+            $nomEnt = "";
+            $webEnt = "";
+            $secteurEnt = "";
+        }
 
-				   
-		$req_villeEnt = "SELECT v.id, nom_ville, cp FROM utilisateur AS u, entreprise, entreprise_utilisateur, ville AS v, entreprise_ville WHERE u.id = entreprise_utilisateur.id_utilisateur 
-		AND entreprise.id = entreprise_utilisateur.id_entreprise AND v.id = entreprise_ville.id_entreprise AND entreprise.id = entreprise_ville.id_entreprise AND u.id = $id_utilisateur";
-		$res_villeEnt = mysql_query($req_villeEnt) ;
-		if (mysql_num_rows($res_villeEnt) == 1) {
-			$ligne=mysql_fetch_object($res_villeEnt) ;
-			$villeEnt = $ligne->nom_ville;
-			$codePostalEnt = $ligne->cp ;
-			$id_ville = $ligne->id ;
-		} else {
-			$villeEnt = "";
-			$codePostalEnt = "" ;
-			$id_ville = "" ;
-		}
-		
-		$req_ent_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
-		$res_ent_pays = mysql_query($req_ent_pays) ;
-		if (mysql_num_rows($res_ent_pays) == 1) {
-			$ligne=mysql_fetch_object($res_ent_pays) ;
-			$pays_ent = $ligne->nom_pays;
-			$id_pays = $ligne->id;
-		} else {
-			$paysEnt = "";
-			$id_pays = "";
-		}
-		
-		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
-		$res_donnees_perso = mysql_query($req_donnees_perso) ;
-		if (mysql_num_rows($res_donnees_perso) == 1) {
-			$ligne=mysql_fetch_object($res_donnees_perso) ;
-			$mail_perso = $_SESSION['mail'] = $ligne->mail;
-			$nom_perso = $_SESSION['nom'] = $ligne->nom;
-			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
-			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
-			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
-			$pass_perso = $_SESSION['pass'] = $ligne->pass;
-		} else {
-			$mail_perso = "" ;
-			$nom_perso = "" ;
-			$prenom_perso = "" ;
-			$naissance_perso = "" ;
-			$nomPatro_perso = "" ;
-		}
-	}
-	if ($id_statut == 3 or $id_statut == 1){
+                   
+        $req_villeEnt = "SELECT v.id, nom_ville, cp FROM utilisateur AS u, entreprise, entreprise_utilisateur, ville AS v, entreprise_ville WHERE u.id = entreprise_utilisateur.id_utilisateur 
+        AND entreprise.id = entreprise_utilisateur.id_entreprise AND v.id = entreprise_ville.id_entreprise AND entreprise.id = entreprise_ville.id_entreprise AND u.id = $id_utilisateur";
+        $res_villeEnt = mysql_query($req_villeEnt) ;
+        if (mysql_num_rows($res_villeEnt) == 1) {
+            $ligne=mysql_fetch_object($res_villeEnt) ;
+            $villeEnt = $ligne->nom_ville;
+            $codePostalEnt = $ligne->cp ;
+            $id_ville = $ligne->id ;
+        } else {
+            $villeEnt = "";
+            $codePostalEnt = "" ;
+            $id_ville = "" ;
+        }
+        
+        $req_ent_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, entreprise_utilisateur, entreprise, entreprise_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND entreprise_utilisateur.id_utilisateur = utilisateur.id AND entreprise_utilisateur.id_entreprise = entreprise.id AND entreprise_ville.id_entreprise = entreprise.id AND entreprise_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+        $res_ent_pays = mysql_query($req_ent_pays) ;
+        if (mysql_num_rows($res_ent_pays) == 1) {
+            $ligne=mysql_fetch_object($res_ent_pays) ;
+            $pays_ent = $ligne->nom_pays;
+            $id_pays = $ligne->id;
+        } else {
+            $paysEnt = "";
+            $id_pays = "";
+        }
+        
+        $req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+        $res_donnees_perso = mysql_query($req_donnees_perso) ;
+        if (mysql_num_rows($res_donnees_perso) == 1) {
+            $ligne=mysql_fetch_object($res_donnees_perso) ;
+            $mail_perso = $_SESSION['mail'] = $ligne->mail;
+            $nom_perso = $_SESSION['nom'] = $ligne->nom;
+            $prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+            $naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+            $nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+            $pass_perso = $_SESSION['pass'] = $ligne->pass;
+        } else {
+            $mail_perso = "" ;
+            $nom_perso = "" ;
+            $prenom_perso = "" ;
+            $naissance_perso = "" ;
+            $nomPatro_perso = "" ;
+        }
+    }
+    if ($id_statut == 3 or $id_statut == 1){
 
-		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
-		$res_donnees_perso = mysql_query($req_donnees_perso) ;
-		if (mysql_num_rows($res_donnees_perso) == 1) {
-			$ligne=mysql_fetch_object($res_donnees_perso) ;
-			$mail_perso = $_SESSION['mail'] = $ligne->mail;
-			$nom_perso = $_SESSION['nom'] = $ligne->nom;
-			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
-			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
-			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
-			$pass_perso = $_SESSION['pass'] = $ligne->pass;
-		} else {
-			$mail_perso = "" ;
-			$nom_perso = "" ;
-			$prenom_perso = "" ;
-			$naissance_perso = "" ;
-			$nomPatro_perso = "" ;
-		}
-	} 
-	
+        $req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+        $res_donnees_perso = mysql_query($req_donnees_perso) ;
+        if (mysql_num_rows($res_donnees_perso) == 1) {
+            $ligne=mysql_fetch_object($res_donnees_perso) ;
+            $mail_perso = $_SESSION['mail'] = $ligne->mail;
+            $nom_perso = $_SESSION['nom'] = $ligne->nom;
+            $prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+            $naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+            $nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+            $pass_perso = $_SESSION['pass'] = $ligne->pass;
+        } else {
+            $mail_perso = "" ;
+            $nom_perso = "" ;
+            $prenom_perso = "" ;
+            $naissance_perso = "" ;
+            $nomPatro_perso = "" ;
+        }
+    } 
+    
 } else {
-	$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
-	$res_donnees_perso = mysql_query($req_donnees_perso) ;
-	if (mysql_num_rows($res_donnees_perso) == 1) {
-		$ligne=mysql_fetch_object($res_donnees_perso) ;
-		$mail_perso = $_SESSION['mail'] = $ligne->mail;
-		$nom_perso = $_SESSION['nom'] = $ligne->nom;
-		$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
-		$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
-		$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
-		$pass_perso = $_SESSION['pass'] = $ligne->pass;
-	} else {
-		$mail_perso = "" ;
-		$nom_perso = "" ;
-		$prenom_perso = "" ;
-		$naissance_perso = "" ;
-		$nomPatro_perso = "" ;
-	}	
+    $req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+    $res_donnees_perso = mysql_query($req_donnees_perso) ;
+    if (mysql_num_rows($res_donnees_perso) == 1) {
+        $ligne=mysql_fetch_object($res_donnees_perso) ;
+        $mail_perso = $_SESSION['mail'] = $ligne->mail;
+        $nom_perso = $_SESSION['nom'] = $ligne->nom;
+        $prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+        $naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+        $nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+        $pass_perso = $_SESSION['pass'] = $ligne->pass;
+    } else {
+        $mail_perso = "" ;
+        $nom_perso = "" ;
+        $prenom_perso = "" ;
+        $naissance_perso = "" ;
+        $nomPatro_perso = "" ;
+    }   
 }
 ################################################################################################
 
@@ -1086,7 +1086,7 @@ if(connexionUtilisateurReussie()) {
                 <fieldset>
                     <legend>Changer mon statut en : </legend>
                     <p>
-                        <label for=\"statutActuel\">Profil à remplir : </label>";
+                        <label class=\"radio\" for=\"statutActuel\">Profil à remplir : </label>";
         if ($id_statut == 1) {
             echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantARemplir\" checked=\"checked\" value=\"1\" />" ;
         }
@@ -1095,7 +1095,7 @@ if(connexionUtilisateurReussie()) {
         }
         echo "</p>
                 <p>
-                <label for=\"statutActuel\">En poste : </label>";
+                <label class=\"radio\" for=\"statutActuel\">En poste : </label>";
         if ($id_statut == 2) {
             echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantEmploi\" checked=\"checked\" value=\"2\" />" ;
         } else {
@@ -1103,7 +1103,7 @@ if(connexionUtilisateurReussie()) {
         }
         echo "</p>
             <p>
-            <label for=\"ancienEtudiantFormation\">En formation : </label>";
+            <label class=\"radio\" for=\"ancienEtudiantFormation\">En formation : </label>";
         if ($id_statut == 3) {
             echo "<input name=\"statutActuel\" type=\"radio\" id=\"ancienEtudiantFormation\" checked=\"checked\" value=\"3\" />" ;
         } else {
@@ -1111,7 +1111,7 @@ if(connexionUtilisateurReussie()) {
         }
         echo "</p>
                 <p>
-                <label for=\"ancienEtudiantSansEmploi\">Sans emploi : </label>";
+                <label class=\"radio\" for=\"ancienEtudiantSansEmploi\">Sans emploi : </label>";
         if ($id_statut == 4) {
             echo "<input name=\"statutActuel\" type=\"radio\"  id=\"ancienEtudiantSansEmploi\" checked=\"checked\" value=\"4\" />" ;
         } else {
@@ -1147,8 +1147,6 @@ if(connexionUtilisateurReussie()) {
         Export au format <a href=\"export_pdf.php\">pdf</a>.</p>";
 
     }
-
-    afficheMenu($id_role);
     finhtml() ;
 }
 else {
