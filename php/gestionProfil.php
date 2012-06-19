@@ -603,6 +603,7 @@ if ($id_role == 1){
         etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
         AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
 
+<<<<<<< HEAD
         $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
           
         $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
@@ -633,6 +634,39 @@ if ($id_role == 1){
         }
         
         $res_diplome = mysql_query($req_diplome) ;
+=======
+		$req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+		  
+		$req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+		$res_mail_pro = mysql_query($req_mail_pro) ;
+		
+		if (mysql_num_rows($res_mail_pro) == 1) {
+			$ligne=mysql_fetch_object($res_mail_pro) ;
+			$mail_pro = $ligne->mail_pro;
+		} else {
+			$mail_pro = "" ;
+		}
+		
+		$req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
+		$res_donnees_perso = mysql_query($req_donnees_perso) ;
+		if (mysql_num_rows($res_donnees_perso) == 1) {
+			$ligne=mysql_fetch_object($res_donnees_perso) ;
+			$mail_perso = $_SESSION['mail'] = $ligne->mail;
+			$nom_perso = $_SESSION['nom'] = $ligne->nom;
+			$prenom_perso = $_SESSION['prenom'] = $ligne->prenom;
+			$naissance_perso = $_SESSION['naissance'] = $ligne->naissance;
+			$nomPatro_perso = $_SESSION['nom_patronymique'] = $ligne->nom_patronymique;
+			$pass_perso = $_SESSION['pass'] = $ligne->pass;
+		} else {
+			$mail_perso = "" ;
+			$nom_perso = "" ;
+			$prenom_perso = "" ;
+			$naissance_perso = "" ;
+			$nomPatro_perso = "" ;
+		}
+		
+		$res_diplome = mysql_query($req_diplome) ;
+>>>>>>> 0e5c1ac3185d90210a8194399a1967389a0032ba
 
         if (mysql_num_rows($res_diplome) == 1) {
             $ligne=mysql_fetch_object($res_diplome) ;
