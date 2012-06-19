@@ -12,9 +12,6 @@ $mail = $_SESSION['mail'] ;
 require("fonctions.php") ;
 $connexion = connexion() ;
 
-
-
-
 debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions") ;
 
 		echo"<table border=\"1px\">
