@@ -607,7 +607,8 @@ if ($id_role == 1){
 		  
 		$req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
 		$res_mail_pro = mysql_query($req_mail_pro) ;
-		if (mysql_num_rows($res_diplome) == 1) {
+		
+		if (mysql_num_rows($res_mail_pro) == 1) {
 			$ligne=mysql_fetch_object($res_mail_pro) ;
 			$mail_pro = $ligne->mail_pro;
 		} else {
