@@ -92,10 +92,10 @@ else
                         <label for=\"annee_promo\">Année de la promotion: </label>
                         <input type=\"text\" id=\"annee_promo\" name=\"annee_promo\" />
                     </p>
+                </fieldset>
                     <p class=\"submit\">
                         <input type=\"submit\" name=\"envoyer\" value=\"Valider\" />
                     </p>
-                </fieldset>
             </form>";
         }
 
