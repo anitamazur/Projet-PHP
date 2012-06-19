@@ -52,7 +52,7 @@ $serveurBD = "localhost";
 $resultat=mysql_query ("SELECT *
 FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 WHERE u.id = ru.id_utilisateur
-AND r.id = ru.id_role
+AND r.id = ru.id_role AND ru.id_role = 1)
 ");
  
 // Instanciation de la classe dérivée
