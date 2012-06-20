@@ -147,11 +147,11 @@ if(isset($_POST['valider'])) {
 					affichetitre ("Ancien étudiant","3");
 				}
 				
-				echo "Année de la promotion : $cherche_annee_promo";
+				echo "Année de la promotion : $cherche_annee_promo<br/>";
 			
 				## condition sur le mail perso
 				if ($cherche_mail_niveau == 'public') {
-					echo "Adresse mail personelle : $cherche_mail ";    
+					echo "Adresse mail personelle : $cherche_mail <br/>";    
 				} else {
 					echo " ";
 				}
@@ -159,7 +159,7 @@ if(isset($_POST['valider'])) {
 		
 				## condition sur le mail pro
 				if ($cherche_mailPro_niveau == 'public') {
-					echo "Adresse mail professionnelle : $cherche_mail_pro ";
+					echo "Adresse mail professionnelle : $cherche_mail_pro <br/>";
 				} else {
 					echo " ";
 				}
@@ -210,49 +210,49 @@ if(isset($_POST['valider'])) {
 						
 							## condition sur le poste
 							if ($cherche_nomPoste_niveau == 'public') {
-								echo "$ligne->nom_poste";
+								echo "$ligne->nom_poste<br/>";
 							} else {
 								echo " ";
 							}
 									
 							## condition sur le nom de l'entreprise
 							if ($cherche_nomEntreprise_niveau == 'public') {
-								echo "$ligne->nom_entreprise";
+								echo "$ligne->nom_entreprise<br/>";
 							} else {
 								echo " ";
 							}
 
 							## condition sur le siteweb de l'entreprise
 							if ($cherche_sitewebEntreprise_niveau == 'public') {
-								echo "$ligne->siteweb_entreprise";
+								echo "$ligne->siteweb_entreprise<br/>";
 							} else {
 								echo " ";
 							}
 									
 							## condition sur le secteur de l'entreprise
 							if ($cherche_secteurEntreprise_niveau == 'public') {
-								echo "$ligne->secteur_entreprise";
+								echo "$ligne->secteur_entreprise<br/>";
 							} else {
 								echo " ";
 							}
 							
 							## condition sur le nom de la ville de l'entreprise
 							if ($cherche_nomVille_niveau == 'public') {
-								echo "$ligne->nom_ville";
+								echo "$ligne->nom_ville ";
 							} else {
 								echo " ";
 							}
 						
 							## condition sur le code postal de l'entreprise
 							if ($cherche_cp_niveau == 'public') {
-								echo "$ligne->cp"; 
+								echo "$ligne->cp<br/>"; 
 							} else {
 								echo " ";
 							}
 						
 							## condition sur le pays de l'entreprise
 							if ($cherche_nomPays_niveau == 'public') {
-								echo "$ligne->nom_pays"; 
+								echo "$ligne->nom_pays<br/>"; 
 							} else {
 								echo " ";
 							}
@@ -286,7 +286,7 @@ if(isset($_POST['valider'])) {
 									
 										## condition sur le diplôme
 									if ($cherche_diplomeEtudes_niveau == 'public') {
-										echo "$ligne->diplome_etudes";
+										echo "$ligne->diplome_etudes<br/>";
 									} else {
 										echo " ";
 									}
@@ -294,35 +294,35 @@ if(isset($_POST['valider'])) {
 									## condition sur le nom de l'établissement
 									if ($cherche_nomEtablissement_niveau == 'public')
 									{
-									echo "$ligne->nom_etablissement";
+									echo "$ligne->nom_etablissement<br/>";
 									}
 									else {echo " ";}
 
 									## condition sur le siteweb de l'établissement
 									if ($cherche_sitewebEtablissement_niveau == 'public')
 									{
-									echo "$ligne->siteweb_etablissement";
+									echo "$ligne->siteweb_etablissement<br/>";
 									}
 									else {echo " ";}
 									
 									## condition sur le nom de la ville de l'établissement
 									if ($cherche_nomVille_niveau == 'public')
 									{
-									echo "$ligne->nom_ville";
+									echo "$ligne->nom_ville ";
 									}
 									else {echo " ";}
 								
 									## condition sur le code postal de l'établissement
 									if ($cherche_cp_niveau == 'public')
 									{
-									echo "$ligne->cp";
+									echo "$ligne->cp<br/>";
 									}
 									else {echo " ";}
 								
 									## condition sur le pays de l'établissement
 									if ($cherche_nomPays_niveau == 'public')
 									{
-									echo "$ligne->nom_pays";
+									echo "$ligne->nom_pays<br/>";
 									}
 									else {echo " ";}
 									
