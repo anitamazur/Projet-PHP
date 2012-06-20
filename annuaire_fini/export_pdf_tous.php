@@ -52,7 +52,8 @@ function Footer()
 $resultat=mysql_query ("SELECT *
 FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 WHERE u.id = ru.id_utilisateur
-AND r.id = ru.id_role
+AND r.id = ru.id_role 
+AND ru.id_role = 1
 ");
  
 // Instanciation de la classe dérivée
@@ -77,7 +78,7 @@ if ($row["id_role"]== 1)
                                         AND u.id = sa.id_utilisateur
                                         AND r.id = ru.id_role
                                         AND s.id = sa.id_statut
-                                        AND ru.id_role = '$row[id_role]' AND u.id = '$row[id]'");
+                                        AND ru.id_role = '$row[id_role]' AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'");
                         
                         while ($row = mysql_fetch_assoc($res)) 
                         {
@@ -99,7 +100,7 @@ if ($row["id_role"]== 1)
                                 AND e.id = ev.id_entreprise
                                 AND vi.id = ev.id_entreprise
                                 AND vi.id = vp.id_ville
-                            AND sa.statut = '$row[id_statut]' AND u.id = '$row[id]' ";
+                            AND sa.statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]' ";
                     
                     $res_statut2 = mysql_query($req_statut2) ;
                     
@@ -137,7 +138,7 @@ if ($row["id_role"]== 1)
                                 AND v.id = vp.id_ville
                                 AND v.id = etav.id_ville
                                 AND p.id = vp.id_pays
-                        AND sa.id_statut = '$row[id_statut]' AND u.id = '$row[id]'" ;
+                        AND sa.id_statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'" ;
                         
                 $res_statut3 = mysql_query($req_statut3) ;
             
