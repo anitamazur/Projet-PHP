@@ -28,11 +28,13 @@ $excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t si
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {
-		$id_role = $row['id_role'];
+		$profil_id_role = $row['id_role'];
+		$profil_nom = $row['nom'];
+		$profil_prenom = $row['prenom'];
 	
         $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[mail] \t $row[nom_role] \n";
 	
-	if ($id_role == 1)
+	if ($profil_id_role == 1)
 	{
 $res = mysql_query("SELECT * 
 			FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -40,14 +42,14 @@ $res = mysql_query("SELECT *
 			AND u.id = sa.id_utilisateur
 			AND r.id = ru.id_role
 			AND s.id = sa.id_statut
-			AND ru.id_role = '$id_role'");
+			AND ru.id_role = '$profil_id_role' AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' ");
 			
 			while($row = mysql_fetch_array($res)) {
-				$id_statut = $row['id_statut'];
+				$profil_id_statut = $row['id_statut'];
 			
 			$excel .= "$row[nom_statut] \t";
 			
-				if ($id_statut == 2)
+				if ($profil_id_statut == 2)
 				{
 				
 				
@@ -64,11 +66,12 @@ $res = mysql_query("SELECT *
 							AND vi.id = vp.id_ville
 							AND pa.id = vp.id_pays
 							AND u.id = sa.id_utilisateur
-							AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role'");
+							AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
+							AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'");
 					
 					
 					
-					while ($row = mysql_fetch_object($res_statut2)){
+					while ($row = mysql_fetch_array($res_statut2)){
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 						}
@@ -77,7 +80,7 @@ $res = mysql_query("SELECT *
 			
 			}
 			
-			elseif ($id_statut == 3) 
+			elseif ($profil_id_statut == 3) 
 					{		
 						$res_statut3 =mysql_query( "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav AND statut_ancien_etudiant AS sa
@@ -90,9 +93,10 @@ $res = mysql_query("SELECT *
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
 								AND u.id = sa.id_utilisateur
-								AND sa.id_statut = '$id_statut'AND ru.id_role = '$id_role' " );
+								AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
+								AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
 						
-						while ($row = mysql_fetch_object($res_statut3)) {
+						while ($row = mysql_fetch_array($res_statut3)) {
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 							}}
@@ -105,7 +109,7 @@ $res = mysql_query("SELECT *
 } }
  
 header("Content-type: application/vnd.ms-excel");
-header("Content-disposition: attachment; filename=profils.xls");
+header("Content-disposition: attachment; filename=les_profils.xls");
 print $excel;
 exit;
 ?>
