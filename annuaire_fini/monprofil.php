@@ -52,15 +52,17 @@ $ligne=mysql_fetch_object($res) ;
 		echo "	Adresse mail personelle: $mail <br/>";
 		echo "	Adresse mail professionnelle : $mail_pro </p>";
 		
+	
 		## en poste ##
 		
 					if ($_SESSION['id_statut'] == 2)
 					{
 					
 					$req_statut2="SELECT *
-							FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
+							FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
 							WHERE u.id = pu.id_utilisateur
 							AND u.id = eu.id_utilisateur
+							AND u.id = sa.id_utilisateur
 							AND p.id = pu.id_poste
 							AND p.id = pde.id_poste
 							AND e.id = eu.id_entreprise
@@ -68,7 +70,6 @@ $ligne=mysql_fetch_object($res) ;
 							AND e.id = ev.id_entreprise
 							AND vi.id = ev.id_entreprise
 							AND vi.id = vp.id_ville
-							AND pa.id = vp.id_pays
 							AND u.nom='$nom' AND u.prenom='$prenom'";
 					
 					$res_statut2 = mysql_query($req_statut2) ;
@@ -102,16 +103,17 @@ $ligne=mysql_fetch_object($res) ;
 				{
 				
 				$req_statut3 = "SELECT * 
-						FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
-						WHERE u.id = eu.id_utilisateur
-						AND u.id = etau.id_utilisateur
-						AND e.id = eu.id_etudes
-						AND eta.id = etau.id_etablissement
-						AND eta.id = etav.id_etablissement
-						AND v.id = vp.id_ville
-						AND v.id = etav.id_ville
-						AND p.id = vp.id_pays
-						AND u.nom='$nom' AND u.prenom='$prenom'" ;
+					FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
+					WHERE u.id = eu.id_utilisateur
+					WHERE u.id = sa.id_utilisateur
+					AND u.id = etau.id_utilisateur
+					AND e.id = eu.id_etudes
+					AND eta.id = etau.id_etablissement
+					AND eta.id = etav.id_etablissement
+					AND v.id = vp.id_ville
+					AND v.id = etav.id_ville
+					AND p.id = vp.id_pays
+					AND u.nom='$nom' AND u.prenom='$prenom'" ;
 						
 				$res_statut3 = mysql_query($req_statut3) ;
 				
@@ -140,15 +142,7 @@ $ligne=mysql_fetch_object($res) ;
 		
 		echo "<p>Date d'inscription : $date_inscription <br/>
 		Date de mise à jour du profil : $date_maj_profil</p>";
-		
-	#	debutmenu();
-	#	echo "
-	#		<li><a href=\"pageAccueil.php\">Accueil</a></li>  
-	#		<li><a href=\"mapromo.php\">Ma promo</a></li>
-	#		<li><a href=\"recherche.php\">Recherche dans l'annuaire</a></li>
-	#		<li><a href=\"gestionProfil.php\">Gestion de mon profil</a></li>
-	#		<li><a href=\"deconnexion.php\">Déconnexion</a></li>";
-	#	finmenu();
+
 		
 		} 
 
