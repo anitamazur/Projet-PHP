@@ -25,7 +25,7 @@ if(connexionUtilisateurReussie()) {
     $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
     debuthtml("Annuaire M2 DEFI - Accueil","Annuaire M2 DEFI", "Accueil", $id_role) ;
     affichetitre("Vos informations personnelles :","3") ;
-    echo "<p>L\'annuaire du M2 DEFI est là pour rendre compte de la situation professionnelle des anciens étudiants. Ainsi, les enseignants, mais aussi les étudiants actuels peuvent suivre leur évolution. Les données personnelles qui seront entrées dans cet annuaire ne seront pas diffusées sans accord préalable. En effet, lors de l\'inscription, l\'ancien étudiant peut choisir quelles informations seront diffusés publiquement et quelles resteront privées. Aussi, il est possible à tout moment de supprimer le profil ou de modifier le niveau de diffusion des informations du profil.</p>"
+    echo "<p>L\'annuaire du M2 DEFI est là pour rendre compte de la situation professionnelle des anciens étudiants. Ainsi, les enseignants, mais aussi les étudiants actuels peuvent suivre leur évolution professionnelle après l\'obtention du diplôme M2 DEFI. Les données personnelles qui seront entrées dans cet annuaire ne seront pas diffusées sans accord préalable. En effet, lors de l\'inscription, l\'ancien étudiant peut choisir quelles informations seront diffusés publiquement et quelles resteront privées. Aussi, il est possible à tout moment de supprimer le profil ou de modifier le niveau de diffusion des informations du profil.</p>"
 
     if ($id_role == 1) {
         $req = "SELECT * 
