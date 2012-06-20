@@ -374,7 +374,8 @@ if(isset($_POST['modifier'])) {
             $ligne=mysql_fetch_object($res_etablissement_cp) ;
             $code_postal_etab = $ligne->cp;
             
-            $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND v.id = $id_ville";
+            $req_etablissement_pays = "SELECT p.id, p.nom_pays FROM utilisateur AS u, etablissement_utilisateur AS eu, etablissement AS e, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = p.id AND eu.id_utilisateur = u.id AND eu.id_etablissement = e.id AND ev.id_etablissement = e.id AND ev.id_ville = v.id AND u.id = $id_utilisateur ";
+    		
             $res_etablissement_pays = mysql_query($req_etablissement_pays) ;
             $ligne=mysql_fetch_object($res_etablissement_pays) ;
             $pays_etab = $ligne->nom_pays;
@@ -604,11 +605,11 @@ if ($id_role == 1){
         AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
 
 
-        $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+        $req_etablissement_pays = "SELECT p.id, p.nom_pays FROM utilisateur AS u, etablissement_utilisateur AS eu, etablissement AS e, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = p.id AND eu.id_utilisateur = u.id AND eu.id_etablissement = e.id AND ev.id_etablissement = e.id AND ev.id_ville = v.id AND u.id = $id_utilisateur ";
           
         $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
         $res_mail_pro = mysql_query($req_mail_pro) ;
-        if (mysql_num_rows($res_diplome) == 1) {
+        if (mysql_num_rows($res_mail_pro) == 1) {
             $ligne=mysql_fetch_object($res_mail_pro) ;
             $mail_pro = $ligne->mail_pro;
         } else {
@@ -635,7 +636,7 @@ if ($id_role == 1){
         
         $res_diplome = mysql_query($req_diplome) ;
 
-        $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
+      # $req_etablissement_pays = "SELECT p.id, p.nom_pays FROM utilisateur AS u, etablissement_utilisateur AS eu, etablissement AS e, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = p.id AND eu.id_utilisateur = u.id AND eu.id_etablissement = e.id AND ev.id_etablissement = e.id AND ev.id_ville = v.id AND u.id = $id_utilisateur ";
           
         $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
         $res_mail_pro = mysql_query($req_mail_pro) ;
