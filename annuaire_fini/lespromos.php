@@ -15,8 +15,9 @@ $connexion = connexion() ;
 debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$id_role) ;
 
 		echo"<table border=\"1px\">
-			<th colspan= 7 >Promotion</th>
+			<th colspan= 8> Les Promotions</th>
 			<tr>
+			<td>Promo</td>
 			<td>Nom</td>
 			<td>Prénom</td>
 			<td>Contact</td>
@@ -25,16 +26,6 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 			<td>Date d'inscription</td>
 			<td>Date de mise à jour du profil</td>
 			</tr>";
-
-$res_annee = mysql_query ("select annee_promo from utilisateur");
-while ($ligne = mysql_fetch_object($res_annee)) {			
-	$promo_annee_promo = $ligne->annee_promo;
-
-	if ($promo_annee_promo !=""){
-		echo"<th colspan=7>$promo_annee_promo</th>";
-		}
-		else { echo "<th  colspan=7> - </th>"; }
-	
 	
 	$res_p = mysql_query("SELECT *			
 		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
@@ -42,11 +33,13 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 		AND u.id = sa.id_utilisateur
 		AND r.id = ru.id_role
 		AND s.id = sa.id_statut
-		AND ru.id_role = 1 or ru.id_role = 2 AND annee_promo = '$promo_annee_promo'");
+		AND ru.id_role = 1 or ru.id_role = 2");
 					
 
 	while ($ligne = mysql_fetch_object($res_p)) {
+				$promo_annee_promo=$ligne->annee_promo;
 				$promo_id_role=$ligne->id_role;
+				$promo_id_utilisateur = $ligne->id;
 				$promo_id_statut=$ligne->id_statut;
 				$promo_mail=$ligne->mail;
 				$promo_mail_pro=$ligne->mail_pro;
@@ -59,14 +52,12 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 
 				
 						echo "<tr>";
-				if ($promo_nom !=""){
-						echo "<td>$promo_nom</td>";
-				}
-				else { echo "<td> - </td>"; }
-				if ($promo_prenom !=""){
-						echo "<td>$promo_prenom</td>";
-				}
-				else { echo "<td> - </td>"; }
+						
+				
+				echo"<td>$promo_annee_promo</td>";
+				echo "<td>$promo_nom</td>";
+				echo "<td>$promo_prenom</td>";
+				
 				if ($promo_mail !="")
 						{
 						echo "<td>$promo_mail<br/>";
@@ -103,7 +94,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 									AND e.id = ev.id_entreprise
 									AND vi.id = ev.id_entreprise
 									AND vi.id = vp.id_ville
-									AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role'";
+									AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role' AND u.id ='$promo_id_utilisateur'";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -167,7 +158,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role'" ;
+								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role' AND u.id ='$promo_id_utilisateur'" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
 								
@@ -217,7 +208,7 @@ while ($ligne = mysql_fetch_object($res_annee)) {
 						echo "<td>$promo_date_inscription</td>";
 						echo "<td>$promo_date_maj_profil</td>";
 						echo "</tr>";
-					 }}
+					 }
 
 	  echo "</table>";	
 	
