@@ -23,9 +23,9 @@ $query = "SELECT *
 	
 $result = mysql_query($query) or die(mysql_error());
  
-// Ent�tes des colones dans le fichier Excel
+// Ent?tes des colones dans le fichier Excel
 $excel="";
-$excel .="nom \t prenom \t ann�e_promo \t adresse mail \t r�le \t statut \t situation actuelle \n";
+$excel .="nom \t prenom \t ann?e_promo \t adresse mail \t r?le \t statut \t situation actuelle \n";
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {
@@ -71,7 +71,7 @@ $res = mysql_query("SELECT *
 					
 					
 					
-					while ($row = mysql_fetch_object($res_statut2)){
+					while ($row = mysql_fetch_array($res_statut2)){
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 						}
@@ -96,7 +96,7 @@ $res = mysql_query("SELECT *
 								AND u.id = '$id_utilisateur'
 								AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'" );
 						
-						while ($row = mysql_fetch_object($res_statut3)) {
+						while ($row = mysql_fetch_array($res_statut3)) {
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 							}}
