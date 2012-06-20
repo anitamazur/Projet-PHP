@@ -603,7 +603,7 @@ if ($id_role == 1){
         etab, etablissement_utilisateur AS etabu, ville AS v, etablissement_ville AS etab_ville WHERE u.id = etabu.id_utilisateur 
         AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
 
-<<<<<<< HEAD
+
         $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
           
         $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
@@ -634,7 +634,7 @@ if ($id_role == 1){
         }
         
         $res_diplome = mysql_query($req_diplome) ;
-=======
+
         $req_etablissement_pays = "SELECT pays.id, pays.nom_pays FROM utilisateur, etablissement_utilisateur, etablissement, etablissement_ville, ville AS v, pays, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = pays.id AND etablissement_utilisateur.id_utilisateur = utilisateur.id AND etablissement_utilisateur.id_etablissement = etablissement.id AND etablissement_ville.id_entreprise = etablissement.id AND etablissement_ville.id_ville = v.id AND utilisateur.id = $id_utilisateur ";
           
         $req_mail_pro = "SELECT mail_pro FROM utilisateur AS u WHERE u.id = $id_utilisateur";
