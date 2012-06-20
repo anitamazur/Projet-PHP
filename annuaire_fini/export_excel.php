@@ -23,9 +23,9 @@ $query = "SELECT *
 	
 $result = mysql_query($query) or die(mysql_error());
  
-// Entêtes des colones dans le fichier Excel
+// Entï¿½tes des colones dans le fichier Excel
 $excel="";
-$excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t situation actuelle \n";
+$excel .="nom \t prenom \t annï¿½e_promo \t adresse mail \t rï¿½le \t statut \t situation actuelle \n";
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {
@@ -42,7 +42,7 @@ $res = mysql_query("SELECT *
 			AND r.id = ru.id_role
 			AND s.id = sa.id_statut
 			AND u.id = '$id_utilisateur'
-			AND ru.id_role = '$id_role'");
+			AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'");
 			
 			while($row = mysql_fetch_array($result)) {
 				$id_statut = $row['id_statut'];
@@ -67,7 +67,7 @@ $res = mysql_query("SELECT *
 							AND pa.id = vp.id_pays
 							AND u.id = sa.id_utilisateur
 							AND u.id = '$id_utilisateur'
-							AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role'");
+							AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'");
 					
 					
 					
@@ -94,7 +94,7 @@ $res = mysql_query("SELECT *
 								AND p.id = vp.id_pays
 								AND u.id = sa.id_utilisateur
 								AND u.id = '$id_utilisateur'
-								AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role'" );
+								AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'" );
 						
 						while ($row = mysql_fetch_object($res_statut3)) {
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
