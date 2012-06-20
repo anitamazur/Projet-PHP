@@ -4,7 +4,7 @@ $connexion = connexion() ;
 
 debuthtml("Annuaire M2 DEFI - Page de connexion","Annuaire M2 DEFI", "Connexion au site","") ;
 ?>
-            <p>L'annuaire du M2 DEFI est là pour rendre compte de la situation professionnelle des anciens étudiants. Ainsi, les enseignants, mais aussi les étudiants actuels peuvent suivre leur évolution professionnelle après l'obtention du diplôme M2 DEFI. Les données personnelles qui seront entrées dans cet annuaire ne seront pas diffusées sans accord préalable. En effet, lors de l'inscription, l'ancien étudiant peut choisir quelles informations seront diffusés publiquement et quelles resteront privées. Aussi, il est possible à tout moment de supprimer le profil ou de modifier le niveau de diffusion des informations du profil.</p>
+            <p>L'annuaire du M2 DEFI est là pour rendre compte de la situation professionnelle des anciens étudiants. Ainsi, les enseignants, mais aussi les étudiants actuels peuvent suivre leur évolution professionnelle après l'obtention du diplôme M2 DEFI. Les données personnelles qui seront entrées dans cet annuaire ne seront pas diffusées sans accord préalable. En effet, lors de l'inscription, l'ancien étudiant peut choisir quelles informations seront diffusés publiquement et lesquelles resteront privées. Aussi, il est possible à tout moment de supprimer le profil ou de modifier le niveau de diffusion des informations du profil.</p>
             <form id="form1" action="pageAccueil.php" method="post">
                 <fieldset>
                     <legend>Si vous avez déjà un compte, veuillez introduire les informations suivantes :</legend>
