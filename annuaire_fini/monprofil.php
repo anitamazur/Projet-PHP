@@ -51,7 +51,7 @@ $ligne=mysql_fetch_object($res) ;
 		echo "	Année de la promotion : $annee_promo <br/>";
 		echo "	Adresse mail personelle: $mail <br/>";
 		echo "	Adresse mail professionnelle : $mail_pro </p>";
-		
+		echo "<p> $role </p>";
 	
 		## en poste ##
 		
