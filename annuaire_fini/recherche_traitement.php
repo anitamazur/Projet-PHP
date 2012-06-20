@@ -78,7 +78,7 @@ if(isset($_POST['valider'])) {
 					echo "<p>$cherche_statut</p>";
 		
 					## en poste ##
-					if ($id_statut == 2) {
+					if ($cherche_id_statut == 2) {
 						$req_statut2="SELECT *
 									FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
 									WHERE u.id = pu.id_utilisateur
@@ -92,7 +92,8 @@ if(isset($_POST['valider'])) {
 									AND vi.id = ev.id_entreprise
 									AND vi.id = vp.id_ville
 									AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
-									AND u.id = '$cherche_id'";
+									AND u.id = '$cherche_id'
+									AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut' ";
 						
 						$res_statut2 = mysql_query($req_statut2) ;
 						
@@ -104,7 +105,7 @@ if(isset($_POST['valider'])) {
 								echo"$ligne->secteur_entreprise<br/>";
 								echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays";
 						}
-					} elseif ($id_statut == 3) { ## en formation ##       
+					} elseif ($cherche_id_statut == 3) { ## en formation ##       
 							$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
 								WHERE u.id = eu.id_utilisateur
@@ -117,7 +118,8 @@ if(isset($_POST['valider'])) {
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
 								AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
-								AND u.id = '$cherche_id'" ;
+								AND u.id = '$cherche_id'
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut'" ;
 									
 							$res_statut3 = mysql_query($req_statut3) ;
 							
@@ -427,7 +429,7 @@ if ($id_role == 3 or $id_role == 4)
 								AND e.id = ev.id_entreprise
 								AND vi.id = ev.id_entreprise
 								AND vi.id = vp.id_ville
-								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut'
                                 AND u.annee_promo='$cherche_annee_promo'";
         
                                 $res_statut2 = mysql_query($req_statut2) ;
@@ -443,7 +445,7 @@ if ($id_role == 3 or $id_role == 4)
                                 } }
                                 
                             ## si en formation ##   
-                            elseif ($id_statut==3)
+                            elseif ($cherche_id_statut==3)
                                 {
                                 echo "<td>$ligne->nom_statut</td>";
                                 
@@ -458,7 +460,7 @@ if ($id_role == 3 or $id_role == 4)
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut'
                                 AND u.annee_promo='$cherche_annee_promo'" ;
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
@@ -473,7 +475,7 @@ if ($id_role == 3 or $id_role == 4)
                             
                             
                             ##si profil à remplir ou en recherche d'emploi##
-                            elseif ($id_statut==1 or $id_statut ==4)
+                            elseif ($cherche_id_statut==1 or $cherche_id_statut ==4)
                                 {
                                 echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
@@ -508,7 +510,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                         }
                         
             
-                        echo "<td>$ligne->nom_role</td>";
+                    #    echo "<td>$ligne->nom_role</td>";
                             
                         ## si ancien etudiant ##
                         if ($cherche_id_role ==1 )
@@ -637,7 +639,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
 								AND eta.id = etav.id_etablissement
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
-								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_satut'
+								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut'
                                 AND u.annee_promo='$cherche_annee_promo'" ;
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
@@ -710,10 +712,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
 
       echo "</table>";
       
-     
 
-        
-        afficheMenu($id_role);
         echo "<p>Si vous rencontrez des problèmes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";
         finhtml();
         
