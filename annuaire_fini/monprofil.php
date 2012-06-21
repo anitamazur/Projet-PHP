@@ -51,7 +51,7 @@ $ligne=mysql_fetch_object($res) ;
 		echo "	Année de la promotion : $annee_promo <br/>";
 		echo "	Adresse mail personelle: $mail <br/>";
 		echo "	Adresse mail professionnelle : $mail_pro </p>";
-		echo "<p> $role </p>";
+		echo "<p> $role<br/>$statut</p>";
 	
 		## en poste ##
 		
@@ -86,8 +86,8 @@ $ligne=mysql_fetch_object($res) ;
 						$cp = $ligne->cp ;
 						$pays = $ligne->nom_pays ;
 					
-					echo "<p>$role : $statut <br/><br/>
-						Poste : $nom_poste <br/>
+					echo "
+						<p>Poste : $nom_poste <br/>
 						Entreprise : $nom_entreprise <br/>
 						Adresse web de l'entreprise : $siteweb_entreprise <br/>
 						Secteur de l'entreprise : $secteur_entreprise <br/>
@@ -128,7 +128,7 @@ $ligne=mysql_fetch_object($res) ;
 					$pays = $ligne->nom_pays ;
 				
 				
-				echo "<p>$role : $statut <br/><br/>
+				echo "<p>
 					Diplôme : $diplome <br/>
 					Etablissement : $nom_etablissement <br/>
 					Adresse web de l'établissement : $siteweb_etablissement <br/>
