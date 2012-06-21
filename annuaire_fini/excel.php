@@ -85,7 +85,7 @@ $res = mysql_query("SELECT *
 			
 			}
 			
-			elseif ($profil_id_statut == 3) 
+			if ($profil_id_statut == 3) 
 					{		
 						$res_statut3 =mysql_query( "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav AND statut_ancien_etudiant AS sa
