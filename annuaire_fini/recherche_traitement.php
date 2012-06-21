@@ -400,7 +400,7 @@ if ($id_role == 3 or $id_role == 4)
                         echo "<td>$ligne->mail<br/>$ligne->mail_pro</td>";
                        
                        #echo "<td>$ligne->nom_role</td>";
-                       echo "<td>$ligne->nom_statut</td>";
+                       
 					
                         ## si ancien etudiant ##
                         if ($cherche_id_role ==1 )
@@ -409,7 +409,7 @@ if ($id_role == 3 or $id_role == 4)
                          # si en poste ##
                             if ($cherche_id_statut==2)
                                 {
-                               
+                               echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
@@ -444,7 +444,8 @@ if ($id_role == 3 or $id_role == 4)
                             ## si en formation ##   
                             elseif ($cherche_id_statut==3)
                                 {
-                            
+                            echo "<td>$ligne->nom_statut</td>";
+							
                                 $req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
 								WHERE u.id = eu.id_utilisateur
@@ -477,7 +478,7 @@ if ($id_role == 3 or $id_role == 4)
                             ##si profil à remplir ou en recherche d'emploi##
                             elseif ($cherche_id_statut==1 or $cherche_id_statut ==4)
                                 {
-                               
+                               echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
                                 }
                             } }
@@ -512,7 +513,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
             
                     #    echo "<td>$ligne->nom_role</td>";
 					
-						echo "<td>$ligne->nom_statut</td>";
+						
 						 
                         ## si ancien etudiant ##
                         if ($cherche_id_role ==1 )
@@ -522,7 +523,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                          # si en poste ##
                             if ($cherche_id_statut==2)
                                 {
-                                
+                                echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp, statut_ancien_etudiant AS sa, roles_utilisateur AS ru
@@ -620,7 +621,8 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                             ## si en formation ##   
                             elseif ($cherche_id_statut==3)
                                 {
-                          
+				echo "<td>$ligne->nom_statut</td>";
+							
                                 $req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
 								WHERE u.id = eu.id_utilisateur
@@ -695,6 +697,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                             ##si profil à remplir ou en recherche d'emploi##
                             elseif ($cherche_id_statut==1 or $cherche_id_statut ==4)
                                 {
+			        echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
                                 }
                             } }
