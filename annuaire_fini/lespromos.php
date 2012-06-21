@@ -73,6 +73,7 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 			#	echo "<td>$promo_role</td>";
 				
 							
+							
 						## si ancien etudiant ##
 						if ($promo_id_role ==1 )
 						{
@@ -90,13 +91,15 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 									$ligne=mysql_fetch_object($res_statut) ;
 									
 									$promo_id_statut=$ligne->id_statut;
-										$promo_statut = $ligne->nom_statut;		
+										$promo_statut = $ligne->nom_statut;	
+
+									echo "<td>$promo_statut</td>";
 										
 						 # si en poste ##
 							if ($promo_id_statut==2)
 								{
 							
-							echo "<td>$promo_statut</td>";
+							
 							
 								$req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
@@ -110,7 +113,8 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 									AND e.id = ev.id_entreprise
 									AND vi.id = ev.id_entreprise
 									AND vi.id = vp.id_ville
-									AND sa.id_statut = 2 AND ru.id_role =1 AND u.id ='$promo_id_utilisateur'";
+									AND sa.id_statut = 2 AND ru.id_role =1 AND u.id ='$promo_id_utilisateur'
+									AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -165,7 +169,7 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 							## si en formation ##	
 							elseif ($promo_id_statut==3)
 								{
-								echo "<td>$promo_statut</td>";
+						#		echo "<td>$promo_statut</td>";
 								
 								$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
@@ -178,7 +182,8 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND sa.id_statut = 3 AND ru.id_role = 1 AND u.id ='$promo_id_utilisateur'" ;
+								AND sa.id_statut = 3 AND ru.id_role = 1 AND u.id ='$promo_id_utilisateur'
+								AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
 								
@@ -225,7 +230,7 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 							##si profil ? remplir ou en recherche d'emploi##
 							elseif ($promo_id_statut==1 or $promo_id_statut ==4)
 								{
-								echo "<td>$promo_statut</td>";
+						#		echo "<td>$promo_statut</td>";
 								echo "<td> - </td>";
 								}
 							} }
