@@ -18,13 +18,16 @@ $naissance = $_SESSION['naissance'];
 $query = "SELECT * 
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 	WHERE u.id = ru.id_utilisateur
-	AND r.id = ru.id_role";
+	AND r.id = ru.id_role
+	AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'");
+	
+## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats
 	
 $result = mysql_query($query) or die(mysql_error());
  
 // Entêtes des colones dans le fichier Excel
 $excel="";
-$excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t situation actuelle \n";
+$excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t situation actuelle \t";
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {
@@ -32,7 +35,7 @@ while($row = mysql_fetch_array($result)) {
 		$profil_nom = $row['nom'];
 		$profil_prenom = $row['prenom'];
 	
-        $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[mail] \t $row[nom_role] \n";
+        $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[mail] \t $row[nom_role] \t";
 	
 	if ($profil_id_role == 1)
 	{
@@ -70,8 +73,10 @@ $res = mysql_query("SELECT *
 							AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'");
 					
 					
-					
-					while ($row = mysql_fetch_array($res_statut2)){
+					if(mysql_num_rows($res_statut2) > 0)
+									{
+							$row=mysql_fetch_array($res_statut2) ;
+					#while ($row = mysql_fetch_array($res_statut2)){
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 						}
@@ -96,7 +101,10 @@ $res = mysql_query("SELECT *
 								AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
 								AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
 						
-						while ($row = mysql_fetch_array($res_statut3)) {
+						if(mysql_num_rows($res_statut3) > 0)
+									{
+							$row=mysql_fetch_array($res_statut3) ;
+					#while ($row = mysql_fetch_array($res_statut3)){
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 							}}
