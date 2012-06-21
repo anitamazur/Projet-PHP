@@ -483,7 +483,7 @@ if ($id_role == 3 or $id_role == 4)
                                 }
                             } }
                             
-                        echo "</tr>";
+                       
                      
 
 elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false) 
