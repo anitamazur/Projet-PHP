@@ -79,7 +79,7 @@ $res = mysql_query($req) ;
 									
 									#	echo "<td>$ligne->nom_role</td>";
 
-									echo "<td>$ligne->nom_statut</td>";
+									
 									
 										## si ancien etudiant ##
 										if ($promo_id_role ==1 )
@@ -87,7 +87,7 @@ $res = mysql_query($req) ;
 										# si en poste ##
 										if ($promo_id_statut==2)
 										{
-										
+										echo "<td>$ligne->nom_statut</td>";
 
 										$req_statut2="SELECT *
 										FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp
@@ -168,7 +168,8 @@ $res = mysql_query($req) ;
 										## si en formation ##
 										elseif ($promo_id_statut==3)
 										{
-						
+										echo "<td>$ligne->nom_statut</td>"; 
+										
 										$req_statut3 = "SELECT *
 										FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav
 										WHERE u.id = eu.id_utilisateur
@@ -240,6 +241,7 @@ $res = mysql_query($req) ;
 										##si profil ? remplir ou en recherche d'emploi##
 										elseif ($promo_id_statut==1 or $promo_id_statut ==4)
 										{
+										echo "<td>$ligne->nom_statut</td>";
 										echo "<td> - </td>";
 										}
 							}
