@@ -79,7 +79,7 @@ if ($row["id_role"]== 1)
                                         AND s.id = sa.id_statut
                                         AND ru.id_role = '$row[id_role]' AND u.id = '$row[id]'");
                         
-                        while ($row = mysql_fetch_array($res)) 
+                        while ($row = mysql_fetch_assoc($res)) 
                         {
     
         ## en poste ##
@@ -104,7 +104,7 @@ if ($row["id_role"]== 1)
                     $res_statut2 = mysql_query($req_statut2) ;
                     
                     
-                    while($row=mysql_fetch_array($res_statut2))
+                    while($row=mysql_fetch_assoc($res_statut2))
                                 {
                                  
                         $pdf->cell(0,10,$row["nom_poste"],0,1);
@@ -141,7 +141,7 @@ if ($row["id_role"]== 1)
                         
                 $res_statut3 = mysql_query($req_statut3) ;
             
-                    while($row=mysql_fetch_array($res_statut3))
+                    while($row=mysql_fetch_assoc($res_statut3))
                                 {
                                  
                         $pdf->cell(0,10,$row["diplome_etudes"],0,1);
