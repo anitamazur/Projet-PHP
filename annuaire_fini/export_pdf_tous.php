@@ -106,10 +106,14 @@ if ($row["id_role"]== 1)
                     
                     $res_statut2 = mysql_query($req_statut2) ;
                     
-                 
+                 if(mysql_num_rows($res_statut2) > 0)
+				{
+				$row=mysql_fetch_array($res_statut2) ;
+
+
 							
-                   while($row=mysql_fetch_assoc($res_statut2))
-                                {
+                #   while($row=mysql_fetch_assoc($res_statut2))
+                 #               {
                                  
                         $pdf->cell(0,10,$row["nom_poste"],0,1);
                         $pdf->cell(0,10,$row["nom_entreprise "],0,1);
@@ -144,10 +148,15 @@ if ($row["id_role"]== 1)
                         AND sa.id_statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'" ;
                         
                 $res_statut3 = mysql_query($req_statut3) ;
-            
+            	
+            	if(mysql_num_rows($res_statut3) > 0)
+			{
+		$row=mysql_fetch_array($res_statut3) ;
+
+
 			
-                   while($row=mysql_fetch_assoc($res_statut3))
-                               {
+                  # while($row=mysql_fetch_assoc($res_statut3))
+                   #            {
                                  
                         $pdf->cell(0,10,$row["diplome_etudes"],0,1);
                         $pdf->cell(0,10,$row["nom_etablissement "],0,1);
