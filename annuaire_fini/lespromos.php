@@ -28,25 +28,23 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 			</tr>";
 	
 	$res_p = mysql_query("SELECT *			
-		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 		WHERE u.id = ru.id_utilisateur
-		AND u.id = sa.id_utilisateur
 		AND r.id = ru.id_role
-		AND s.id = sa.id_statut
-		AND ru.id_role = 1 or ru.id_role = 2");
-					
+		AND ru.id_role = 1 or ru.id_role = 2
+		AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'");
+	
+## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats	
 
 	while ($ligne = mysql_fetch_object($res_p)) {
 				$promo_annee_promo=$ligne->annee_promo;
 				$promo_id_role=$ligne->id_role;
 				$promo_id_utilisateur = $ligne->id;
-				$promo_id_statut=$ligne->id_statut;
 				$promo_mail=$ligne->mail;
 				$promo_mail_pro=$ligne->mail_pro;
 				$promo_nom = $ligne->nom;
 				$promo_prenom = $ligne->prenom;
 				$promo_role = $ligne->nom_role;
-				$promo_statut = $ligne->nom_statut;
 				$promo_date_inscription = $ligne->date_inscription;
 				$promo_date_maj_profil = $ligne->date_maj_profil;
 
@@ -69,19 +67,31 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 				else { echo "_</td>";}
 				
 			#	echo "<td>$promo_role</td>";
-
+				
 							
 						## si ancien etudiant ##
 						if ($promo_id_role ==1 )
 						{
+						$res_statut= mysql_query ("SELECT *			
+										FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
+										WHERE u.id = ru.id_utilisateur
+										AND u.id = sa.id_utilisateur
+										AND r.id = ru.id_role
+										AND s.id = sa.id_statut
+										AND ru.id_role = 1 AND u.id ='$promo_id_utilisateur'");
+							
+							if(mysql_num_rows($res_statut) > 0)
+									#while ($ligne = mysql_fetch_object($res_statut2))
+									{
+									$ligne=mysql_fetch_object($res_statut) ;
+									
+									$promo_id_statut=$ligne->id_statut;
+										$promo_statut = $ligne->nom_statut;		
+										echo "<td>$promo_statut</td>";
 						 # si en poste ##
 							if ($promo_id_statut==2)
 								{
 							
-								echo "<td>$promo_statut</td>";
-							
-								
-								
 								$req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
 									WHERE u.id = pu.id_utilisateur
@@ -94,11 +104,15 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 									AND e.id = ev.id_entreprise
 									AND vi.id = ev.id_entreprise
 									AND vi.id = vp.id_ville
-									AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role' AND u.id ='$promo_id_utilisateur'";
+									AND sa.id_statut = 2 AND ru.id_role =1 AND u.id ='$promo_id_utilisateur'";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
 								
-									while ($ligne = mysql_fetch_object($res_statut2)){
+								if(mysql_num_rows($res_statut2) > 0)
+									#while ($ligne = mysql_fetch_object($res_statut2))
+									{		
+											$ligne=mysql_fetch_object($res_statut2) ;
+											
 											$promo_poste = $ligne->nom_poste;
 											$promo_nom_ent = $ligne->nom_entreprise;
 											$promo_web_ent = $ligne->siteweb_entreprise;
@@ -145,7 +159,6 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 							## si en formation ##	
 							elseif ($promo_id_statut==3)
 								{
-								echo "<td>$promo_statut</td>";
 								
 								$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
@@ -158,11 +171,15 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role' AND u.id ='$promo_id_utilisateur'" ;
+								AND sa.id_statut = 3 AND ru.id_role = 1 AND u.id ='$promo_id_utilisateur'" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
 								
-									while ($ligne = mysql_fetch_object($res_statut3)) {
+								if(mysql_num_rows($res_statut3) > 0)
+									#while ($ligne = mysql_fetch_object($res_statut3)) 
+									{
+										$ligne=mysql_fetch_object($res_statut3) ;
+									
 										$promo_diplome = $ligne->diplome;
 											$promo_nom_etab = $ligne->nom_etablissement;
 											$promo_web_etab = $ligne->siteweb_etablissement;
@@ -204,7 +221,9 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								echo "<td>$promo_statut</td>";
 								echo "<td> - </td>";
 								}
-							}
+							} }
+						else { echo "<td> - </td><td> - </td>"; }						
+						
 						echo "<td>$promo_date_inscription</td>";
 						echo "<td>$promo_date_maj_profil</td>";
 						echo "</tr>";
