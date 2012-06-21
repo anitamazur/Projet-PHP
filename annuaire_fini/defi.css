@@ -1,0 +1,157 @@
+html, body {
+margin : 0;
+padding : 0;
+background : white;
+}
+
+body {
+padding : 0 10px;
+margin : 0 30px;
+font-size : 12px;
+}
+
+a:link, a:visited {
+color : #4682B4;
+}
+
+a:hover {
+color : #6a9be8;
+text-decoration : none;
+}
+
+label {
+display : block;
+}
+
+label.radio {
+display : inline;
+}
+
+legend {
+font-weight : bold;
+font-style:italic;
+}
+
+table {
+border-collapse : collapse;
+border : 1px solid #6a9be8;
+text-align : right;
+margin-left : auto;
+margin-right : auto;
+}
+
+table th {
+background : #e5efff;
+padding : 4px;
+border : 1px solid #848484;
+text-align : center;
+}
+table td {
+padding : 5px;
+border : 1px solid #848484;
+}
+
+table tr.ligne_pair {
+background : #e6e6e6;
+}
+
+
+h1 {
+color : #6a9be8;
+font-variant : small-caps;
+letter-spacing : 2px;
+}
+
+h2 {
+color : #424242;
+}
+
+h2.menu_title {
+color : #F5F5F5;
+font-size : 12px;
+}
+
+input {
+border : 1px solid #006;
+background : white;
+}
+
+input[type="submit"], input[type="button"] {
+background : #e8e8e8;
+border : solid #C3C3C3;
+border-width : 0px 1px 1px 1px;
+}
+
+p.submit {
+width : 70%;
+margin: auto;
+}
+
+input#delete {
+margin : auto;
+display : block;
+width : 20%;
+}
+
+select {
+border : 1px solid #006;
+background : white;
+}
+
+fieldset {
+border : 1px solid #C3C3C3;
+width : 70%;
+margin: auto;
+}
+
+#footer {
+text-align : right;
+color : #6a9be8;
+font-weight : bold;
+border-top : 5px solid #6a9be8;
+margin-top : 15px;
+}
+
+div#contenu {
+margin-left : 0;
+}
+
+div#menu {
+background : #90b3e9;
+position : relative;
+}
+
+ul#menu_liens {
+margin : 0;
+padding : 0;
+list-style : none;
+text-align : center;
+}
+
+ul#menu_liens li {
+display : inline;
+color : #F5F5F5;
+}
+
+ul#menu_liens li a {
+padding : 2px 5px;
+background : #848484;
+color : #fff;
+border : 2px solid #ffffff;
+text-align : center;
+text-decoration : none;
+font-size : 11px;
+font-weight : bold;
+}
+
+#menu_liens li a:hover, #menu_liens li a:focus, #menu_liens li a:active {
+background : #000000;
+}
+
+.erreur {
+color : red;
+}
+
+.succes {
+color : green;
+}
