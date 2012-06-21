@@ -61,7 +61,7 @@ $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
  
-while($row=mysql_fetch_array($resultat))
+while($row=mysql_fetch_assoc($resultat))
 {
  
  $pdf->cell(0,10,'UTILISATEUR :',0,1);
