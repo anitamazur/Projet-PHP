@@ -59,8 +59,11 @@ while($row = mysql_fetch_array($result)) {
 							AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'");
 					
 					
+					if(mysql_num_rows($res_statut2) > 0)
+					{
+					$ligne=mysql_fetch_object($res_statut2) ;
+					#while ($row = mysql_fetch_array($res_statut2)){
 					
-					while ($row = mysql_fetch_array($res_statut2)){
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 						}
@@ -84,8 +87,13 @@ while($row = mysql_fetch_array($result)) {
 								AND u.id = sa.id_utilisateur
 								AND u.id = '$id_utilisateur'
 								AND sa.id_statut = '$id_statut' AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'" );
-						
-						while ($row = mysql_fetch_array($res_statut3)) {
+					
+					
+					
+					if(mysql_num_rows($res_statut3) > 0)
+					{
+					$ligne=mysql_fetch_object($res_statut3) ;
+					#	while ($row = mysql_fetch_array($res_statut3)) {
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 							}}

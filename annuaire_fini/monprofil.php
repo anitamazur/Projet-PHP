@@ -150,7 +150,7 @@ $ligne=mysql_fetch_object($res) ;
 		} 
 
 
-		}
+		} }
 	
 	
 	echo "<p>Si vous rencontrez des problémes n'hésitez pas à <a href=\"mailto:admin@annuairedefi.u-paris10.fr\">contacter l'administrateur</a></p>";

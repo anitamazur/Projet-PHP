@@ -105,10 +105,7 @@ $res = mysql_query($req) ;
 
 										$res_statut2 = mysql_query($req_statut2) ;
 											
-											if (mysql_num_rows($res_statut2) > 0) {
-							
-									$ligne=mysql_fetch_object($res_statut2) ;
-										#while ($ligne = mysql_fetch_object($res_statut2)){
+										while ($ligne = mysql_fetch_object($res_statut2)){
 										$promo_nomPoste_niveau=$ligne->nomPoste_niveau;
 										$promo_nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
 										$promo_sitewebEntreprise_niveau=$ligne->sitewebEntreprise_niveau;
@@ -186,10 +183,8 @@ $res = mysql_query($req) ;
 
 										$res_statut3 = mysql_query($req_statut3) ;
 										
-										if (mysql_num_rows($res_statut3) > 0) {
-							
-										$ligne=mysql_fetch_object($res_statut3) ;
-									#	while ($ligne = mysql_fetch_object($res_statut3)) {
+										
+										while ($ligne = mysql_fetch_object($res_statut3)) {
 										$promo_diplomeEtudes_niveau=$ligne->diplomeEtudes_niveau;
 										$promo_nomEtablissement_niveau=$ligne->nomEtablissement_niveau;
 										$promo_sitewebEtablissement_niveau=$ligne->sitewebEtablissement_niveau;
