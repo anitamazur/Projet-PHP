@@ -74,7 +74,7 @@ $res = mysql_query("SELECT *
 					
 					
 				#	if(mysql_num_rows($res_statut2) > 0)
-									{
+						#			{
 				#			$row=mysql_fetch_array($res_statut2) ;
 					while ($row = mysql_fetch_array($res_statut2)){
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
@@ -85,7 +85,7 @@ $res = mysql_query("SELECT *
 			
 			}
 			
-			if ($profil_id_statut == 3) 
+			elseif ($profil_id_statut == 3) 
 					{		
 						$res_statut3 =mysql_query( "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav AND statut_ancien_etudiant AS sa
@@ -102,7 +102,7 @@ $res = mysql_query("SELECT *
 								AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
 						
 					#	if(mysql_num_rows($res_statut3) > 0)
-									{
+					#				{
 					#		$row=mysql_fetch_array($res_statut3) ;
 					while ($row = mysql_fetch_array($res_statut3)){
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
