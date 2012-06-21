@@ -16,42 +16,31 @@ $id_statut = $_SESSION['id_statut'] = statut($id_utilisateur);
 
 //Requete SQL
 $query = "SELECT * 
-	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
+	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
 	WHERE u.id = ru.id_utilisateur
+	AND u.id = sa.id_utilisateur
 	AND r.id = ru.id_role
-	AND u.id = '$id_utilisateur'";
+	AND s.id = sa.id_statut
+	AND u.id = '$id_utilisateur'
+	AND ru.id_role = '$id_role' AND sa.id_statut ='$id_statut'";
 	
 $result = mysql_query($query) or die(mysql_error());
  
 // Ent?tes des colones dans le fichier Excel
 $excel="";
-$excel .="nom \t prenom \t ann?e_promo \t adresse mail \t r?le \t statut \t situation actuelle \n";
+$excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t situation actuelle \t";
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {
 		$id_role = $row['id_role'];
+		$id_statut = $row['id_statut'];
 	
-        $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[mail] \t $row[nom_role] \n";
+        $excel .= "$row[nom] \t $row[prenom] \t $row[annee_promo] \t $row[mail] \t $row[nom_role] \t $row[nom_statut] \t";
 	
 	if ($id_role == 1)
 	{
-$res = mysql_query("SELECT * 
-			FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
-			WHERE u.id = ru.id_utilisateur
-			AND u.id = sa.id_utilisateur
-			AND r.id = ru.id_role
-			AND s.id = sa.id_statut
-			AND u.id = '$id_utilisateur'
-			AND ru.id_role = '$id_role' AND u.id = '$id_utilisateur'");
-			
-			while($row = mysql_fetch_array($result)) {
-				$id_statut = $row['id_statut'];
-			
-			$excel .= "$row[nom_statut] \t";
-			
 				if ($id_statut == 2)
 				{
-				
 				
 				$res_statut2=mysql_query("SELECT *
 							FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
@@ -108,7 +97,7 @@ $res = mysql_query("SELECT *
 		
 	
 	
-} }
+} 
  
 header("Content-type: application/vnd.ms-excel");
 header("Content-disposition: attachment; filename=mon_profil.xls");
