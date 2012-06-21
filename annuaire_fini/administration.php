@@ -27,10 +27,11 @@ while($ligne = mysql_fetch_object($res_pers))
     }
 
 
-if(isset($_POST['personne']))
-   { $pers = $_POST['personne'] ; }
-else
-   { $pers = 0  ; }
+if(isset($_POST['personne'])) {
+    $pers = $_POST['personne'] ;
+    } else {
+        $pers = 0  ;
+}
 
    
 if(isset($_POST['Inserer'])) {
@@ -44,10 +45,10 @@ if(isset($_POST['Inserer'])) {
         $mdpRepete = stripslashes($_POST['repeat_mdp']);
         $role = stripslashes($_POST['role']);
         if ($mdp != $mdpRepete) { 
-            $message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont diff?nts.</p>";
+            $message_ajout = "<p class=\"erreur\">Les 2 mots de passe sont différents.</p>";
         }
         if($mail == "") {
-            $message_ajout = "<p class=\"erreur\">Le champ 'E-Mail ?jouter' est vide.</p>";
+            $message_ajout = "<p class=\"erreur\">Le champ 'E-Mail à ajouter' est vide.</p>";
         } 
         elseif (!empty($mail)) {
             // On v?fie si l'adresse E-mail rentr?par l'utilisateur est au bon format
@@ -247,19 +248,21 @@ echo "<form action=\"administration.php\" method=\"post\">
                         <fieldset>
                             <legend>Changer le rôle de : </legend>
                                 <label for=\"explication\"> 1 : ancien étudiant _ 2 : étudiant actuel _ 3 : enseignant _ 4 : administrateur </label>
-                            <p>"; menuderoulant("personne", $tab_pers); echo"</p>
+                            <p>";
+                            menuderoulant("personne", $tab_pers);
+                            echo"</p>
 
                     
                             <p> <label for=\"titre\"><strong>Changement de rôle : </strong></label>
                             
                                 <label for=\"Actuel\">Ancien étudiant</label>
-                                <input name=\"Actuel\" type=\"radio\" id=\"ancienEtudiant\" checked=\"checked\" value=\"5\" />
+                                <input name=\"Actuel\" type=\"radio\" id=\"ancienEtudiant\" checked=\"checked\" value=\"1\" />
                                 
                                 <label for=\"Actuel\">Enseignant</label>
-                                <input name=\"Actuel\" type=\"radio\" id=\"Enseignant\" value=\"6\" />
+                                <input name=\"Actuel\" type=\"radio\" id=\"Enseignant\" value=\"3\" />
                                 
                                 <label for=\"Actuel\">Administrateur</label>
-                                <input name=\"Actuel\" type=\"radio\" id=\"administrateur\" value=\"7\" />
+                                <input name=\"Actuel\" type=\"radio\" id=\"administrateur\" value=\"4\" />
                             </p>
                             
                             <p>
