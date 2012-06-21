@@ -19,7 +19,7 @@ $query = "SELECT *
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 	WHERE u.id = ru.id_utilisateur
 	AND r.id = ru.id_role
-	AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'");
+	AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'";
 	
 ## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats
 	
