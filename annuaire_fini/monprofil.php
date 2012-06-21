@@ -120,8 +120,8 @@ $ligne=mysql_fetch_object($res) ;
 				
 				while ($ligne = mysql_fetch_object($res_statut3)) { 
 					
-				if (mysql_num_rows($res_statut3) > 0) {
-				$ligne=mysql_fetch_object($res_statut3) ; 
+		#		if (mysql_num_rows($res_statut3) > 0) {
+		#		$ligne=mysql_fetch_object($res_statut3) ; 
 				
 					$diplome = $ligne->diplome_etudes ;
 					$nom_etablissement = $ligne->nom_etablissement ;
