@@ -375,7 +375,7 @@ if(isset($_POST['modifier'])) {
             $code_postal_etab = $ligne->cp;
             
             $req_etablissement_pays = "SELECT p.id, p.nom_pays FROM utilisateur AS u, etablissement_utilisateur AS eu, etablissement AS e, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = p.id AND eu.id_utilisateur = u.id AND eu.id_etablissement = e.id AND ev.id_etablissement = e.id AND ev.id_ville = v.id AND u.id = $id_utilisateur ";
-    		
+        	
             $res_etablissement_pays = mysql_query($req_etablissement_pays) ;
             $ligne=mysql_fetch_object($res_etablissement_pays) ;
             $pays_etab = $ligne->nom_pays;
@@ -791,7 +791,7 @@ if ($id_role == 1){
             $nomPatro_perso = "" ;
         }
     }
-    if ($id_statut == 3 or $id_statut == 1){
+    if ($id_statut == 1 or $id_statut == 4){
 
         $req_donnees_perso = "SELECT * FROM utilisateur AS u WHERE u.id = $id_utilisateur";
         $res_donnees_perso = mysql_query($req_donnees_perso) ;

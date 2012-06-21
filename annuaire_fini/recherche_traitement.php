@@ -57,24 +57,27 @@ if(isset($_POST['valider'])) {
 		if ($id_role == 3 or $id_role == 4) {   
 				
 			## si l'utilisateur est : ancien étudiant 
-			if ($cherche_id_role == 1) {       
+			if ($cherche_id_role == 1) { 
+
+					affichetitre ("$cherche_nom $cherche_prenom","3");
+					echo "<p>Année de la promotion : $cherche_annee_promo <br/>
+					Adresse mail personelle : $cherche_mail <br/>
+					Adresse mail professionnelle : $cherche_mail_pro</p>";	
+					
 				$res_statut = mysql_query ("SELECT * 
 										FROM utilisateur AS u, role AS r, roles_utilisateur AS ru, statut AS s, statut_ancien_etudiant AS sa 
 											WHERE u.id = ru.id_utilisateur
 											AND u.id = sa.id_utilisateur
 											AND r.id = ru.id_role
 											AND s.id = sa.id_statut
-											AND ru.id_role = '$cherche_id_role' AND u.id = '$cherche_id';");
+											AND ru.id_role = '$cherche_id_role' AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom';");
 				
 				if(mysql_num_rows($res_statut) > 0) {
 					$ligne=mysql_fetch_object($res_statut) ;
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;	
 			
-					affichetitre ("$cherche_nom $cherche_prenom","3");
-					echo "<p>Année de la promotion : $cherche_annee_promo <br/>
-					Adresse mail personelle : $cherche_mail <br/>
-					Adresse mail professionnelle : $cherche_mail_pro</p>";
+					
 					echo "<p>$cherche_statut</p>";
 		
 					## en poste ##
@@ -91,13 +94,14 @@ if(isset($_POST['valider'])) {
 									AND e.id = ev.id_entreprise
 									AND vi.id = ev.id_entreprise
 									AND vi.id = vp.id_ville
-									AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
-									AND u.id = '$cherche_id'
-									AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut' ";
+									AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom' AND u.id = '$cherche_id'";
 						
 						$res_statut2 = mysql_query($req_statut2) ;
 						
-						while ($ligne = mysql_fetch_object($res_statut2)){
+						if (mysql_num_rows($res_statut2) > 0) {
+							
+									$ligne=mysql_fetch_object($res_statut2) ;
+						#while ($ligne = mysql_fetch_object($res_statut2)){
 								
 								echo "$ligne->nom_poste<br/>";
 								echo"$ligne->nom_entreprise<br/>";
@@ -119,11 +123,14 @@ if(isset($_POST['valider'])) {
 								AND p.id = vp.id_pays
 								AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
 								AND u.id = '$cherche_id'
-								AND ru.id_role = '$cherche_id_role' AND sa.id_statut = '$cherche_id_statut'" ;
+								" ;
 									
 							$res_statut3 = mysql_query($req_statut3) ;
 							
-							while ($ligne = mysql_fetch_object($res_statut3)) {
+							if (mysql_num_rows($res_statut3) > 0) {
+							
+									$ligne=mysql_fetch_object($res_statut3) ;
+							#while ($ligne = mysql_fetch_object($res_statut3)) {
 													
 									echo "$ligne->diplome_etudes<br/>";
 									echo "$ligne->nom_etablissement<br/>";
@@ -179,7 +186,7 @@ if(isset($_POST['valider'])) {
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;
 			
-					echo "<p>$statut</p>";
+					echo "<p>$cherche_statut</p>";
 		
 					## en poste ##
 					if ($cherche_id_statut == 2) {
@@ -197,7 +204,7 @@ if(isset($_POST['valider'])) {
 									AND vi.id = ev.id_entreprise
 									AND vi.id = vp.id_ville
 									AND u.nom='$cherche_nom' AND u.prenom='$cherche_prenom'
-									AND u.id = '$cherche_id''";
+									AND u.id = '$cherche_id'";
 						
 						$res_statut2 = mysql_query($req_statut2) ;
 						
@@ -411,11 +418,12 @@ if ($id_role == 3 or $id_role == 4)
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;
 						
-						
+						 echo "<td>$ligne->nom_statut</td>";
+
                          # si en poste ##
                             if ($cherche_id_statut==2)
                                 {
-                                echo "<td>$ligne->nom_statut</td>";
+                               
                                 
                                 $req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
@@ -434,7 +442,10 @@ if ($id_role == 3 or $id_role == 4)
         
                                 $res_statut2 = mysql_query($req_statut2) ;
                                 
-                                    while ($ligne = mysql_fetch_object($res_statut2)){
+									if (mysql_num_rows($res_statut2) > 0) {
+							
+									$ligne=mysql_fetch_object($res_statut2) ;
+                                   # while ($ligne = mysql_fetch_object($res_statut2)){
                                 
                                             echo "<td>$ligne->nom_poste<br/>";
                                             echo"$ligne->nom_entreprise<br/>";
@@ -447,7 +458,7 @@ if ($id_role == 3 or $id_role == 4)
                             ## si en formation ##   
                             elseif ($cherche_id_statut==3)
                                 {
-                                echo "<td>$ligne->nom_statut</td>";
+                           #     echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
@@ -465,7 +476,11 @@ if ($id_role == 3 or $id_role == 4)
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
                                 
-                                    while ($ligne = mysql_fetch_object($res_statut3)) {
+								if (mysql_num_rows($res_statut3) > 0) {
+							
+								$ligne=mysql_fetch_object($res_statut3) ;
+								
+                                  #  while ($ligne = mysql_fetch_object($res_statut3)) {
                                 
                                 echo "<td>$ligne->diplome_etudes<br/>";
                                 echo "$ligne->nom_etablissement<br/>";
@@ -477,7 +492,7 @@ if ($id_role == 3 or $id_role == 4)
                             ##si profil à remplir ou en recherche d'emploi##
                             elseif ($cherche_id_statut==1 or $cherche_id_statut ==4)
                                 {
-                                echo "<td>$ligne->nom_statut</td>";
+                           #     echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
                                 }
                             } }
@@ -528,11 +543,13 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
 					$ligne=mysql_fetch_object($res_statut) ;
 					$cherche_id_statut= $ligne->id_statut ;
 					$cherche_statut= $ligne->nom_statut ;
+					
+					echo "<td>$ligne->nom_statut</td>";
 									
                          # si en poste ##
                             if ($cherche_id_statut==2)
                                 {
-                                echo "<td>$ligne->nom_statut</td>";
+                                
                                 
                                 $req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp, statut_ancien_etudiant AS sa, roles_utilisateur AS ru
@@ -552,7 +569,10 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
 								
                                 $res_statut2 = mysql_query($req_statut2) ;
                                 
-                                    while ($ligne = mysql_fetch_object($res_statut2)){
+								if (mysql_num_rows($res_statut2) > 0) {
+							
+									$ligne=mysql_fetch_object($res_statut2) ;
+                                   # while ($ligne = mysql_fetch_object($res_statut2)){
                                             $cherche_nomPoste_niveau=$ligne->nomPoste_niveau;
                                             $cherche_nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
                                             $cherche_sitewebEntreprise_niveau=$ligne->sitewebEntreprise_niveau;
@@ -627,7 +647,7 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                             ## si en formation ##   
                             elseif ($cherche_id_statut==3)
                                 {
-                                echo "<td>$ligne->nom_statut</td>";
+                           #     echo "<td>$ligne->nom_statut</td>";
                                 
                                 $req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
@@ -644,7 +664,10 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
                                 
-                                    while ($ligne = mysql_fetch_object($res_statut3)) {
+								if (mysql_num_rows($res_statut3) > 0) {
+							
+									$ligne=mysql_fetch_object($res_statut3) ;
+                                   #   while ($ligne = mysql_fetch_object($res_statut3)) {
                                             $cherche_diplomeEtudes_niveau=$ligne->diplomeEtudes_niveau;
                                             $cherche_nomEtablissement_niveau=$ligne->nomEtablissement_niveau;
                                             $cherche_sitewebEtablissement_niveau=$ligne->sitewebEtablissement_niveau;
@@ -700,14 +723,14 @@ elseif ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false
                             ##si profil à remplir ou en recherche d'emploi##
                             elseif ($cherche_id_statut==1 or $cherche_id_statut ==4)
                                 {
-                                echo "<td>$ligne->nom_statut</td>";
+                         #       echo "<td>$ligne->nom_statut</td>";
                                 echo "<td> - </td>";
                                 }
                             } }
-                            
+                             echo "</tr>";
                        
                      } }
-					  echo "</tr>";
+					 
  }
 
       echo "</table>";
