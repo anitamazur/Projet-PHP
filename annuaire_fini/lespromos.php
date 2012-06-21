@@ -8,6 +8,8 @@ $naissance = $_SESSION['naissance'];
 #$salt = "ashrihgbjnbfj";
 #$pass = crypt($_SESSION['pass'], $salt);
 $mail = $_SESSION['mail'] ;
+$id_role = $_SESSION['id_role'];
+$id_statut = $_SESSION['id_statut'];
 
 require("fonctions.php") ;
 $connexion = connexion() ;
@@ -27,12 +29,14 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 			<td>Date de mise à jour du profil</td>
 			</tr>";
 	
-	$res_p = mysql_query("SELECT *			
+	$req_p = "SELECT *			
 		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 		WHERE u.id = ru.id_utilisateur
 		AND r.id = ru.id_role
 		AND ru.id_role = 1 or ru.id_role = 2
-		AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'");
+		AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'";
+		
+		$res_p= mysql_query($req_p) ;
 	
 ## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats	
 
@@ -87,10 +91,12 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 									
 									$promo_id_statut=$ligne->id_statut;
 										$promo_statut = $ligne->nom_statut;		
-										echo "<td>$promo_statut</td>";
+										
 						 # si en poste ##
 							if ($promo_id_statut==2)
 								{
+							
+							echo "<td>$promo_statut</td>";
 							
 								$req_statut2="SELECT *
 								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
@@ -159,6 +165,7 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 							## si en formation ##	
 							elseif ($promo_id_statut==3)
 								{
+								echo "<td>$promo_statut</td>";
 								
 								$req_statut3 = "SELECT * 
 								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa

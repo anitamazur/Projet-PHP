@@ -28,7 +28,7 @@ $result = mysql_query($query) or die(mysql_error());
  
 // Ent?tes des colones dans le fichier Excel
 $excel="";
-$excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t situation actuelle \t";
+$excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t situation actuelle \n";
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {

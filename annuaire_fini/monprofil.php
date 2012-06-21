@@ -73,11 +73,12 @@ $ligne=mysql_fetch_object($res) ;
 							AND u.nom='$nom' AND u.prenom='$prenom'";
 					
 					$res_statut2 = mysql_query($req_statut2) ;
+				
+				while ($ligne = mysql_fetch_object($res_statut2)) {
 					
-					
-					if (mysql_num_rows($res_statut2) > 0) {
-							
-					$ligne=mysql_fetch_object($res_statut2) ; 	
+				#	if (mysql_num_rows($res_statut2) > 0) {
+			#		$ligne=mysql_fetch_object($res_statut2) ; 
+			
 						$poste = $ligne->nom_poste ;
 						$nom_entreprise = $ligne->nom_entreprise ;
 						$siteweb_entreprise = $ligne->siteweb_entreprise ;
@@ -117,9 +118,11 @@ $ligne=mysql_fetch_object($res) ;
 						
 				$res_statut3 = mysql_query($req_statut3) ;
 				
+				while ($ligne = mysql_fetch_object($res_statut3)) { 
+					
 				if (mysql_num_rows($res_statut3) > 0) {
-
-				$ligne=mysql_fetch_object($res_statut3) ; 	
+				$ligne=mysql_fetch_object($res_statut3) ; 
+				
 					$diplome = $ligne->diplome_etudes ;
 					$nom_etablissement = $ligne->nom_etablissement ;
 					$siteweb_etablissement = $ligne->siteweb_etablissement ;
