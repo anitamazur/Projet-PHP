@@ -52,8 +52,7 @@ $serveurBD = "localhost";
 $resultat=mysql_query ("SELECT *
 FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 WHERE u.id = ru.id_utilisateur
-AND r.id = ru.id_role AND ru.id_role = 1)
-");
+AND r.id = ru.id_role AND ru.id_role = 1 AND u.annee_promo!=0000");
  
 // Instanciation de la classe dérivée
  
@@ -78,7 +77,7 @@ if ($row["id_role"]== 1)
                                         AND r.id = ru.id_role
                                         AND s.id = sa.id_statut
                                         AND ru.id_role = '$row[id_role]' 
- 									AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'");
+										AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'");
                         
                         while ($row = mysql_fetch_assoc($res)) 
                         {
