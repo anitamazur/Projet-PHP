@@ -1,5 +1,9 @@
 <?php
 
+
+require_once("fonctions.php") ;
+$connexion = connexion() ;
+
 session_start() ;
 $nom = $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
@@ -10,8 +14,6 @@ $id_role = $_SESSION['id_role'];
 $id_statut = $_SESSION['id_statut'];
 $id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
 
-require_once("fonctions.php") ;
-$connexion = connexion() ;
 
 debuthtml("Annuaire M2 DEFI - Mon profil","Annuaire M2 DEFI", "Mon profil",$id_role) ; 
 
