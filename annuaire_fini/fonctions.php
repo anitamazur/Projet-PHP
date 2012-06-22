@@ -2,8 +2,8 @@
 function connexion()
 {
     $serveurBD = "localhost"; # mdifier pour le serveur de la fac
-    $nomUtilisateur = "defi_annuaire"; # modifier pour le serveur de la fac
-    $motDePasse = "annuaire2defi"; # modifier pour le serveur de la fac
+    $nomUtilisateur = "root"; # modifier pour le serveur de la fac
+    $motDePasse = "123456"; # modifier pour le serveur de la fac
     $baseDeDonnees = "defi_annuaire"; # BDD de test / Si BDD ok : changer par "annuaire_defi"
    
     $idConnexion = mysql_connect($serveurBD,
@@ -17,6 +17,7 @@ function connexion()
 #}
 
     $connexionBase = mysql_select_db($baseDeDonnees);
+    mysql_query("SET NAMES UTF8");
 #    if ($connexionBase) {
 #        echo "Connexion a la base reussie";
 #    } else {

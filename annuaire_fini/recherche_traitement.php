@@ -1,4 +1,4 @@
-<?php
+﻿<?php
  session_start();
  
 if (isset($_SESSION['nom'])) {
@@ -15,7 +15,6 @@ if (isset($_SESSION['nom'])) {
  
 require_once("fonctions.php");
 $connexion = connexion();
- 
  
 ##################################### Traitement de recherche par nom et prénom #########################################
 
