@@ -120,10 +120,6 @@ $res = mysql_query("SELECT *
 
 }
 
-	elseif ($profil_id_role == 2)
-	{
-	$excel .= "- \t - \n";	
-	}
  }
  
 header("Content-type: application/vnd.ms-excel");
