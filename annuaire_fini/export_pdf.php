@@ -2,10 +2,7 @@
 
 require_once('fpdf.php');
 session_start() ;
- 
-#$nom = $_SESSION['nom'];
-#$prenom = $_SESSION['prenom'];
- 
+
  
 class PDF extends FPDF
 {
@@ -62,6 +59,8 @@ $pdf->SetFont('Times','',12);
  
 while($row=mysql_fetch_assoc($resultat))
 {
+ $row["nom"]=$_SESSION['nom'];
+ $row["prenom"]=$_SESSION['prenom'];
  
  $pdf->cell(0,10,'UTILISATEUR :',0,1);
 $pdf->cell(0,10,$row["nom"],0,1);
