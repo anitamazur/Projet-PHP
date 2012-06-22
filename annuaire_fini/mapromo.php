@@ -38,7 +38,6 @@ AND u.nom='$nom' AND u.prenom='$prenom' " ;
 
 $res = mysql_query($req) ;
 
-<<<<<<< HEAD
                             while ($ligne = mysql_fetch_object($res))
                             {
                             $promo_annee_promo = $ligne->annee_promo ;
@@ -267,7 +266,6 @@ $res = mysql_query($req) ;
                 echo "<td>$ligne->mail_pro</td>";
                     }
                     else { echo "<td>-</td> ";}
-=======
                             while ($ligne = mysql_fetch_object($res))
                             {
                             $promo_annee_promo = $ligne->annee_promo ;
@@ -489,7 +487,6 @@ $res = mysql_query($req) ;
                 echo "<td>$ligne->mail_pro</td>";
                     }
                     else { echo "<td>-</td> ";}
->>>>>>> parent of 0a04cd1... rectification des requêtes SQL
 
 echo "</tr>";
 }
