@@ -375,7 +375,7 @@ if(isset($_POST['modifier'])) {
             $code_postal_etab = $ligne->cp;
             
             $req_etablissement_pays = "SELECT p.id, p.nom_pays FROM utilisateur AS u, etablissement_utilisateur AS eu, etablissement AS e, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = p.id AND eu.id_utilisateur = u.id AND eu.id_etablissement = e.id AND ev.id_etablissement = e.id AND ev.id_ville = v.id AND u.id = $id_utilisateur ";
-        	
+            
             $res_etablissement_pays = mysql_query($req_etablissement_pays) ;
             $ligne=mysql_fetch_object($res_etablissement_pays) ;
             $pays_etab = $ligne->nom_pays;
@@ -840,6 +840,27 @@ if(isset($_POST['changeStatut'])) {
     $resultat = mysql_query($requete);
     // Suivant si le changement de statut a été un succès ou pas, on affiche un autre message.  
     if($resultat) {
+		if ($radio_statut ==2)
+			{
+			$nomEnt ="";
+			$webEnt ="";
+			$posteEnt ="";
+			$mail_pro ="";
+			$secteurEnt ="";
+			$villeEnt ="";
+			$codePostalEnt="";
+			$paysEnt="";
+			}
+			
+		elseif ($radio_statut ==3)
+			{
+			$diplome="";
+			$etab="";
+			$web_etab="";
+			$ville_etab="";
+			$code_postal_etab="";
+			$pays_etab="";
+			}
             $message .= "<p class=\"succes\">Statut modifié dans la base de données.</p>";
     } else {
             $message .= "<p class=\"erreur\">Erreur lors de la modification du statut.</p>" ;
