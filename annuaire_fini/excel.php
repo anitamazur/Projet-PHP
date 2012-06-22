@@ -19,7 +19,7 @@ $query = "SELECT *
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 	WHERE u.id = ru.id_utilisateur
 	AND r.id = ru.id_role
-	AND ru.id_role = 1
+	AND ru.id_role = 1 AND ru.id_role = 2
 	AND u.annee_promo !=0000";
 		
 $result = mysql_query($query) or die(mysql_error());
@@ -118,7 +118,13 @@ $res = mysql_query("SELECT *
 			
 			}
 
-} }
+}
+
+	elseif ($profil_id_role == 2)
+	{
+	$excel .= "- \t - \n";	
+	}
+ }
  
 header("Content-type: application/vnd.ms-excel");
 header("Content-disposition: attachment; filename=les_profils.xls");
