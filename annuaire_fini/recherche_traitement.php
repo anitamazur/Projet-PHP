@@ -218,7 +218,9 @@ if(isset($_POST['valider'])) {
 						
 						$res_statut2 = mysql_query($req_statut2) ;
 						
-						while ($ligne = mysql_fetch_object($res_statut2)){
+						if(mysql_num_rows($res_statut2) > 0) {
+						$ligne=mysql_fetch_object($res_statut2) ;
+						#while ($ligne = mysql_fetch_object($res_statut2)){
 								$cherche_nomPoste_niveau=$ligne->nomPoste_niveau;
 								$cherche_nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
 								$cherche_sitewebEntreprise_niveau=$ligne->sitewebEntreprise_niveau;
@@ -298,7 +300,9 @@ if(isset($_POST['valider'])) {
 								
 						$res_statut3 = mysql_query($req_statut3) ;
 						
-						while ($ligne = mysql_fetch_object($res_statut3)) {
+						if(mysql_num_rows($res_statut3) > 0) {
+						$ligne=mysql_fetch_object($res_statut3) ;
+						#while ($ligne = mysql_fetch_object($res_statut3)) {
 								$cherche_diplomeEtudes_niveau=$ligne->diplomeEtudes_niveau;
 								$cherche_nomEtablissement_niveau=$ligne->nomEtablissement_niveau;
 								$cherche_sitewebEtablissement_niveau=$ligne->sitewebEtablissement_niveau;
@@ -444,10 +448,10 @@ if ($id_role == 3 or $id_role == 4)
         
                                 $res_statut2 = mysql_query($req_statut2) ;
                                 
-									if (mysql_num_rows($res_statut2) > 0) {
+								#	if (mysql_num_rows($res_statut2) > 0) {
 							
-									$ligne=mysql_fetch_object($res_statut2) ;
-                                   # while ($ligne = mysql_fetch_object($res_statut2)){
+								#	$ligne=mysql_fetch_object($res_statut2) ;
+                                    while ($ligne = mysql_fetch_object($res_statut2)){
                                 
                                             echo "<td>$ligne->nom_poste<br/>";
                                             echo"$ligne->nom_entreprise<br/>";
@@ -481,11 +485,11 @@ if ($id_role == 3 or $id_role == 4)
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
                                 
-								if (mysql_num_rows($res_statut3) > 0) {
+							#	if (mysql_num_rows($res_statut3) > 0) {
 							
-								$ligne=mysql_fetch_object($res_statut3) ;
+							#	$ligne=mysql_fetch_object($res_statut3) ;
 								
-                                  #  while ($ligne = mysql_fetch_object($res_statut3)) {
+                                    while ($ligne = mysql_fetch_object($res_statut3)) {
                                 
                                 echo "<td>$ligne->diplome_etudes<br/>";
                                 echo "$ligne->nom_etablissement<br/>";
@@ -565,11 +569,11 @@ if ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false)
 								
                                 $res_statut2 = mysql_query($req_statut2) ;
                                 
-				#				if (mysql_num_rows($res_statut2) > 0) {
+								if (mysql_num_rows($res_statut2) > 0) {
 							
-				#					$ligne=mysql_fetch_object($res_statut2) ;
+									$ligne=mysql_fetch_object($res_statut2) ;
                                    
-                                   while ($ligne = mysql_fetch_object($res_statut2)){
+                        #           while ($ligne = mysql_fetch_object($res_statut2)){
                                    	
                                             $cherche_nomPoste_niveau=$ligne->nomPoste_niveau;
                                             $cherche_nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
@@ -666,10 +670,10 @@ if ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false)
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
                                 
-						#		if (mysql_num_rows($res_statut3) > 0) {
+								if (mysql_num_rows($res_statut3) > 0) {
 							
-						#			$ligne=mysql_fetch_object($res_statut3) ;
-                                     while ($ligne = mysql_fetch_object($res_statut3)) {
+									$ligne=mysql_fetch_object($res_statut3) ;
+                         #            while ($ligne = mysql_fetch_object($res_statut3)) {
                                      	
                                             $cherche_diplomeEtudes_niveau=$ligne->diplomeEtudes_niveau;
                                             $cherche_nomEtablissement_niveau=$ligne->nomEtablissement_niveau;
