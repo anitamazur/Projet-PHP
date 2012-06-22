@@ -169,6 +169,11 @@ if ($row["id_role"]== 1)
 
 
                 }
+
+     elseif ($row["id_statut"] ==1 or $row["id_statut"] ==4) 
+                {
+                 $pdf->cell(0,10,$row["nom_statut"],0,1);  
+                }
  }} }
  
 $pdf->Output();
