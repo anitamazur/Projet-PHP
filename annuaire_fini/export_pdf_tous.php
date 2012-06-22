@@ -54,7 +54,7 @@ FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 WHERE u.id = ru.id_utilisateur
 AND r.id = ru.id_role 
 AND ru.id_role = 1
-AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'");
+AND u.annee_promo !=0000");
  
 ## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats 
 
@@ -91,29 +91,33 @@ if ($row["id_role"]== 1)
                     {
                     
                     $req_statut2="SELECT *
-                                FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
-                                WHERE u.id = pu.id_utilisateur
-                                AND u.id = eu.id_utilisateur
-                                AND u.id = sa.id_utilisateur
-                                AND p.id = pu.id_poste
-                                AND p.id = pde.id_poste
-                                AND e.id = eu.id_entreprise
-                                AND e.id = pde.id_entreprise
-                                AND e.id = ev.id_entreprise
-                                AND vi.id = ev.id_entreprise
-                                AND vi.id = vp.id_ville
-                            AND sa.statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]' ";
+				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+				WHERE u.id = pu.id_utilisateur
+				AND u.id = eu.id_utilisateur
+				AND u.id = sa.id_utilisateur
+				AND u.id = ru.id_utilisateur
+				AND r.id = ru.id_role
+				AND s.id = sa.id_statut
+				AND p.id = pu.id_poste
+				AND p.id = pde.id_poste
+				AND e.id = eu.id_entreprise
+				AND e.id = pde.id_entreprise
+				AND e.id = ev.id_entreprise
+				AND vi.id = ev.id_entreprise
+				AND vi.id = vp.id_ville
+                AND sa.statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' 
+				AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]' ";
                     
                     $res_statut2 = mysql_query($req_statut2) ;
                     
-                 if(mysql_num_rows($res_statut2) > 0)
-				{
-				$row=mysql_fetch_array($res_statut2) ;
+        #         if(mysql_num_rows($res_statut2) > 0)
+		#		{
+		#		$row=mysql_fetch_array($res_statut2) ;
 
 
 							
-                #   while($row=mysql_fetch_assoc($res_statut2))
-                 #               {
+                   while($row=mysql_fetch_assoc($res_statut2))
+                               {
                                  
                         $pdf->cell(0,10,$row["nom_poste"],0,1);
                         $pdf->cell(0,10,$row["nom_entreprise "],0,1);
@@ -135,28 +139,32 @@ if ($row["id_role"]== 1)
                 {
                 
                 $req_statut3 = "SELECT * 
-                                FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
-                                WHERE u.id = eu.id_utilisateur
-                                WHERE u.id = sa.id_utilisateur
-                                AND u.id = etau.id_utilisateur
-                                AND e.id = eu.id_etudes
-                                AND eta.id = etau.id_etablissement
-                                AND eta.id = etav.id_etablissement
-                                AND v.id = vp.id_ville
-                                AND v.id = etav.id_ville
-                                AND p.id = vp.id_pays
-                        AND sa.id_statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'" ;
+			FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+			WHERE u.id = eu.id_utilisateur
+			AND u.id = sa.id_utilisateur
+			AND u.id = ru.id_utilisateur
+			AND r.id = ru.id_role
+			AND s.id = sa.id_statut
+			AND u.id = etau.id_utilisateur
+			AND e.id = eu.id_etudes
+			AND eta.id = etau.id_etablissement
+			AND eta.id = etav.id_etablissement
+			AND v.id = vp.id_ville
+			AND v.id = etav.id_ville
+			AND p.id = vp.id_pays
+            AND sa.id_statut = '$row[id_statut]' AND ru.id_role = '$row[id_role]' 
+			AND u.nom = '$row[nom]' AND u.prenom = '$row[prenom]'" ;
                         
                 $res_statut3 = mysql_query($req_statut3) ;
             	
-            	if(mysql_num_rows($res_statut3) > 0)
-			{
-		$row=mysql_fetch_array($res_statut3) ;
+      #      	if(mysql_num_rows($res_statut3) > 0)
+		#	{
+	#	$row=mysql_fetch_array($res_statut3) ;
 
 
 			
-                  # while($row=mysql_fetch_assoc($res_statut3))
-                   #            {
+                   while($row=mysql_fetch_assoc($res_statut3))
+                               {
                                  
                         $pdf->cell(0,10,$row["diplome_etudes"],0,1);
                         $pdf->cell(0,10,$row["nom_etablissement "],0,1);
