@@ -46,7 +46,12 @@ $res = mysql_query("SELECT *
 			AND s.id = sa.id_statut
 			AND ru.id_role = '$profil_id_role' AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' ");
 			
-			while($row = mysql_fetch_array($res)) {
+			if(mysql_num_rows($res) > 0)
+									{
+			$row=mysql_fetch_array($res) ;
+			
+			#while($row = mysql_fetch_array($res)) {
+			
 				$profil_id_statut = $row['id_statut'];
 			
 			$excel .= "$row[nom_statut] \t";
@@ -74,10 +79,12 @@ $res = mysql_query("SELECT *
 				AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'");
 					
 					
-				#	if(mysql_num_rows($res_statut2) > 0)
-						#			{
-				#			$row=mysql_fetch_array($res_statut2) ;
-					while ($row = mysql_fetch_array($res_statut2)){
+					if(mysql_num_rows($res_statut2) > 0)
+									{
+					$row=mysql_fetch_array($res_statut2) ;
+					
+				#	while ($row = mysql_fetch_array($res_statut2)){
+				
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 						}
@@ -105,10 +112,11 @@ $res = mysql_query("SELECT *
 			AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
 			AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
 						
-					#	if(mysql_num_rows($res_statut3) > 0)
-					#				{
-					#		$row=mysql_fetch_array($res_statut3) ;
-					while ($row = mysql_fetch_array($res_statut3)){
+						if(mysql_num_rows($res_statut3) > 0)
+									{
+							$row=mysql_fetch_array($res_statut3) ;
+							
+					#while ($row = mysql_fetch_array($res_statut3)){
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 							}}
