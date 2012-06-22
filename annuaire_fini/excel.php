@@ -88,7 +88,7 @@ $res = mysql_query("SELECT *
 					$excel .= "$row[nom_poste] \t $row[nom_entreprise] \t $row[siteweb_entreprise] \t $row[secteur_entreprise] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
 						}
-			
+				else {$excel .= "-\n";}
 			
 			
 			}
@@ -119,7 +119,10 @@ $res = mysql_query("SELECT *
 					#while ($row = mysql_fetch_array($res_statut3)){
 						$excel .= "$row[diplome] \t $row[nom_etablissement] \t $row[siteweb_etablissement] \t $row[nom_ville] $row[cp] $row[nom_pays] \n";
 							
-							}}
+							}
+			else {$excel .= " -\n";}				
+							
+							}
 			else
 			{$excel .= "-\n";}
 			
