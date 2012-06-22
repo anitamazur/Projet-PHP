@@ -38,12 +38,12 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 		
 		$res_p= mysql_query($req_p) ;
 
-		if(mysql_num_rows($res_p) > 0)
+	#	if(mysql_num_rows($res_p) > 0)
 								
-			{
-		$ligne=mysql_fetch_object($res_p) ;
+	#		{
+	#	$ligne=mysql_fetch_object($res_p) ;
 		
-	#while ($ligne = mysql_fetch_object($res_p)) {
+	while ($ligne = mysql_fetch_object($res_p)) {
 	
 				$promo_annee_promo=$ligne->annee_promo;
 				$promo_id_role=$ligne->id_role;
@@ -88,13 +88,13 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 										AND r.id = ru.id_role
 										AND s.id = sa.id_statut
 										AND ru.id_role = '$promo_id_role' 
-										AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'
-										AND u.annee_promo !=0000");
+										AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'");
 							
 							if(mysql_num_rows($res_statut) > 0)
-									#while ($ligne = mysql_fetch_object($res_statut2))
+							$ligne=mysql_fetch_object($res_statut) ; 
 									{
-									$ligne=mysql_fetch_object($res_statut) ;
+									
+							#while ($ligne = mysql_fetch_object($res_statut)){	
 									
 									$promo_id_statut=$ligne->id_statut;
 										$promo_statut = $ligne->nom_statut;	
@@ -123,16 +123,15 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								AND vi.id = ev.id_entreprise
 								AND vi.id = vp.id_ville
 								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role' 
-								AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'
-								AND u.annee_promo !=0000";
+								AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
 								
 								if(mysql_num_rows($res_statut2) > 0)
-									#while ($ligne = mysql_fetch_object($res_statut2))
 									{		
-											$ligne=mysql_fetch_object($res_statut2) ;
-											
+									$ligne=mysql_fetch_object($res_statut2) ;
+									
+									#		while ($ligne = mysql_fetch_object($res_statut2)) {		
 											$promo_poste = $ligne->nom_poste;
 											$promo_nom_ent = $ligne->nom_entreprise;
 											$promo_web_ent = $ligne->siteweb_entreprise;
@@ -196,17 +195,17 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
 								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role'
-								AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'
-								AND u.annee_promo !=0000" ;
+								AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
 								
 								if(mysql_num_rows($res_statut3) > 0)
-									#while ($ligne = mysql_fetch_object($res_statut3)) 
 									{
-										$ligne=mysql_fetch_object($res_statut3) ;
+									$ligne=mysql_fetch_object($res_statut3) ;
 									
-										$promo_diplome = $ligne->diplome;
+									#	while ($ligne = mysql_fetch_object($res_statut3)) {
+									
+											$promo_diplome = $ligne->diplome;
 											$promo_nom_etab = $ligne->nom_etablissement;
 											$promo_web_etab = $ligne->siteweb_etablissement;
 											$promo_ville = $ligne->nom_ville;
