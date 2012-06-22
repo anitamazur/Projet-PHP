@@ -482,7 +482,7 @@ if ($id_role == 3 or $id_role == 4)
 											}
 								
                                 } 
-								else {echo"<td> - </td>";)
+								else {echo"<td> - </td>";}
 								}
                                 
                             ## si en formation ##   
@@ -544,7 +544,7 @@ if ($id_role == 3 or $id_role == 4)
 											}
                                
                                 }
-							else {echo"<td> - </td>";)
+							else {echo"<td> - </td>";}
 								}
                             
                             
@@ -695,7 +695,7 @@ if ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false)
                                             else {echo " ";}
                             
                                         } 
-									else {echo"<td> - </td>";)	
+									else {echo"<td> - </td>";}
 										}
                                 
                             ## si en formation ##   
@@ -777,7 +777,7 @@ if ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false)
                                             else {echo " ";}                                            
                             
                                 }
-							else {echo"<td> - </td>";)
+							else {echo"<td> - </td>";}
 								}
                             
                             
