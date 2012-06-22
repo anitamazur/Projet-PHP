@@ -170,7 +170,7 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								}
 								else { echo "-</td>";}			
 									
-									
+							else {echo "<td> - </td>";}		
 									
 										
 										} }
@@ -237,7 +237,11 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								echo "$promo_pays</td>";
 								}
 								else { echo "-</td>";}	
-									} }
+									 
+							else {echo "<td> - </td>";}
+							
+									}
+									}
 							
 							
 							##si profil ? remplir ou en recherche d'emploi##
