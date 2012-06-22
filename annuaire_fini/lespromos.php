@@ -170,10 +170,13 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								}
 								else { echo "-</td>";}			
 									
-							else {echo "<td> - </td>";}		
+								
 									
 										
-										} }
+										} 
+						else {echo "<td> - </td>";}					
+										
+										}
 								
 							## si en formation ##	
 							elseif ($promo_id_statut==3)
@@ -238,9 +241,11 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								}
 								else { echo "-</td>";}	
 									 
-							else {echo "<td> - </td>";}
+							
 							
 									}
+									
+					else {echo "<td> - </td>";}
 									}
 							
 							
