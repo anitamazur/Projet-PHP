@@ -19,10 +19,9 @@ $query = "SELECT *
 	FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 	WHERE u.id = ru.id_utilisateur
 	AND r.id = ru.id_role
-	AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'";
-	
-## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats
-	
+	AND ru.id_role = 1
+	AND u.annee_promo !=0000";
+		
 $result = mysql_query($query) or die(mysql_error());
  
 // Entêtes des colones dans le fichier Excel
@@ -57,20 +56,22 @@ $res = mysql_query("SELECT *
 				
 				
 				$res_statut2=mysql_query("SELECT *
-							FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
-							WHERE u.id = pu.id_utilisateur
-							AND u.id = eu.id_utilisateur
-							AND p.id = pu.id_poste
-							AND p.id = pde.id_poste
-							AND e.id = eu.id_entreprise
-							AND e.id = pde.id_entreprise
-							AND e.id = ev.id_entreprise
-							AND vi.id = ev.id_entreprise
-							AND vi.id = vp.id_ville
-							AND pa.id = vp.id_pays
-							AND u.id = sa.id_utilisateur
-							AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
-							AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'");
+				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+				WHERE u.id = pu.id_utilisateur
+				AND u.id = eu.id_utilisateur
+				AND u.id = sa.id_utilisateur
+				AND u.id = ru.id_utilisateur
+				AND r.id = ru.id_role
+				AND s.id = sa.id_statut
+				AND p.id = pu.id_poste
+				AND p.id = pde.id_poste
+				AND e.id = eu.id_entreprise
+				AND e.id = pde.id_entreprise
+				AND e.id = ev.id_entreprise
+				AND vi.id = ev.id_entreprise
+				AND vi.id = vp.id_ville
+				AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
+				AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'");
 					
 					
 				#	if(mysql_num_rows($res_statut2) > 0)
@@ -88,18 +89,21 @@ $res = mysql_query("SELECT *
 			elseif ($profil_id_statut == 3) 
 					{		
 						$res_statut3 =mysql_query( "SELECT * 
-								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav AND statut_ancien_etudiant AS sa
-								WHERE u.id = eu.id_utilisateur
-								AND u.id = etau.id_utilisateur
-								AND e.id = eu.id_etudes
-								AND eta.id = etau.id_etablissement
-								AND eta.id = etav.id_etablissement
-								AND v.id = vp.id_ville
-								AND v.id = etav.id_ville
-								AND p.id = vp.id_pays
-								AND u.id = sa.id_utilisateur
-								AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
-								AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
+			FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+			WHERE u.id = eu.id_utilisateur
+			AND u.id = sa.id_utilisateur
+			AND u.id = ru.id_utilisateur
+			AND r.id = ru.id_role
+			AND s.id = sa.id_statut
+			AND u.id = etau.id_utilisateur
+			AND e.id = eu.id_etudes
+			AND eta.id = etau.id_etablissement
+			AND eta.id = etav.id_etablissement
+			AND v.id = vp.id_ville
+			AND v.id = etav.id_ville
+			AND p.id = vp.id_pays
+			AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
+			AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
 						
 					#	if(mysql_num_rows($res_statut3) > 0)
 					#				{
