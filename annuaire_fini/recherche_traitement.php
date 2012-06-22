@@ -509,11 +509,11 @@ if ($id_role == 3 or $id_role == 4)
                                 
                                 $res_statut3 = mysql_query($req_statut3) ;
                                 
-							#	if (mysql_num_rows($res_statut3) > 0) {
+								if (mysql_num_rows($res_statut3) > 0) {
 							
-							#	$ligne=mysql_fetch_object($res_statut3) ;
+								$ligne=mysql_fetch_object($res_statut3) ;
 								
-                                    while ($ligne = mysql_fetch_object($res_statut3)) {
+                             #       while ($ligne = mysql_fetch_object($res_statut3)) {
 									
 								$cherche_diplome = $ligne->diplome_etudes;
 								$cherche_nom_etablissement =$ligne->nom_etablissement;
