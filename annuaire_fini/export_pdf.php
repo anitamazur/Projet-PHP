@@ -49,7 +49,8 @@ $serveurBD = "localhost";
 $resultat=mysql_query ("SELECT *
 FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 WHERE u.id = ru.id_utilisateur
-AND r.id = ru.id_role AND ru.id_role = 1 AND u.annee_promo!=0000");
+AND r.id = ru.id_role AND ru.id_role = 1 AND u.annee_promo!=0000
+AND u.nom = '$_SESSION[nom]' AND u.prenom = '$_SESSION[prenom]'");
  
 // Instanciation de la classe dérivée
  
@@ -59,8 +60,7 @@ $pdf->SetFont('Times','',12);
  
 while($row=mysql_fetch_assoc($resultat))
 {
- $row["nom"]=$_SESSION['nom'];
- $row["prenom"]=$_SESSION['prenom'];
+
  
  $pdf->cell(0,10,'UTILISATEUR :',0,1);
 $pdf->cell(0,10,$row["nom"],0,1);
