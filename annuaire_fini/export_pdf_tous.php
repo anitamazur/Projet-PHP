@@ -56,7 +56,6 @@ AND r.id = ru.id_role
 AND ru.id_role = 1
 AND u.annee_promo !=0000");
  
-## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats 
 
 // Instanciation de la classe dérivée
  
@@ -110,14 +109,14 @@ if ($row["id_role"]== 1)
                     
                     $res_statut2 = mysql_query($req_statut2) ;
                     
-        #         if(mysql_num_rows($res_statut2) > 0)
-		#		{
-		#		$row=mysql_fetch_array($res_statut2) ;
+                if(mysql_num_rows($res_statut2) > 0)
+				{
+				$row=mysql_fetch_array($res_statut2) ;
 
 
 							
-                   while($row=mysql_fetch_assoc($res_statut2))
-                               {
+           #        while($row=mysql_fetch_assoc($res_statut2))
+             #                  {
                                  
                         $pdf->cell(0,10,$row["nom_poste"],0,1);
                         $pdf->cell(0,10,$row["nom_entreprise "],0,1);
@@ -157,14 +156,14 @@ if ($row["id_role"]== 1)
                         
                 $res_statut3 = mysql_query($req_statut3) ;
             	
-      #      	if(mysql_num_rows($res_statut3) > 0)
-		#	{
-	#	$row=mysql_fetch_array($res_statut3) ;
+            	if(mysql_num_rows($res_statut3) > 0)
+			{
+		$row=mysql_fetch_array($res_statut3) ;
 
 
 			
-                   while($row=mysql_fetch_assoc($res_statut3))
-                               {
+             #      while($row=mysql_fetch_assoc($res_statut3))
+              #                 {
                                  
                         $pdf->cell(0,10,$row["diplome_etudes"],0,1);
                         $pdf->cell(0,10,$row["nom_etablissement "],0,1);
