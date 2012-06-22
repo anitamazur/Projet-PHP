@@ -90,28 +90,28 @@ $res = mysql_query($req) ;
                                         echo "<td>$ligne->nom_statut</td>";
 
                                         $req_statut2="SELECT *
-								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
-								WHERE u.id = pu.id_utilisateur
-								AND u.id = eu.id_utilisateur
-								AND u.id = sa.id_utilisateur
-								AND u.id = ru.id_utilisateur
-								AND r.id = ru.id_role
-								AND s.id = sa.id_statut
-								AND p.id = pu.id_poste
-								AND p.id = pde.id_poste
-								AND e.id = eu.id_entreprise
-								AND e.id = pde.id_entreprise
-								AND e.id = ev.id_entreprise
-								AND vi.id = ev.id_entreprise
-								AND vi.id = vp.id_ville
-                                AND u.annee_promo='$promo_annee_promo' AND ru.id_role = '$promo_id_role' AND sa.id_statut = '$promo_id_statut'";
+                                                        FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+		WHERE u.id = pu.id_utilisateur
+		AND u.id = eu.id_utilisateur
+		AND u.id = sa.id_utilisateur
+		AND u.id = ru.id_utilisateur
+		AND r.id = ru.id_role
+		AND s.id = sa.id_statut
+		AND p.id = pu.id_poste
+		AND p.id = pde.id_poste
+		AND e.id = eu.id_entreprise
+		AND e.id = pde.id_entreprise
+		AND e.id = ev.id_entreprise
+		AND vi.id = ev.id_entreprise
+		AND vi.id = vp.id_ville
+                                                        AND u.annee_promo='$promo_annee_promo' AND ru.id_role = '$promo_id_role' AND sa.id_statut = '$promo_id_statut'";
 
                                         $res_statut2 = mysql_query($req_statut2) ;
                                             
-                                     if (mysql_num_rows($res_statut2) > 0) {
+                                #       if (mysql_num_rows($res_statut2) > 0) {
                             
-                                  $ligne=mysql_fetch_object($res_statut2) ;   
-                                   #     while ($ligne = mysql_fetch_object($res_statut2)){
+                                #   $ligne=mysql_fetch_object($res_statut2) ;   
+                                        while ($ligne = mysql_fetch_object($res_statut2)){
                                         
                                         $promo_nomPoste_niveau=$ligne->nomPoste_niveau;
                                         $promo_nomEntreprise_niveau=$ligne->nomEntreprise_niveau;
@@ -178,28 +178,28 @@ $res = mysql_query($req) ;
                                         echo "<td>$ligne->nom_statut</td>"; 
                                         
                                         $req_statut3 = "SELECT * 
-								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
-								WHERE u.id = eu.id_utilisateur
-								AND u.id = sa.id_utilisateur
-								AND u.id = ru.id_utilisateur
-								AND r.id = ru.id_role
-								AND s.id = sa.id_statut
-								AND u.id = etau.id_utilisateur
-								AND e.id = eu.id_etudes
-								AND eta.id = etau.id_etablissement
-								AND eta.id = etav.id_etablissement
-								AND v.id = vp.id_ville
-								AND v.id = etav.id_ville
-								AND p.id = vp.id_pays
+		FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+		WHERE u.id = eu.id_utilisateur
+		AND u.id = sa.id_utilisateur
+		AND u.id = ru.id_utilisateur
+		AND r.id = ru.id_role
+		AND s.id = sa.id_statut
+		AND u.id = etau.id_utilisateur
+		AND e.id = eu.id_etudes
+		AND eta.id = etau.id_etablissement
+		AND eta.id = etav.id_etablissement
+		AND v.id = vp.id_ville
+		AND v.id = etav.id_ville
+		AND p.id = vp.id_pays
                                         AND u.annee_promo='$promo_annee_promo' AND ru.id_role = '$promo_id_role' AND sa.id_statut = '$promo_id_statut'" ;
 
                                         $res_statut3 = mysql_query($req_statut3) ;
                                         
-                                      if (mysql_num_rows($res_statut3) > 0) {
+                                    #   if (mysql_num_rows($res_statut3) > 0) {
                             
-                                     $ligne=mysql_fetch_object($res_statut3) ;
+                                        #$ligne=mysql_fetch_object($res_statut3) ;
                                         
-                                  #      while ($ligne = mysql_fetch_object($res_statut3)) {
+                                        while ($ligne = mysql_fetch_object($res_statut3)) {
                                         
                                         $promo_diplomeEtudes_niveau=$ligne->diplomeEtudes_niveau;
                                         $promo_nomEtablissement_niveau=$ligne->nomEtablissement_niveau;
