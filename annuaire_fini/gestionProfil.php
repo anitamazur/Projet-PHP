@@ -840,27 +840,27 @@ if(isset($_POST['changeStatut'])) {
     $resultat = mysql_query($requete);
     // Suivant si le changement de statut a été un succès ou pas, on affiche un autre message.  
     if($resultat) {
-		if ($radio_statut ==2)
-			{
-			$nomEnt ="";
-			$webEnt ="";
-			$posteEnt ="";
-			$mail_pro ="";
-			$secteurEnt ="";
-			$villeEnt ="";
-			$codePostalEnt="";
-			$paysEnt="";
-			}
-			
-		elseif ($radio_statut ==3)
-			{
-			$diplome="";
-			$etab="";
-			$web_etab="";
-			$ville_etab="";
-			$code_postal_etab="";
-			$pays_etab="";
-			}
+        if ($radio_statut ==2)
+            {
+            $nomEnt ="";
+            $webEnt ="";
+            $posteEnt ="";
+            $mail_pro ="";
+            $secteurEnt ="";
+            $villeEnt ="";
+            $codePostalEnt="";
+            $paysEnt="";
+            }
+            
+        elseif ($radio_statut ==3)
+            {
+            $diplome="";
+            $etab="";
+            $web_etab="";
+            $ville_etab="";
+            $code_postal_etab="";
+            $pays_etab="";
+            }
             $message .= "<p class=\"succes\">Statut modifié dans la base de données.</p>";
     } else {
             $message .= "<p class=\"erreur\">Erreur lors de la modification du statut.</p>" ;
@@ -1197,7 +1197,7 @@ if(connexionUtilisateurReussie()) {
 
     if ($id_role ==1) {
     echo "
-        <h2>Export de mon profil aux formats xml ou pdf</h2>
+        <h2>Export de mon profil aux formats Excel ou PDF</h2>
         <p>Export au format <a href=\"export_excel.php\">Excel</a>.<br/>
         Export au format <a href=\"export_pdf.php\">pdf</a>.</p>";
 
