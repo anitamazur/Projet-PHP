@@ -350,38 +350,85 @@ if(isset($_POST['modifier'])) {
             AND etab.id = etabu.id_etablissement AND v.id = etab_ville.id_etablissement AND etab.id = etab_ville.id_etablissement AND u.id = $id_utilisateur";
             
            
+
+            
+            
             
             $res_diplome = mysql_query($req_diplome) ;
-            $ligne=mysql_fetch_object($res_diplome) ;
-            $diplome = $ligne->diplome_etudes;
+            if (mysql_num_rows($res_diplome) == 1) {
+                $ligne=mysql_fetch_object($res_diplome) ;
+                $diplome = $ligne->diplome_etudes;
+            } else {
+                $diplome = "";
+            }
            
             
             $res_etablissement = mysql_query($req_etablissement) ;
-            $ligne=mysql_fetch_object($res_etablissement) ;
-            $etab = $ligne->nom_etablissement ;
-            $id_etab = $ligne->id ;
+            
+            if (mysql_num_rows($res_etablissement) == 1) {
+                $ligne=mysql_fetch_object($res_etablissement) ;
+                $etab = $ligne->nom_etablissement ;
+                $id_etab = $ligne->id ;
+            } else {
+                $etab = "";
+                $id_etab = "";
+            }
+            
+            
+            
+
             
             $res_web_etablissement = mysql_query($req_web_etablissement) ;
-            $ligne=mysql_fetch_object($res_web_etablissement) ;
-            $web_etab = $ligne->siteweb_etablissement ;
+            
+            if (mysql_num_rows($res_web_etablissement) == 1) {
+                $ligne=mysql_fetch_object($res_web_etablissement) ;
+                $web_etab = $ligne->siteweb_etablissement ;
+            } else {
+                $web_etab = "";
+            }
+            
+            
+            
             
             $res_etablissement_ville = mysql_query($req_etablissement_ville) ;
-            $ligne=mysql_fetch_object($res_etablissement_ville) ;
-            $ville_etab = $ligne->nom_ville ;
-            $id_ville = $ligne->id ;
+            
+            if (mysql_num_rows($res_etablissement_ville) == 1) {
+                $ligne=mysql_fetch_object($res_etablissement_ville) ;
+                $ville_etab = $ligne->nom_ville ;
+                $id_ville = $ligne->id ;
+            } else {
+                $ville_etab = "";
+                $id_ville = "";
+            }
+            
+
             
             $res_etablissement_cp = mysql_query($req_etablissement_cp) ;
-            $ligne=mysql_fetch_object($res_etablissement_cp) ;
-            $code_postal_etab = $ligne->cp;
+            
+            if (mysql_num_rows($res_etablissement_cp) == 1) {
+                $ligne=mysql_fetch_object($res_etablissement_ville) ;
+                $code_postal_etab = $ligne->cp;
+            } else {
+                $code_postal_etab = "";
+            }
+            
             
             $req_etablissement_pays = "SELECT p.id, p.nom_pays FROM utilisateur AS u, etablissement_utilisateur AS eu, etablissement AS e, etablissement_ville AS ev, ville AS v, pays AS p, ville_pays AS vp WHERE vp.id_ville = v.id AND vp.id_pays = p.id AND eu.id_utilisateur = u.id AND eu.id_etablissement = e.id AND ev.id_etablissement = e.id AND ev.id_ville = v.id AND u.id = $id_utilisateur ";
             
             $res_etablissement_pays = mysql_query($req_etablissement_pays) ;
-            $ligne=mysql_fetch_object($res_etablissement_pays) ;
-            $pays_etab = $ligne->nom_pays;
-            $id_pays = $ligne->id;
             
-                        
+            if (mysql_num_rows($res_etablissement_pays) == 1) {
+                $ligne=mysql_fetch_object($res_etablissement_pays) ;
+                $pays_etab = $ligne->nom_pays;
+                $id_pays = $ligne->id;
+            } else {
+                $pays_etab = "";
+                $id_pays = "";
+            }
+            
+            
+            
+                  
 
             
             if (mysql_num_rows($res_diplome) == 0) {
@@ -504,7 +551,6 @@ if(isset($_POST['modifier'])) {
             if (mysql_num_rows($res_etablissement_pays) == 0) {
                 $res_modif = mysql_query ("INSERT INTO pays(nom_pays, nomPays_niveau) VALUES ('$paysEtab_modif', 'prive')");
                 $id_pays = mysql_insert_id();
-                print mysql_num_rows($res_etablissement_ville);
                 if (mysql_num_rows($res_etablissement_ville) != 0) { 
                     $rel_ville = mysql_query ("INSERT INTO ville_pays (id_ville, id_pays) VALUES ($id_ville, $id_pays)");
                 }
