@@ -448,18 +448,42 @@ if ($id_role == 3 or $id_role == 4)
         
                                 $res_statut2 = mysql_query($req_statut2) ;
                                 
-								#	if (mysql_num_rows($res_statut2) > 0) {
+									if (mysql_num_rows($res_statut2) > 0) {
 							
-								#	$ligne=mysql_fetch_object($res_statut2) ;
-                                    while ($ligne = mysql_fetch_object($res_statut2)){
-                                
-                                            echo "<td>$ligne->nom_poste<br/>";
-                                            echo"$ligne->nom_entreprise<br/>";
-                                            echo"$ligne->siteweb_entreprise<br/>";
-                                            echo"$ligne->secteur_entreprise<br/>";
-                                            echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
-                                
-                                } }
+									$ligne=mysql_fetch_object($res_statut2) ;
+                                 #   while ($ligne = mysql_fetch_object($res_statut2)){
+											$cherche_poste = $ligne->nom_poste;
+											$cherche_nom_entreprise =$ligne->nom_entreprise;
+											$cherche_siteweb_entreprise = $ligne->siteweb_entreprise;
+											$cherche_secteur_entreprise =$ligne->secteur_entreprise;
+											$cherche_ville = $ligne->nom_ville;
+											$cherche_cp =$ligne->cp;
+											$cherche_pays =$ligne->nom_pays;
+											
+											if ($cherche_poste!="")
+											{
+                                            echo "<td>$cherche_poste<br/>";
+											}
+											if($cherche_nom_entreprise!="")
+											{
+                                            echo"$cherche_nom_entreprise<br/>";
+											}
+											if ($cherche_siteweb_entreprise!="")
+											{
+                                            echo"$cherche_siteweb_entreprise<br/>";
+											}
+											if ($cherche_secteur_entreprise!="")
+											{
+                                            echo"$cherche_secteur_entreprise<br/>";
+											}
+											if ($cherche_ville !="" or $cherche_cp!="" or $cherche_pays!="")
+											{
+                                            echo"$cherche_ville $cherche_cp $cherche_pays</td>";
+											}
+								
+                                } 
+								else {echo"<td> - </td>";)
+								}
                                 
                             ## si en formation ##   
                             elseif ($cherche_id_statut==3)
@@ -490,12 +514,38 @@ if ($id_role == 3 or $id_role == 4)
 							#	$ligne=mysql_fetch_object($res_statut3) ;
 								
                                     while ($ligne = mysql_fetch_object($res_statut3)) {
-                                
-                                echo "<td>$ligne->diplome_etudes<br/>";
-                                echo "$ligne->nom_etablissement<br/>";
-                                echo "$ligne->siteweb_etablissement<br/>";
-                                echo"$ligne->nom_ville $ligne->cp $ligne->nom_pays</td>";
-                                } }
+									
+								$cherche_diplome = $ligne->diplome_etudes;
+								$cherche_nom_etablissement =$ligne->nom_etablissement;
+								$cherche_siteweb_etablissement =$ligne->siteweb_etablissement;
+								$cherche_ville = $ligne->nom_ville;
+								$cherche_cp =$ligne->cp;
+								$cherche_pays =$ligne->nom_pays;
+								
+								if ($cherche_diplome!="")
+											{
+                                            echo "<td>$cherche_diplome<br/>";
+											}
+											if($cherche_nom_etablissement!="")
+											{
+                                            echo"$cherche_nom_etablissement<br/>";
+											}
+											if ($cherche_siteweb_etablissement!="")
+											{
+                                            echo"$cherche_siteweb_etablissement<br/>";
+											}
+											if ($cherche_secteur_etablissement!="")
+											{
+                                            echo"$cherche_secteur_etablissement<br/>";
+											}
+											if ($cherche_ville !="" or $cherche_cp!="" or $cherche_pays!="")
+											{
+                                            echo"$cherche_ville $cherche_cp $cherche_pays</td>";
+											}
+                               
+                                }
+							else {echo"<td> - </td>";)
+								}
                             
                             
                             ##si profil à remplir ou en recherche d'emploi##
@@ -644,7 +694,9 @@ if ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false)
                                             }
                                             else {echo " ";}
                             
-                                        } }
+                                        } 
+									else {echo"<td> - </td>";)	
+										}
                                 
                             ## si en formation ##   
                             elseif ($cherche_id_statut==3)
@@ -724,7 +776,9 @@ if ($id_role == 1 or $id_role == 2 or connexionUtilisateurReussie() == false)
                                             }
                                             else {echo " ";}                                            
                             
-                                } }
+                                }
+							else {echo"<td> - </td>";)
+								}
                             
                             
                             ##si profil à remplir ou en recherche d'emploi##
