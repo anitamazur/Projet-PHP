@@ -43,7 +43,7 @@ while($row = mysql_fetch_array($result)) {
 				{
 				
 				$res_statut2=mysql_query("SSELECT *
-				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+				FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp, statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
 				WHERE u.id = pu.id_utilisateur
 				AND u.id = eu.id_utilisateur
 				AND u.id = sa.id_utilisateur
