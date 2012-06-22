@@ -8,7 +8,7 @@ $mail = $_SESSION['mail'] ;
 $annee_promo = $_SESSION['annee_promo'];
 $id_role = $_SESSION['id_role'];
 $id_statut = $_SESSION['id_statut'];
-
+$id_utilisateur = $_SESSION['id_utilisateur'] = getID($nom, $prenom, $mail);
 
 require_once("fonctions.php") ;
 $connexion = connexion() ;
@@ -22,7 +22,7 @@ $req = "SELECT *
 	AND r.id = ru.id_role
 	AND s.id = sa.id_statut
 	AND ru.id_role='$id_role' AND sa.id_statut='$id_statut'
-	AND u.nom='$nom' AND u.prenom='$prenom' " ;
+	AND u.nom='$nom' AND u.prenom='$prenom' AND u.id='$id_utilisateur' " ;
 
 $res = mysql_query($req) ;
 
@@ -73,7 +73,7 @@ $ligne=mysql_fetch_object($res) ;
 				AND e.id = ev.id_entreprise
 				AND vi.id = ev.id_entreprise
 				AND vi.id = vp.id_ville
-				AND u.nom='$nom' AND u.prenom='$prenom'";
+				AND u.nom='$nom' AND u.prenom='$prenom' AND u.id='$id_utilisateur'";
 					
 					$res_statut2 = mysql_query($req_statut2) ;
 				
@@ -120,7 +120,7 @@ $ligne=mysql_fetch_object($res) ;
 			AND v.id = vp.id_ville
 			AND v.id = etav.id_ville
 			AND p.id = vp.id_pays
-			AND u.nom='$nom' AND u.prenom='$prenom'" ;
+			AND u.nom='$nom' AND u.prenom='$prenom' AND u.id='$id_utilisateur'" ;
 						
 				$res_statut3 = mysql_query($req_statut3) ;
 				
