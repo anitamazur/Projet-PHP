@@ -33,14 +33,18 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 		FROM utilisateur AS u, role AS r, roles_utilisateur AS ru 
 		WHERE u.id = ru.id_utilisateur
 		AND r.id = ru.id_role
-		AND ru.id_role = 1 or ru.id_role = 2
-		AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'";
+		AND ru.id_role = 1
+		AND u.annee_promo !=0000";
 		
 		$res_p= mysql_query($req_p) ;
-	
-## mise en place de la condition "AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" pour ne pas fausser les résultats	
 
-	while ($ligne = mysql_fetch_object($res_p)) {
+		if(mysql_num_rows($res_p) > 0)
+								
+			{
+		$ligne=mysql_fetch_object($res_p) ;
+		
+	#while ($ligne = mysql_fetch_object($res_p)) {
+	
 				$promo_annee_promo=$ligne->annee_promo;
 				$promo_id_role=$ligne->id_role;
 				$promo_id_utilisateur = $ligne->id;
@@ -83,7 +87,9 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 										AND u.id = sa.id_utilisateur
 										AND r.id = ru.id_role
 										AND s.id = sa.id_statut
-										AND ru.id_role = 1 AND u.id ='$promo_id_utilisateur'");
+										AND ru.id_role = '$promo_id_role' 
+										AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'
+										AND u.annee_promo !=0000");
 							
 							if(mysql_num_rows($res_statut) > 0)
 									#while ($ligne = mysql_fetch_object($res_statut2))
@@ -102,19 +108,23 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								echo "<td>$promo_statut</td>";
 							
 								$req_statut2="SELECT *
-								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa
-									WHERE u.id = pu.id_utilisateur
-									AND u.id = eu.id_utilisateur
-									AND u.id = sa.id_utilisateur
-									AND p.id = pu.id_poste
-									AND p.id = pde.id_poste
-									AND e.id = eu.id_entreprise
-									AND e.id = pde.id_entreprise
-									AND e.id = ev.id_entreprise
-									AND vi.id = ev.id_entreprise
-									AND vi.id = vp.id_ville
-									AND sa.id_statut = 2 AND ru.id_role =1 AND u.id ='$promo_id_utilisateur'
-									AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'";
+								FROM utilisateur AS u, poste AS p, poste_utilisateur AS pu, poste_dans_entreprise AS pde, entreprise AS e, entreprise_utilisateur As eu, entreprise_ville AS ev, ville AS vi, pays AS pa, ville_pays AS vp AND statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
+								WHERE u.id = pu.id_utilisateur
+								AND u.id = eu.id_utilisateur
+								AND u.id = sa.id_utilisateur
+								AND u.id = ru.id_utilisateur
+								AND r.id = ru.id_role
+								AND s.id = sa.id_statut
+								AND p.id = pu.id_poste
+								AND p.id = pde.id_poste
+								AND e.id = eu.id_entreprise
+								AND e.id = pde.id_entreprise
+								AND e.id = ev.id_entreprise
+								AND vi.id = ev.id_entreprise
+								AND vi.id = vp.id_ville
+								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role' 
+								AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'
+								AND u.annee_promo !=0000";
 		
 								$res_statut2 = mysql_query($req_statut2) ;
 								
@@ -172,9 +182,12 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								echo "<td>$promo_statut</td>";
 								
 								$req_statut3 = "SELECT * 
-								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa
+								FROM utilisateur AS u, etudes AS e, etudes_utilisateur AS eu, etablissement AS eta, etablissement_utilisateur AS etau, ville AS v, pays AS p, ville_pays AS vp, etablissement_ville AS etav, statut_ancien_etudiant AS sa, statut AS s, roles_utilisateur AS ru, role AS r
 								WHERE u.id = eu.id_utilisateur
-								WHERE u.id = sa.id_utilisateur
+								AND u.id = sa.id_utilisateur
+								AND u.id = ru.id_utilisateur
+								AND r.id = ru.id_role
+								AND s.id = sa.id_statut
 								AND u.id = etau.id_utilisateur
 								AND e.id = eu.id_etudes
 								AND eta.id = etau.id_etablissement
@@ -182,8 +195,9 @@ debuthtml("Annuaire M2 DEFI - les promos","Annuaire M2 DEFI", "Les promotions",$
 								AND v.id = vp.id_ville
 								AND v.id = etav.id_ville
 								AND p.id = vp.id_pays
-								AND sa.id_statut = 3 AND ru.id_role = 1 AND u.id ='$promo_id_utilisateur'
-								AND u.nom!='mazur' AND u.nom!='admin' AND u.prenom !='anita' AND u.prenom !='admin'" ;
+								AND sa.id_statut = '$promo_id_statut' AND ru.id_role ='$promo_id_role'
+								AND u.nom='$promo_nom' AND u.prenom='$promo_prenom'
+								AND u.annee_promo !=0000" ;
 								
 								$res_statut3 = mysql_query($req_statut3) ;
 								
