@@ -30,6 +30,7 @@ $excel .="nom \t prenom \t année_promo \t adresse mail \t rôle \t statut \t si
  
 //Les resultats de la requette
 while($row = mysql_fetch_array($result)) {
+        $profil_id = $row['id'];
         $profil_id_role = $row['id_role'];
         $profil_nom = $row['nom'];
         $profil_prenom = $row['prenom'];
@@ -44,7 +45,7 @@ $res = mysql_query("SELECT *
             AND u.id = sa.id_utilisateur
             AND r.id = ru.id_role
             AND s.id = sa.id_statut
-            AND ru.id_role = '$profil_id_role' AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' ");
+            AND ru.id_role = '$profil_id_role' AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' AND u.id='$profil_id' ");
             
             if(mysql_num_rows($res) > 0)
                                     {
@@ -76,7 +77,7 @@ $res = mysql_query("SELECT *
                 AND vi.id = ev.id_entreprise
                 AND vi.id = vp.id_ville
                 AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
-                AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'");
+                AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' AND u.id='$profil_id'");
                     
                     
                     if(mysql_num_rows($res_statut2) > 0)
@@ -110,7 +111,7 @@ $res = mysql_query("SELECT *
             AND v.id = etav.id_ville
             AND p.id = vp.id_pays
             AND sa.id_statut = '$profil_id_statut' AND ru.id_role = '$profil_id_role'
-            AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom' " );
+            AND u.nom = '$profil_nom' AND u.prenom = '$profil_prenom'  AND u.id='$profil_id'" );
                         
                         if(mysql_num_rows($res_statut3) > 0)
                                     {
