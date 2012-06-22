@@ -50,7 +50,7 @@ $resultat=mysql_query ("SELECT *
 FROM utilisateur AS u, role AS r, roles_utilisateur AS ru
 WHERE u.id = ru.id_utilisateur
 AND r.id = ru.id_role AND ru.id_role = 1 AND u.annee_promo!=0000
-AND u.nom = '$_SESSION[nom]' AND u.prenom = '$_SESSION[prenom]'");
+AND u.nom = '$_SESSION[nom]' AND u.prenom = '$_SESSION[prenom]' AND u.id = $_SESSION[id_utilisateur] ");
  
 // Instanciation de la classe dérivée
  
